@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Fatih Canbekli\Desktop\Projects\Squirrel-Engine\Squirrel-Engine\build\CMakeFiles\2c22b069aa1ed52a504dcacd2304300a\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{2FFA967C-97A3-3188-817A-854C58F46955}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
