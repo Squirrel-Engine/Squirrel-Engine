@@ -18,6 +18,9 @@
     <ClInclude Include="C:\Users\Fatih Canbekli\Desktop\Projects\Squirrel-Engine\Squirrel-Engine\Squirrel-Engine\include\Squirrel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C:\Users\Fatih Canbekli\Desktop\Projects\Squirrel-Engine\Squirrel-Engine\Squirrel-Engine\include\glad\glad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\Fatih Canbekli\Desktop\Projects\Squirrel-Engine\Squirrel-Engine\Squirrel-Engine\CMakeLists.txt" />

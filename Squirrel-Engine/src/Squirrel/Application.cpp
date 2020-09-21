@@ -1,5 +1,6 @@
 #include "../../include/Application.h"
 #include <iostream>
+#include <GLFW/glfw3.h>
 namespace Squirrel {
 
 	Application::Application()
@@ -15,6 +16,7 @@ namespace Squirrel {
 	{
 		while (true)
 		{
+			
 		}
 
 	}
