@@ -1,2 +1,0 @@
-C:\Users\Fatih Canbekli\Desktop\Projects\Squirrel-Engine\Squirrel-Engine\build\Squirrel-Engine\Debug\Squirrel-Engine.pdb
-C:\Users\Fatih Canbekli\Desktop\Projects\Squirrel-Engine\Squirrel-Engine\build\Squirrel-Engine\Squirrel-Engine.dir\Debug\Squirrel-Engine.pdb
