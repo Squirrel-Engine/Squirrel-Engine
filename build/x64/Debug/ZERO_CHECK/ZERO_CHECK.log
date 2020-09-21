@@ -1,14 +1,1 @@
 ﻿  Checking Build System
-  CMake is re-running because C:/Users/Fatih Canbekli/Desktop/Projects/Squirrel-Engine/Squirrel-Engine/build/Squirrel-Engine/CMakeFiles/generate.stamp is out-of-date.
-    the file 'C:/Users/Fatih Canbekli/Desktop/Projects/Squirrel-Engine/Squirrel-Engine/Squirrel-Engine/CMakeLists.txt'
-    is newer than 'C:/Users/Fatih Canbekli/Desktop/Projects/Squirrel-Engine/Squirrel-Engine/build/Squirrel-Engine/CMakeFiles/generate.stamp.depend'
-    result='-1'
-  -- Selecting Windows SDK version 10.0.18362.0 to target Windows 10.0.19041.
-  -- Looking for pthread.h
-  -- Looking for pthread.h - not found
-  -- Found Threads: TRUE  
-  -- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
-  -- Using Win32 for window creation
-  -- Configuring done
-  -- Generating done
-  -- Build files have been written to: C:/Users/Fatih Canbekli/Desktop/Projects/Squirrel-Engine/Squirrel-Engine/build

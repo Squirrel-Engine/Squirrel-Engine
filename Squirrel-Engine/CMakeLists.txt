@@ -8,7 +8,7 @@ FILE(GLOB_RECURSE SOURCES "src/*.cpp")
 FILE(GLOB_RECURSE INCLUDES "include/*.h")
 
 
-add_library(Squirrel-Engine SHARED ${SOURCES} ${INCLUDES})
+add_library(Squirrel-Engine STATIC ${SOURCES} ${INCLUDES})
 
 add_subdirectory(lib/glfw EXCLUDE_FROM_ALL)
 target_link_libraries(Squirrel-Engine PRIVATE glfw)
