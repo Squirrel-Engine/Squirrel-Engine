@@ -1,10 +1,10 @@
 #include "../../../include/OpenglWR.h"
-
+#include "../../../src/Utilities/StringUtilities.cpp"
 namespace Squirrel
 {
     void OpenGLWR::startUp(int screenWidth, int screenHeight, std::string windowName) {
         glfwInit();
-        window.setGLWindow(glfwCreateWindow(screenWidth, screenHeight, const_cast<char*>(windowName.c_str()), NULL, NULL)); //TODO Implement std::string to char *
+        window.setGLWindow(glfwCreateWindow(screenWidth, screenHeight, convertStdStringToConst(windowName), NULL, NULL));
 
 
         if (window.getGLWindow() == NULL)
