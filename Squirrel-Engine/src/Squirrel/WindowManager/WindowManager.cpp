@@ -6,12 +6,12 @@ namespace Squirrel
 	void WindowManager::createWindow() {
 		switch (getCurrentPlatform())
 		{
-		case Squirrel::EPlatform::OPENGL:
+		case EGraphicAPI::OPENGL:
 			openglWR.startUp(screenWidth, screenHeight, windowName);
 			break;
-		case Squirrel::EPlatform::DIRECTX:
+		case EGraphicAPI::DIRECTX:
 			break;
-		case Squirrel::EPlatform::VULKAN:
+		case EGraphicAPI::VULKAN:
 			break;
 		default:
 			break;
@@ -21,12 +21,12 @@ namespace Squirrel
 	void WindowManager::closeWindow() {
 		switch (getCurrentPlatform())
 		{
-		case Squirrel::EPlatform::OPENGL:
+		case EGraphicAPI::OPENGL:
 			openglWR.shutDown();
 			break;
-		case Squirrel::EPlatform::DIRECTX:
+		case EGraphicAPI::DIRECTX:
 			break;
-		case Squirrel::EPlatform::VULKAN:
+		case EGraphicAPI::VULKAN:
 			break;
 		default:
 			break;
@@ -36,31 +36,31 @@ namespace Squirrel
 	void WindowManager::renderWindow() {
 		switch (getCurrentPlatform())
 		{
-		case Squirrel::EPlatform::OPENGL:
+		case EGraphicAPI::OPENGL:
 			openglWR.render();
 			break;
-		case Squirrel::EPlatform::DIRECTX:
+		case EGraphicAPI::DIRECTX:
 			break;
-		case Squirrel::EPlatform::VULKAN:
+		case EGraphicAPI::VULKAN:
 			break;
 		default:
 			break;
 		}
 	}
 
-	Squirrel::EPlatform WindowManager::getCurrentPlatform() {
-		return Squirrel::EPlatform::OPENGL;
+	EGraphicAPI WindowManager::getCurrentPlatform() {
+		return EGraphicAPI::OPENGL;
 	}
 
-	Squirrel::Window WindowManager::getWindow() {
+	Window WindowManager::getWindow() {
 		switch (getCurrentPlatform())
 		{
-		case Squirrel::EPlatform::OPENGL:
+		case EGraphicAPI::OPENGL:
 			return openglWR.getWindow();
 			break;
-		case Squirrel::EPlatform::DIRECTX:
+		case EGraphicAPI::DIRECTX:
 			break;
-		case Squirrel::EPlatform::VULKAN:
+		case EGraphicAPI::VULKAN:
 			break;
 		default:
 			break;

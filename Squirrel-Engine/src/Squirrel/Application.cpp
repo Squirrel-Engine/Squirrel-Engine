@@ -1,7 +1,6 @@
 #include "../../include/Application.h"
 #include <iostream>
 #include "../../include/WindowManager.h"
-#include <GLFW/glfw3.h>
 
 namespace Squirrel {
 

@@ -6,8 +6,8 @@ namespace Squirrel
 		return glWindow;
 	}
 
-	Squirrel::EPlatform Window::getCurrentPlatform() {
-		return EPlatform::OPENGL;
+	EGraphicAPI Window::getCurrentPlatform() {
+		return EGraphicAPI::OPENGL;
 		//TODO: Implement central platform data distribution
 	}
 

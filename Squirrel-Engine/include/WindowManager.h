@@ -1,7 +1,7 @@
 #pragma once
 #include "../../../include/Window.h"
 #include "../../../include/OpenGLWR.h"
-#include "../../../include/EPlatform.h"
+#include "../../../include/EGraphicAPI.h"
 
 namespace Squirrel
 {
@@ -11,7 +11,7 @@ namespace Squirrel
 		void createWindow();
 		void closeWindow();
 		void renderWindow();
-		Squirrel::EPlatform getCurrentPlatform();
+		Squirrel::EGraphicAPI getCurrentPlatform();
 		Squirrel::Window getWindow();
 		WindowManager(int screenWidth, int screenHeight, std::string windowName);
 
