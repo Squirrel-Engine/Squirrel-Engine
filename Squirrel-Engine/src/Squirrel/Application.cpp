@@ -16,7 +16,7 @@ namespace Squirrel {
 
     void Application::Run()
     {
-		WindowManager windowManager = WindowManager(800,600,"Engine");
+		WindowManager windowManager = WindowManager(800,600,"ItsWorking");
 		windowManager.createWindow();
 		windowManager.renderWindow();
 

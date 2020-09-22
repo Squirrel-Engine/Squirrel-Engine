@@ -1,6 +1,8 @@
+#pragma once
 #include <GLFW/glfw3.h>
 #include "../../../include/EPlatform.h"
 namespace Squirrel {
+
 	class Window
 	{
 	public:
@@ -11,4 +13,5 @@ namespace Squirrel {
 		GLFWwindow* glWindow;
 		Squirrel::EPlatform getCurrentPlatform();
 	};
+	
 }
