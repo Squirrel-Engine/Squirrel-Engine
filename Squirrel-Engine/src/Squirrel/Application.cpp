@@ -18,6 +18,5 @@ namespace Squirrel {
 		WindowManager windowManager = WindowManager(800,600,"TEST");
 		windowManager.createWindow();
 		windowManager.renderWindow();
-
     }
 }

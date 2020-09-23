@@ -11,8 +11,8 @@ namespace Squirrel
 		void createWindow();
 		void closeWindow();
 		void renderWindow();
-		Squirrel::EGraphicAPI getCurrentPlatform();
-		Squirrel::Window getWindow();
+		EGraphicAPI getCurrentPlatform();
+		Window getWindow();
 		WindowManager(int screenWidth, int screenHeight, std::string windowName);
 
 	private:
