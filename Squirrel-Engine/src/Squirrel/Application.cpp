@@ -1,5 +1,7 @@
 #include "../../include/Application.h"
 #include <iostream>
+
+#include "../../include/Vector2.h"
 #include "../../include/WindowManager.h"
 
 namespace Squirrel {

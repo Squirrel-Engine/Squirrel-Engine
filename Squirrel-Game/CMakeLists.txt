@@ -2,8 +2,8 @@
 # project specific logic here.
 #
 project(Squirrel-Game)
-cmake_minimum_required (VERSION 3.8)
 
+set(CMAKE_BUILD_TYPE Debug)
 # Add source to this project's executable.
 add_executable (Squirrel-Game "Squirrel-Game.cpp" "Squirrel-Game.h")
 target_link_libraries (Squirrel-Game Squirrel-Engine)
