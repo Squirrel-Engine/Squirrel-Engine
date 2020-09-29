@@ -9,7 +9,10 @@ FILE(GLOB_RECURSE INCLUDES "include/*.h")
 set(CMAKE_BUILD_TYPE Debug)
 
 add_library(Squirrel-Engine STATIC ${SOURCES} ${INCLUDES} src/Utilities/StringUtilities.cpp)
-
+#glfw
 add_subdirectory(lib/glfw EXCLUDE_FROM_ALL)
-target_link_libraries(Squirrel-Engine PRIVATE glfw)
+target_link_libraries(Squirrel-Engine PRIVATE
+	glfw
+)
+
 # TODO: Add tests and install targets if needed.
