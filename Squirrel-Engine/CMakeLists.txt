@@ -8,7 +8,7 @@ FILE(GLOB_RECURSE SOURCES "src/*.cpp")
 FILE(GLOB_RECURSE INCLUDES "include/*.h")
 set(CMAKE_BUILD_TYPE Debug)
 
-add_library(Squirrel-Engine STATIC ${SOURCES} ${INCLUDES} src/Utilities/StringUtilities.cpp)
+add_library(Squirrel-Engine STATIC ${SOURCES} ${INCLUDES} src/Utilities/StringUtilities.cpp src/Engine-Subsystems/RuntimeManager.cpp include/RuntimeManager.h)
 
 add_subdirectory(lib/glfw EXCLUDE_FROM_ALL)
 target_link_libraries(Squirrel-Engine PRIVATE glfw)
