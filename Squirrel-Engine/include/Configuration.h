@@ -1,4 +1,5 @@
 #pragma once
+#include "RenderConfig.h"
 
 namespace Squirrel {
 
@@ -10,5 +11,6 @@ namespace Squirrel {
 
 	public:
 		static Configuration* getInstance();
+		RenderConfig renderConfig;
 	};
 }

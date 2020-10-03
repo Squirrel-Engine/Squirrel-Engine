@@ -1,5 +1,7 @@
 #include "../../../include/WindowManager.h"
 
+#include "../../../include/Configuration.h"
+
 
 namespace Squirrel
 {
@@ -49,7 +51,7 @@ namespace Squirrel
 	}
 
 	EGraphicAPI WindowManager::getCurrentPlatform() {
-		return EGraphicAPI::OPENGL;
+		return Configuration::getInstance()->renderConfig.graphicAPI;
 	}
 
 	Window WindowManager::getWindow() {
@@ -71,5 +73,11 @@ namespace Squirrel
 		this->screenWidth = _screenWidth;
 		this->screenHeight = _screenHeight;
 		this->windowName = _windowName;
+	}
+
+	WindowManager::WindowManager() {
+		this->screenWidth = Configuration::getInstance()->renderConfig.screenWidth;
+		this->screenHeight = Configuration::getInstance()->renderConfig.screenHeight;
+		this->windowName = Configuration::getInstance()->renderConfig.windowName;
 	}
 }

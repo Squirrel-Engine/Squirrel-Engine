@@ -15,9 +15,10 @@ namespace Squirrel {
 	{
 	}
 
-    void Application::Run()
-    {
-		RenderConfig r;
-		r.setup();
-    }
+	void Application::Run()
+	{
+		WindowManager windowManager = WindowManager();
+		windowManager.createWindow();
+		windowManager.renderWindow();
+	}
 }

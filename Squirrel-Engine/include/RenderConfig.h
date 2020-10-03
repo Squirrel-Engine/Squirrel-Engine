@@ -7,7 +7,12 @@ namespace Squirrel {
 	class RenderConfig :IConfig {
 	public:
 		EGraphicAPI graphicAPI;
-		JSONParser* jsonConfigurator = new JSONParser("C:/Users/16070001006/Projects/Squirrel-Engine/Squirrel-Engine/src/configs/renderConfig.json");
+		JSONParser* jsonConfigurator = new JSONParser("../../Squirrel-Engine/src/configs/renderConfig.json");
+		
+		int screenWidth;
+		int screenHeight;
+		std::string windowName;
+
 		void setup();
 	};
 }

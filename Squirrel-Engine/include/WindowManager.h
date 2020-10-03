@@ -14,7 +14,7 @@ namespace Squirrel
 		EGraphicAPI getCurrentPlatform();
 		Window getWindow();
 		WindowManager(int screenWidth, int screenHeight, std::string windowName);
-
+		WindowManager();
 	private:
 		OpenGLWR openglWR;
 		int screenWidth;

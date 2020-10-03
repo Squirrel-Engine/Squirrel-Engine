@@ -1,13 +1,14 @@
 #pragma once
-#include"IParser.h"
+#include <iostream>
 #include<map>
 #include "../../../include/json.hpp"
 #include <fstream>
 namespace Squirrel {
-	class JSONParser: IParser {
+	class JSONParser{
 	public:
 		JSONParser(std::string path);
-		std::map<std::string, std::string> parseFiles();
+		nlohmann::json parseFile_json();
+		std::map<std::string, std::string> parseFile_map();
 	private:
 		std::string parsePath;
 	};

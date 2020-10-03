@@ -1,4 +1,6 @@
 {
   "GraphicAPI": "OpenGL",
-  "caner" :  "18cm"
+  "screenWidth": 800,
+  "screenHeight": 600,
+  "windowName": "TEST"
 }
