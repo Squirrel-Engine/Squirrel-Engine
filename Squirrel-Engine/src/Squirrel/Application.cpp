@@ -1,9 +1,9 @@
 #include "../../include/Application.h"
 #include <iostream>
-
+#include "../../include/JSONParser.h"
 #include "../../include/Vector2.h"
 #include "../../include/WindowManager.h"
-
+#include "../../include/RenderConfig.h"
 namespace Squirrel {
 
 	Application::Application()
@@ -15,10 +15,10 @@ namespace Squirrel {
 	{
 	}
 
-    void Application::Run()
-    {
-		WindowManager windowManager = WindowManager(800,600,"TEST");
+	void Application::Run()
+	{
+		WindowManager windowManager = WindowManager();
 		windowManager.createWindow();
 		windowManager.renderWindow();
-    }
+	}
 }
