@@ -5,7 +5,7 @@ namespace SRMath
 	{
 	public:
 		Vector2();
-		Vector2(int x, int y);
+		Vector2(float x, float y);
 		float x;
 		float y;
 	};

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include "../../Squirrel-Engine/include/SRMath.h"
-
+	
 class Vector2Test : public ::testing::Test
 {
     protected:
@@ -9,7 +9,7 @@ class Vector2Test : public ::testing::Test
         SRMath::Vector2 Vector_Sample_Full_2 = SRMath::Vector2(4, 5); // Full Vector2
     };
 
-    TEST_F(Vector2Test, CreateVector)
+    TEST_F(Vector2Test, CreateVector2)
     {
         ASSERT_EQ(Vector_Sample_Empty.x, 0);
         ASSERT_EQ(Vector_Sample_Full_1.x, 2);
