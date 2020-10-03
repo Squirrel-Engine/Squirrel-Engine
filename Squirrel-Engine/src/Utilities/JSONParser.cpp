@@ -1,9 +1,9 @@
-#include "../../../include/JSONConfigurator.h"
+#include "../../../include/JSONParser.h"
 
 
 using json = nlohmann::json;
 namespace Squirrel {
-	std::map<std::string, std::string> JSONConfigurator::parseConfigurations() {
+	std::map<std::string, std::string> JSONParser::parseConfigurations() {
 		std::ifstream i(configPath);		
 		json j;
 		j << i;
@@ -16,10 +16,7 @@ namespace Squirrel {
 		return configMap;
 		*/
 	}
-	JSONConfigurator::JSONConfigurator(std::string path) {
+	JSONParser::JSONParser(std::string path) {
 		configPath = path;
-	}
-	void JSONConfigurator::setConfigurations() {
-
 	}
 }
