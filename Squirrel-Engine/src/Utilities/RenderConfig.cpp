@@ -1,4 +1,4 @@
-#include"../../include/RenderConfig.h"
+#include"include/RenderConfig.h"
 namespace Squirrel {
 	void RenderConfig::setup() {
 		nlohmann::json conMap = jsonConfigurator->parseFile_json();

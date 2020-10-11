@@ -1,6 +1,5 @@
-#include "../../../include/WindowManager.h"
-
-#include "../../../include/Configuration.h"
+#include "include/WindowManager.h"
+#include "include/Configuration.h"
 
 
 namespace Squirrel

@@ -1,9 +1,9 @@
-#include "../../include/Application.h"
+#include "include/Application.h"
 #include <iostream>
-#include "../../include/JSONParser.h"
-#include "../../include/Vector2.h"
-#include "../../include/WindowManager.h"
-#include "../../include/RenderConfig.h"
+#include "include/JSONParser.h"
+#include "include/Vector2.h"
+#include "include/WindowManager.h"
+#include "include/RenderConfig.h"
 namespace Squirrel {
 
 	Application::Application()

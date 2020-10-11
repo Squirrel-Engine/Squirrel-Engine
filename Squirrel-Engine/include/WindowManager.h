@@ -1,7 +1,7 @@
 #pragma once
-#include "../../../include/Window.h"
-#include "../../../include/OpenGLWR.h"
-#include "../../../include/EGraphicAPI.h"
+#include "Window.h"
+#include "OpenGLWR.h"
+#include "EGraphicAPI.h"
 
 namespace Squirrel
 {

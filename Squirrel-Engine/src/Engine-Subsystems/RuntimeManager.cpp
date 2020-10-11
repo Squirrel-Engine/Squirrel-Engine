@@ -1,8 +1,4 @@
-//
-// Created by Fatih Canbekli on 29.09.2020.
-//
-
-#include "../../include/RuntimeManager.h"
+#include "include/RuntimeManager.h"
 
 namespace Squirrel{
 

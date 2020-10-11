@@ -1,4 +1,4 @@
-#include "../../../include/Configuration.h"
+#include "include/Configuration.h"
 
 namespace Squirrel {
 	Configuration::Configuration()

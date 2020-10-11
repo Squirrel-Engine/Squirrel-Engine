@@ -1,6 +1,6 @@
 #pragma once
 #include <GLFW/glfw3.h>
-#include "../../../include/EGraphicAPI.h"
+#include "EGraphicAPI.h"
 namespace Squirrel {
 
 	class Window
