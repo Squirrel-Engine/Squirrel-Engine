@@ -3,12 +3,13 @@
 
 namespace Squirrel
 {
-	enum JobClass
+	enum EJobClass
 	{
-		J_Window_CreateWindow
+		Window_CreateWindow,
+		Window_RenderWindow
 
 	};
-	enum class JobType
+	enum class EJobType
 	{
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
@@ -18,7 +19,7 @@ namespace Squirrel
 	};
 	
 	#define BIT(x) (1 << x)
-	enum JobCategory
+	enum EJobCategory
 	{
 		None = 0,
 		EventCategoryApplication = BIT(0),
@@ -28,9 +29,8 @@ namespace Squirrel
 		EventCategoryMouseButton = BIT(4)
 	};
 
-	enum JobPriority
+	enum EJobPriority
 	{
-		
 		LOW,
 		MEDIUM,
 		HIGH,
@@ -40,11 +40,13 @@ namespace Squirrel
 	class Job
 	{
 	public:
-		JobType		jobType;
-		JobCategory	jobCategory;
-		JobPriority	jobPriority;
+		EJobType		jobType;
+		EJobCategory	jobCategory;
+		EJobPriority	jobPriority;
 		int jobID;
-		Job(JobType jtype, JobCategory jcategory, JobPriority jpriority, int jid);
+		Job(EJobType jtype, EJobCategory jcategory, EJobPriority Ejpriority, int jid);
+		Job();
+		virtual void Setup() = 0;
 		virtual void Run() = 0;
 	};
 }

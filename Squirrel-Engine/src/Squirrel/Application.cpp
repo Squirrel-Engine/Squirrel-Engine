@@ -1,9 +1,8 @@
 #include "include/Application.h"
-#include <iostream>
-#include "include/JSONParser.h"
-#include "include/Vector2.h"
-#include "include/WindowManager.h"
 #include "include/RenderConfig.h"
+#include "include/Scheduler.h"
+#include "include/MockStateManager.h"
+
 namespace Squirrel {
 
 	Application::Application()
@@ -17,8 +16,8 @@ namespace Squirrel {
 
 	void Application::Run()
 	{
-		WindowManager windowManager = WindowManager();
-		windowManager.createWindow();
-		windowManager.renderWindow();
+		MockStateManager::getInstance()->JobQueue.push(new J_Window_CreateWindow());
+		Scheduler scheduler;
+		scheduler.Start();
 	}
 }

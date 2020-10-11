@@ -1,7 +1,12 @@
 #include "include/Job.h"
 namespace Squirrel
 {
-	Job::Job(JobType jtype, JobCategory jcategory, JobPriority jpriority, int jid)
+	Job::Job()
+	{
+		
+	}
+
+	Job::Job(EJobType jtype, EJobCategory jcategory, EJobPriority jpriority, int jid)
 	{
 		jobType = jtype;
 		jobCategory = jcategory;

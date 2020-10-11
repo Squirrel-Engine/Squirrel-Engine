@@ -1,11 +1,14 @@
 #pragma once
-#include "Jobs.h"
 #include "MockStateManager.h"
+
 namespace Squirrel
 {
-	class JobFactory
+	class Scheduler
 	{
 	public:
-		void createJob(EJobClass jclass);
+		Scheduler() {}
+		void Start();
 	};
 }
+
+
