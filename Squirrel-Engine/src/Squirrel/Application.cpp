@@ -1,7 +1,4 @@
 #include "include/Application.h"
-#include "include/RenderConfig.h"
-#include "include/Scheduler.h"
-#include "include/MockStateManager.h"
 
 namespace Squirrel {
 
@@ -16,8 +13,8 @@ namespace Squirrel {
 
 	void Application::Run()
 	{
-		MockStateManager::getInstance()->JobQueue.push(new J_Window_CreateWindow());
+		lowPriJobQueue.push(new J_Window_CreateWindow());
 		Scheduler scheduler;
-		scheduler.Start();
+		scheduler.start();
 	}
 }

@@ -1,38 +1,28 @@
 #pragma once
-#include <iostream>
+
+
 
 namespace Squirrel
 {
-	enum EJobClass
+	enum class EJobClass
 	{
-		Window_CreateWindow,
-		Window_RenderWindow
+		Window_CreateWindow, //ClassID: 0
+		Window_RenderWindow, //ClassID: 1
+	};
 
-	};
-	enum class EJobType
-	{
-		None = 0,
-		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
-		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased, KeyTyped,
-		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
-	};
 	
-	#define BIT(x) (1 << x)
-	enum EJobCategory
+	enum class EJobCategory
 	{
-		None = 0,
-		EventCategoryApplication = BIT(0),
-		EventCategoryInput = BIT(1),
-		EventCategoryKeyboard = BIT(2),
-		EventCategoryMouse = BIT(3),
-		EventCategoryMouseButton = BIT(4)
+		Render,
+		Core,
+		Window,
+		AI,
 	};
 
 	enum EJobPriority
 	{
 		LOW,
-		MEDIUM,
+		MEDIUM, 
 		HIGH,
 		CRITICAL
 	};
@@ -40,13 +30,13 @@ namespace Squirrel
 	class Job
 	{
 	public:
-		EJobType		jobType;
 		EJobCategory	jobCategory;
 		EJobPriority	jobPriority;
-		int jobID;
-		Job(EJobType jtype, EJobCategory jcategory, EJobPriority Ejpriority, int jid);
+		int jobClassID;
+		Job(EJobCategory JClass, EJobPriority JPriority);
 		Job();
-		virtual void Setup() = 0;
-		virtual void Run() = 0;
+		virtual void mount() = 0;
+		virtual void unmount() = 0;
+		virtual void run() = 0;
 	};
 }

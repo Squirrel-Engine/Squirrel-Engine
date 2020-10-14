@@ -1,18 +1,23 @@
 #include "include/Scheduler.h"
 
-void Squirrel::Scheduler::Start()
+namespace Squirrel
 {
-	while(true)
+	void Squirrel::Scheduler::start()
 	{
-		//Get Job From Queue
-		if(!MockStateManager::getInstance()->JobQueue.empty())
+		while (true)
 		{
-			MockStateManager::getInstance()->JobQueue.front()->Run();
-			MockStateManager::getInstance()->JobQueue.pop();
-		}else
-		{
-			std::cout <<  "Job Queue is Empty" << std::endl;
-		}
+			//Get Job From Queue
+			if (!lowPriJobQueue.empty())
+			{
+				lowPriJobQueue.front()->run();
+				lowPriJobQueue.pop();
+			}
+			else
+			{
+				std::cout << "Job Queue is Empty" << std::endl;
+			}
 
+		}
 	}
+
 }

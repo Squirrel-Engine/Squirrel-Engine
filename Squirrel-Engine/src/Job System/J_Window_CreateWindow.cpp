@@ -1,5 +1,8 @@
 #include "include/J_Window_CreateWindow.h"
-#include "include/MockStateManager.h"
+
+
+
+
 namespace Squirrel
 {
 	J_Window_CreateWindow::J_Window_CreateWindow():Job()
@@ -7,22 +10,35 @@ namespace Squirrel
 		
 	}
 
-	void J_Window_CreateWindow::Setup()
+	//I am not sure about the necessity of the Setup
+	void J_Window_CreateWindow::mount()
 	{
-		height = MockStateManager::getInstance()->height;
-		width = MockStateManager::getInstance()->width;
-		windowName = MockStateManager::getInstance()->windowName;
+		height = renderStore->SCREEN_HEIGHT;
+		width = renderStore->SCREEN_WIDTH;
+		windowName = renderStore->WINDOW_NAME;
+		window = renderStore->WINDOW;
+
+		windowManager = new WindowManager(width, height, windowName);
 	}
 
-	void J_Window_CreateWindow::Run()
+	void J_Window_CreateWindow::run()
 	{
-		Setup();
-		std::cout << "Window_CreateWindow Job Run" << std::endl;
-		WindowManager manager(width,height,windowName);
-		manager.createWindow();
-		MockStateManager::getInstance()->window = manager.getWindow();
-		JobFactory jobFac = JobFactory();
-		jobFac.createJob(EJobClass::Window_RenderWindow);
-		
+		mount();
+		// ************
+		std::cout << "Window_CreateWindow Job run" << std::endl;
+		windowManager->createWindow();
+		window = windowManager->getWindow();
+		jobFactory->createJob(EJobClass::Window_RenderWindow);
+		// ************
+		unmount();
 	}
+
+	void J_Window_CreateWindow::unmount()
+	{
+		renderStore->SCREEN_HEIGHT = height;
+		renderStore->SCREEN_WIDTH = width;
+		renderStore->WINDOW_NAME = windowName;
+		renderStore->WINDOW = window;
+	}
+
 }

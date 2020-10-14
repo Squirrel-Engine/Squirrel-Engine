@@ -1,5 +1,5 @@
 #include "include/WindowManager.h"
-#include "include/Configuration.h"
+
 
 
 namespace Squirrel

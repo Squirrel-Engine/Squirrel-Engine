@@ -1,13 +1,13 @@
 #pragma once
-#include "MockStateManager.h"
-
+#include <iostream>
+#include "JobQueue.h"
 namespace Squirrel
 {
 	class Scheduler
 	{
 	public:
 		Scheduler() {}
-		void Start();
+		void start();
 	};
 }
 

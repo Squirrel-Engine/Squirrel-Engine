@@ -1,4 +1,4 @@
-
+#pragma once
 namespace SRMath
 {
 	class Vector2

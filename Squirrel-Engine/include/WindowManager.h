@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "OpenGLWR.h"
 #include "EGraphicAPI.h"
+#include "Configuration.h"
 
 namespace Squirrel
 {

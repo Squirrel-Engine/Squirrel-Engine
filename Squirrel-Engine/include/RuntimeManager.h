@@ -2,9 +2,10 @@
 // Created by Fatih Canbekli on 29.09.2020.
 //
 
-#ifndef SQUIRREL_RUNTIMEMANAGER_H
-#define SQUIRREL_RUNTIMEMANAGER_H
+#pragma once
 #include <iostream>
+#include "Store.h"
+#include "JobFactory.h"
 
 namespace Squirrel{
     class RuntimeManager {
@@ -21,4 +22,4 @@ namespace Squirrel{
 
 
 
-#endif //SQUIRREL_RUNTIMEMANAGER_H
+

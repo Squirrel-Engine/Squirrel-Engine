@@ -7,19 +7,24 @@ namespace Squirrel
 		
 	}
 
-	void J_Window_RenderWindow::Setup()
+	void J_Window_RenderWindow::mount()
+	{
+		window = renderStore->WINDOW;
+
+		windowManager = new WindowManager();
+	}
+
+	void J_Window_RenderWindow::run()
+	{
+		mount();
+		windowManager->renderWindow(window);
+		jobFactory->createJob(EJobClass::Window_RenderWindow);
+		unmount();
+	}
+
+	void J_Window_RenderWindow::unmount()
 	{
 		
 	}
 
-	void J_Window_RenderWindow::Run()
-	{
-		std::cout << "RenderWindow::Run()" << std::endl;
-		Setup();
-		WindowManager windowManager = WindowManager();
-		windowManager.renderWindow(MockStateManager::getInstance()->window);
-		JobFactory jobFac = JobFactory();
-		jobFac.createJob(EJobClass::Window_RenderWindow);
-
-	}
 }

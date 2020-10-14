@@ -6,11 +6,10 @@ namespace Squirrel
 		
 	}
 
-	Job::Job(EJobType jtype, EJobCategory jcategory, EJobPriority jpriority, int jid)
+	Job::Job(EJobCategory JClass, EJobPriority JPriority)
 	{
-		jobType = jtype;
-		jobCategory = jcategory;
-		jobPriority = jpriority;
-		jobID = jid;
+		jobCategory = JClass;
+		jobPriority = JPriority;
+
 	}
 }
