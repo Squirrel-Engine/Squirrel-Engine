@@ -14,4 +14,4 @@ namespace Squirrel {
 		Squirrel::EGraphicAPI getCurrentPlatform();
 	};
 	
-}
+} 

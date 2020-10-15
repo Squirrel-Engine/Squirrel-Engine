@@ -4,10 +4,9 @@
 
 namespace Squirrel
 {
-	struct JobFactory
-	{
-		void createJob(EJobClass jclass);
-	} *jobFactory;
+
+	void createJob(EJobClass jclass);
+
 	
 }
 

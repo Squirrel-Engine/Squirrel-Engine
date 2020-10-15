@@ -7,10 +7,10 @@ namespace Squirrel
 		while (true)
 		{
 			//Get Job From Queue
-			if (!lowPriJobQueue.empty())
+			if (!jobQueue.lowPriJobQueue.empty())
 			{
-				lowPriJobQueue.front()->run();
-				lowPriJobQueue.pop();
+				jobQueue.lowPriJobQueue.front()->run();
+				jobQueue.lowPriJobQueue.pop();
 			}
 			else
 			{

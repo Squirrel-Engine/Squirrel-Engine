@@ -18,8 +18,8 @@ namespace Squirrel{
         std::cout << "Engine is Loading" << std::endl;
 
     	// Store Allocation
-        renderStore = (struct RenderStore*)malloc(sizeof(struct RenderStore));
-        jobFactory = (struct JobFactory*)malloc(sizeof(struct JobFactory));
+        //renderStore = (struct RenderStore*)malloc(sizeof(struct RenderStore));
+        //jobFactory = (struct JobFactory*)malloc(sizeof(struct JobFactory));
     	// Job Queue Allocation
         // Memory Allocation
 

@@ -13,10 +13,10 @@ namespace Squirrel
 	//I am not sure about the necessity of the Setup
 	void J_Window_CreateWindow::mount()
 	{
-		height = renderStore->SCREEN_HEIGHT;
-		width = renderStore->SCREEN_WIDTH;
-		windowName = renderStore->WINDOW_NAME;
-		window = renderStore->WINDOW;
+		height = renderStore.SCREEN_HEIGHT;
+		width = renderStore.SCREEN_WIDTH;
+		windowName = renderStore.WINDOW_NAME;
+		window = renderStore.WINDOW;
 
 		windowManager = new WindowManager(width, height, windowName);
 	}
@@ -28,17 +28,18 @@ namespace Squirrel
 		std::cout << "Window_CreateWindow Job run" << std::endl;
 		windowManager->createWindow();
 		window = windowManager->getWindow();
-		jobFactory->createJob(EJobClass::Window_RenderWindow);
+		createJob(EJobClass::Window_RenderWindow);
 		// ************
 		unmount();
 	}
 
 	void J_Window_CreateWindow::unmount()
 	{
-		renderStore->SCREEN_HEIGHT = height;
-		renderStore->SCREEN_WIDTH = width;
-		renderStore->WINDOW_NAME = windowName;
-		renderStore->WINDOW = window;
+		renderStore.SCREEN_HEIGHT = height;
+		renderStore.SCREEN_WIDTH = width;
+		renderStore.WINDOW_NAME = windowName;
+		renderStore.WINDOW = window;
+		std::cout << &renderStore << std::endl;
 	}
 
 }

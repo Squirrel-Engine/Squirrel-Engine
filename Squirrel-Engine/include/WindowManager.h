@@ -3,7 +3,7 @@
 #include "OpenGLWR.h"
 #include "EGraphicAPI.h"
 #include "Configuration.h"
-
+#include "Store.h"
 namespace Squirrel
 {
 	class WindowManager

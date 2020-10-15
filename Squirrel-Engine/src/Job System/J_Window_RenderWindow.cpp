@@ -9,7 +9,7 @@ namespace Squirrel
 
 	void J_Window_RenderWindow::mount()
 	{
-		window = renderStore->WINDOW;
+		window = renderStore.WINDOW;
 
 		windowManager = new WindowManager();
 	}
@@ -17,8 +17,9 @@ namespace Squirrel
 	void J_Window_RenderWindow::run()
 	{
 		mount();
+		std::cout << &renderStore << std::endl;
 		windowManager->renderWindow(window);
-		jobFactory->createJob(EJobClass::Window_RenderWindow);
+		createJob(EJobClass::Window_RenderWindow);
 		unmount();
 	}
 

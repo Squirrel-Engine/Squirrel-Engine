@@ -11,6 +11,6 @@ namespace Squirrel
 		int SCREEN_HEIGHT;
 		std::string WINDOW_NAME;
 		Window WINDOW;
-	} *renderStore;
+	} renderStore;
 
 }

@@ -8,6 +8,8 @@ namespace Squirrel
 	public:
 		Scheduler() {}
 		void start();
+	private:
+		JobQueue jobQueue;
 	};
 }
 

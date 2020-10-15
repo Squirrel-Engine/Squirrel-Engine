@@ -5,9 +5,14 @@
 
 namespace Squirrel
 {
-	static std::queue<Job*> lowPriJobQueue;
-	static std::queue<Job*> midPriJobQueue;
-	static std::queue<Job*> highPriJobQueue;
-	static std::queue<Job*> criticalPriJobQueue;
+	class JobQueue
+	{
+	public:
+		static std::queue<Job*> lowPriJobQueue;
+		static std::queue<Job*> midPriJobQueue;
+		static std::queue<Job*> highPriJobQueue;
+		static std::queue<Job*> criticalPriJobQueue;
+	};
+
 }
 
