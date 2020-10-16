@@ -1,6 +1,6 @@
 #pragma once
 #include "Core.h"
-#include "Scheduler.h"
+#include "DummyScheduler.h"
 #include "Jobs.h"
 
 namespace Squirrel {

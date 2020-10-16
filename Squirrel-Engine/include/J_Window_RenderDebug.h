@@ -5,10 +5,10 @@
 #include "Job.h"
 namespace Squirrel
 {
-	class J_Window_RenderWindow : public Job
+	class J_Window_RenderDebug : public Job
 	{
 	public:
-		J_Window_RenderWindow();
+		J_Window_RenderDebug();
 		void mount() override;
 		void unmount() override;
 		void run() override;

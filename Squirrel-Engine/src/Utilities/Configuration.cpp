@@ -4,6 +4,7 @@ namespace Squirrel {
 	Configuration::Configuration()
 	{
 		renderConfig.setup();
+		schedulerConfig.setup();
 	}
 	
 	Configuration* Configuration::instance = 0;

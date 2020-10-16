@@ -84,8 +84,6 @@ namespace Squirrel
 	}
 
 	WindowManager::WindowManager() {
-		this->screenWidth = renderStore.SCREEN_WIDTH;
-		this->screenHeight = renderStore.SCREEN_HEIGHT;
-		this->windowName = renderStore.WINDOW_NAME;
+
 	}
 }

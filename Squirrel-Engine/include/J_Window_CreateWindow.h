@@ -1,6 +1,6 @@
 #pragma once
 #include "WindowManager.h"
-#include "Store.h"
+
 #include "Job.h"
 #include "JobFactory.h"
 namespace Squirrel
