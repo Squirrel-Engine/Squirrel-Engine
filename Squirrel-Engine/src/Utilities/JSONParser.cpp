@@ -1,4 +1,4 @@
-#include "../../../include/JSONParser.h"
+#include "include/JSONParser.h"
 using json = nlohmann::json;
 namespace Squirrel {
     JSONParser::JSONParser(std::string path) {

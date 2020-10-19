@@ -2,7 +2,7 @@
 #include"IConfig.h"
 #include"EGraphicAPI.h"
 #include"JSONParser.h"
-#include "../../../include/json.hpp"
+#include "json.hpp"
 namespace Squirrel {
 	class RenderConfig :IConfig {
 	public:

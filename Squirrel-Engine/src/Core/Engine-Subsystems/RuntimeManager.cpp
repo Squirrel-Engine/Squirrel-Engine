@@ -1,8 +1,4 @@
-//
-// Created by Fatih Canbekli on 29.09.2020.
-//
-
-#include "../../include/RuntimeManager.h"
+#include "include/RuntimeManager.h"
 
 namespace Squirrel{
 
@@ -21,6 +17,10 @@ namespace Squirrel{
     void RuntimeManager::engineStartup() {
         std::cout << "Engine is Loading" << std::endl;
 
+    	// Store Allocation
+        //renderStore = (struct RenderStore*)malloc(sizeof(struct RenderStore));
+        //jobFactory = (struct JobFactory*)malloc(sizeof(struct JobFactory));
+    	// Job Queue Allocation
         // Memory Allocation
 
         // Set Configurations

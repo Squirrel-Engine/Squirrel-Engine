@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include<map>
-#include "../../../include/json.hpp"
+#include "json.hpp"
 #include <fstream>
 namespace Squirrel {
 	class JSONParser{

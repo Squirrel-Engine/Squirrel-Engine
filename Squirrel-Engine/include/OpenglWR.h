@@ -1,7 +1,7 @@
 #pragma once
 #include<iostream>
-#include "../../../include/IWindowRenderer.h"
-#include "../../../include/Window.h"
+#include "IWindowRenderer.h"
+#include "Window.h"
 namespace Squirrel
 {
 	class OpenGLWR :Squirrel::IWindowRenderer

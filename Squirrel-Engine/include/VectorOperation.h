@@ -1,4 +1,4 @@
-#include "../../Squirrel-Engine/include/SRMath.h"
+#include "SRMath.h"
 #include "Vector3.h"
 namespace SRMath
 {

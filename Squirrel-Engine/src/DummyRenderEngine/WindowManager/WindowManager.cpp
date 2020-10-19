@@ -1,6 +1,5 @@
-#include "../../../include/WindowManager.h"
+#include "include/WindowManager.h"
 
-#include "../../../include/Configuration.h"
 
 
 namespace Squirrel
@@ -20,20 +19,6 @@ namespace Squirrel
 		}
 	}
 
-	void WindowManager::closeWindow() {
-		switch (getCurrentPlatform())
-		{
-		case EGraphicAPI::OPENGL:
-			openglWR.shutDown();
-			break;
-		case EGraphicAPI::DIRECTX:
-			break;
-		case EGraphicAPI::VULKAN:
-			break;
-		default:
-			break;
-		}
-	}
 
 	void WindowManager::renderWindow() {
 		switch (getCurrentPlatform())
@@ -49,6 +34,29 @@ namespace Squirrel
 			break;
 		}
 	}
+
+	void WindowManager::renderWindow(Window window)
+	{
+		glfwSwapBuffers(window.getGLWindow());
+		glfwPollEvents();
+  
+	}
+
+	void WindowManager::closeWindow() {
+		switch (getCurrentPlatform())
+		{
+		case EGraphicAPI::OPENGL:
+			openglWR.shutDown();
+			break;
+		case EGraphicAPI::DIRECTX:
+			break;
+		case EGraphicAPI::VULKAN:
+			break;
+		default:
+			break;
+		}
+	}
+
 
 	EGraphicAPI WindowManager::getCurrentPlatform() {
 		return Configuration::getInstance()->renderConfig.graphicAPI;
@@ -76,8 +84,6 @@ namespace Squirrel
 	}
 
 	WindowManager::WindowManager() {
-		this->screenWidth = Configuration::getInstance()->renderConfig.screenWidth;
-		this->screenHeight = Configuration::getInstance()->renderConfig.screenHeight;
-		this->windowName = Configuration::getInstance()->renderConfig.windowName;
+
 	}
 }

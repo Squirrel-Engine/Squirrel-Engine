@@ -1,4 +1,4 @@
-#include "../../../include/Window.h"
+#include "include/Window.h"
 
 namespace Squirrel
 {

@@ -1,5 +1,5 @@
-#include "../../../include/OpenglWR.h"
-#include "../../../src/Utilities/StringUtilities.cpp"
+#include "include/OpenglWR.h"
+#include "src/Utilities/StringUtilities.cpp"
 namespace Squirrel
 {
     void OpenGLWR::startUp(int screenWidth, int screenHeight, std::string windowName) {
