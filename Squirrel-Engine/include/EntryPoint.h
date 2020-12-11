@@ -3,23 +3,25 @@
 
 #include "Application.h"
 #include "MT_Interface.h"
+#include "RD_Interface.h"
 #include "RuntimeManager.h"
 
 extern Squirrel::Application* Squirrel::CreateApplication();
 
 int main(int argc, char** argv)
 {
-    Squirrel::RuntimeManager* r = Squirrel::RuntimeManager::getInstance();
-    Squirrel::MT_Interface* mt_Interface = new Squirrel::MT_Interface();
+    Squirrel::RuntimeManager* runtimeManager = Squirrel::RuntimeManager::getInstance();
+
+
+	//RD_Interface 
 	auto app = Squirrel::CreateApplication();
 	
-    r->engineStartup();
+	runtimeManager->engineStartup();
 	
 	app->Run();
+
 	
-	mt_Interface->startScheduler();
-	
-    r->engineShutdown();
+	runtimeManager->engineShutdown();
 	
 	delete app;
 }

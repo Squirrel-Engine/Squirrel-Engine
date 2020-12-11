@@ -11,7 +11,6 @@ namespace Squirrel {
 
 	private:
 		GLFWwindow* glWindow;
-		Squirrel::EGraphicAPI getCurrentPlatform();
 	};
 	
 } 
