@@ -1,5 +1,7 @@
 #include "include/RuntimeManager.h"
 
+#include "include/InterfaceFactory.h"
+
 namespace Squirrel{
 
     RuntimeManager* RuntimeManager::instance = nullptr;
@@ -17,6 +19,11 @@ namespace Squirrel{
     void RuntimeManager::engineStartup() {
         std::cout << "Engine is Loading" << std::endl;
 
+        //Interface Initialization
+        InterfaceFactory::getInstance()->getMTInterface().startScheduler();
+        InterfaceFactory::getInstance()->getRDInterface().startRenderEngine();
+
+    	
     	// Store Allocation
         //renderStore = (struct RenderStore*)malloc(sizeof(struct RenderStore));
         //jobFactory = (struct JobFactory*)malloc(sizeof(struct JobFactory));

@@ -1,5 +1,7 @@
 #include "include/J_Window_RenderDebug.h"
 
+#include "include/InterfaceFactory.h"
+
 namespace Squirrel
 {
 	J_Window_RenderDebug::J_Window_RenderDebug():Job()
@@ -9,7 +11,7 @@ namespace Squirrel
 
 	void J_Window_RenderDebug::mount()
 	{
-
+		
 
 		windowManager = new WindowManager();
 	}
@@ -17,10 +19,7 @@ namespace Squirrel
 	void J_Window_RenderDebug::run()
 	{
 		mount();
-		while (true)
-		{
-			std::cout << "Render Debug" << std::endl;
-		}
+		InterfaceFactory::getInstance()->getRDInterface().render();
 		unmount();
 	}
 

@@ -7,6 +7,7 @@ namespace Squirrel
 {
 	MT_Interface::MT_Interface()
 	{
+		//TODO: Get Rid of RenderDebug Option
 		renderDebug = Configuration::getInstance()->schedulerConfig.renderDebug;
 		if (renderDebug == false)
 		{
