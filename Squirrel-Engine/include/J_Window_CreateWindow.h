@@ -1,8 +1,9 @@
 #pragma once
-#include "WindowManager.h"
-
+#include "Window.h"
 #include "Job.h"
 #include "JobFactory.h"
+#include <iostream>
+#include <string.h>
 namespace Squirrel
 {
 	class J_Window_CreateWindow : public Job
@@ -18,8 +19,5 @@ namespace Squirrel
 		int height;
 		std::string windowName;
 		Window window;
-
-		// Objects
-		WindowManager* windowManager;
 	};
 }

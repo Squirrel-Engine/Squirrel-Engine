@@ -1,16 +1,17 @@
 #include "include/Fur.h"
 
-#include <iostream>
-
-namespace Squirrel
-{
+namespace Fur
+{	
 	Fur::Fur()
 	{
 
 	}
+	
 	void Fur::startRenderEngine()
 	{
-		
+		renderOptions->screenHeight = 600;
+		renderOptions->screenWidth = 800;
+		renderOptions->windowName = "Fur Renderer";
 	}
 
 	void Fur::pauseRenderEngine()
@@ -38,17 +39,18 @@ namespace Squirrel
 		
 	}
 
-	void Fur::updateRenderEngineOptions()
+	void Fur::updateRenderEngineOptions(std::string parameterName, int parameter)
 	{
 		
 	}
 
+	void Fur::updateRenderEngineOptions(std::string parameterName, float parameter)
+	{
+		
+	}
 
-
-
-
-
-
+	void Fur::updateRenderEngineOptions(std::string parameterName, std::string parameter)
+	{
+		
+	}
 }
-
-

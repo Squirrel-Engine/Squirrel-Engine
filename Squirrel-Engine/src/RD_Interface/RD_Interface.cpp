@@ -1,12 +1,10 @@
 #include "include/RD_Interface.h"
-#include "include/Configuration.h"
-#include <iostream>
 
 namespace Squirrel
 {
 	RD_Interface::RD_Interface()
 	{
-		fur = new Fur();
+		fur = new Fur::Fur();
 	}
 
 	void RD_Interface::startRenderEngine()
@@ -111,14 +109,48 @@ namespace Squirrel
 		}
 	}
 
-	void RD_Interface::updateRenderEngineOptions()
+	void RD_Interface::updateRenderEngineOptions(std::string parameterName, int parameter)
 	{
 		try
 		{
 			switch (Configuration::getInstance()->renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->updateRenderEngineOptions();
+				fur->updateRenderEngineOptions(parameterName, parameter);
+
+			}
+		}
+		catch (std::exception& e)
+		{
+			std::cout << e.what() << '\n';
+		}
+	}
+
+	void RD_Interface::updateRenderEngineOptions(std::string parameterName, float parameter)
+	{
+		try
+		{
+			switch (Configuration::getInstance()->renderConfig.renderer)
+			{
+			case ERenderer::Fur:
+				fur->updateRenderEngineOptions(parameterName, parameter);
+
+			}
+		}
+		catch (std::exception& e)
+		{
+			std::cout << e.what() << '\n';
+		}
+	}
+
+	void RD_Interface::updateRenderEngineOptions(std::string parameterName, std::string parameter)
+	{
+		try
+		{
+			switch (Configuration::getInstance()->renderConfig.renderer)
+			{
+			case ERenderer::Fur:
+				fur->updateRenderEngineOptions(parameterName, parameter);
 
 			}
 		}

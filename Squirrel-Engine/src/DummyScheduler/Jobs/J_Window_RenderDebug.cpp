@@ -4,16 +4,13 @@
 
 namespace Squirrel
 {
-	J_Window_RenderDebug::J_Window_RenderDebug():Job()
+	J_Window_RenderDebug::J_Window_RenderDebug()
 	{
 		
 	}
 
 	void J_Window_RenderDebug::mount()
 	{
-		
-
-		windowManager = new WindowManager();
 	}
 
 	void J_Window_RenderDebug::run()

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\16070001006\Projects\Squirrel-Engine\Squirrel-Engine\lib\glad\build\CMakeFiles\367f40b905cc81a112bfe29ca98c0475\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{FF55ED3A-D1BE-3205-B257-A75FCEF4BA3C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

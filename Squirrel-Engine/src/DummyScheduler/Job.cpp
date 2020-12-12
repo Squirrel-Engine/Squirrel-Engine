@@ -10,6 +10,5 @@ namespace Squirrel
 	{
 		jobCategory = JClass;
 		jobPriority = JPriority;
-
 	}
 }

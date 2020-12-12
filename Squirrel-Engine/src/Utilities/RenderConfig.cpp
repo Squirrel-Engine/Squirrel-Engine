@@ -7,7 +7,6 @@ namespace Squirrel {
 		}
 		screenWidth = conMap["screenWidth"];
 		screenHeight = conMap["screenHeight"];
-		windowName = conMap["windowName"];
-		 
+		windowName = conMap["windowName"]; 
 	}
 }

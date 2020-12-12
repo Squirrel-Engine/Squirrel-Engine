@@ -1,0 +1,7 @@
+﻿  Generating GLAD
+  [12/12/2020 23:38:12][INFO	][glad   	]: downloading latest 'gl' specification
+  [12/12/2020 23:38:12][INFO	][glad.opener	]: opening: 'https://raw.githubusercontent.com/KhronosGroup/OpenGL-Registry/master/xml/gl.xml'
+  [12/12/2020 23:38:17][INFO	][glad   	]: generating 'gl' bindings
+  [12/12/2020 23:38:17][INFO	][glad.opener	]: saving: 'https://raw.githubusercontent.com/KhronosGroup/EGL-Registry/master/api/KHR/khrplatform.h' to 'C:\Users\16070001006\Projects\Squirrel-Engine\Squirrel-Engine\lib\glad\build\include\KHR\khrplatform.h'
+  [12/12/2020 23:38:18][INFO	][glad   	]: generating 'gl' bindings - done
+  Building Custom Rule C:/Users/16070001006/Projects/Squirrel-Engine/Squirrel-Engine/lib/glad/CMakeLists.txt

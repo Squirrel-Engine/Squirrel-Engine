@@ -3,7 +3,7 @@
 #include"EGraphicAPI.h"
 #include"JSONParser.h"
 #include "json.hpp"
-#include "../../build/Squirrel-Engine/ERenderer.h"
+#include "ERenderer.h"
 
 namespace Squirrel {
 	class RenderConfig :IConfig {

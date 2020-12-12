@@ -1,7 +1,9 @@
 #pragma once
+#include <iostream>
 #include "Window.h"
-
-namespace Squirrel
+#include "RenderOptions.h"
+#include "Utilities.h"
+namespace Fur
 {
 	class Fur
 	{
@@ -14,12 +16,12 @@ namespace Squirrel
 		void render();
 		void addActorToRenderQueue();
 
-		void updateRenderEngineOptions();
+		void updateRenderEngineOptions(std::string parameterName, int parameter);
+		void updateRenderEngineOptions(std::string parameterName, float parameter);
+		void updateRenderEngineOptions(std::string parameterName, std::string parameter);
 
 		//TODO: Return type should be Window
 		void glfwWindow();
 
 	};
-
-
 }

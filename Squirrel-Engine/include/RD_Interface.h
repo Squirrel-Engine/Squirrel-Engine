@@ -1,9 +1,13 @@
 #pragma once
 #include "Window.h"
 #include "Fur.h"
+#include "Configuration.h"
+#include <iostream>
+#include <string.h>
+
+
 namespace Squirrel
 {
-
 	class RD_Interface
 	{
 	public:
@@ -15,14 +19,17 @@ namespace Squirrel
 		void render();
 		void addActorToRenderQueue();
 
-		void updateRenderEngineOptions();
+		//TODO: Refactoring Point
+		void updateRenderEngineOptions(std::string parameterName, int parameter);
+		void updateRenderEngineOptions(std::string parameterName, float parameter);
+		void updateRenderEngineOptions(std::string parameterName, std::string parameter);
 		
 		//OpenGL Specific
 		//TODO: Return type should be Window
 		void glfwWindow();
 
 	private:
-		Fur* fur;
+		Fur::Fur* fur;
 	};
 
 

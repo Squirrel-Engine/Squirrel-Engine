@@ -1,7 +1,5 @@
 #pragma once
 #include "JobFactory.h"
-#include "WindowManager.h"
-
 #include "Job.h"
 namespace Squirrel
 {
@@ -14,7 +12,6 @@ namespace Squirrel
 		void run() override;
 	private:
 		Window window;
-		WindowManager* windowManager;
 	};
 }
 

@@ -1,10 +1,8 @@
 #include "include/J_Window_CreateWindow.h"
 
-
-
 namespace Squirrel
 {
-	J_Window_CreateWindow::J_Window_CreateWindow():Job()
+	J_Window_CreateWindow::J_Window_CreateWindow()
 	{
 		
 	}
