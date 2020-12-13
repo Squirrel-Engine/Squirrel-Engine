@@ -4,6 +4,7 @@
 #include "RenderOptions.h"
 #include "Utilities.h"
 #include "Renderer.h"
+
 namespace Fur
 {
 	class Fur
@@ -22,6 +23,7 @@ namespace Fur
 		void updateRenderEngineOptions(std::string parameterName, std::string parameter);
 
 		//TODO: Return type should be Window
-		void glfwWindow();
+
+		GLFWwindow* getGlfwWindow();
 	};
 }

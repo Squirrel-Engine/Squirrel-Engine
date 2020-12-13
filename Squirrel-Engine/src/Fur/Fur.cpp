@@ -58,9 +58,9 @@ namespace Fur
 		
 	}
 
-	void Fur::glfwWindow()
+	GLFWwindow* Fur::getGlfwWindow()
 	{
-		
+		return furWindow;
 	}
 
 	void Fur::updateRenderEngineOptions(std::string parameterName, int parameter)
