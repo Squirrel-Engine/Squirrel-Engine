@@ -56,6 +56,7 @@ namespace Squirrel
 					if (schedulerState == ESchedulerState::RUNNING) {
 						jobQueue.push(new J_Window_RenderDebug);
 						jobQueue.front()->run();
+						free(jobQueue.front());
 						jobQueue.pop();
 					}
 					else if (schedulerState == ESchedulerState::PAUSED) {

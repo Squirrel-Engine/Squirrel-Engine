@@ -22,7 +22,8 @@ namespace Squirrel
 
 	void J_Window_RenderDebug::unmount()
 	{
-		
 	}
+
+
 
 }

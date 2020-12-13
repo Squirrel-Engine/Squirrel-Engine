@@ -4,9 +4,12 @@ namespace Fur
 {
 	 struct RenderOptions
 	{
+	 	// Core Options
 		int screenWidth;
 		int screenHeight;
 		std::string windowName;
+
+	 	// Engine Specific Options
 	};
 		
 	//RenderOptions_t renderOptions;

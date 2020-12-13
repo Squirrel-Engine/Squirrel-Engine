@@ -20,8 +20,9 @@ namespace Squirrel{
         std::cout << "Engine is Loading" << std::endl;
 
         //Interface Initialization
-        InterfaceFactory::getInstance()->getMTInterface().startScheduler();
         InterfaceFactory::getInstance()->getRDInterface().startRenderEngine();
+        InterfaceFactory::getInstance()->getMTInterface().startScheduler();
+        
 
     	
     	// Store Allocation

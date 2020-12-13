@@ -3,6 +3,7 @@
 #include "Window.h"
 #include "RenderOptions.h"
 #include "Utilities.h"
+#include "Renderer.h"
 namespace Fur
 {
 	class Fur
