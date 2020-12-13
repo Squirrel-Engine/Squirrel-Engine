@@ -92,14 +92,14 @@ namespace Squirrel
 		}
 	}
 
-	void RD_Interface::glfwWindow()
+	GLFWwindow* RD_Interface::getGlfwWindow()
 	{
 		try
 		{
 			switch (Configuration::getInstance()->renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->glfwWindow();
+				return fur->getGlfwWindow();
 
 			}
 		}

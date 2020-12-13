@@ -26,7 +26,7 @@ namespace Squirrel
 		
 		//OpenGL Specific
 		//TODO: Return type should be Window
-		void glfwWindow();
+		GLFWwindow* getGlfwWindow();
 
 	private:
 		Fur::Fur* fur;
