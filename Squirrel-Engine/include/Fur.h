@@ -23,7 +23,7 @@ namespace Fur
 		void updateRenderEngineOptions(std::string parameterName, std::string parameter);
 
 		//TODO: Return type should be Window
-		GLFWwindow* getGlfwWindow();
 
+		GLFWwindow* getGlfwWindow();
 	};
 }

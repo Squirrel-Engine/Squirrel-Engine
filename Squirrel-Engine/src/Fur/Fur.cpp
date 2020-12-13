@@ -1,5 +1,5 @@
 #include "include/Fur.h"
-
+#include "include/FurStore.h"
 namespace Fur
 {	
 	Fur::Fur()
@@ -13,9 +13,7 @@ namespace Fur
 		renderOptions->screenWidth = 800;
 		renderOptions->windowName = "Fur Renderer";
 
-
 		//START
-
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -38,8 +36,6 @@ namespace Fur
 			std::cout << "Failed to initialize GLAD" << std::endl;
 			glfwTerminate();
 		}
-
-		
 	}
 
 	void Fur::pauseRenderEngine()

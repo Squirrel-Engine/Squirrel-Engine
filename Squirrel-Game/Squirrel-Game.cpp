@@ -2,6 +2,7 @@
 //
 #include "../Squirrel-Engine/include/Squirrel.h"
 #include "../Squirrel-Engine/include/ED_Interface.h"
+
 class Sandbox : public Squirrel::Application
 {
 public:

@@ -2,23 +2,22 @@
 # project specific logic here.
 #
 project(Squirrel-Engine)
+
 cmake_minimum_required (VERSION 3.8)
 find_package(OpenGL REQUIRED)
 
+
+set(CMAKE_BUILD_TYPE Debug)
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 
-
+#Add the given directories to those the compiler uses to search for include files.
 include_directories(${SQUIRREL_ENGINE} ./)
 include_directories(${YOUR_DIRECTORY} CMAKE_SOURCE_DIR/Squirrel-Engine/include)
 
-#include_directories(${YOUR_DIRECTORY} CMAKE_SOURCE_DIR/Squirrel-Engine/lib/glad/include)
-
-FILE(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.c")
+FILE(GLOB_RECURSE SOURCES "src/*.cpp")
 FILE(GLOB_RECURSE INCLUDES "include/*.h")
-#FILE(GLOB_RECURSE INCLUDES "lib/glad/include/*.h")
 
-set(CMAKE_BUILD_TYPE Debug)
 add_library(Squirrel-Engine STATIC ${SOURCES} ${INCLUDES})
 
 # GLFW
@@ -35,7 +34,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE "GLFW_INCLUDE_NONE")
 #GLAD
 set(GLAD_DIR "${LIB_DIR}/glad")
 add_subdirectory("${GLAD_DIR}")
-target_link_libraries(${PROJECT_NAME} "glad" "${GLAD_LIBRARIES}")
+target_link_libraries(${PROJECT_NAME} "glad" "${CMAKE_DL_LIBS}")
 target_include_directories(${PROJECT_NAME} PRIVATE "${GLAD_DIR}/include")
 
 # TODO: Add tests and install targets if needed.
