@@ -23,6 +23,5 @@ namespace Fur
 
 		//TODO: Return type should be Window
 		void glfwWindow();
-
 	};
 }
