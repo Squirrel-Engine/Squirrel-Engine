@@ -12,6 +12,7 @@ void furRender()
     //object.va.bind();
     //object.ib.bind();
     //glDrawElements(GL_TRIANGLES, ib.getCount(), GL_UNSIGNED_INT, 0);
+    
     glfwSwapBuffers(furWindow);
     glfwPollEvents();
 }
