@@ -4,7 +4,7 @@
 project(Squirrel-Engine)
 
 cmake_minimum_required (VERSION 3.8)
-find_package(OpenGL REQUIRED)
+#find_package(OpenGL REQUIRED)
 
 
 set(CMAKE_BUILD_TYPE Debug)

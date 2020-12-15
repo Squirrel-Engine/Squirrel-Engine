@@ -20,10 +20,10 @@ public:
     Shader(const std::string& filepath)
     {
         ShaderProgramSource source;
-        std::fstream stream(filepath);
-        std::string line;
-        std::stringstream ss[2];
-        ShaderType type = ShaderType::NONE;
+        std::fstream        stream(filepath);
+        std::string         line;
+        std::stringstream   ss[2];
+        ShaderType          type = ShaderType::NONE;
 
         while (std::getline(stream, line))
         {

@@ -7,10 +7,9 @@ namespace Squirrel
 	{
 	public:
 		J_Window_RenderDebug();
-		void mount() override;
-		void unmount() override;
-		void run() override;
+		void mount()	override;
+		void unmount()	override;
+		void run()		override;
 	private:
 	};
 }
-

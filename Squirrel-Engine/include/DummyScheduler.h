@@ -25,9 +25,9 @@ namespace Squirrel
 		void pauseScheduler();
 		
 	private:
-		ESchedulerState schedulerState;
-		std::queue<Job*> jobQueue;
-		ESchedulerMode schedulerMode;
+		ESchedulerState		schedulerState;
+		std::queue<Job*>	jobQueue;
+		ESchedulerMode		schedulerMode;
 	};
 }
 

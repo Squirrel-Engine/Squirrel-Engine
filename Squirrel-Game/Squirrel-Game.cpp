@@ -21,5 +21,6 @@ public:
 Squirrel::Application* Squirrel::CreateApplication()
 {
 	std::cout << Squirrel::Engine::GetRenderEngineName() << std::endl;
+
 	return new Sandbox();
 }

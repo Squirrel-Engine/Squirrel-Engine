@@ -11,8 +11,6 @@ namespace Squirrel
 		static InterfaceFactory* instance;
 
 		// Interface Pointers
-
-		
 	public:
 		// Getter Setter
 		RD_Interface getRDInterface();
@@ -21,6 +19,4 @@ namespace Squirrel
 		RD_Interface rd_Interface;
 		MT_Interface mt_Interface;
 	};
-
-
 }

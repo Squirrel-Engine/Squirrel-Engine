@@ -1,5 +1,5 @@
 #pragma once
 #include "FurStore.h"
-#include <GLFW/glfw3.h>
+#include "RenderObject/RenderObject.h"
 
 void furRender();

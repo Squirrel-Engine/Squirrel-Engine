@@ -85,7 +85,5 @@ namespace Squirrel
 		{
 			std::cout << e.what() << '\n';
 		}
-
 	}
-
 }
