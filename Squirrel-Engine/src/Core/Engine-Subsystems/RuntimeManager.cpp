@@ -1,6 +1,7 @@
 #include "include/RuntimeManager.h"
 
 #include "include/InterfaceFactory.h"
+#include "include/StoreManager.h"
 
 namespace Squirrel{
 
@@ -23,6 +24,7 @@ namespace Squirrel{
         InterfaceFactory::getInstance()->getRDInterface().startRenderEngine();
         InterfaceFactory::getInstance()->getMTInterface().startScheduler();
         
+
 
     	
     	// Store Allocation
