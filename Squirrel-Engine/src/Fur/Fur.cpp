@@ -58,7 +58,7 @@ namespace Fur
 
 	void Fur::addActorToRenderQueue(const void* data)
 	{
-	
+		
 	}
 
 	GLFWwindow* Fur::getGlfwWindow()

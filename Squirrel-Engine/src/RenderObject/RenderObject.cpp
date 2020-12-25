@@ -8,7 +8,6 @@ RenderObject::RenderObject(const void* data, unsigned int size, const std::strin
 	texture = new Texture(texturePath);
 	layout = new VertexBufferLayout();
 	layout->Push<float>(3);
-	layout->Push<float>(3);
 	layout->Push<float>(2);
 	vertexArray->add_buffer(*vertexBuffer, *layout);
 }
