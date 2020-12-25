@@ -1,5 +1,4 @@
 #include "include/RenderObject/Texture.h"
-#include <glad/glad.h>
 #include "include/vendor/stb_image.h"
 
 Texture::Texture(const std::string& path)

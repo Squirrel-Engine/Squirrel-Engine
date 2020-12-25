@@ -1,5 +1,4 @@
 #include "include/RuntimeManager.h"
-
 #include "include/InterfaceFactory.h"
 
 namespace Squirrel{
