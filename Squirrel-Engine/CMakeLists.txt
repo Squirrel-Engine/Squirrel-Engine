@@ -15,7 +15,7 @@ set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 include_directories(${SQUIRREL_ENGINE} ./)
 include_directories(${YOUR_DIRECTORY} CMAKE_SOURCE_DIR/Squirrel-Engine/include)
 
-FILE(GLOB_RECURSE SOURCES "src/*.cpp")
+FILE(GLOB_RECURSE SOURCES "src/*.cpp" "include/*.cpp")
 FILE(GLOB_RECURSE INCLUDES "include/*.h")
 
 add_library(Squirrel-Engine STATIC ${SOURCES} ${INCLUDES})
