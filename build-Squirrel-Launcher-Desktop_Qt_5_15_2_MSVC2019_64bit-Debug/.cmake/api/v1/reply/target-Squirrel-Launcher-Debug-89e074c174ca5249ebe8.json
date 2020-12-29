@@ -28,13 +28,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 29,
+				"line" : 47,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 37,
+				"line" : 53,
 				"parent" : 0
 			}
 		]
@@ -78,32 +78,32 @@
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "C:/Qt/5.15.2/winrt_x64_msvc2019/include"
+					"path" : "D:/Qt/5.15.2/msvc2019_64/include"
 				},
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "C:/Qt/5.15.2/winrt_x64_msvc2019/include/QtWidgets"
+					"path" : "D:/Qt/5.15.2/msvc2019_64/include/QtWidgets"
 				},
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "C:/Qt/5.15.2/winrt_x64_msvc2019/include/QtGui"
+					"path" : "D:/Qt/5.15.2/msvc2019_64/include/QtGui"
 				},
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "C:/Qt/5.15.2/winrt_x64_msvc2019/include/QtANGLE"
+					"path" : "D:/Qt/5.15.2/msvc2019_64/include/QtANGLE"
 				},
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "C:/Qt/5.15.2/winrt_x64_msvc2019/include/QtCore"
+					"path" : "D:/Qt/5.15.2/msvc2019_64/include/QtCore"
 				},
 				{
 					"backtrace" : 2,
 					"isSystem" : true,
-					"path" : "C:/Qt/5.15.2/winrt_x64_msvc2019/./mkspecs/winrt-x64-msvc2019"
+					"path" : "D:/Qt/5.15.2/msvc2019_64/./mkspecs/win32-msvc"
 				}
 			],
 			"language" : "CXX",
@@ -148,20 +148,15 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "C:\\Qt\\5.15.2\\winrt_x64_msvc2019\\lib\\Qt5Widgetsd.lib",
+				"fragment" : "D:\\Qt\\5.15.2\\msvc2019_64\\lib\\Qt5Widgetsd.lib",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 2,
-				"fragment" : "Squirrel-Engine.lib",
+				"fragment" : "D:\\Qt\\5.15.2\\msvc2019_64\\lib\\Qt5Guid.lib",
 				"role" : "libraries"
 			},
 			{
-				"fragment" : "C:\\Qt\\5.15.2\\winrt_x64_msvc2019\\lib\\Qt5Guid.lib",
-				"role" : "libraries"
-			},
-			{
-				"fragment" : "C:\\Qt\\5.15.2\\winrt_x64_msvc2019\\lib\\Qt5Cored.lib",
+				"fragment" : "D:\\Qt\\5.15.2\\msvc2019_64\\lib\\Qt5Cored.lib",
 				"role" : "libraries"
 			},
 			{

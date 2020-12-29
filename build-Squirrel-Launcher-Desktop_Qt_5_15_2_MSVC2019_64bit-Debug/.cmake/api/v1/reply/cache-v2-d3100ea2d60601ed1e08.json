@@ -83,7 +83,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Qt/Tools/CMake_32/bin/cmake.exe"
+			"value" : "D:/Qt/Tools/CMake_32/bin/cmake.exe"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -95,7 +95,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Qt/Tools/CMake_32/bin/cpack.exe"
+			"value" : "D:/Qt/Tools/CMake_32/bin/cpack.exe"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -107,7 +107,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Qt/Tools/CMake_32/bin/ctest.exe"
+			"value" : "D:/Qt/Tools/CMake_32/bin/ctest.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
@@ -587,7 +587,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "C:/Qt/5.15.2/msvc2019_64"
+			"value" : "D:/Qt/5.15.2/msvc2019_64"
 		},
 		{
 			"name" : "CMAKE_PROJECT_DESCRIPTION",
@@ -743,7 +743,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Qt/Tools/CMake_32/share/cmake-3.19"
+			"value" : "D:/Qt/Tools/CMake_32/share/cmake-3.19"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -963,7 +963,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Qt/5.15.2/winrt_x64_msvc2019/lib/cmake/Qt5"
+			"value" : "D:/Qt/5.15.2/msvc2019_64/lib/cmake/Qt5"
 		},
 		{
 			"name" : "QT_QMAKE_EXECUTABLE",
@@ -975,7 +975,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "C:/Qt/5.15.2/msvc2019_64/bin/qmake.exe"
+			"value" : "D:/Qt/5.15.2/msvc2019_64/bin/qmake.exe"
 		},
 		{
 			"name" : "Qt5Core_DIR",
@@ -987,7 +987,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Qt/5.15.2/winrt_x64_msvc2019/lib/cmake/Qt5Core"
+			"value" : "D:/Qt/5.15.2/msvc2019_64/lib/cmake/Qt5Core"
 		},
 		{
 			"name" : "Qt5Gui_DIR",
@@ -999,7 +999,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Qt/5.15.2/winrt_x64_msvc2019/lib/cmake/Qt5Gui"
+			"value" : "D:/Qt/5.15.2/msvc2019_64/lib/cmake/Qt5Gui"
 		},
 		{
 			"name" : "Qt5Widgets_DIR",
@@ -1011,7 +1011,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Qt/5.15.2/winrt_x64_msvc2019/lib/cmake/Qt5Widgets"
+			"value" : "D:/Qt/5.15.2/msvc2019_64/lib/cmake/Qt5Widgets"
 		},
 		{
 			"name" : "Qt5_DIR",
@@ -1023,7 +1023,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Qt/5.15.2/winrt_x64_msvc2019/lib/cmake/Qt5"
+			"value" : "D:/Qt/5.15.2/msvc2019_64/lib/cmake/Qt5"
 		},
 		{
 			"name" : "Squirrel-Launcher_BINARY_DIR",
