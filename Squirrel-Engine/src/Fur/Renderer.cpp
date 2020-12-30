@@ -51,16 +51,16 @@ void furRender()
 		-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
 		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 	};
-    RenderObject obj(vertices, sizeof(vertices), "../../Squirrel-Engine/res/shaders/Basic.shader", "../../Squirrel-Engine/res/textures/wall.jpg");
-	
+	RenderObject obj(vertices, sizeof(vertices), "../../Squirrel-Engine/res/shaders/Basic.shader", "../../Squirrel-Engine/res/textures/wall.jpg");
+
 	glEnable(GL_DEPTH_TEST);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	obj.texture->bind(0);
 	obj.shader->setInt("texture1", 0);
-    obj.shader->use();
-    obj.vertexArray->bind();
+	obj.shader->use();
+	obj.vertexArray->bind();
 
 	// create transformations
 	glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
@@ -78,8 +78,8 @@ void furRender()
 	// note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
 	obj.shader->setMat4("projection", projection);
 
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-	
-    glfwSwapBuffers(furWindow);
-    glfwPollEvents();
+	glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	glfwSwapBuffers(furWindow);
+	glfwPollEvents();
 }

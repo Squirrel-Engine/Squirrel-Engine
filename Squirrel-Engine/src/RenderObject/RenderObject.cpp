@@ -1,8 +1,7 @@
 #include "include/RenderObject/RenderObject.h"
-
 RenderObject::RenderObject(const void* data, unsigned int size, const std::string& shaderPath, const std::string& texturePath)
 {
-	vertexBuffer = new VertexBuffer(data, size);
+	vertexBuffer.reset(vertexBuffer->Create(data, size));
 	vertexArray = new VertexArray();
 	shader = new Shader(shaderPath);
 	texture = new Texture(texturePath);
@@ -11,3 +10,4 @@ RenderObject::RenderObject(const void* data, unsigned int size, const std::strin
 	layout->Push<float>(2);
 	vertexArray->add_buffer(*vertexBuffer, *layout);
 }
+
