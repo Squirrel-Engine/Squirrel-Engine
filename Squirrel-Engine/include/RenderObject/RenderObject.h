@@ -5,11 +5,10 @@
 	class RenderObject
 	{
 	public:
-		RenderObject(const void* data, unsigned int size, const std::string& shaderPath, const std::string& texturePath);
-		VertexArray* vertexArray;
-		VertexBufferLayout* layout;
-		std::unique_ptr<VertexBuffer> vertexBuffer;
-		Shader* shader;
-		Texture* texture;
+		RenderObject() {}
+		std::shared_ptr<VertexArray> vertexArray;
+		std::shared_ptr<VertexBuffer> vertexBuffer;
+		std::shared_ptr<Shader> shader;
+		std::shared_ptr<Texture> texture;
+		//std::unique_ptr<VertexBuffer> indexBuffer;
 	};
-

@@ -1,15 +1,16 @@
 #pragma once
 #include "Buffer.h"
-#include "VertexBufferLayout.h"
+
 class VertexArray
 {
-	private:
-		unsigned int m_RendererID;
-	public:
-		VertexArray();
-		~VertexArray();
+public:
+	virtual ~VertexArray() {}
 
-		void add_buffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
-		void bind() const;
-		void unnbind() const;
+	virtual void bind() const = 0;
+	virtual void unnbind() const = 0;
+
+	virtual void addVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) = 0;
+	virtual void setIndexBuffer(const std::shared_ptr<IndexBuffer>& indexBuffer) = 0;
+
+	static VertexArray* Create();
 };
