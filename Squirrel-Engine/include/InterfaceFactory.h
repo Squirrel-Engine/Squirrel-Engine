@@ -8,15 +8,14 @@ namespace Squirrel
 	private:
 		// Singleton
 		InterfaceFactory();
+		
+		RD_Interface* rd_Interface;
+		MT_Interface* mt_Interface;
 		static InterfaceFactory* instance;
-
-		// Interface Pointers
 	public:
 		// Getter Setter
-		RD_Interface getRDInterface();
-		MT_Interface getMTInterface();
+		RD_Interface* getRDInterface();
+		MT_Interface* getMTInterface();
 		static InterfaceFactory* getInstance();
-		RD_Interface rd_Interface;
-		MT_Interface mt_Interface;
 	};
 }

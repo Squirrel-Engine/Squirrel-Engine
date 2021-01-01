@@ -8,12 +8,12 @@ find_package(OpenGL REQUIRED)
 
 set(CMAKE_BUILD_TYPE Debug)
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 set(RES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/res")
 
 #Add the given directories to those the compiler uses to search for include files.
 include_directories(${SQUIRREL_ENGINE} ./)
-#include_directories(${YOUR_DIRECTORY} CMAKE_SOURCE_DIR/Squirrel-Engine/src)
 
 FILE(GLOB_RECURSE SOURCES "src/*.cpp" "include/*.cpp")
 FILE(GLOB_RECURSE INCLUDES "include/*.h")
@@ -37,9 +37,8 @@ add_subdirectory("${GLAD_DIR}")
 target_link_libraries(${PROJECT_NAME} "glad" "${CMAKE_DL_LIBS}")
 target_include_directories(${PROJECT_NAME} PRIVATE "${GLAD_DIR}/include")
 
-#GLM 
-set(GLM_DIR "${LIB_DIR}/glm-0.9.9.8")
+#GLM
+set(GLM_DIR "${INC_DIR}/vendor/glm")
 add_subdirectory("${GLM_DIR}")
 target_link_libraries(${PROJECT_NAME} "glm" "${CMAKE_DL_LIBS}")
-
 # TODO: Add tests and install targets if needed.

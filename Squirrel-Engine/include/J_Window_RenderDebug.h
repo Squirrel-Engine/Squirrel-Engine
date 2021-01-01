@@ -11,5 +11,8 @@ namespace Squirrel
 		void unmount()	override;
 		void run()		override;
 	private:
+		int jobClassID;
+		EJobCategory	jobCategory;
+		EJobPriority	jobPriority;
 	};
 }
