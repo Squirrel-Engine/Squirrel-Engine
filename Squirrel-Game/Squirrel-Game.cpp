@@ -20,7 +20,5 @@ public:
 
 Squirrel::Application* Squirrel::CreateApplication()
 {
-	std::cout << Squirrel::Engine::GetRenderEngineName() << std::endl;
-	std::cout << Squirrel::StoreManager::getInstance()->getLevelStore()->x<< std::endl;
 	return new Sandbox();
 }

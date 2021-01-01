@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
-#include<map>
-#include "json.hpp"
 #include <fstream>
+#include <map>
+#include "vendor/json.hpp"
+
 namespace Squirrel {
 	class JSONParser{
 	public:

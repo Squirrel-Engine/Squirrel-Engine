@@ -2,7 +2,6 @@
 #include <iostream>
 #include "Window.h"
 #include "RenderOptions.h"
-#include "Utilities.h"
 #include "Renderer.h"
 
 namespace Fur
@@ -16,7 +15,7 @@ namespace Fur
 		void stopRenderEngine();
 
 		void render();
-		void addActorToRenderQueue();
+		void addActorToRenderQueue(const void* data);
 
 		void updateRenderEngineOptions(std::string parameterName, int parameter);
 		void updateRenderEngineOptions(std::string parameterName, float parameter);

@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 namespace Squirrel
 {
 	enum class EJobClass
@@ -21,20 +19,17 @@ namespace Squirrel
 
 	enum EJobPriority
 	{
-		LOW,
-		MEDIUM, 
-		HIGH,
-		CRITICAL
+		Low,
+		Medium, 
+		High,
+		Critical
 	};
 	
 	class Job
 	{
 	public:
-		EJobCategory	jobCategory;
-		EJobPriority	jobPriority;
-		int jobClassID;
-		Job(EJobCategory JClass, EJobPriority JPriority);
-		Job();
+		virtual ~Job() {}
+
 		virtual void mount() = 0;
 		virtual void unmount() = 0;
 		virtual void run() = 0;

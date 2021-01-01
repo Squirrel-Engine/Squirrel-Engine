@@ -4,10 +4,7 @@
 
 namespace Squirrel
 {
-
 	void createJob(EJobClass jclass);
-
-	
 }
 
 

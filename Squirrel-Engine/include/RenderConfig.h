@@ -2,11 +2,11 @@
 #include"IConfig.h"
 #include"EGraphicAPI.h"
 #include"JSONParser.h"
-#include "json.hpp"
+#include "vendor/json.hpp"
 #include "ERenderer.h"
 
 namespace Squirrel {
-	class RenderConfig :IConfig {
+	class RenderConfig : IConfig {
 	public:
 		EGraphicAPI graphicAPI;
 		JSONParser* jsonConfigurator = new JSONParser("../../Squirrel-Engine/src/configs/renderConfig.json");

@@ -10,6 +10,4 @@ namespace Squirrel
 		GLFWwindow* GetRenderingWindow();
 		int GetCurrentFPS();
 	}
-
-
 }

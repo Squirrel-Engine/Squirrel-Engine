@@ -8,7 +8,7 @@ namespace Squirrel
 
 		GLFWwindow* GetRenderingWindow()
 		{
-			return InterfaceFactory::getInstance()->getRDInterface().getGlfwWindow();
+			return InterfaceFactory::getInstance()->getRDInterface()->getGlfwWindow();
 		}
 
 
@@ -16,10 +16,5 @@ namespace Squirrel
 		{
 			throw NotImplementedEditorFunctionException;
 		}
-
-		
-
 	}
-
-
 }

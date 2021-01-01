@@ -75,14 +75,14 @@ namespace Squirrel
 		}
 	}
 
-	void RD_Interface::addActorToRenderQueue()
+	void RD_Interface::addActorToRenderQueue(const void* data)
 	{
 		try
 		{
 			switch (Configuration::getInstance()->renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->addActorToRenderQueue();
+				fur->addActorToRenderQueue(data);
 
 			}
 		}

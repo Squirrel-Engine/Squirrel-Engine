@@ -1,8 +1,6 @@
 #pragma once
 #include "include/ED_Engine.h"
-
 #include "include/Configuration.h"
-
 
 namespace Squirrel
 {
@@ -33,10 +31,5 @@ namespace Squirrel
 				return "Nut";
 			}
 		}
-
-
-
 	}
-
-
 }
