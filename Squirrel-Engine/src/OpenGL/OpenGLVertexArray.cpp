@@ -1,4 +1,4 @@
-#include "include/OpenGL/OpenGLVertexArray.h"
+#include "include/OpenGLVertexArray.h"
 
 OpenGLVertexArray::OpenGLVertexArray()
 {

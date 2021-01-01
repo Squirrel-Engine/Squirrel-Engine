@@ -1,8 +1,9 @@
-#include "include/RenderObject/VertexArray.h"
-#include "include/OpenGL/OpenGLVertexArray.h"
+#include "include/VertexArray.h"
+#include "include/OpenGLVertexArray.h"
 
 VertexArray* VertexArray::VertexArray::Create()
 {
+	//TODO:Render API base implementation
 	return new OpenGLVertexArray();
 }
 

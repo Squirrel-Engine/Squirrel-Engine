@@ -1,4 +1,4 @@
-#include "include/RenderObject/Shader.h"
+#include "include/Shader.h"
 
 Shader::Shader(const std::string& filepath)
 {

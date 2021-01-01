@@ -1,6 +1,6 @@
 #include "include/Fur.h"
 #include "include/FurStore.h"
-#include "include/RenderObject/RenderObject.h"
+#include "include/RenderObject.h"
 
 namespace Fur
 {	

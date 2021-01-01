@@ -1,4 +1,4 @@
-#include "include/RenderObject/Texture.h"
+#include "include/Texture.h"
 #include "include/vendor/stb_image.h"
 
 Texture::Texture(const std::string& path)

@@ -1,5 +1,5 @@
 #pragma once
-#include "include/RenderObject/VertexArray.h"
+#include "include/VertexArray.h"
 
 class OpenGLVertexArray : public VertexArray {
 public:
