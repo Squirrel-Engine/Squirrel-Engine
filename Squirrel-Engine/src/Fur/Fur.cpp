@@ -61,6 +61,10 @@ namespace Fur
 		
 	}
 
+	void Fur::submitDrawCall()
+	{
+	}
+
 	GLFWwindow* Fur::getGlfwWindow()
 	{
 		return furWindow;

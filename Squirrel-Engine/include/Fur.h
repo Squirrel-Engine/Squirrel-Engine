@@ -15,7 +15,8 @@ namespace Fur
 		void stopRenderEngine();
 
 		void render();
-		void addActorToRenderQueue(const void* data);
+		void addActorToRenderQueue(const void* data); // Deprecated
+		void submitDrawCall();
 
 		void updateRenderEngineOptions(std::string parameterName, int parameter);
 		void updateRenderEngineOptions(std::string parameterName, float parameter);

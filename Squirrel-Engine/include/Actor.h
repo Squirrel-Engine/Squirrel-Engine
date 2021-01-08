@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "ActorComponent.h"
+#include "RenderComponent.h"
 #include "TransformComponent.h"
 
 
@@ -14,7 +15,7 @@ namespace Squirrel
 		Actor();
 
 		TransformComponent* transformComponent;
-
+		RenderComponent* renderComponent;
 		std::vector<ActorComponent*> componentList;
 
 		void bindComponent(ActorComponent component);
