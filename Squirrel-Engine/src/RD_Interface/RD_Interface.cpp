@@ -92,6 +92,23 @@ namespace Squirrel
 		}
 	}
 
+	void RD_Interface::submitDrawCall()
+	{
+		try
+		{
+			switch (Configuration::getInstance()->renderConfig.renderer)
+			{
+			case ERenderer::Fur:
+				fur->submitDrawCall();
+
+			}
+		}
+		catch (std::exception& e)
+		{
+			std::cout << e.what() << '\n';
+		}
+	}
+
 	GLFWwindow* RD_Interface::getGlfwWindow()
 	{
 		try
