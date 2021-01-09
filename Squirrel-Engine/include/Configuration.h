@@ -12,8 +12,7 @@ namespace Squirrel {
 
 	public:
 		static Configuration* getInstance();
-		RenderConfig	renderConfig;
+		RenderConfig renderConfig;
 		SchedulerConfig schedulerConfig;
-			
 	};
 }

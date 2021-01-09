@@ -13,7 +13,3 @@ add_subdirectory(googletest)
 add_subdirectory (Squirrel-Engine)
 add_subdirectory (Squirrel-Game)
 add_subdirectory(test)
-
-
-
-

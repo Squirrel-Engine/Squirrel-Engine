@@ -16,7 +16,6 @@ namespace Squirrel {
 		}
 		return instance;
 	}
-	
 }
 
 

@@ -15,7 +15,6 @@ namespace Squirrel
 		// Options
 		bool renderDebug;
 
-		
 		// Schedulers
 		DummyScheduler* dummyScheduler;
 	};
