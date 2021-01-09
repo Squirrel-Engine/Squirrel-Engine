@@ -5,8 +5,8 @@
 #include "vendor/json.hpp"
 #include "ERenderer.h"
 
-namespace Fur {
-	class RenderConfig : Squirrel::IConfig {
+namespace Squirrel {
+	class RenderConfig : IConfig {
 	public:
 		RenderConfig();
 

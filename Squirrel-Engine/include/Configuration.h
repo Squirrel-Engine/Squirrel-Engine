@@ -12,7 +12,7 @@ namespace Squirrel {
 
 	public:
 		static Configuration* getInstance();
-		Fur::RenderConfig	renderConfig;
+		RenderConfig renderConfig;
 		SchedulerConfig schedulerConfig;
 	};
 }
