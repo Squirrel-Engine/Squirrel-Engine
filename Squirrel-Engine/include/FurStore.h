@@ -1,6 +1,10 @@
 #pragma once
+#include "DrawCall.h"
 #include "Window.h"
-#include "RenderObject.h"
+#include <queue>
+
 
 extern GLFWwindow* furWindow;
-extern RenderObject* objcet;
+extern DrawCall* objcet;
+
+extern std::queue<DrawCall*>* firstCommandBuffer;

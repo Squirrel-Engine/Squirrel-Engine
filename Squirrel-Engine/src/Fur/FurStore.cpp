@@ -1,4 +1,5 @@
 #include "include/FurStore.h"
 
 GLFWwindow* furWindow;
-RenderObject*  objcet = new RenderObject();
+DrawCall*  objcet = new DrawCall();
+std::queue<DrawCall*>* firstCommandBuffer;

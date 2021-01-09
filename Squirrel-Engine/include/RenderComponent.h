@@ -6,13 +6,8 @@
 namespace Squirrel
 {
 	class RenderComponent : ActorComponent {
-		Material* material;
-		Mesh* mesh;
-
-
-
-
-		
+		Material* material; // This should be vector!!!
+		Mesh* mesh;		
 	};
 }
-
+ 

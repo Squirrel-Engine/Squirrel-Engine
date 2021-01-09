@@ -2,10 +2,9 @@
 
 namespace Squirrel
 {
-	Material::Material(int _vsShaderID, int _fsShaderID, int _textureID)
+	Material::Material(int _shaderID, int _textureID)
 	{
-		vsShaderID = _vsShaderID;
-		fsShaderID = _fsShaderID;
+		shaderID = _shaderID;
 		textureID = _textureID;
 	}
 }
