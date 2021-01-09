@@ -1,6 +1,4 @@
 #include "include/Fur.h"
-#include "include/FurStore.h"
-#include "include/RenderObject.h"
 
 namespace Fur
 {	
@@ -11,17 +9,16 @@ namespace Fur
 
 	void Fur::startRenderEngine()
 	{
-		renderOptions->screenHeight = 600;
-		renderOptions->screenWidth = 800;
-		renderOptions->windowName = "Fur Renderer";
-
-		//START
+		//access all rendering options
+		RenderConfig config = Squirrel::Configuration::getInstance()->renderConfig;
+		
+		//start
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		
-		furWindow =  glfwCreateWindow(renderOptions->screenWidth, renderOptions->screenHeight, "Fur Renderer", NULL, NULL);
+		furWindow =  glfwCreateWindow(config.screenWidth, config.screenHeight, config.windowName.c_str(), NULL, NULL);
 		if (furWindow == NULL)
 		{
 			std::cout << "Failed to create GLFW window" << std::endl;
@@ -36,7 +33,7 @@ namespace Fur
 			std::cout << "Failed to initialize GLAD" << std::endl;
 			glfwTerminate();
 		}
-		glViewport(0, 0, renderOptions->screenWidth, renderOptions->screenHeight);
+		glViewport(0, 0, config.screenWidth, config.screenHeight);
 		
 		glBindVertexArray(0);
 	}
@@ -51,14 +48,14 @@ namespace Fur
 		
 	}
 
-	void Fur::render()
+	void Fur::render(RenderObject& data)
 	{
-		furRender();
+		furRender(data);
 	}
 
-	void Fur::addActorToRenderQueue(const void* data)
+	void Fur::addActorToRenderQueue(RenderObject& data)
 	{
-		
+		render(data);
 	}
 
 	GLFWwindow* Fur::getGlfwWindow()

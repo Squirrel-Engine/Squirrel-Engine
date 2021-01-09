@@ -4,7 +4,7 @@
 class VertexArray
 {
 public:
-	virtual ~VertexArray() {}
+	virtual ~VertexArray() {};
 
 	virtual void bind() const = 0;
 	virtual void unnbind() const = 0;

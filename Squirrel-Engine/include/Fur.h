@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
+#include <string.h>
 #include "Window.h"
-#include "RenderOptions.h"
 #include "Renderer.h"
+#include "Configuration.h"
 
 namespace Fur
 {
@@ -14,8 +15,8 @@ namespace Fur
 		void pauseRenderEngine();
 		void stopRenderEngine();
 
-		void render();
-		void addActorToRenderQueue(const void* data);
+		void render(RenderObject& data);
+		void addActorToRenderQueue(RenderObject& data);
 
 		void updateRenderEngineOptions(std::string parameterName, int parameter);
 		void updateRenderEngineOptions(std::string parameterName, float parameter);

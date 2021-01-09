@@ -6,7 +6,6 @@ project(Squirrel-Engine)
 cmake_minimum_required (VERSION 3.8)
 find_package(OpenGL REQUIRED)
 
-set(CMAKE_BUILD_TYPE Debug)
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")

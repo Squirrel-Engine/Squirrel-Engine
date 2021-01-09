@@ -12,9 +12,5 @@ enable_testing()
 add_subdirectory(googletest)
 add_subdirectory (Squirrel-Engine)
 add_subdirectory (Squirrel-Game)
-add_subdirectory (Squirrel-Launcher)
+#add_subdirectory (Squirrel-Launcher)
 add_subdirectory(test)
-
-
-
-

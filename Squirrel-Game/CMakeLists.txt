@@ -2,7 +2,8 @@
 # project specific logic here.
 #
 project(Squirrel-Game)
-set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Squirrel-Game/Debug)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Squirrel-Game/Release)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Add source to this project's executable.
 add_executable (Squirrel-Game "Squirrel-Game.cpp" "Squirrel-Game.h")
