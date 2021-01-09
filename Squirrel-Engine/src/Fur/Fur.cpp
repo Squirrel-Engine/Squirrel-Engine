@@ -48,14 +48,14 @@ namespace Fur
 		
 	}
 
-	void Fur::render(RenderObject& data)
+	void Fur::render()
 	{
-		furRender(data);
+		furRender();
 	}
 
-	void Fur::addActorToRenderQueue(RenderObject& data)
+	void Fur::addActorToRenderQueue()
 	{
-		render(data);
+		render();
 	}
 
 	void Fur::submitDrawCall()

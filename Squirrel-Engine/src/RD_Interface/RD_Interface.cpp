@@ -58,14 +58,14 @@ namespace Squirrel
 		}
 	}
 
-	void RD_Interface::render(RenderObject& data)
+	void RD_Interface::render()
 	{
 		try
 		{
 			switch (Configuration::getInstance()->renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->render(data);
+				fur->render();
 				break;
 			}
 		}
@@ -75,14 +75,14 @@ namespace Squirrel
 		}
 	}
 
-	void RD_Interface::addActorToRenderQueue(RenderObject& data)
+	void RD_Interface::addActorToRenderQueue()
 	{
 		try
 		{
 			switch (Configuration::getInstance()->renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->addActorToRenderQueue(data);
+				fur->addActorToRenderQueue();
 
 			}
 		}

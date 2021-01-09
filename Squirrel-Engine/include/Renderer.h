@@ -2,4 +2,4 @@
 #include "FurStore.h"
 #include "EditorCamera.h"
 
-void furRender(RenderObject& data);
+void furRender();

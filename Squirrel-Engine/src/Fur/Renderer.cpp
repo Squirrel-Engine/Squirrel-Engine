@@ -1,6 +1,6 @@
 #include "include/Renderer.h"
 
-void furRender(RenderObject& data)
+void furRender()
 {
 	float vertices[] = {
 		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,

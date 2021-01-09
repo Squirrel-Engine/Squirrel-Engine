@@ -18,8 +18,8 @@ namespace Squirrel
 		void stopRenderEngine();
 
 
-		void render(RenderObject& data);
-		void addActorToRenderQueue(const void* data); //Deprecated!
+		void render();
+		void addActorToRenderQueue();
 		void submitDrawCall();
 
 		//TODO: Refactoring Point
