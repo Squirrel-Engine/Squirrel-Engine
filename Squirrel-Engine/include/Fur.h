@@ -18,7 +18,7 @@ namespace Fur
 
 		void render();
 		void addActorToRenderQueue();
-		void submitDrawCall();
+		void submitDrawCall(DrawCall* drawCall);
     
 		void updateRenderEngineOptions(std::string parameterName, int parameter);
 		void updateRenderEngineOptions(std::string parameterName, float parameter);

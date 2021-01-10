@@ -17,10 +17,9 @@ int main(int argc, char** argv)
 	//RD_Interface 
 	auto app = Squirrel::CreateApplication();
 	
+
 	runtimeManager->engineStartup();
-	
 	app->Run();
-	
 	runtimeManager->engineShutdown();
 	
 	delete app;

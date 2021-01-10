@@ -10,7 +10,7 @@
 	class DrawCall
 	{
 	public:
-		DrawCall();
+		DrawCall(){}
 		std::shared_ptr<VertexArray> vertexArray;
 		std::shared_ptr<VertexBuffer> vertexBuffer;
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Jobs.h"
+
 namespace Squirrel
 {
 	enum class ESchedulerState{
