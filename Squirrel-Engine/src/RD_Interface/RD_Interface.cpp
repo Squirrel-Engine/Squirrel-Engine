@@ -66,6 +66,23 @@ namespace Squirrel
 			{
 			case ERenderer::Fur:
 				fur->render();
+				break;
+			}
+		}
+		catch (std::exception& e)
+		{
+			std::cout << e.what() << '\n';
+		}
+	}
+
+	void RD_Interface::addActorToRenderQueue()
+	{
+		try
+		{
+			switch (Configuration::getInstance()->renderConfig.renderer)
+			{
+			case ERenderer::Fur:
+				fur->addActorToRenderQueue();
 
 			}
 		}
@@ -75,14 +92,14 @@ namespace Squirrel
 		}
 	}
 
-	void RD_Interface::addActorToRenderQueue(const void* data)
+	void RD_Interface::submitDrawCall()
 	{
 		try
 		{
 			switch (Configuration::getInstance()->renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->addActorToRenderQueue(data);
+				fur->submitDrawCall();
 
 			}
 		}

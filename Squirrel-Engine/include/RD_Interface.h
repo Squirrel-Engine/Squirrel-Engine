@@ -12,12 +12,15 @@ namespace Squirrel
 	{
 	public:
 		RD_Interface();
+		~RD_Interface(){}
 		void startRenderEngine();
 		void pauseRenderEngine();
 		void stopRenderEngine();
 
+
 		void render();
-		void addActorToRenderQueue(const void* data);
+		void addActorToRenderQueue(); // Deprecated
+		void submitDrawCall();
 
 		//TODO: Refactoring Point
 		void updateRenderEngineOptions(std::string parameterName, int parameter);
@@ -31,6 +34,4 @@ namespace Squirrel
 	private:
 		Fur::Fur* fur;
 	};
-
-
 }

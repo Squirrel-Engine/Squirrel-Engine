@@ -5,7 +5,7 @@
 #include "MT_Interface.h"
 #include "RD_Interface.h"
 #include "RuntimeManager.h"
-#include "RenderObject.h"
+#include "DrawCall.h"
 
 extern Squirrel::Application* Squirrel::CreateApplication();
 

@@ -16,6 +16,4 @@ namespace Squirrel
 		JSONParser* jsonConfigurator = new JSONParser("../../Squirrel-Engine/src/configs/schedulerConfig.json");
 		
 	};
-
-
 }

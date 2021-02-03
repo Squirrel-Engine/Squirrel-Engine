@@ -1,5 +1,11 @@
 #include"include/RenderConfig.h"
 namespace Squirrel {
+
+	RenderConfig::RenderConfig()
+	{
+		setup();
+	}
+
 	void RenderConfig::setup() {
 		nlohmann::json conMap = jsonConfigurator->parseFile_json();
 		if (conMap["Renderer"] == "Fur") {
@@ -7,6 +13,6 @@ namespace Squirrel {
 		}
 		screenWidth = conMap["screenWidth"];
 		screenHeight = conMap["screenHeight"];
-		windowName = conMap["windowName"]; 
+		windowName = conMap["windowName"];
 	}
 }

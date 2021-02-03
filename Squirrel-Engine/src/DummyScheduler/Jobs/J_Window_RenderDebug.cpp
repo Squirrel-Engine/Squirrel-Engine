@@ -1,5 +1,4 @@
 #include "include/J_Window_RenderDebug.h"
-
 #include "include/InterfaceFactory.h"
 
 namespace Squirrel
