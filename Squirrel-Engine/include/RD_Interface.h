@@ -19,7 +19,7 @@ namespace Squirrel
 
 
 		void render();
-		void addActorToRenderQueue();
+		void addActorToRenderQueue(); // Deprecated
 		void submitDrawCall();
 
 		//TODO: Refactoring Point
