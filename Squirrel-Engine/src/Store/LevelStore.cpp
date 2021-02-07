@@ -1,4 +1,4 @@
-#include "include/LevelStore.h"
+#include "LevelStore.h"
 
 namespace Squirrel
 {

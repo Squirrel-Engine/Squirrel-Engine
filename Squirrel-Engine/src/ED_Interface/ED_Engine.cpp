@@ -1,6 +1,6 @@
 #pragma once
-#include "include/ED_Engine.h"
-#include "include/Configuration.h"
+#include "ED_Engine.h"
+#include "Configuration.h"
 
 namespace Squirrel
 {

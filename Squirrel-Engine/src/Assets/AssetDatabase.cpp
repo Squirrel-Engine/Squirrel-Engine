@@ -1,4 +1,4 @@
-#include "include/AssetDatabase.h"
+#include "AssetDatabase.h"
 
 namespace Squirrel
 {

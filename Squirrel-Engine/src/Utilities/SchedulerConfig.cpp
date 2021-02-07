@@ -1,4 +1,4 @@
-#include "include/SchedulerConfig.h"
+#include "SchedulerConfig.h"
 
 namespace Squirrel
 {

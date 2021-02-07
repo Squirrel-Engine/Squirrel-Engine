@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <string.h>
-#include "Window.h"
 #include "Renderer.h"
 #include "Configuration.h"
 

@@ -1,6 +1,6 @@
-#include "include/Application.h"
-#include "include/InterfaceFactory.h"
-#include "include/Fur.h"
+#include "Application.h"
+#include "InterfaceFactory.h"
+#include "Fur.h"
 namespace Squirrel {
 
 	Application::Application()

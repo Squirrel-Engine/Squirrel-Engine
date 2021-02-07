@@ -1,4 +1,4 @@
-#include "include/InterfaceFactory.h"
+#include "InterfaceFactory.h"
 
 namespace Squirrel
 {

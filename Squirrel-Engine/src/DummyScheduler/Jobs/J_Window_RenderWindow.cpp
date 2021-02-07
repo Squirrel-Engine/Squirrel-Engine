@@ -1,4 +1,4 @@
-#include "include/J_Window_RenderWindow.h"
+#include "J_Window_RenderWindow.h"
 
 namespace Squirrel
 {

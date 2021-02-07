@@ -1,6 +1,6 @@
-#include "include/RuntimeManager.h"
-#include "include/InterfaceFactory.h"
-#include "include/StoreManager.h"
+#include "RuntimeManager.h"
+#include "InterfaceFactory.h"
+#include "StoreManager.h"
 
 namespace Squirrel{
 

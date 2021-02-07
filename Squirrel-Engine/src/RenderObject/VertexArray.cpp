@@ -1,5 +1,5 @@
-#include "include/VertexArray.h"
-#include "include/OpenGLVertexArray.h"
+#include "VertexArray.h"
+#include "OpenGLVertexArray.h"
 
 VertexArray* VertexArray::VertexArray::Create()
 {

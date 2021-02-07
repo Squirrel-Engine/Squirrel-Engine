@@ -1,6 +1,4 @@
-#include "include/Fur.h"
-
-#include "include/FurStore.h"
+#include "Fur.h"
 
 namespace Fur
 {	

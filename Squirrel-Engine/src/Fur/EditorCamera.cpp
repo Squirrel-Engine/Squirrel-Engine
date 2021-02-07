@@ -1,6 +1,6 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
-#include "include/EditorCamera.h"
+#include "EditorCamera.h"
 
 EditorCamera::EditorCamera()
 {

@@ -1,5 +1,4 @@
 #pragma once
-#include "Window.h"
 #include "Job.h"
 #include "JobFactory.h"
 #include <iostream>
@@ -18,6 +17,5 @@ namespace Squirrel
 		int width;
 		int height;
 		std::string windowName;
-		Window window;
 	};
 }

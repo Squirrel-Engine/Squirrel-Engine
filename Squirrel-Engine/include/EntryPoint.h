@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-
 #include "Application.h"
 #include "MT_Interface.h"
 #include "RD_Interface.h"

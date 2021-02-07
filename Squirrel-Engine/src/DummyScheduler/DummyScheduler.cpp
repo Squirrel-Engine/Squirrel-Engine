@@ -1,4 +1,4 @@
-#include "include/DummyScheduler.h"
+#include "DummyScheduler.h"
 
 namespace Squirrel
 {

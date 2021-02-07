@@ -1,7 +1,6 @@
-#include "include/MT_Interface.h"
-
-#include "include/Configuration.h"
-#include "include/NotImplementedSchedulerException.h"
+#include "MT_Interface.h"
+#include "Configuration.h"
+#include "NotImplementedSchedulerException.h"
 
 namespace Squirrel
 {
