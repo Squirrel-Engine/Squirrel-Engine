@@ -1,4 +1,4 @@
-#include "include/RD_Interface.h"
+#include "RD_Interface.h"
 
 namespace Squirrel
 {
@@ -92,14 +92,14 @@ namespace Squirrel
 		}
 	}
 
-	void RD_Interface::submitDrawCall()
+	void RD_Interface::submitDrawCall(DrawCall* drawCall)
 	{
 		try
 		{
 			switch (Configuration::getInstance()->renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->submitDrawCall();
+				fur->submitDrawCall(drawCall);
 
 			}
 		}

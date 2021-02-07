@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <string.h>
-#include "Window.h"
 #include "Renderer.h"
 #include "Configuration.h"
 
@@ -18,7 +17,7 @@ namespace Fur
 
 		void render();
 		void addActorToRenderQueue();
-		void submitDrawCall();
+		void submitDrawCall(DrawCall* drawCall);
     
 		void updateRenderEngineOptions(std::string parameterName, int parameter);
 		void updateRenderEngineOptions(std::string parameterName, float parameter);

@@ -1,5 +1,4 @@
 #pragma once
-#include "Window.h"
 #include "Fur.h"
 #include "Configuration.h"
 #include <iostream>

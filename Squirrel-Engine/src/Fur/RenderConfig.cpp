@@ -1,4 +1,4 @@
-#include"include/RenderConfig.h"
+#include"RenderConfig.h"
 namespace Squirrel {
 
 	RenderConfig::RenderConfig()

@@ -1,4 +1,1 @@
-#include "include/DrawCall.h"
-DrawCall::DrawCall() {
-
-}
+#include "DrawCall.h"

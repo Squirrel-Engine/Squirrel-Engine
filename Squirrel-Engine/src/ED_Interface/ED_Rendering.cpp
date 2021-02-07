@@ -1,6 +1,6 @@
 #pragma once
-#include "include/ED_Rendering.h"
-#include "include/NotImplementedEditorFunctionException.h"
+#include "ED_Rendering.h"
+#include "NotImplementedEditorFunctionException.h"
 namespace Squirrel
 {
 	namespace Rendering

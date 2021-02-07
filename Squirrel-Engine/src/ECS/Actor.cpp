@@ -1,4 +1,4 @@
-#include "include/Actor.h"
+#include "Actor.h"
 
 
 namespace Squirrel

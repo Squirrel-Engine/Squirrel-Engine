@@ -1,4 +1,4 @@
-#include "include/Mesh.h"
+#include "Mesh.h"
 
 namespace Squirrel
 {

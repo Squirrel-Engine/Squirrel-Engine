@@ -1,5 +1,5 @@
-#include "include/Buffer.h"
-#include "include/OpenGLBuffer.h"
+#include "Buffer.h"
+#include "OpenGLBuffer.h"
 
 VertexBuffer* VertexBuffer::Create(const void* data, unsigned int size) {
 	//TODO: Render API base implementation

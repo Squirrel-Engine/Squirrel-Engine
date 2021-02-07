@@ -1,4 +1,4 @@
-#include "include/StoreManager.h"
+#include "StoreManager.h"
 
 namespace Squirrel
 {

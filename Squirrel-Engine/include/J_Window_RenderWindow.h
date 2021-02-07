@@ -12,7 +12,6 @@ namespace Squirrel
 		void unmount() override;
 		void run() override;
 	private:
-		Window window;
 	};
 }
 

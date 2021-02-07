@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-
 #include "Application.h"
 #include "MT_Interface.h"
 #include "RD_Interface.h"
@@ -17,10 +16,9 @@ int main(int argc, char** argv)
 	//RD_Interface 
 	auto app = Squirrel::CreateApplication();
 	
+
 	runtimeManager->engineStartup();
-	
 	app->Run();
-	
 	runtimeManager->engineShutdown();
 	
 	delete app;

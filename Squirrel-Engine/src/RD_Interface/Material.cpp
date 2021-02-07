@@ -1,4 +1,4 @@
-#include "include/Material.h"
+#include "Material.h"
 
 namespace Squirrel
 {
