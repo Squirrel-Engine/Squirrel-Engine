@@ -5,7 +5,7 @@ namespace Squirrel {
 
 	Application::Application()
 	{
-		ConfigureMap();
+
 	}
 
 

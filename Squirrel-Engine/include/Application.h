@@ -12,7 +12,6 @@ namespace Squirrel {
 		virtual ~Application();
 
 		virtual void Run();
-		virtual void ConfigureMap();
 	};
 
 	// To be defined in CLIENT

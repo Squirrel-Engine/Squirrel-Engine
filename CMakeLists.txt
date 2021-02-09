@@ -9,7 +9,7 @@ cmake_minimum_required (VERSION 3.8)
 enable_testing()
 
 # Include sub-projects.
-add_subdirectory(googletest)
+#add_subdirectory(googletest)
 add_subdirectory (Squirrel-Engine)
 add_subdirectory (Squirrel-Game)
-add_subdirectory(test)
+#add_subdirectory(test)
