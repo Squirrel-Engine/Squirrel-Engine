@@ -12,8 +12,7 @@
 		DrawCall(){}
 		std::shared_ptr<VertexArray> vertexArray;
 		std::shared_ptr<VertexBuffer> vertexBuffer;
-
-		std::shared_ptr<Shader> shader;
 		std::shared_ptr<Texture> texture;
+		std::shared_ptr<Shader> shader;
 		//std::unique_ptr<VertexBuffer> indexBuffer;
 	};

@@ -88,10 +88,20 @@ void Sandbox::Run()
 	};
 	vertexBuffer->setLayout(layout);
 	vertexArray->addVertexBuffer(vertexBuffer);
-
-	texture.reset(new Texture("../../Squirrel-Engine/res/textures/wall.jpg"));
+	texture.reset(new Texture());
 	shader.reset(new Shader("../../Squirrel-Engine/res/shaders/Basic.shader"));
-	shader->setInt("texture1", 0);
+	
+	//Load and bind textures
+	unsigned int diffuse = texture->loadTexture("../../Squirrel-Engine/res/textures/tiles_diff.jpg");
+	texture->bind(0, diffuse);
+	unsigned int specular = texture->loadTexture("../../Squirrel-Engine/res/textures/tiles_spec.jpg");
+	texture->bind(1, specular);
+
+	//set shader properties
+	shader->use();
+	shader->setInt("material.diffuse", 0);
+	shader->setInt("material.specular", 1);
+	shader->setFloat("material.shininess", 0.4f);
 
 	drawCall->vertexBuffer = vertexBuffer;
 	drawCall->vertexArray = vertexArray;

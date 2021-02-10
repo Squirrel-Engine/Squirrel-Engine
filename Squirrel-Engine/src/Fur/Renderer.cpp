@@ -20,13 +20,8 @@ void furRender()
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
-		firstCommandBuffer->front()->texture->bind(0);
-		firstCommandBuffer->front()->shader->use();
-		firstCommandBuffer->front()->vertexArray->bind();
-		firstCommandBuffer->front()->shader->setMat4("viewProjection", camera.getViewProjection());
-		
-		// light properties
+
+		// scene light properties
 		glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 		glm::vec3 lightPos(0.3f, 0.3f, 1.0f);
 		
@@ -36,12 +31,13 @@ void furRender()
 		firstCommandBuffer->front()->shader->setVec3("light.specular", glm::vec3(1.0f));
 		firstCommandBuffer->front()->shader->setVec3("viewPos", camera.getPosition());
 
-		// material properties
-		firstCommandBuffer->front()->shader->setVec3("material.ambient", 0.24725f, 0.1995f, 0.0745f); // golden material VRML values
-		firstCommandBuffer->front()->shader->setVec3("material.diffuse", 0.7516f, 0.60648f, 0.22648f);
-		firstCommandBuffer->front()->shader->setVec3("material.specular", 0.628281f, 0.555802f, 0.366065f);
-		firstCommandBuffer->front()->shader->setFloat("material.shininess", 0.4f);
+		//pass view projection matrices to the shader
+		firstCommandBuffer->front()->shader->setMat4("viewProjection", camera.getViewProjection());
 
+		//bind vertex array
+		firstCommandBuffer->front()->vertexArray->bind();
+
+		//add 4 cubes
 		glm::vec3 cubePositions[] = {
 			glm::vec3(0.0f,  0.0f,  0.0f),
 			glm::vec3(-1.7f,  3.0f, -7.5f),
