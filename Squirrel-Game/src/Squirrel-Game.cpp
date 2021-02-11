@@ -3,6 +3,7 @@
 #include "../Squirrel-Engine/include/Squirrel.h"
 #include "../Squirrel-Engine/include/ED_Interface.h"
 #include "../Squirrel-Engine/include/StoreManager.h"
+
 class Sandbox : public Squirrel::Application
 {
 public:
@@ -92,16 +93,21 @@ void Sandbox::Run()
 	shader.reset(new Shader("../../Squirrel-Engine/res/shaders/Basic.shader"));
 	
 	//Load and bind textures
-	unsigned int diffuse = texture->loadTexture("../../Squirrel-Engine/res/textures/tiles_diff.jpg");
-	texture->bind(0, diffuse);
-	unsigned int specular = texture->loadTexture("../../Squirrel-Engine/res/textures/tiles_spec.jpg");
-	texture->bind(1, specular);
-
+	unsigned int diffuse = texture->loadTexture("../../Squirrel-Engine/res/textures/sci-fi_diff.jpg");
+	unsigned int specular = texture->loadTexture("../../Squirrel-Engine/res/textures/sci-fi_spec.jpg");
+	unsigned int emission = texture->loadTexture("../../Squirrel-Engine/res/textures/sci-fi_emis.jpg");
+	
 	//set shader properties
 	shader->use();
 	shader->setInt("material.diffuse", 0);
 	shader->setInt("material.specular", 1);
+	shader->setInt("material.emission", 2);
 	shader->setFloat("material.shininess", 0.4f);
+	
+	//bind textures
+	texture->bind(0, diffuse);
+	texture->bind(1, specular);
+	texture->bind(2, emission);
 
 	drawCall->vertexBuffer = vertexBuffer;
 	drawCall->vertexArray = vertexArray;
