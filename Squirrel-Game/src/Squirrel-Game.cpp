@@ -16,7 +16,7 @@ public:
 
 	}
 
-	void Run();
+	virtual void Run() override;
 	
 
 };
@@ -26,7 +26,7 @@ Squirrel::Application* Squirrel::CreateApplication()
 	return new Sandbox();
 }
 
-void Sandbox::Run()
+void Sandbox::Run() 
 {
 	float vertices[] = {
 		// positions          // normals           // texture coords
