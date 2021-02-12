@@ -1,5 +1,6 @@
 #pragma once
 #include "DummyScheduler.h"
+#include "Nut.h"
 
 namespace Squirrel
 {
@@ -11,12 +12,14 @@ namespace Squirrel
 		void stopScheduler();
 		void pauseScheduler();
 
+		void submitJob(NJob* job);
 	private:
 		// Options
 		bool renderDebug;
 
 		// Schedulers
 		DummyScheduler* dummyScheduler;
+		Nut* nut;
 	};
 
 

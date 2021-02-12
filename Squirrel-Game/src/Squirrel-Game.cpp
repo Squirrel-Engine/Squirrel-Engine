@@ -26,8 +26,13 @@ Squirrel::Application* Squirrel::CreateApplication()
 	return new Sandbox();
 }
 
+
+
+
+
 void Sandbox::Run()
 {
+	
 	float vertices[] = {
 		// positions          // normals           // texture coords
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f,  0.0f,
@@ -99,4 +104,6 @@ void Sandbox::Run()
 	drawCall->texture = texture;
 
 	Squirrel::InterfaceFactory::getInstance()->getRDInterface()->submitDrawCall(drawCall);
+	
+	
 }

@@ -1,4 +1,7 @@
 #pragma once
+#include <string>
+
+#include "Actor.h"
 #include "IStore.h"
 
 namespace Squirrel
@@ -8,7 +11,13 @@ namespace Squirrel
 		
 	public:
 		LevelStore();
-		int x;
-		void setupStore() override;
+
+		std::vector<Actor*> actors;
+		std::string name;
+
+
+		void spawnNewActor(Actor* actor);
+		Actor* getActor(int row);
+		void setupStore(std::string _name, std::vector<Actor*> initialActorVector);
 	};
 }

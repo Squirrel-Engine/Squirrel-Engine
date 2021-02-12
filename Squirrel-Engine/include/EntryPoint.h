@@ -12,7 +12,7 @@ extern Squirrel::Application* Squirrel::CreateApplication();
 int main(int argc, char** argv)
 {
     Squirrel::RuntimeManager* runtimeManager = Squirrel::RuntimeManager::getInstance();
-
+	
 	
 	//RD_Interface 
 	auto app = Squirrel::CreateApplication();
