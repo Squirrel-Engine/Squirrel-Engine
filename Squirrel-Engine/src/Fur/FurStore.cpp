@@ -2,3 +2,4 @@
 
 GLFWwindow* furWindow;
 std::queue<DrawCall*>* firstCommandBuffer = new std::queue<DrawCall*>;
+EditorCamera* camera = new EditorCamera();
