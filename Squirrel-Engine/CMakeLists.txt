@@ -43,7 +43,6 @@ add_subdirectory("${GLM_DIR}")
 target_include_directories(${PROJECT_NAME} PRIVATE "${GLM_DIR}/glm")
 target_link_libraries(${PROJECT_NAME} glm)
 
-#ASSIMP
 
 
 # TODO: Add tests and install targets if needed.

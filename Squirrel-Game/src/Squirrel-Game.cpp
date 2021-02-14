@@ -36,3 +36,4 @@ void Sandbox::Run()
 
 	Squirrel::InterfaceFactory::getInstance()->getRDInterface()->submitDrawCall(drawCall);
 }
+

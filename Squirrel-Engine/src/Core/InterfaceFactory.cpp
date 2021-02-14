@@ -23,7 +23,13 @@ namespace Squirrel
 		return rd_Interface;
 	}
 
-	MT_Interface* InterfaceFactory::getMTInterface() {
+	MT_Interface* InterfaceFactory::getMTInterface()
+	{
 		return mt_Interface;
+	}
+
+	GM_Interface* InterfaceFactory::getGMInterface()
+	{
+		return gm_interface;
 	}
 }

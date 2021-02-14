@@ -21,7 +21,7 @@ namespace Squirrel{
 
         //Interface Initialization
         InterfaceFactory::getInstance()->getRDInterface()->startRenderEngine();
-        // 	
+    	
         
         // Store Allocation
         //renderStore = (struct RenderStore*)malloc(sizeof(struct RenderStore));
