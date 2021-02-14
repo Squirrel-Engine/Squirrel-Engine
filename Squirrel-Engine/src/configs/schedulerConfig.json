@@ -1,4 +1,4 @@
 {
-  "Scheduler": "Nut",
+  "Scheduler": "DummyScheduler",
   "Render_Debug": "On"
 }

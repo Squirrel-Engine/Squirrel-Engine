@@ -6,6 +6,7 @@ namespace Squirrel
 	{
 		mt_Interface = new MT_Interface();
 		rd_Interface = new RD_Interface();
+		rm_Interface = new RM_Interface();
 	}
 
 	InterfaceFactory* InterfaceFactory::instance = 0;
@@ -31,5 +32,10 @@ namespace Squirrel
 	GM_Interface* InterfaceFactory::getGMInterface()
 	{
 		return gm_interface;
+	}
+
+	RM_Interface* InterfaceFactory::getRMInterface()
+	{
+		return rm_Interface;
 	}
 }

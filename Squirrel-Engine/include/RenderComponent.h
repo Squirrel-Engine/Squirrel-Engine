@@ -6,8 +6,14 @@
 namespace Squirrel
 {
 	class RenderComponent : ActorComponent {
-		Material* material; // This should be vector!!!
-		Mesh* mesh;		
+		int meshID;
+		int textureID;
+
+		void generateDrawCalls();
+		void submitDrawCalls();
+
+		void BeginPlay() override;
+		void Update() override;
 	};
 }
  
