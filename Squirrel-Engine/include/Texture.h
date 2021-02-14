@@ -1,7 +1,5 @@
 #pragma once
 #include <string>
-#include <glad/glad.h>
-
 class Texture
 {
 private:
@@ -12,7 +10,6 @@ private:
 public:
 	Texture(const std::string& path);
 	~Texture();
-
 	void bind(unsigned int slot) const;
 	void unbind() const;
 

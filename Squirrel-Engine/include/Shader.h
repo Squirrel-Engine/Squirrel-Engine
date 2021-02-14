@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <unordered_map>
 
 class Shader
 {
@@ -35,7 +36,10 @@ public:
 	void setMat2(const std::string& name, const glm::mat2& mat) const;
 	void setMat3(const std::string& name, const glm::mat3& mat) const;
 	void setMat4(const std::string& name, const glm::mat4& mat) const;
+private:
+	mutable std::unordered_map<std::string, GLint> m_UniformCache;
 
 private:
     void checkCompileErrors(unsigned int shader, std::string type);
+	GLint getUniformLocation(const std::string& name) const;
 };

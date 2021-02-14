@@ -14,4 +14,3 @@ set(SOURCES "${SRC_DIR}/Squirrel-Game.cpp" "${SRC_DIR}/FatihActor.cpp""${SRC_DIR
 add_executable (${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE "${SRC_DIR}")
 target_link_libraries (Squirrel-Game Squirrel-Engine)
-# TODO: Add tests and install targets if needed.
