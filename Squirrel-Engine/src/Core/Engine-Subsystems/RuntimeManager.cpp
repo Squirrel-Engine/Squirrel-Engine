@@ -20,8 +20,27 @@ namespace Squirrel{
         std::cout << "Engine is Loading" << std::endl;
 
         //Interface Initialization
+
         InterfaceFactory::getInstance()->getRDInterface()->startRenderEngine();
-        InterfaceFactory::getInstance()->getRMInterface()->loadAssets();
+        InterfaceFactory::getInstance()->getRMInterface()->loadAssetMT();
+    	//!!!------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    	
+        //!!!------------------------------------------------------------------------------------------------------------------------------------------------------------
         // Store Allocation
         //renderStore = (struct RenderStore*)malloc(sizeof(struct RenderStore));
         //jobFactory = (struct JobFactory*)malloc(sizeof(struct JobFactory));
