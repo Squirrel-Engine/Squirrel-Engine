@@ -5,9 +5,6 @@ project(Squirrel-Engine)
 
 cmake_minimum_required (VERSION 3.8)
 find_package(OpenGL REQUIRED)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/Squirrel-Game/Debug)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/Squirrel-Game/Release)
-
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
@@ -49,7 +46,9 @@ target_link_libraries(${PROJECT_NAME} glm)
 set(ASSIMP_LIBRARY "${LIB_DIR}/assimp")
 add_library(assimp SHARED IMPORTED GLOBAL)
 set_property(TARGET assimp PROPERTY IMPORTED_IMPLIB_RELEASE "${ASSIMP_LIBRARY}/assimp-vc142-mtd.lib")
+set_property(TARGET assimp PROPERTY IMPORTED_LOCATION_RELEASE "${ASSIMP_LIBRARY}/assimp-vc142-mtd.dll")
 set_property(TARGET assimp PROPERTY IMPORTED_IMPLIB_DEBUG "${ASSIMP_LIBRARY}/assimp-vc142-mtd.lib")
+set_property(TARGET assimp PROPERTY IMPORTED_LOCATION_DEBUG "${ASSIMP_LIBRARY}/assimp-vc142-mtd.dll")
 
 target_link_libraries(${PROJECT_NAME} assimp)
 add_custom_target(assimp_dll
@@ -60,4 +59,5 @@ add_custom_target(assimp_dll
   COMMAND ${CMAKE_COMMAND} -E copy ${ASSIMP_LIBRARY}/assimp-vc142-mtd.dll      ${CMAKE_BINARY_DIR}/Squirrel-Game/Release
 )
 add_dependencies(${PROJECT_NAME} assimp_dll)
+
 # TODO: Add tests and install targets if needed.
