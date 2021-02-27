@@ -1,55 +1,52 @@
 #pragma once
+
+#include <glad/glad.h>m
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
+#include "Shader.h"
+
 #include <string>
 #include <vector>
-#include "glad/glad.h"
-#include "OBJ_Loader.h"
+using namespace std;
 
-struct Vertex
-{
-public:
-	Vertex(const glm::vec3& pos, const glm::vec2& texCoord, const glm::vec3& normal)
-	{
-		this->pos = pos;
-		this->texCoord = texCoord;
-		this->normal = normal;
-	}
-
-	glm::vec3* GetPos() { return &pos; }
-	glm::vec2* GetTexCoord() { return &texCoord; }
-	glm::vec3* GetNormal() { return &normal; }
-
-private:
-	glm::vec3 pos;
-	glm::vec2 texCoord;
-	glm::vec3 normal;
+struct s_Vertex {
+	// position
+	glm::vec3 Position;
+	// normal
+	glm::vec3 Normal;
+	// texCoords
+	glm::vec2 TexCoords;
+	// tangent
+	glm::vec3 Tangent;
+	// bitangent
+	glm::vec3 Bitangent;
 };
 
-enum MeshBufferPositions
-{
-	POSITION_VB,
-	TEXCOORD_VB,
-	NORMAL_VB,
-	INDEX_VB
+struct s_Texture {
+	unsigned int id;
+	string type;
+	string path;
 };
 
-class Mesh
-{
+class Mesh {
 public:
-	Mesh(const std::string& fileName);
-	Mesh(Vertex* vertices, unsigned int numVertices, unsigned int* indices, unsigned int numIndices);
+	// mesh Data
+	vector<s_Vertex>       vertices;
+	vector<unsigned int> indices;
+	vector<s_Texture>      textures;
+	unsigned int VAO;
 
-	void Draw();
+	// constructor
+	Mesh(vector<s_Vertex> vertices, vector<unsigned int> indices, vector<s_Texture> textures);
 
-	virtual ~Mesh();
-protected:
+	// render the mesh
+	void Draw(std::shared_ptr<Shader> shader);
+
 private:
-	static const unsigned int NUM_BUFFERS = 4;
-	void operator=(const Mesh& mesh) {}
+	// render data 
+	unsigned int VBO, EBO;
 
-	void InitMesh(const IndexedModel& model);
-
-	GLuint m_vertexArrayObject;
-	GLuint m_vertexArrayBuffers[NUM_BUFFERS];
-	unsigned int m_numIndices;
+	// initializes all the buffer objects/arrays
+	void setupMesh();
 };

@@ -6,8 +6,10 @@
 #include "RuntimeManager.h"
 #include "DrawCall.h"
 #include "InterfaceFactory.h"
+#include <assimp/Importer.hpp>      // C++ importer interface
+#include <assimp/scene.h>           // Output data structure
+#include <assimp/postprocess.h>     // Post processing flags
 
-extern Squirrel::Application* Squirrel::CreateApplication();
 
 int main(int argc, char** argv)
 {
@@ -17,12 +19,10 @@ int main(int argc, char** argv)
 	//RD_Interface 
 	auto app = Squirrel::CreateApplication();
 	
-	
 	runtimeManager->engineStartup();
-
 	app->Run();
-	
-    Squirrel::InterfaceFactory::getInstance()->getMTInterface()->startScheduler();
+
+	Squirrel::InterfaceFactory::getInstance()->getMTInterface()->startScheduler();
 	runtimeManager->engineShutdown();
 	
 	delete app;

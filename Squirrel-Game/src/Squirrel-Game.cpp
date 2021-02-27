@@ -29,7 +29,7 @@ Squirrel::Application* Squirrel::CreateApplication()
 void Sandbox::Run() 
 {
 	//DrawCall(Model, Shader, Texture)
-	DrawCall* drawCall = new DrawCall("../../Squirrel-Engine/res/models/sword.obj",
+	DrawCall* drawCall = new DrawCall("../../Squirrel-Engine/res/models/backpack/backpack.obj",
 									  "../../Squirrel-Engine/res/shaders/Model.shader",
 									  "../../Squirrel-Engine/res/textures/sword_diff.png");
 	

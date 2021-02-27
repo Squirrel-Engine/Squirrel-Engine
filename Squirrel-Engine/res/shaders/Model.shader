@@ -1,15 +1,15 @@
 #shader vertex
 #version 330 core
-///Vertex Shader
-////////////////
+//VertexShader
+//////////////
 layout(location = 0) in vec3 aPos;
-layout(location = 1) in vec2 aTexCoord;
-layout(location = 2) in vec3 aNormal;
+layout(location = 1) in vec3 aNormal;
+layout(location = 2) in vec2 aTexCoord;
 layout(location = 3) in vec3 aIndex;
 
 out vec3 FragPos;
-out vec2 TexCoord;
 out vec3 Normal;
+out vec2 TexCoord;
 
 uniform mat4 model;
 uniform mat4 viewProjection;
@@ -18,13 +18,14 @@ void main()
 {
 	TexCoord = vec2(aTexCoord.x, aTexCoord.y);
 	FragPos = vec3(model * vec4(aPos, 1.0));
+    Normal = mat3(transpose(inverse(model))) * aNormal;
 	gl_Position = viewProjection * vec4(FragPos, 1.0);
 }
 
 #shader fragment
 #version 330 core
-///Fragment Shader
-//////////////////
+//FragmentShader
+//////////////
 out vec4 FragColor;
 
 struct Material {
@@ -33,7 +34,6 @@ struct Material {
 
 struct Light {
 	vec3 position;
-
 	vec3 ambient;
 	vec3 diffuse;
 	vec3 specular;
@@ -61,10 +61,9 @@ void main()
     // specular
     vec3 viewDir = normalize(viewPos - FragPos);
     vec3 reflectDir = reflect(-lightDir, norm);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 64);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), 128);
     vec3 specular = light.specular * spec;
 
-
-	vec3 result = ambient + diffuse + specular;
-	FragColor = texture(material.diffuse, TexCoord);
+    vec3 result = ambient + diffuse + specular;
+    FragColor = vec4(result, 1.0);
 }

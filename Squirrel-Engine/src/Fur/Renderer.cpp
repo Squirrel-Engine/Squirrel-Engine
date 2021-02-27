@@ -22,7 +22,7 @@ void furRender()
 
 		//set transformation and rotation
 		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -5.0f));
 		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.8f, 0.8f, 0.8f));
 
 		// scene light properties
@@ -39,7 +39,7 @@ void furRender()
 		firstCommandBuffer->front()->shader->setMat4("viewProjection", camera->getViewProjection());
 		firstCommandBuffer->front()->shader->setMat4("model", model);
 	
-		firstCommandBuffer->front()->model->Draw();
+		firstCommandBuffer->front()->model->Draw(firstCommandBuffer->front()->shader);
 		
 		glfwSwapBuffers(furWindow);
 		glfwPollEvents();

@@ -1,6 +1,5 @@
 #include "RM_Interface.h"
 
-#include <iostream>
 namespace Squirrel
 {
 	RM_Interface::RM_Interface()
@@ -17,50 +16,35 @@ namespace Squirrel
 		meshAssetMap.insert({ 3, "../../Squirrel-Engine/res/models/Model2.obj" });
 
 		//Texture
-		textureAssetMap.insert({ 0, "../../Squirrel-Engine/res/textures/sword_diff.png" });
+		textureAssetMap.insert({ 0, "../../Squirrel-Engine/res/textures/wall.jpg" });
 		// TEXTURE LOADING FUNCTION !!!!!!!!!!!!
+
 	}
-	
-	void RM_Interface::threadProcess(std::map<int, Mesh*>* buffer)
-	{
-		std::unique_lock<std::mutex> nlock(mt);
-		std::cout << "THREAD";
-		Texture* texture = new Texture(textureAssetMap[0]);
-		textureBuffer.insert({ 0, texture });
-		nlock.unlock();
-	}
-	
+
 	void RM_Interface::loadMeshAsset(int i)
 	{
-		Mesh* mesh = new Mesh(meshAssetMap[i]);
-		meshBuffer.insert({ i, mesh });
+		
 	}
 
 	void RM_Interface::loadTextureAsset(int i)
 	{
+		Texture* texture = new Texture(textureAssetMap[0]);
+		textureBuffer.insert({ 0, texture });
 	} 
 
 	void RM_Interface::loadAssetMT()
 	{
 		loadAssetMap();
-		Mesh* mesh2 = new Mesh(RM_Interface::meshAssetMap[0]);
-		meshBuffer.insert({ 0, mesh2 });
-		std::vector<std::thread> vecOfThreads;
-		vecOfThreads.push_back(std::thread(&RM_Interface::threadProcess, this, &meshBuffer));
-		vecOfThreads.back().join();
-
-		
+		loadMeshAsset(0);
+		loadTextureAsset(0);
 	}
-
-
-
 
 	int RM_Interface::assignAsset()
 	{
 		return 0;
 	}
 
-	Mesh* RM_Interface::getMesh(int index)
+	Model* RM_Interface::getMesh(int index)
 	{
 		return meshBuffer[index];
 	}

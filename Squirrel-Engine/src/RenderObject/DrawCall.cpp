@@ -1,27 +1,24 @@
 ﻿#include "DrawCall.h"
-
 #include "InterfaceFactory.h"
-
 /*
  * Modelleri önceden belleğe yükleyip öyle çağıralım
  */
 
 // 
-
-
 DrawCall::DrawCall(const std::string& modelPath, const std::string& shaderPath, const std::string& texturePath) {
+
 	std::shared_ptr<Shader> shader;
-	std::shared_ptr<Mesh> model;
+	std::shared_ptr<Model> model;
 	std::shared_ptr<Texture> texture;
 
-	model.reset(Squirrel::InterfaceFactory::getInstance()->getRMInterface()->getMesh(0));
+	model.reset(new Model(modelPath));
 	shader.reset(new Shader(shaderPath));
-	texture.reset(Squirrel::InterfaceFactory::getInstance()->getRMInterface()->getTexture(0));
+	texture.reset(new Texture(texturePath));
 
 	shader->use();
-	texture->bind(0);
+	//texture->bind(0);
 
-	shader->setInt("material.diffuse", 0);
+	//shader->setInt("material.diffuse", 0);
 	
 	this->shader = shader;
 	this->model = model;

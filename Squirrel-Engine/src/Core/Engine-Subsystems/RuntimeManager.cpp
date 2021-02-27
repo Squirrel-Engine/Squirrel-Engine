@@ -23,6 +23,7 @@ namespace Squirrel{
 
         InterfaceFactory::getInstance()->getRDInterface()->startRenderEngine();
         InterfaceFactory::getInstance()->getRMInterface()->loadAssetMT();
+
     	//!!!------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
