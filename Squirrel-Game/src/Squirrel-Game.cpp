@@ -31,7 +31,7 @@ void Sandbox::Run()
 	//DrawCall(Model, Shader, Texture)
 	DrawCall* drawCall = new DrawCall("../../Squirrel-Engine/res/models/backpack/backpack.obj",
 									  "../../Squirrel-Engine/res/shaders/Model.shader",
-									  "../../Squirrel-Engine/res/textures/sword_diff.png");
+									  "../../Squirrel-Engine/res/textures/wall.jpg");
 	
 
 	Squirrel::InterfaceFactory::getInstance()->getRDInterface()->submitDrawCall(drawCall);
