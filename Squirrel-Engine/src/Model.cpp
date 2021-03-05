@@ -52,6 +52,7 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 	for (unsigned int i = 0; i < mesh->mNumVertices; i++)
 	{
 		s_Vertex vertex;
+		// positions
 		glm::vec3 vector; 
 		vector.x = mesh->mVertices[i].x;
 		vector.y = mesh->mVertices[i].y;
@@ -97,6 +98,7 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 			indices.push_back(face.mIndices[j]);
 	}
 	// process materials
+
 	if (mesh->mMaterialIndex >= 0) {
 		aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 
@@ -113,7 +115,7 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 		std::vector<s_Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
 		textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 	}
-	
+		
 	return Mesh(vertices, indices, textures);
 }
 
@@ -145,11 +147,12 @@ vector<s_Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType typ
 			textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
 		}
 	}
+	
 	return textures;
 }
 
 
-unsigned int TextureFromFile(const char* path, const string& directory, bool gamma)
+static unsigned int TextureFromFile(const char* path, const string& directory, bool gamma)
 {
 	string filename = string(path);
 	filename = directory + '/' + filename;

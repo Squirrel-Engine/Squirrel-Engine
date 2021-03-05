@@ -4,8 +4,10 @@ Mesh::Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices, vector<s_T
 {
 	this->vertices = vertices;
 	this->indices = indices;
-	this->textures = textures;
-
+	if (textures.size() != 0)
+		this->material.textures = textures;
+	else
+		this->material.setup();
 	setupMesh();
 }
 
@@ -15,12 +17,13 @@ void Mesh::Draw(std::shared_ptr<Shader>& shader)
 	unsigned int specularNr = 1;
 	unsigned int normalNr = 1;
 	unsigned int heightNr = 1;
-	for (unsigned int i = 0; i < textures.size(); i++)
+
+	for (unsigned int i = 0; i < material.textures.size(); i++)
 	{
 		glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
 		// retrieve texture number (the N in diffuse_textureN)
 		string number;
-		string name = textures[i].type;
+		string name = material.textures[i].type;
 		if (name == "texture_diffuse")
 			number = std::to_string(diffuseNr++);
 		else if (name == "texture_specular")
@@ -33,13 +36,13 @@ void Mesh::Draw(std::shared_ptr<Shader>& shader)
 		// now set the sampler to the correct texture unit
 		shader->setInt(("material." + name + number).c_str(), i);
 		// and finally bind the texture
-		glBindTexture(GL_TEXTURE_2D, textures[i].id);
+		glBindTexture(GL_TEXTURE_2D, material.textures[i].id);
 	}
 
 	// draw mesh
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0);
+	//glBindVertexArray(0);
 
 	// always good practice to set everything back to defaults once configured.
 	glActiveTexture(GL_TEXTURE0);
@@ -50,7 +53,6 @@ void Mesh::setupMesh()
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
-
 
 	glBindVertexArray(VAO);
 

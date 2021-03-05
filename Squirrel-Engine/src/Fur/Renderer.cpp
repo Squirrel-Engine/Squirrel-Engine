@@ -22,12 +22,12 @@ void furRender()
 
 		//set transformation and rotation
 		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f));
 		model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.8f, 0.8f, 0.8f));
 
 		// scene light properties
 		glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
-		glm::vec3 lightPos(0.3f, 0.3f, 1.0f);
+		glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
 
 		firstCommandBuffer->front()->shader->setVec3("lightPos", lightPos);
 		firstCommandBuffer->front()->shader->setVec3("viewPos", camera->getPosition());
@@ -37,7 +37,7 @@ void furRender()
 		firstCommandBuffer->front()->shader->setMat4("model", model);
 	
 		firstCommandBuffer->front()->model->Draw(firstCommandBuffer->front()->shader);
-	
+
 		glfwSwapBuffers(furWindow);
 		glfwPollEvents();
 	}

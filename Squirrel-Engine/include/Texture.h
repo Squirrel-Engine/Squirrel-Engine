@@ -13,6 +13,8 @@ public:
 	void bind(unsigned int slot) const;
 	void unbind() const;
 
+	inline unsigned int getID() const { return m_RendererID; }
+	//inline unsigned int getPath() const { return  }  // This will return texture file name
 	inline int getWidht() const { return m_Width; }
 	inline int getHeight() const { return m_Height; }
 };

@@ -1,9 +1,10 @@
 #pragma once
-#include <glad/glad.h>m
+#include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "Shader.h"
+#include "Material.h"
 
 #include <string>
 #include <vector>
@@ -17,17 +18,11 @@ struct s_Vertex {
 	glm::vec3 Bitangent;
 };
 
-struct s_Texture {
-	unsigned int id;
-	string type;
-	string path;
-};
-
 class Mesh {
 public:
-	vector<s_Vertex>       vertices;
+	vector<s_Vertex>		vertices;
 	vector<unsigned int>	indices;
-	vector<s_Texture>      textures;
+	Material				material;
 	unsigned int VAO;
 
 	Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices, vector<s_Texture>& textures);
