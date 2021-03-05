@@ -10,10 +10,10 @@
 class DrawCall
 {
 public:
-	DrawCall(const std::string& model, const std::string& shader, const std::string& texture);
+	DrawCall(const std::string& modelPath, Shader& shader);
 
 	std::shared_ptr<Model> model;
-	std::shared_ptr<Shader> shader;
-	std::shared_ptr<Texture> texture;
+	Shader shader;
+
 };
 

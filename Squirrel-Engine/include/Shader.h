@@ -6,10 +6,19 @@
 #include <sstream>
 #include <iostream>
 #include <unordered_map>
+using namespace glm;
 
 class Shader
 {
 public:
+	struct Uniforms 
+	{
+		vec3 lightPos;
+		vec3 viewPos;
+		mat4 viewProjection;
+		mat4 model;
+	};
+
     struct ShaderProgramSource
     {
         std::string VertexSource;
@@ -17,7 +26,9 @@ public:
     };
     enum class ShaderType{ NONE = -1, VERTEX = 0, FRAGMENT = 1 };
     unsigned int ID;
+	Uniforms uniforms;
 
+	Shader() {}
     Shader(const std::string& filepath);
     ~Shader();
 	

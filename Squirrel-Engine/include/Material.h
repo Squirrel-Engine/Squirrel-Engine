@@ -17,7 +17,7 @@ public:
 	Material();
 
 	vector<s_Texture> textures;
-	glm::vec4 m_color;
+	glm::vec4 color;
 public:
 	void setup();
 	void setInt(int value);

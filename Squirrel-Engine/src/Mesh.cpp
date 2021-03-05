@@ -11,7 +11,7 @@ Mesh::Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices, vector<s_T
 	setupMesh();
 }
 
-void Mesh::Draw(std::shared_ptr<Shader>& shader)
+void Mesh::Draw(Shader& shader)
 {
 	unsigned int diffuseNr = 1;
 	unsigned int specularNr = 1;
@@ -34,10 +34,15 @@ void Mesh::Draw(std::shared_ptr<Shader>& shader)
 			number = std::to_string(heightNr++); // transfer unsigned int to stream
 
 		// now set the sampler to the correct texture unit
-		shader->setInt(("material." + name + number).c_str(), i);
+		shader.setInt(("material." + name + number).c_str(), i);
 		// and finally bind the texture
 		glBindTexture(GL_TEXTURE_2D, material.textures[i].id);
 	}
+	// Set other uniforms 
+	shader.setVec3("lightPos", shader.uniforms.lightPos);	//Later there will be a iterator for all
+	shader.setVec3("viewPos", shader.uniforms.viewPos);
+	shader.setMat4("viewProjection", shader.uniforms.viewProjection);
+	shader.setMat4("model", shader.uniforms.model);
 
 	// draw mesh
 	glBindVertexArray(VAO);

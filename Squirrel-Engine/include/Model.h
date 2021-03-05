@@ -29,7 +29,7 @@ public:
 
 	Model(string const& path, bool gamma = false);
 
-	void Draw(std::shared_ptr<Shader>& shader);
+	void Draw(Shader& shader);
 
 private:
 	void loadModel(string const& path);

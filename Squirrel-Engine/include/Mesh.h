@@ -27,7 +27,7 @@ public:
 
 	Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices, vector<s_Texture>& textures);
 
-	void Draw(std::shared_ptr<Shader>& shader);
+	void Draw(Shader& shader);
 
 private:
 	unsigned int VBO, EBO;

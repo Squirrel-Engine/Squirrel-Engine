@@ -28,7 +28,13 @@ Shader::Shader(const std::string& filepath)
     }
     source.VertexSource = ss[0].str();
     source.FragmentSource = ss[1].str();
-
+   
+    // Uniforms
+    uniforms.lightPos = vec3(0.0f);
+    uniforms.viewPos = vec3(0.0f);
+    uniforms.model = mat4(1.0f);
+    uniforms.viewProjection = mat4(1.0f);
+    
     // 2. compile shaders
     unsigned int vertex, fragment;
     // vertex shader
