@@ -8,7 +8,7 @@ namespace Squirrel
 	{
 		nut = new Nut();
 		//TODO: Get Rid of RenderDebug Option
-		renderDebug = Configuration::getInstance()->schedulerConfig.renderDebug;
+		renderDebug = Configuration::getInstance().schedulerConfig.renderDebug;
 		if (renderDebug == false)
 		{
 			dummyScheduler = new DummyScheduler(ESchedulerMode::OPERATIONAL);
@@ -27,7 +27,7 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->schedulerConfig.scheduler)
+			switch (Configuration::getInstance().schedulerConfig.scheduler)
 			{
 			case EScheduler::DummyScheduler:
 				dummyScheduler->startScheduler();
@@ -50,7 +50,7 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->schedulerConfig.scheduler)
+			switch (Configuration::getInstance().schedulerConfig.scheduler)
 			{
 			case EScheduler::DummyScheduler:
 				dummyScheduler->stopScheduler();
@@ -72,7 +72,7 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->schedulerConfig.scheduler)
+			switch (Configuration::getInstance().schedulerConfig.scheduler)
 			{
 			case EScheduler::DummyScheduler:
 				dummyScheduler->pauseScheduler();
@@ -93,7 +93,7 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->schedulerConfig.scheduler)
+			switch (Configuration::getInstance().schedulerConfig.scheduler)
 			{
 			case EScheduler::DummyScheduler:
 				throw NotImplementedSchedulerException;

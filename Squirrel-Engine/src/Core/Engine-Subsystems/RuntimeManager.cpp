@@ -3,16 +3,12 @@
 #include "StoreManager.h"
 
 namespace Squirrel{
-
-    RuntimeManager* RuntimeManager::instance = nullptr;
     RuntimeManager::RuntimeManager() {
 
     }
 
-    RuntimeManager * RuntimeManager::getInstance(){
-        if (instance == 0){
-            instance = new RuntimeManager();
-        }
+    RuntimeManager& RuntimeManager::getInstance(){
+        static RuntimeManager instance;
         return instance;
     }
 
@@ -21,8 +17,8 @@ namespace Squirrel{
 
         //Interface Initialization
 
-        InterfaceFactory::getInstance()->getRDInterface()->startRenderEngine();
-        InterfaceFactory::getInstance()->getRMInterface()->loadAssetMT();
+        InterfaceFactory::getInstance().getRDInterface().startRenderEngine();
+        InterfaceFactory::getInstance().getRMInterface().loadAssetMT();
 
     	//!!!------------------------------------------------------------------------------------------------------------------------------------------------------------
 

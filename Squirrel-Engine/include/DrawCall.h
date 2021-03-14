@@ -14,6 +14,5 @@ public:
 
 	std::shared_ptr<Model> model;
 	Shader shader;
-
 };
 

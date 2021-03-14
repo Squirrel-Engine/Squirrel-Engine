@@ -10,8 +10,8 @@ namespace Squirrel
 	class RD_Interface
 	{
 	public:
-		RD_Interface();
-		~RD_Interface(){}
+		RD_Interface() {}
+		~RD_Interface() {}
 		void startRenderEngine();
 		void pauseRenderEngine();
 		void stopRenderEngine();
@@ -24,12 +24,8 @@ namespace Squirrel
 		void updateRenderEngineOptions(std::string parameterName, int parameter);
 		void updateRenderEngineOptions(std::string parameterName, float parameter);
 		void updateRenderEngineOptions(std::string parameterName, std::string parameter);
-		
-		//OpenGL Specific
-		//TODO: Return type should be Window
-		GLFWwindow* getGlfwWindow();
 
 	private:
-		Fur::Fur* fur;
+		Fur::Fur fur;
 	};
 }

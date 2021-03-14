@@ -21,6 +21,4 @@ namespace Squirrel
 		name = name;
 		actors = initialActorVector;
 	}
-
-
 }

@@ -2,40 +2,30 @@
 
 namespace Squirrel
 {
-	InterfaceFactory::InterfaceFactory()
+	InterfaceFactory& InterfaceFactory::getInstance()
 	{
-		mt_Interface = new MT_Interface();
-		rd_Interface = new RD_Interface();
-		rm_Interface = new RM_Interface();
-	}
-
-	InterfaceFactory* InterfaceFactory::instance = 0;
-	InterfaceFactory* InterfaceFactory::getInstance()
-	{
-		if (instance == 0)
-		{
-			instance = new InterfaceFactory();
-		}
+		static InterfaceFactory instance;
 		return instance;
 	}
 
-	RD_Interface* InterfaceFactory::getRDInterface()
+	RD_Interface& InterfaceFactory::getRDInterface()
 	{
 		return rd_Interface;
 	}
 
-	MT_Interface* InterfaceFactory::getMTInterface()
+	MT_Interface& InterfaceFactory::getMTInterface()
 	{
 		return mt_Interface;
 	}
 
-	GM_Interface* InterfaceFactory::getGMInterface()
+	GM_Interface& InterfaceFactory::getGMInterface()
 	{
-		return gm_interface;
+		return gm_Interface;
 	}
 
-	RM_Interface* InterfaceFactory::getRMInterface()
+	RM_Interface& InterfaceFactory::getRMInterface()
 	{
 		return rm_Interface;
 	}
+
 }

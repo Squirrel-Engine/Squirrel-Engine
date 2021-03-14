@@ -18,6 +18,9 @@ public:
 
 	vector<s_Texture> textures;
 	glm::vec4 color;
+	//normal strength
+	//roughness power
+	//metalic power
 public:
 	void setup();
 	void setInt(int value);

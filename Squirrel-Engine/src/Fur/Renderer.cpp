@@ -21,7 +21,7 @@ void furRender()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		firstCommandBuffer->front()->model->Draw(firstCommandBuffer->front()->shader);
-
+	
 		glfwSwapBuffers(furWindow);
 		glfwPollEvents();
 	}

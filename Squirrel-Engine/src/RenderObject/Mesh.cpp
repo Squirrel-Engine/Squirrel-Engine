@@ -25,7 +25,7 @@ void Mesh::Draw(Shader& shader)
 		string number;
 		string name = material.textures[i].type;
 		if (name == "texture_diffuse")
-			number = std::to_string(diffuseNr++);
+			number = std::to_string(diffuseNr++); 
 		else if (name == "texture_specular")
 			number = std::to_string(specularNr++); // transfer unsigned int to stream
 		else if (name == "texture_normal")

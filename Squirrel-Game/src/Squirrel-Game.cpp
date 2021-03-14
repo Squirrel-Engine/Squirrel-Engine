@@ -17,8 +17,6 @@ public:
 	}
 
 	virtual void Run() override;
-	
-
 };
 
 Squirrel::Application* Squirrel::CreateApplication()
@@ -32,15 +30,15 @@ void Sandbox::Run()
 	Shader shader("../../Squirrel-Engine/res/shaders/Model.shader");
 	//set transformation and rotation
 	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f));
+	model = glm::translate(model, glm::vec3(0.0f, 0.0f, -20.0f));
 	//model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.8f, 0.8f, 0.8f));
 	shader.uniforms.model = model;
 	shader.uniforms.viewPos = camera->getPosition();
 	shader.uniforms.viewProjection = camera->getViewProjection();
 
-	DrawCall* drawCall = new DrawCall("../../Squirrel-Engine/res/models/sword/sword.obj",
+	DrawCall* drawCall = new DrawCall("../../Squirrel-Engine/res/models/backpack/backpack.obj",
 									   shader);
 
-	Squirrel::InterfaceFactory::getInstance()->getRDInterface()->submitDrawCall(drawCall);
+	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(drawCall);
 }
 

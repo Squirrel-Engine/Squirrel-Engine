@@ -2,9 +2,8 @@
 
 namespace Squirrel
 {
-	RM_Interface::RM_Interface()
-	{
-		
+	RM_Interface::RM_Interface() {
+
 	}
 
 	void RM_Interface::loadAssetMap()
@@ -18,7 +17,6 @@ namespace Squirrel
 		//Texture
 		textureAssetMap.insert({ 0, "../../Squirrel-Engine/res/textures/wall.jpg" });
 		// TEXTURE LOADING FUNCTION !!!!!!!!!!!!
-
 	}
 
 	void RM_Interface::loadMeshAsset(int i)

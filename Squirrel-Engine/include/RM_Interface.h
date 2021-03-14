@@ -14,6 +14,7 @@ namespace Squirrel
 	{
 	public:
 		RM_Interface();
+		~RM_Interface() {}
 		//void loadAssetMap(FILE* fp);
 		void loadAssetMap();
 
