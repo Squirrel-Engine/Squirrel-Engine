@@ -2,6 +2,7 @@
 //
 #include "../Squirrel-Engine/include/Squirrel.h"
 #include "../../Squirrel-Engine/include/Mesh.h"
+#include "Components/RenderComponent.h"
 
 class Sandbox : public Squirrel::Application
 {
@@ -26,12 +27,10 @@ Squirrel::Application* Squirrel::CreateApplication()
 
 void Sandbox::Run() 
 {
-	//DrawCall(Model, Shader)
-	Shader *shader = new Shader("../../Squirrel-Engine/res/shaders/Model.shader");
-	Model *model3D = new Model("../../Squirrel-Engine/res/models/Model1.obj");
-
-	DrawCall* drawCall = new DrawCall( *model3D, *shader );
-	
-	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(drawCall);
-
+	RenderComponent* renderComponent = new RenderComponent();
+	renderComponent->C_ModelID = 0;
+	renderComponent->C_MaterialID_1 = 0;
+	renderComponent->C_ShaderID = 0;
+	renderComponent->setup();
+	renderComponent->Update();
 }

@@ -66,7 +66,7 @@ Mesh* Model::processMesh(aiMesh& mesh, const aiScene& scene)
 {
 	vector<s_Vertex> vertices;
 	vector<unsigned int> indices;
-	vector<s_Texture> textures;
+	//vector<s_Texture> textures;
 	
 	for (unsigned int i = 0; i < mesh.mNumVertices; i++)
 	{
@@ -117,7 +117,7 @@ Mesh* Model::processMesh(aiMesh& mesh, const aiScene& scene)
 			indices.push_back(face.mIndices[j]);
 	}
 	// process materials
-
+	/*
 	if (mesh.mMaterialIndex >= 0) {
 		aiMaterial* material = scene.mMaterials[mesh.mMaterialIndex];
 
@@ -134,8 +134,8 @@ Mesh* Model::processMesh(aiMesh& mesh, const aiScene& scene)
 		std::vector<s_Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
 		textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 	}
-	
-	return new Mesh(vertices, indices, textures);
+	*/
+	return new Mesh(vertices, indices);
 }
 
 vector<s_Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, const string typeName)

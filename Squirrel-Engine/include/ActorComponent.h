@@ -4,8 +4,9 @@ namespace Squirrel
 {
 	class ActorComponent
 	{
-		virtual void BeginPlay();
-		virtual void Update();
+	public:
+		virtual void BeginPlay() = 0;
+		virtual void Update() = 0;
 	};
 }
 

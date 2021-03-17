@@ -8,7 +8,7 @@ void furRender()
 	for (auto& drawcall : *firstCommandBuffer) {
 		drawcall->model.Draw(drawcall->shader);
 	}
-	
+
 	glfwSwapBuffers(furWindow);
 	glfwPollEvents();
 }

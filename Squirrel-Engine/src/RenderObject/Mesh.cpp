@@ -1,13 +1,9 @@
 #include "Mesh.h"
 
-Mesh::Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices, vector<s_Texture>& textures)
+Mesh::Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices)
 {
 	this->vertices = vertices;
 	this->indices = indices;
-	if (textures.size() != 0)
-		this->material.textures = textures;
-	else
-		this->material.setup();
 	setupMesh();
 }
 
@@ -44,7 +40,6 @@ void Mesh::Draw(Shader& shader)
 		// and finally bind the texture
 		glBindTexture(GL_TEXTURE_2D, material.textures[i].id);
 	}
-
 	// draw mesh
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);

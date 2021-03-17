@@ -25,7 +25,7 @@ public:
 	Material				material;
 	unsigned int VAO;
 
-	Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices, vector<s_Texture>& textures);
+	Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices);
 	~Mesh();
 
 	void Draw(Shader& shader);

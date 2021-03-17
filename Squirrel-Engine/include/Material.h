@@ -15,10 +15,11 @@ class Material
 {
 public:
 	Material();
-
+	int ID;
 	vector<s_Texture> textures;
 	//glm::vec4 color;
 	//normal strength
+	//float normalStrenght;
 	//roughness power
 	//metalic power
 public:

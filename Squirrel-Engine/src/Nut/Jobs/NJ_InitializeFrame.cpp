@@ -24,8 +24,8 @@ namespace Squirrel
 
 	void NJ_InitializeFrame::run()
 	{
+		//InterfaceFactory::getInstance().getMTInterface().submitJob(new NJ_InitializeInput());
 		InterfaceFactory::getInstance().getMTInterface().submitJob(new NJ_InitializeSimulation());
-		InterfaceFactory::getInstance().getMTInterface().submitJob(new NJ_InitializeDrawCall());
 		InterfaceFactory::getInstance().getMTInterface().submitJob(new NJ_InitializeRender());
 	}
 }
