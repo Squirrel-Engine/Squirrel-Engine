@@ -1,5 +1,5 @@
 #include "FurStore.h"
 
 GLFWwindow* furWindow;
-std::queue<DrawCall*>* firstCommandBuffer = new std::queue<DrawCall*>;
+std::vector<DrawCall*>* firstCommandBuffer = new std::vector<DrawCall*>;
 EditorCamera* camera = new EditorCamera();

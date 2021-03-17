@@ -5,13 +5,7 @@
  */
 
 // 
-DrawCall::DrawCall(const std::string& modelPath, Shader& shader) {
-
-	std::shared_ptr<Model> model;
-	model.reset(new Model(modelPath));
-
-	shader.use();
-
+DrawCall::DrawCall(const Model& model, const Shader& shader) {
 	this->shader = shader;
 	this->model = model;
 }

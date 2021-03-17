@@ -17,7 +17,7 @@ public:
 	Material();
 
 	vector<s_Texture> textures;
-	glm::vec4 color;
+	//glm::vec4 color;
 	//normal strength
 	//roughness power
 	//metalic power

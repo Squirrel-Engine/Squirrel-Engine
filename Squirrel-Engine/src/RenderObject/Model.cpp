@@ -1,4 +1,5 @@
 #include "Model.h"
+#include "FurStore.h"
 
 unsigned int TextureFromFile(const char* path, const string& directory, bool gamma);
 
@@ -7,8 +8,26 @@ Model::Model(string const& path, bool gamma /*= false*/) : gammaCorrection(gamma
 	loadModel(path);
 }
 
+Model::~Model() {
+	for (Mesh& obj : meshes)
+		delete &obj;
+	meshes.clear();
+}
+
 void Model::Draw(Shader& shader)
 {
+	shader.use();
+
+	// Uniforms
+	//Later there will be a iterator for all
+	shader.setVec3("lightPos", vec3(0.0f));	//take it from light sources
+	shader.setVec3("viewPos", camera->getPosition());	
+	shader.setMat4("viewProjection", camera->getViewProjection());
+	glm::mat4 model = glm::mat4(1.0f);
+	model = glm::translate(model, glm::vec3(0.0f, 0.0f, -50.0f));
+	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 1.0f));
+	shader.setMat4("model",model);			//take it from transform component
+
 	for (unsigned int i = 0; i < meshes.size(); i++)
 		meshes[i].Draw(shader);
 }
@@ -26,62 +45,62 @@ void Model::loadModel(string const& path)
 	
 	directory = path.substr(0, path.find_last_of('/'));
 
-	processNode(scene->mRootNode, scene);
+	processNode(*scene->mRootNode, *scene);
 }
 
-void Model::processNode(aiNode* node, const aiScene* scene)
+void Model::processNode(aiNode& node, const aiScene& scene)
 {
-	for (unsigned int i = 0; i < node->mNumMeshes; i++)
+	for (unsigned int i = 0; i < node.mNumMeshes; i++)
 	{
-		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-		meshes.push_back(processMesh(mesh, scene));
+		aiMesh* mesh = scene.mMeshes[node.mMeshes[i]];
+		meshes.push_back(*processMesh(*mesh, scene));
 	}
 
-	for (unsigned int i = 0; i < node->mNumChildren; i++)
+	for (unsigned int i = 0; i < node.mNumChildren; i++)
 	{
-		processNode(node->mChildren[i], scene);
+		processNode(*node.mChildren[i], scene);
 	}
 }
 
-Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
+Mesh* Model::processMesh(aiMesh& mesh, const aiScene& scene)
 {
 	vector<s_Vertex> vertices;
 	vector<unsigned int> indices;
 	vector<s_Texture> textures;
 	
-	for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+	for (unsigned int i = 0; i < mesh.mNumVertices; i++)
 	{
 		s_Vertex vertex;
 		// positions
 		glm::vec3 vector; 
-		vector.x = mesh->mVertices[i].x;
-		vector.y = mesh->mVertices[i].y;
-		vector.z = mesh->mVertices[i].z;
+		vector.x = mesh.mVertices[i].x;
+		vector.y = mesh.mVertices[i].y;
+		vector.z = mesh.mVertices[i].z;
 		vertex.Position = vector;
 		// normals
-		if (mesh->HasNormals())
+		if (mesh.HasNormals())
 		{
-			vector.x = mesh->mNormals[i].x;
-			vector.y = mesh->mNormals[i].y;
-			vector.z = mesh->mNormals[i].z;
+			vector.x = mesh.mNormals[i].x;
+			vector.y = mesh.mNormals[i].y;
+			vector.z = mesh.mNormals[i].z;
 			vertex.Normal = vector;
 		}
 		// texture coordinates
-		if (mesh->mTextureCoords[0])
+		if (mesh.mTextureCoords[0])
 		{
 			glm::vec2 vec;
-			vec.x = mesh->mTextureCoords[0][i].x;
-			vec.y = mesh->mTextureCoords[0][i].y;
+			vec.x = mesh.mTextureCoords[0][i].x;
+			vec.y = mesh.mTextureCoords[0][i].y;
 			vertex.TexCoords = vec;
 			// tangent
-			vector.x = mesh->mTangents[i].x;
-			vector.y = mesh->mTangents[i].y;
-			vector.z = mesh->mTangents[i].z;
+			vector.x = mesh.mTangents[i].x;
+			vector.y = mesh.mTangents[i].y;
+			vector.z = mesh.mTangents[i].z;
 			vertex.Tangent = vector;
 			// bitangent
-			vector.x = mesh->mBitangents[i].x;
-			vector.y = mesh->mBitangents[i].y;
-			vector.z = mesh->mBitangents[i].z;
+			vector.x = mesh.mBitangents[i].x;
+			vector.y = mesh.mBitangents[i].y;
+			vector.z = mesh.mBitangents[i].z;
 			vertex.Bitangent = vector;
 		}
 		else
@@ -90,17 +109,17 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 		vertices.push_back(vertex);
 	}
 	// indices
-	for (unsigned int i = 0; i < mesh->mNumFaces; i++)
+	for (unsigned int i = 0; i < mesh.mNumFaces; i++)
 	{
-		aiFace face = mesh->mFaces[i];
+		aiFace face = mesh.mFaces[i];
 		// retrieve all indices of the face and store them in the indices vector
 		for (unsigned int j = 0; j < face.mNumIndices; j++)
 			indices.push_back(face.mIndices[j]);
 	}
 	// process materials
 
-	if (mesh->mMaterialIndex >= 0) {
-		aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+	if (mesh.mMaterialIndex >= 0) {
+		aiMaterial* material = scene.mMaterials[mesh.mMaterialIndex];
 
 		// 1. diffuse maps
 		vector<s_Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
@@ -115,11 +134,11 @@ Mesh Model::processMesh(aiMesh* mesh, const aiScene* scene)
 		std::vector<s_Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
 		textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 	}
-		
-	return Mesh(vertices, indices, textures);
+	
+	return new Mesh(vertices, indices, textures);
 }
 
-vector<s_Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, string typeName)
+vector<s_Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, const string typeName)
 {
 	vector<s_Texture> textures;
 	for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)

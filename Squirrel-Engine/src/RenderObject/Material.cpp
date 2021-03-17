@@ -18,6 +18,7 @@ void Material::setup()
 
 void Material::setInt(int value)
 {
+
 }
 
 void Material::setFloat(float value)
@@ -26,7 +27,7 @@ void Material::setFloat(float value)
 
 void Material::setColor(glm::vec4 color)
 {
-	this->color = color;
+	//this->color = color;
 }
 
 void Material::setTexture(string typeName, const std::string& path)

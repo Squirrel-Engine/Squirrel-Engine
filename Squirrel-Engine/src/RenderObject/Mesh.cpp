@@ -11,6 +11,12 @@ Mesh::Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices, vector<s_T
 	setupMesh();
 }
 
+Mesh::~Mesh() {
+	glDeleteVertexArrays(1, &VAO);
+	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &EBO);
+}
+
 void Mesh::Draw(Shader& shader)
 {
 	unsigned int diffuseNr = 1;
@@ -38,11 +44,6 @@ void Mesh::Draw(Shader& shader)
 		// and finally bind the texture
 		glBindTexture(GL_TEXTURE_2D, material.textures[i].id);
 	}
-	// Set other uniforms 
-	shader.setVec3("lightPos", shader.uniforms.lightPos);	//Later there will be a iterator for all
-	shader.setVec3("viewPos", shader.uniforms.viewPos);
-	shader.setMat4("viewProjection", shader.uniforms.viewProjection);
-	shader.setMat4("model", shader.uniforms.model);
 
 	// draw mesh
 	glBindVertexArray(VAO);

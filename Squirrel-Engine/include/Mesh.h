@@ -26,9 +26,9 @@ public:
 	unsigned int VAO;
 
 	Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices, vector<s_Texture>& textures);
+	~Mesh();
 
 	void Draw(Shader& shader);
-
 private:
 	unsigned int VBO, EBO;
 	void setupMesh();

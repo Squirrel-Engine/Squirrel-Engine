@@ -10,9 +10,11 @@
 class DrawCall
 {
 public:
-	DrawCall(const std::string& modelPath, Shader& shader);
-
-	std::shared_ptr<Model> model;
+	DrawCall(const Model& modelPath, const Shader& shader);
+	//void Draw(){setUniforms(); model.draw();}
+	Model model;
 	Shader shader;
+//private: 
+	//void setUniforms();
 };
 

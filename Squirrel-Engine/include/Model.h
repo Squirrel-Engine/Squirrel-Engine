@@ -27,14 +27,16 @@ public:
 	string directory;
 	bool gammaCorrection;
 
+	Model(){}
 	Model(string const& path, bool gamma = false);
+	~Model();
 
 	void Draw(Shader& shader);
 
 private:
 	void loadModel(string const& path);
-	void processNode(aiNode* node, const aiScene* scene);
-	Mesh processMesh(aiMesh* mesh, const aiScene* scene);
+	void processNode(aiNode& node, const aiScene& scene);
+	Mesh* processMesh(aiMesh& mesh, const aiScene& scene);
 
 	vector<s_Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, string typeName);
 };

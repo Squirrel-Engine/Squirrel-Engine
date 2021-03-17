@@ -27,18 +27,11 @@ Squirrel::Application* Squirrel::CreateApplication()
 void Sandbox::Run() 
 {
 	//DrawCall(Model, Shader)
-	Shader shader("../../Squirrel-Engine/res/shaders/Model.shader");
-	//set transformation and rotation
-	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::translate(model, glm::vec3(0.0f, 0.0f, -20.0f));
-	//model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.8f, 0.8f, 0.8f));
-	shader.uniforms.model = model;
-	shader.uniforms.viewPos = camera->getPosition();
-	shader.uniforms.viewProjection = camera->getViewProjection();
+	Shader *shader = new Shader("../../Squirrel-Engine/res/shaders/Model.shader");
+	Model *model3D = new Model("../../Squirrel-Engine/res/models/Model1.obj");
 
-	DrawCall* drawCall = new DrawCall("../../Squirrel-Engine/res/models/backpack/backpack.obj",
-									   shader);
-
+	DrawCall* drawCall = new DrawCall( *model3D, *shader );
+	
 	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(drawCall);
-}
 
+}
