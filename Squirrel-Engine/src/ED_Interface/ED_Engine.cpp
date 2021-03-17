@@ -14,7 +14,7 @@ namespace Squirrel
 
 		std::string GetRenderEngineName()
 		{
-			switch (Configuration::getInstance()->renderConfig.renderer)
+			switch (Configuration::getInstance().renderConfig.renderer)
 			{
 			case ERenderer::Fur:
 				return "Fur";
@@ -23,7 +23,7 @@ namespace Squirrel
 
 		std::string GetSchedulerName()
 		{
-			switch (Configuration::getInstance()->schedulerConfig.scheduler)
+			switch (Configuration::getInstance().schedulerConfig.scheduler)
 			{
 			case EScheduler::DummyScheduler:
 				return "DummyScheduler";

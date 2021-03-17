@@ -10,7 +10,7 @@ namespace Fur
 	void Fur::startRenderEngine()
 	{
 		//access all rendering options
-		Squirrel::RenderConfig config = Squirrel::Configuration::getInstance()->renderConfig;
+		Squirrel::RenderConfig config = Squirrel::Configuration::getInstance().renderConfig;
 		
 		//start
 		glfwInit();
@@ -62,7 +62,7 @@ namespace Fur
 
 	void Fur::submitDrawCall(DrawCall* drawCall)
 	{
-		firstCommandBuffer->push(drawCall);
+		firstCommandBuffer->push_back(drawCall);
 	}
 
 	GLFWwindow* Fur::getGlfwWindow()

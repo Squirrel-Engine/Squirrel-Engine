@@ -1,13 +1,35 @@
+#pragma once
+#include <glad/glad.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
-namespace Squirrel
-{
-	class Mesh
-	{
-	public:
-		int meshID;
-		float vertices[]; // Temporary!!
+#include "Shader.h"
+#include "Material.h"
 
-		// This class should implement load obj or load fbx methods;
-	};
-}
+#include <string>
+#include <vector>
+using namespace std;
 
+struct s_Vertex {
+	glm::vec3 Position;
+	glm::vec3 Normal;
+	glm::vec2 TexCoords;
+	glm::vec3 Tangent;
+	glm::vec3 Bitangent;
+};
+
+class Mesh {
+public:
+	vector<s_Vertex>		vertices;
+	vector<unsigned int>	indices;
+	Material				material;
+	unsigned int VAO;
+
+	Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices, vector<s_Texture>& textures);
+	~Mesh();
+
+	void Draw(Shader& shader);
+private:
+	unsigned int VBO, EBO;
+	void setupMesh();
+};

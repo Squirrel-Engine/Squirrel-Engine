@@ -1,15 +1,30 @@
-
+#pragma once
+#include <string>
 #include <vector>
+#include "Shader.h"
+#include "Texture.h"
+using namespace std;
 
-namespace Squirrel
+struct s_Texture {
+	unsigned int id;
+	string type;
+	string path;
+};
+
+class Material
 {
-	class Material
-	{
-	public:
-		int shaderID;
-		int textureID; // This should be vector for add multiple texture in one shot
+public:
+	Material();
 
-		Material(int shaderID, int textureID);
-	};
-}
-
+	vector<s_Texture> textures;
+	//glm::vec4 color;
+	//normal strength
+	//roughness power
+	//metalic power
+public:
+	void setup();
+	void setInt(int value);
+	void setFloat(float value);
+	void setColor(glm::vec4 color);
+	void setTexture(string typeName, const std::string& path);
+};

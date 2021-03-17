@@ -7,15 +7,9 @@ namespace Squirrel {
 		schedulerConfig.setup();
 	}
 	
-	Configuration* Configuration::instance = 0;
-	Configuration* Configuration::getInstance()
+	Configuration& Configuration::getInstance()
 	{
-		if (instance == 0)
-		{
-			instance = new Configuration();
-		}
+		static Configuration instance;
 		return instance;
 	}
 }
-
-

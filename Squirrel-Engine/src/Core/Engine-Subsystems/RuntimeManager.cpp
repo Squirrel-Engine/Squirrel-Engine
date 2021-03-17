@@ -3,16 +3,12 @@
 #include "StoreManager.h"
 
 namespace Squirrel{
-
-    RuntimeManager* RuntimeManager::instance = nullptr;
     RuntimeManager::RuntimeManager() {
 
     }
 
-    RuntimeManager * RuntimeManager::getInstance(){
-        if (instance == 0){
-            instance = new RuntimeManager();
-        }
+    RuntimeManager& RuntimeManager::getInstance(){
+        static RuntimeManager instance;
         return instance;
     }
 
@@ -20,9 +16,28 @@ namespace Squirrel{
         std::cout << "Engine is Loading" << std::endl;
 
         //Interface Initialization
-        InterfaceFactory::getInstance()->getRDInterface()->startRenderEngine();
-        // 	
-        
+
+        InterfaceFactory::getInstance().getRDInterface().startRenderEngine();
+        InterfaceFactory::getInstance().getRMInterface().loadAssetMT();
+
+    	//!!!------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    	
+        //!!!------------------------------------------------------------------------------------------------------------------------------------------------------------
         // Store Allocation
         //renderStore = (struct RenderStore*)malloc(sizeof(struct RenderStore));
         //jobFactory = (struct JobFactory*)malloc(sizeof(struct JobFactory));

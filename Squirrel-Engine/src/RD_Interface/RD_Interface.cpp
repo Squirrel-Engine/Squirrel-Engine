@@ -2,19 +2,14 @@
 
 namespace Squirrel
 {
-	RD_Interface::RD_Interface()
-	{
-		fur = new Fur::Fur();
-	}
-
 	void RD_Interface::startRenderEngine()
 	{
 		try
 		{
-			switch (Configuration::getInstance()->renderConfig.renderer)
+			switch (Configuration::getInstance().renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->startRenderEngine();
+				fur.startRenderEngine();
 				
 			}
 		}
@@ -28,10 +23,10 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->renderConfig.renderer)
+			switch (Configuration::getInstance().renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->pauseRenderEngine();
+				fur.pauseRenderEngine();
 
 			}
 		}
@@ -45,10 +40,10 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->renderConfig.renderer)
+			switch (Configuration::getInstance().renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->stopRenderEngine();
+				fur.stopRenderEngine();
 
 			}
 		}
@@ -62,10 +57,10 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->renderConfig.renderer)
+			switch (Configuration::getInstance().renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->render();
+				fur.render();
 				break;
 			}
 		}
@@ -79,10 +74,10 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->renderConfig.renderer)
+			switch (Configuration::getInstance().renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->addActorToRenderQueue();
+				fur.addActorToRenderQueue();
 
 			}
 		}
@@ -96,27 +91,10 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->renderConfig.renderer)
+			switch (Configuration::getInstance().renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->submitDrawCall(drawCall);
-
-			}
-		}
-		catch (std::exception& e)
-		{
-			std::cout << e.what() << '\n';
-		}
-	}
-
-	GLFWwindow* RD_Interface::getGlfwWindow()
-	{
-		try
-		{
-			switch (Configuration::getInstance()->renderConfig.renderer)
-			{
-			case ERenderer::Fur:
-				return fur->getGlfwWindow();
+				fur.submitDrawCall(drawCall);
 
 			}
 		}
@@ -130,11 +108,10 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->renderConfig.renderer)
+			switch (Configuration::getInstance().renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->updateRenderEngineOptions(parameterName, parameter);
-
+				fur.updateRenderEngineOptions(parameterName, parameter);
 			}
 		}
 		catch (std::exception& e)
@@ -147,10 +124,10 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->renderConfig.renderer)
+			switch (Configuration::getInstance().renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->updateRenderEngineOptions(parameterName, parameter);
+				fur.updateRenderEngineOptions(parameterName, parameter);
 
 			}
 		}
@@ -164,10 +141,10 @@ namespace Squirrel
 	{
 		try
 		{
-			switch (Configuration::getInstance()->renderConfig.renderer)
+			switch (Configuration::getInstance().renderConfig.renderer)
 			{
 			case ERenderer::Fur:
-				fur->updateRenderEngineOptions(parameterName, parameter);
+				fur.updateRenderEngineOptions(parameterName, parameter);
 
 			}
 		}
@@ -176,9 +153,4 @@ namespace Squirrel
 			std::cout << e.what() << '\n';
 		}
 	}
-	
-
-
-	
 }
-

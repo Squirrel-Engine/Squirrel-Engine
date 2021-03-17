@@ -8,10 +8,9 @@ namespace Squirrel {
 	{
 	private:
 		Configuration();
-		static Configuration* instance;
 
 	public:
-		static Configuration* getInstance();
+		static Configuration& getInstance();
 		RenderConfig renderConfig;
 		SchedulerConfig schedulerConfig;
 	};

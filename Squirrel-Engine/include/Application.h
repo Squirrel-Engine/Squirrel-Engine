@@ -11,10 +11,9 @@ namespace Squirrel {
 		Application();
 		virtual ~Application();
 
-		virtual void Run();
+		virtual void Run() = 0;
 	};
 
 	// To be defined in CLIENT
 	Application* CreateApplication();
-
 }

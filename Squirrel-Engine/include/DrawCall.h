@@ -5,15 +5,16 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "Model.h"
 
-	class DrawCall
-	{
-	public:
-		DrawCall(){}
-		std::shared_ptr<VertexArray> vertexArray;
-		std::shared_ptr<VertexBuffer> vertexBuffer;
+class DrawCall
+{
+public:
+	DrawCall(const Model& modelPath, const Shader& shader);
+	//void Draw(){setUniforms(); model.draw();}
+	Model model;
+	Shader shader;
+//private: 
+	//void setUniforms();
+};
 
-		std::shared_ptr<Shader> shader;
-		std::shared_ptr<Texture> texture;
-		//std::unique_ptr<VertexBuffer> indexBuffer;
-	};

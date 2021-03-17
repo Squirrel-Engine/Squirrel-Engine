@@ -7,23 +7,19 @@
 #include "DrawCall.h"
 #include "InterfaceFactory.h"
 
-extern Squirrel::Application* Squirrel::CreateApplication();
-
 int main(int argc, char** argv)
 {
-    Squirrel::RuntimeManager* runtimeManager = Squirrel::RuntimeManager::getInstance();
-
+    Squirrel::RuntimeManager runtimeManager = Squirrel::RuntimeManager::getInstance();
+	
 	
 	//RD_Interface 
 	auto app = Squirrel::CreateApplication();
 	
-	
-	runtimeManager->engineStartup();
-
+	runtimeManager.engineStartup();
 	app->Run();
-	
-    Squirrel::InterfaceFactory::getInstance()->getMTInterface()->startScheduler();
-	runtimeManager->engineShutdown();
-	
+
+	Squirrel::InterfaceFactory::getInstance().getMTInterface().startScheduler();
+	runtimeManager.engineShutdown();
+
 	delete app;
 }
