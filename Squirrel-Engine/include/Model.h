@@ -15,6 +15,8 @@
 #include <iostream>
 #include <map>
 
+#include "UniformDesc.h"
+
 using namespace std;
 
 static unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false);
@@ -30,7 +32,7 @@ public:
 	Model(){}
 	Model(string const& path, bool gamma = false);
 	~Model();
-
+	Squirrel::UNIFORM_DESC uniformDesc;
 	void Draw(Shader& shader);
 
 private:

@@ -4,7 +4,7 @@
 
 TransformComponent::TransformComponent()
 {
-	
+	transformMat = glm::mat3(1.0f);
 }
 
 void TransformComponent::BeginPlay()

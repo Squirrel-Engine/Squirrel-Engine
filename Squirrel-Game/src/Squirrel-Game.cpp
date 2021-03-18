@@ -38,6 +38,7 @@ void Sandbox::Run()
 	
 	transformComponent->setParent(skeleton);
 	skeleton->transformComponent = transformComponent;
+	skeleton->transformComponent->setTransform(glm::vec3(1.7, 0, -1));
 	skeleton->insertComponent("transformComponent", transformComponent);
 
 
@@ -57,5 +58,7 @@ void Sandbox::Run()
 
 
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton);
+
+	
 
 }

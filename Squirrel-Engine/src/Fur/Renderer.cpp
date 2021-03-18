@@ -15,6 +15,7 @@ void furRender()
 			firstCommandBuffer->pop();
 			delete drawcall;
 		}
+		
 	}
 	glfwSwapBuffers(furWindow);
 	glfwPollEvents();

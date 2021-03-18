@@ -19,6 +19,12 @@ void RenderComponent::Update()
 	auto drawCall = new DrawCall(Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID), 
 									  Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID));
 
+	uniformDesc.model = getComponent<TransformComponent*>("transformComponent")->getTransform();
+
+	drawCall->model->uniformDesc = uniformDesc;
+
+
+	
 	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(*drawCall);
 	std::cout << "Render Component" << std::endl;
 }
@@ -27,6 +33,7 @@ void RenderComponent::setup()
 {
 	modelID = C_ModelID;
 	shaderID = C_ShaderID;
+
 
 	int size = Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.size();
 	std::cout << "Size: " << size << std::endl;
