@@ -33,16 +33,27 @@ void Sandbox::Run()
 	skeleton->attackPower = 0;
 	
 	TransformComponent* transformComponent = new TransformComponent();
-	skeleton->transformComponent = transformComponent;
 	
+	transformComponent->setup();
+	
+	transformComponent->setParent(skeleton);
+	skeleton->transformComponent = transformComponent;
+	skeleton->insertComponent("transformComponent", transformComponent);
 
+
+	
 	RenderComponent* renderComponent = new RenderComponent();
+	
 	renderComponent->C_ModelID = 0;
 	renderComponent->C_MaterialID_1 = 0;
 	renderComponent->C_ShaderID = 0;
 	renderComponent->setup();
+	
 	renderComponent->setParent(skeleton);
-	skeleton->componentList.insert(std::make_pair("transformComponent",transformComponent));
 	skeleton->renderComponent = renderComponent;
-	renderComponent->Update();
+	skeleton->insertComponent("renderComponent", renderComponent);
+
+
+	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton);
+
 }

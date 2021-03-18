@@ -12,6 +12,7 @@ namespace Squirrel
 		ActorComponent(){}
 		virtual void BeginPlay() = 0;
 		virtual void Update() = 0;
+		virtual void setup() = 0;
 		Actor* parent;
 	public:
 		template<typename T>

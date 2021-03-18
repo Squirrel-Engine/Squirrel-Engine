@@ -8,7 +8,7 @@ namespace Squirrel
 
 	void LevelStore::spawnNewActor(Actor* actor)
 	{
-		actors.insert(actors.begin(), actor);
+		actors.push_back(actor);
 	}
 
 	Actor* LevelStore::getActor(int row)

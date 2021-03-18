@@ -15,7 +15,7 @@ namespace Squirrel
 	void NJ_Input::run()
 	{
 		std::cout << "!! Input !!" << std::endl;
-		InterfaceFactory::getInstance().getMTInterface().submitJob(new NJ_InitializeSimulation(), EQueueOrder::LOW_ORDER);
+
 	}
 
 	void NJ_Input::mount()

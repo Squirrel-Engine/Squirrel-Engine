@@ -6,7 +6,7 @@
 
 namespace Squirrel
 {
-	class LevelStore : IStore
+	class LevelStore
 	{
 		
 	public:

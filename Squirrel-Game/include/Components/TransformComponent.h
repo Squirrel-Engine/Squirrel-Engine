@@ -2,6 +2,7 @@
 
 #include "../../Squirrel-Engine/include/Actor.h"
 #include "Macros.h"
+#include <iostream>
 #include "glm/glm.hpp"
 #include <glm/ext/matrix_transform.hpp>
 SR_COMPONENT()
@@ -27,6 +28,7 @@ public:
 	TransformComponent();
 	void BeginPlay() override;
 	void Update() override;
+	void setup() override;
 
 	
 	glm::vec3 getTransform();

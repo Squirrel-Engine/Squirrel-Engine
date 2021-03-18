@@ -20,7 +20,7 @@ void RenderComponent::Update()
 		Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID));
 	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(drawCall);
 
-	//float x = getComponent<TransformComponent*>("transformComponent")->getTransform().x;
+	std::cout << "RENDER COMPONENT TEST ULAN" << std::endl;
 }
 
 void RenderComponent::setup()

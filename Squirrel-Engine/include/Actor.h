@@ -16,7 +16,7 @@ namespace Squirrel
 
 		std::unordered_map<std::string ,ActorComponent*> componentList;
 
-		void bindComponent(ActorComponent* component);
+		void insertComponent(std::string name, ActorComponent* component);
 	};
 
 
