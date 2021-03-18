@@ -1,6 +1,6 @@
 #pragma once
 #include "DummyScheduler.h"
-
+#include "EQueueOrder.h"
 #include "Nut.h"
 
 namespace Squirrel
@@ -13,7 +13,7 @@ namespace Squirrel
 		void stopScheduler();
 		void pauseScheduler();
 
-		void submitJob(NJob* job);
+		void submitJob(NJob& job, EQueueOrder order);
 
 	private:
 		// Options

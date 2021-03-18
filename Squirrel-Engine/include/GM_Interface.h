@@ -7,7 +7,7 @@ namespace Squirrel
 	class GM_Interface
 	{
 	public:
-		GM_Interface() {};
+		GM_Interface();
 		LevelStore* levelStore;
 	};
 }

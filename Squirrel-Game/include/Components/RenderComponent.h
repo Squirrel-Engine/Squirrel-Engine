@@ -1,14 +1,12 @@
 #pragma once
-#include <map>
-#include <string>
 #include <vector>
-
 #include "../../../Squirrel-Engine/include/ActorComponent.h"
 #include "Macros.h"
-
+#include "../../../Squirrel-Engine/include/UniformDesc.h"
+#include "Components/TransformComponent.h"
 
 SR_COMPONENT()
-class RenderComponent : Squirrel::ActorComponent
+class RenderComponent : public Squirrel::ActorComponent
 {
 public:
 	RenderComponent();
@@ -19,11 +17,11 @@ public:
 	int shaderID;
 	int modelID;
 	std::vector<int> materials;
-	
-
+	Squirrel::UNIFORM_DESC uniformDesc;
 	SR_VAR_START()
 	int C_ModelID;
 	
+	int C_MaterialID_0;
 	int C_MaterialID_1;
 	int C_MaterialID_2;
 	int C_MaterialID_3;
@@ -39,13 +37,8 @@ public:
 	int C_MaterialID_13;
 	int C_MaterialID_14;
 	int C_MaterialID_15;
-	int C_MaterialID_16;
 
 	int C_ShaderID;
 	SR_VAR_END()
-
-
-
-
 };
 SR_COMPONENT()

@@ -11,6 +11,12 @@ namespace Squirrel
 		if (conMap["Scheduler"] == "Nut") {
 			scheduler = EScheduler::Nut;
 		}
+		if (conMap["MT_Mode"] == "On") {
+			mtMode = true;
+		}
+		if (conMap["MT_Mode"] == "Off") {
+			mtMode = false;
+		}
 		if (conMap["Render_Debug"] == "On") {
 			renderDebug = true;
 		}

@@ -1,8 +1,11 @@
 #pragma once
 #include <queue>
-
+#include "EQueueOrder.h"
 #include "NJob.h"
+#include <mutex>
 
+
+//std::mutex g_pages_mutex;
 namespace Squirrel
 {
 	class Nut
@@ -12,9 +15,11 @@ namespace Squirrel
 		void startScheduler();
 		void stopScheduler();
 		void pauseScheduler();
-
-		void submitJob(NJob* job);
+		NJob* schedular();
+		void threadProcess();
+		void submitJob(NJob& job, EQueueOrder order);
 	private:
-		std::queue<NJob*> jobQueue;
+		std::queue<NJob*> jobQueueLowOrder;
+		std::queue<NJob*> jobQueueHighOrder;
 	};
 }

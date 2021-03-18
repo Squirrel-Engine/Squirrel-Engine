@@ -1,8 +1,10 @@
-#include "MT_Interface.h"
-#include "Configuration.h"
-#include "NotImplementedSchedulerException.h"
+#include "GM_Interface.h"
+
 
 namespace Squirrel
 {
-	
+	GM_Interface::GM_Interface()
+	{
+		levelStore = new LevelStore();
+	}
 }

@@ -1,12 +1,9 @@
 #include "NJ_InitializeRender.h"
 
 
-#include <iostream>
-#include <ostream>
 
 Squirrel::NJ_InitializeRender::NJ_InitializeRender()
 {
-	jobStage = EJobStage::SYSTEM;
 }
 
 void Squirrel::NJ_InitializeRender::mount()
@@ -19,5 +16,8 @@ void Squirrel::NJ_InitializeRender::unmount()
 
 void Squirrel::NJ_InitializeRender::run()
 {
-	std::cout << "Render Game" << std::endl;
+	std::cout << "Render" << std::endl;
+	InterfaceFactory::getInstance().getRDInterface().render();
+	//InterfaceFactory::getInstance().getMTInterface().submitJob(*new NJ_InitializeFrame(), EQueueOrder::LOW_ORDER);
+	InterfaceFactory::getInstance().getMTInterface().submitJob(*new NJ_InitializeFrame(), EQueueOrder::HIGH_ORDER);
 }

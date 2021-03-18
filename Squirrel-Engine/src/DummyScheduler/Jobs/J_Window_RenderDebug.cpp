@@ -16,7 +16,6 @@ namespace Squirrel
 	void J_Window_RenderDebug::run()
 	{
 		mount();
-		
 		InterfaceFactory::getInstance().getRDInterface().render();
 		unmount();
 	}

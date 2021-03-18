@@ -2,6 +2,10 @@
 
 
 
+TransformComponent::TransformComponent()
+{
+	transformMat = glm::mat3(1.0f);
+}
 
 void TransformComponent::BeginPlay()
 {
@@ -12,6 +16,11 @@ void TransformComponent::Update()
 	transformMat = glm::translate(transformMat, glm::vec3(transformX, transformY, transformZ));
 	//transformMat = glm::rotate();
 	//transformMat = glm::scale();
+
+}
+
+void TransformComponent::setup()
+{
 }
 
 glm::vec3 TransformComponent::getTransform()

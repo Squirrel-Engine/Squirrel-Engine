@@ -1,21 +1,22 @@
 #pragma once
+#include <unordered_map>
 #include <vector>
 #include "ActorComponent.h"
 
-
-
 namespace Squirrel
 {
+	class ActorComponent;
 	class Actor
 	{
-		virtual void BeginPlay();
-		virtual void Update();
+	public:
+		virtual void BeginPlay() = 0;
+		virtual void Update() = 0;
 
-		Actor();
+		Actor(){};
 
-		std::vector<ActorComponent*> componentList;
+		std::unordered_map<std::string ,ActorComponent*> componentList;
 
-		void bindComponent(ActorComponent* component);
+		void insertComponent(std::string name, ActorComponent* component);
 	};
 
 

@@ -87,7 +87,7 @@ namespace Squirrel
 		}
 	}
 
-	void RD_Interface::submitDrawCall(DrawCall* drawCall)
+	void RD_Interface::submitDrawCall(DrawCall& drawCall)
 	{
 		try
 		{

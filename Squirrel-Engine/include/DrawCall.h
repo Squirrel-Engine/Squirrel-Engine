@@ -10,10 +10,10 @@
 class DrawCall
 {
 public:
-	DrawCall(const Model& modelPath, const Shader& shader);
+	DrawCall(Model* model, Shader* shader);
 	//void Draw(){setUniforms(); model.draw();}
-	Model model;
-	Shader shader;
+	Model* model;
+	Shader* shader;
 //private: 
 	//void setUniforms();
 };

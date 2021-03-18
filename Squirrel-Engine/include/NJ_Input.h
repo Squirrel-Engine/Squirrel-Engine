@@ -1,15 +1,15 @@
 #pragma once
 #include "NJob.h"
-#include "InterfaceFactory.h"
-#include "NJ_InitializeFrame.h"
 namespace Squirrel
 {
-	class NJ_InitializeRender final : public NJob
+	class NJ_Input final : public NJob
 	{
 	public:
-		NJ_InitializeRender();
+		NJ_Input();
 		void mount() override;
 		void unmount() override;
 		void run() override;
 	};
+
+
 }

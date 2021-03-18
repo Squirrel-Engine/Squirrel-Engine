@@ -3,14 +3,12 @@
 
 namespace Squirrel
 {
-	Actor::Actor()
+
+	void Actor::insertComponent(std::string name, ActorComponent* component)
 	{
+		componentList.insert(std::make_pair(name, component));
 	}
 
-	void Actor::bindComponent(ActorComponent* component)
-	{
-		componentList.push_back(component);
-	}
 
 }
 

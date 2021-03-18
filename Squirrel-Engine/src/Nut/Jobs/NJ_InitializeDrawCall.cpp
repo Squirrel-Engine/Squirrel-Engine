@@ -4,7 +4,6 @@
 
 Squirrel::NJ_InitializeDrawCall::NJ_InitializeDrawCall()
 {
-	jobStage = EJobStage::SYSTEM;
 }
 
 void Squirrel::NJ_InitializeDrawCall::mount()

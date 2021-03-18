@@ -60,9 +60,9 @@ namespace Fur
 		render();
 	}
 
-	void Fur::submitDrawCall(DrawCall* drawCall)
+	void Fur::submitDrawCall(DrawCall& drawCall)
 	{
-		firstCommandBuffer->push_back(drawCall);
+		firstCommandBuffer->push(&drawCall);
 	}
 
 	GLFWwindow* Fur::getGlfwWindow()
