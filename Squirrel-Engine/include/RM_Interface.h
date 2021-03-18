@@ -24,9 +24,10 @@ namespace Squirrel
 		void loadShaderAsset();
 		void loadAssetMT();
 
-		Model& getMesh(int index);
-		Texture& getTexture(int index);
-		Shader& getShader(int index);
+		Model* getMesh(int index);
+		Texture* getTexture(int index);
+		Shader* getShader(int index);
+		Material* getMaterial(int index);
 		//Model
 
 		//Tex

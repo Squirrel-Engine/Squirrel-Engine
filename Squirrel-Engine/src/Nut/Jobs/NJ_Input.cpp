@@ -14,7 +14,7 @@ namespace Squirrel
 
 	void NJ_Input::run()
 	{
-		std::cout << "!! Input !!" << std::endl;
+		std::cout << "Input Game" << std::endl;
 
 	}
 

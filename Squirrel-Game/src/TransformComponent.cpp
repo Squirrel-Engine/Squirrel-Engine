@@ -16,7 +16,7 @@ void TransformComponent::Update()
 	transformMat = glm::translate(transformMat, glm::vec3(transformX, transformY, transformZ));
 	//transformMat = glm::rotate();
 	//transformMat = glm::scale();
-	std::cout << "TRANSFORM COMPONENT TEST ULAN" << std::endl;
+
 }
 
 void TransformComponent::setup()

@@ -5,7 +5,8 @@
  */
 
 // 
-DrawCall::DrawCall(const Model& model, const Shader& shader) {
-	this->shader = shader;
+DrawCall::DrawCall(Model* model,  Shader* shader)
+{
 	this->model = model;
+	this->shader = shader;
 }

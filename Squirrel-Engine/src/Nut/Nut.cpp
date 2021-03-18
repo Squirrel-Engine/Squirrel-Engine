@@ -19,11 +19,11 @@ namespace Squirrel
 
 	void Nut::startScheduler()
 	{
-
 		//Game Loop
 		while (true)
 		{
 			jobQueueHighOrder.push(new NJ_InitializeFrame());
+			
 			// Frame Loop
 			while (jobQueueHighOrder.size() != 0)
 			{
@@ -37,9 +37,10 @@ namespace Squirrel
 					jobQueueLowOrder.pop();
 					
 				}
-
 			}
-
+			std::queue<NJob*> empty;
+			std::swap(jobQueueHighOrder, empty);
+			std::swap(jobQueueLowOrder, empty);
 		}
 	}
 
@@ -51,15 +52,15 @@ namespace Squirrel
 	{
 	}
 
-	void Nut::submitJob(NJob* job, EQueueOrder order)
+	void Nut::submitJob(NJob& job, EQueueOrder order)
 	{
 		switch (order)
 		{
 		case EQueueOrder::LOW_ORDER:
-			jobQueueLowOrder.push(job);
+			jobQueueLowOrder.push(&job);
 			break;
 		case EQueueOrder::HIGH_ORDER:
-			jobQueueHighOrder.push(job);
+			jobQueueHighOrder.push(&job);
 			break;
 		}
 	}

@@ -11,7 +11,6 @@ namespace Squirrel
 {
 	NJ_InitializeFrame::NJ_InitializeFrame()
 	{
-		jobStage = EJobStage::SYSTEM;
 		
 	}
 
@@ -25,8 +24,9 @@ namespace Squirrel
 
 	void NJ_InitializeFrame::run()
 	{
-		InterfaceFactory::getInstance().getMTInterface().submitJob(new NJ_Input(), EQueueOrder::HIGH_ORDER);
-		InterfaceFactory::getInstance().getMTInterface().submitJob(new NJ_InitializeSimulation(), EQueueOrder::HIGH_ORDER);
-		InterfaceFactory::getInstance().getMTInterface().submitJob(new NJ_InitializeRender(), EQueueOrder::HIGH_ORDER);
+		std::cout << "Initialize Frame" << std::endl;
+		InterfaceFactory::getInstance().getMTInterface().submitJob(*new NJ_Input(), EQueueOrder::HIGH_ORDER);
+		InterfaceFactory::getInstance().getMTInterface().submitJob(*new NJ_InitializeSimulation(), EQueueOrder::HIGH_ORDER);
+		InterfaceFactory::getInstance().getMTInterface().submitJob(*new NJ_InitializeRender(), EQueueOrder::HIGH_ORDER);
 	}
 }

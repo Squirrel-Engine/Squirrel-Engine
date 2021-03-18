@@ -6,16 +6,17 @@ namespace Squirrel
 	{
 		//Mesh
 		meshAssetMap.insert({ 0, "../../Squirrel-Engine/res/models/Model1.obj" });
-		
+		meshAssetMap.insert({ 1, "../../Squirrel-Engine/res/models/Model2.obj" });
 
 		//Texture
 		textureAssetMap.insert({ 0, "../../Squirrel-Engine/res/textures/wall.jpg" });
+		textureAssetMap.insert({ 1, "../../Squirrel-Engine/res/textures/test_emis.jpg" });
 
 		//Shader
 		shaderAssetMap.insert({ 0, "../../Squirrel-Engine/res/shaders/Model.shader" });
 
 		//Material
-		materialCount = 1;
+		materialCount = 2;
 
 
 		
@@ -54,11 +55,12 @@ namespace Squirrel
 		for (int i = 0; i < materialCount; i++)
 		{
 			Material* material = new Material();
-			material->setTexture("texture_diffuse", textureAssetMap.at(0));
-			material->setTexture("texture_normal", textureAssetMap.at(0));
-			material->setTexture("texture_specular", textureAssetMap.at(0));
-			getMesh(0).meshes.at(0).material = *material;
-			materialBuffer.insert({ 0, material });
+			material->setTexture("texture_diffuse", textureAssetMap.at(i));
+			material->setTexture("texture_normal", textureAssetMap.at(i));
+			material->setTexture("texture_specular", textureAssetMap.at(i));
+
+			materialBuffer.insert({ i, material });
+		
 		}
 	}
 
@@ -76,19 +78,24 @@ namespace Squirrel
 		return 0;
 	}
 
-	Model& RM_Interface::getMesh(int index)
+	Model* RM_Interface::getMesh(int index)
 	{
-		return *meshBuffer[index];
+		return meshBuffer[index];
 	}
 
-	Texture& RM_Interface::getTexture(int index)
+	Texture* RM_Interface::getTexture(int index)
 	{
-		return *textureBuffer[index];
+		return textureBuffer[index];
 	}
 
-	Shader& RM_Interface::getShader(int index)
+	Shader* RM_Interface::getShader(int index)
 	{
-		return *shaderBuffer[index];
+		return shaderBuffer[index];
+	}
+
+	Material* RM_Interface::getMaterial(int index)
+	{
+		return materialBuffer[index];
 	}
 
 

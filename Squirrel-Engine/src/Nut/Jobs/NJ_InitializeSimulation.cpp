@@ -5,7 +5,6 @@
 
 Squirrel::NJ_InitializeSimulation::NJ_InitializeSimulation()
 {
-	jobStage = EJobStage::SYSTEM;
 }
 
 void Squirrel::NJ_InitializeSimulation::mount()
@@ -22,6 +21,6 @@ void Squirrel::NJ_InitializeSimulation::run()
 
 	for(int i = 0; i < InterfaceFactory::getInstance().getGMInterface().levelStore->actors.size(); i++)
 	{
-		InterfaceFactory::getInstance().getMTInterface().submitJob(new NJ_ActorWorker(InterfaceFactory::getInstance().getGMInterface().levelStore->actors.at(i)), EQueueOrder::LOW_ORDER);
+		InterfaceFactory::getInstance().getMTInterface().submitJob(*new NJ_ActorWorker(InterfaceFactory::getInstance().getGMInterface().levelStore->actors.at(i)), EQueueOrder::LOW_ORDER);
 	}
 }

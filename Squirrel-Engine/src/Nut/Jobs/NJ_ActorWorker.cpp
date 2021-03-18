@@ -16,7 +16,7 @@ void Squirrel::NJ_ActorWorker::unmount()
 void Squirrel::NJ_ActorWorker::run()
 {
 	actor->Update();
-	for (auto component : actor->componentList)
+	for (auto& component : actor->componentList)
 	{
 		component.second->Update();
 	}

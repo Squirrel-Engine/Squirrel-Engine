@@ -16,11 +16,10 @@ void RenderComponent::BeginPlay()
 
 void RenderComponent::Update()
 {
-	DrawCall* drawCall = new DrawCall(Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID),
-		Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID));
-	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(drawCall);
+	auto drawCall = new DrawCall(Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID), 
+									  Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID));
 
-	std::cout << "RENDER COMPONENT TEST ULAN" << std::endl;
+	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(*drawCall);
 }
 
 void RenderComponent::setup()
@@ -28,53 +27,43 @@ void RenderComponent::setup()
 	modelID = C_ModelID;
 	shaderID = C_ShaderID;
 
-	int size = Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID).meshes.size();
+	int size = Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.size();
 
 	switch (size)
 	{
 	case 1:
-		materials.push_back(C_MaterialID_1);
+		materials.push_back(C_MaterialID_0);
+		Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.at(0).material = *Squirrel::InterfaceFactory::getInstance().getRMInterface().getMaterial(materials[0]);
 		break;
 	case 2:
+		materials.push_back(C_MaterialID_0);
+		Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.at(0).material = *Squirrel::InterfaceFactory::getInstance().getRMInterface().getMaterial(materials[0]);
 		materials.push_back(C_MaterialID_1);
-		materials.push_back(C_MaterialID_2);
+		Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.at(1).material = *Squirrel::InterfaceFactory::getInstance().getRMInterface().getMaterial(materials[1]);
 		break;
 	case 3:
+		materials.push_back(C_MaterialID_0);
+		Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.at(0).material = *Squirrel::InterfaceFactory::getInstance().getRMInterface().getMaterial(materials[0]);
 		materials.push_back(C_MaterialID_1);
+		Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.at(1).material = *Squirrel::InterfaceFactory::getInstance().getRMInterface().getMaterial(materials[1]);
 		materials.push_back(C_MaterialID_2);
-		materials.push_back(C_MaterialID_3);
+		Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.at(2).material = *Squirrel::InterfaceFactory::getInstance().getRMInterface().getMaterial(materials[2]);
 		break;
 	case 4:
+		materials.push_back(C_MaterialID_0);
+		Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.at(0).material = *Squirrel::InterfaceFactory::getInstance().getRMInterface().getMaterial(materials[0]);
 		materials.push_back(C_MaterialID_1);
+		Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.at(1).material = *Squirrel::InterfaceFactory::getInstance().getRMInterface().getMaterial(materials[1]);
 		materials.push_back(C_MaterialID_2);
+		Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.at(2).material = *Squirrel::InterfaceFactory::getInstance().getRMInterface().getMaterial(materials[2]);
 		materials.push_back(C_MaterialID_3);
-		materials.push_back(C_MaterialID_4);
-		break;
-	case 5:
-		materials.push_back(C_MaterialID_1);
-		materials.push_back(C_MaterialID_2);
-		materials.push_back(C_MaterialID_3);
-		materials.push_back(C_MaterialID_4);
-		materials.push_back(C_MaterialID_5);
-		break;
-	case 6:
-		materials.push_back(C_MaterialID_1);
-		materials.push_back(C_MaterialID_2);
-		materials.push_back(C_MaterialID_3);
-		materials.push_back(C_MaterialID_4);
-		materials.push_back(C_MaterialID_5);
-		materials.push_back(C_MaterialID_6);
-		break;
-	case 7:
-		materials.push_back(C_MaterialID_1);
-		materials.push_back(C_MaterialID_2);
-		materials.push_back(C_MaterialID_3);
-		materials.push_back(C_MaterialID_4);
-		materials.push_back(C_MaterialID_5);
-		materials.push_back(C_MaterialID_6);
-		materials.push_back(C_MaterialID_7);
+		Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.at(3).material = *Squirrel::InterfaceFactory::getInstance().getRMInterface().getMaterial(materials[3]);
 		break;
 	default:
 		break;
 	}
+
+	
+
+	
 }

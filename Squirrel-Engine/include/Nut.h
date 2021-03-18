@@ -13,7 +13,7 @@ namespace Squirrel
 		void stopScheduler();
 		void pauseScheduler();
 
-		void submitJob(NJob* job, EQueueOrder order);
+		void submitJob(NJob& job, EQueueOrder order);
 	private:
 		std::queue<NJob*> jobQueueLowOrder;
 		std::queue<NJob*> jobQueueHighOrder;

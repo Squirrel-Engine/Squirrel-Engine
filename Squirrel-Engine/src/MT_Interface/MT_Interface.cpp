@@ -89,7 +89,7 @@ namespace Squirrel
 		}
 	}
 
-	void MT_Interface::submitJob(NJob* job, EQueueOrder order)
+	void MT_Interface::submitJob(NJob& job, EQueueOrder order)
 	{
 		try
 		{
