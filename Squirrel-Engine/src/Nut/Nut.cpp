@@ -4,6 +4,13 @@
 
 #include "NJ_InitializeFrame.h"
 
+
+enum class EQUEUE_ORDER
+{
+	LOW_ORDER,
+	HIGHT_ORDER
+};
+
 namespace Squirrel
 {
 	Nut::Nut()
@@ -16,16 +23,21 @@ namespace Squirrel
 		//Game Loop
 		while (true)
 		{
-			jobQueue.push(new NJ_InitializeFrame());
+			jobQueueHighOrder.push(new NJ_InitializeFrame());
 			// Frame Loop
-			while (true)
+			while (jobQueueHighOrder.size() != 0)
 			{
-				if (jobQueue.size() == 0)
+				jobQueueHighOrder.front()->run();
+				free(jobQueueHighOrder.front());
+				jobQueueHighOrder.pop();
+				while(jobQueueLowOrder.size() != 0)
 				{
-					break;
+					jobQueueLowOrder.front()->run();
+					free(jobQueueLowOrder.front());
+					jobQueueLowOrder.pop();
+					
 				}
-				jobQueue.front()->run();
-				jobQueue.pop();
+
 			}
 
 		}
@@ -39,8 +51,17 @@ namespace Squirrel
 	{
 	}
 
-	void Nut::submitJob(NJob* job)
+	void Nut::submitJob(NJob* job, EQueueOrder order)
 	{
-		jobQueue.push(job);
+		switch (order)
+		{
+		case EQueueOrder::LOW_ORDER:
+			jobQueueLowOrder.push(job);
+			break;
+		case EQueueOrder::HIGH_ORDER:
+			jobQueueHighOrder.push(job);
+			break;
+		}
 	}
+
 }

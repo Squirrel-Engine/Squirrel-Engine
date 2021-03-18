@@ -18,8 +18,8 @@ namespace Squirrel
 		//void loadAssetMap(FILE* fp);
 		void loadAssetMap();
 
-		void loadMeshAsset(int i);
-		void loadTextureAsset(int i);
+		void loadMeshAsset();
+		void loadTextureAsset();
 		void loadMaterialAsset();
 		void loadShaderAsset();
 		void loadAssetMT();
@@ -43,5 +43,7 @@ namespace Squirrel
 		std::unordered_map<int, Shader*> shaderBuffer;
 		
 		int assignAsset();
+	private:
+		int materialCount;
 	};
 }

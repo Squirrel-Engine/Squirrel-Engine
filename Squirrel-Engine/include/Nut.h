@@ -1,6 +1,6 @@
 #pragma once
 #include <queue>
-
+#include "EQueueOrder.h"
 #include "NJob.h"
 
 namespace Squirrel
@@ -13,8 +13,9 @@ namespace Squirrel
 		void stopScheduler();
 		void pauseScheduler();
 
-		void submitJob(NJob* job);
+		void submitJob(NJob* job, EQueueOrder order);
 	private:
-		std::queue<NJob*> jobQueue;
+		std::queue<NJob*> jobQueueLowOrder;
+		std::queue<NJob*> jobQueueHighOrder;
 	};
 }

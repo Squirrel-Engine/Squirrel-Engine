@@ -1,7 +1,9 @@
 #include "Components/TransformComponent.h"
 
-
-
+TransformComponent::TransformComponent()
+{
+	
+}
 
 void TransformComponent::BeginPlay()
 {

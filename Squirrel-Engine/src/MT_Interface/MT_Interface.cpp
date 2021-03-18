@@ -89,7 +89,7 @@ namespace Squirrel
 		}
 	}
 
-	void MT_Interface::submitJob(NJob* job)
+	void MT_Interface::submitJob(NJob* job, EQueueOrder order)
 	{
 		try
 		{
@@ -99,7 +99,7 @@ namespace Squirrel
 				throw NotImplementedSchedulerException;
 				break;
 			case EScheduler::Nut:
-				nut->submitJob(job);
+				nut->submitJob(job, order);
 				break;
 			default:
 				std::cout << "No Scheduler Has Been Configured" << std::endl;

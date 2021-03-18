@@ -1,10 +1,11 @@
 #include "Components/RenderComponent.h"
-
 #include "../../Squirrel-Engine/include/InterfaceFactory.h"
+
+
 
 RenderComponent::RenderComponent()
 {
-	
+
 }
 
 
@@ -19,7 +20,7 @@ void RenderComponent::Update()
 		Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID));
 	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(drawCall);
 
-	
+	//float x = getComponent<TransformComponent*>("transformComponent")->getTransform().x;
 }
 
 void RenderComponent::setup()
