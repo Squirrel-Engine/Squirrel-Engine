@@ -6,8 +6,8 @@ namespace Squirrel
 	{
 		//Mesh
 		meshAssetMap.insert({ 0, "../../Squirrel-Engine/res/models/Model1.obj" });
-		meshAssetMap.insert({ 1, "../../Squirrel-Engine/res/models/Model2.obj" });
-
+		meshAssetMap.insert({ 1, "../../Squirrel-Engine/res/models/girl2.fbx" });
+		meshAssetMap.insert({ 2, "../../Squirrel-Engine/res/models/backpack/backpack.obj" });
 		//Texture
 		textureAssetMap.insert({ 0, "../../Squirrel-Engine/res/textures/wall.jpg" });
 		textureAssetMap.insert({ 1, "../../Squirrel-Engine/res/textures/test_emis.jpg" });

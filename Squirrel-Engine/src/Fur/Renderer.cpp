@@ -16,7 +16,6 @@ void furRender()
 			delete drawcall;
 		}
 	}
-	
 	glfwSwapBuffers(furWindow);
 	glfwPollEvents();
 }

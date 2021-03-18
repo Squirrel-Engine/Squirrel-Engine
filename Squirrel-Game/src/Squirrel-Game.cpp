@@ -45,7 +45,9 @@ void Sandbox::Run()
 	RenderComponent* renderComponent = new RenderComponent();
 	
 	renderComponent->C_ModelID = 1;
-	renderComponent->C_MaterialID_0 = 1;
+	renderComponent->C_MaterialID_0 = 0;
+	renderComponent->C_MaterialID_1 = 1;
+
 	renderComponent->C_ShaderID = 0;
 	renderComponent->setup();
 	

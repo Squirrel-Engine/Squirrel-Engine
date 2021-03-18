@@ -10,6 +10,7 @@ namespace Squirrel
 	public:
 		EScheduler scheduler;
 		bool renderDebug;
+		bool mtMode;
 		
 		void setup();
 	private:
