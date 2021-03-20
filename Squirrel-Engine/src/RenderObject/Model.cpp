@@ -25,7 +25,8 @@ void Model::Draw(Shader& shader)
 	shader.setMat4("viewProjection", camera->getViewProjection());
 	glm::mat4 model = glm::mat4(1.0f);
 	model = glm::translate(model, uniformDesc.model);
-	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 1.0f));
+	// This rotation should not work on every frame.
+	model = glm::rotate(model, (float)glfwGetTime(), uniformDesc.rotation);
 	shader.setMat4("model",model);			//take it from transform component
 
 	for (unsigned int i = 0; i < meshes.size(); i++)

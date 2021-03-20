@@ -28,9 +28,21 @@ glm::vec3 TransformComponent::getTransform()
 	return glm::vec3(transformX, transformY, transformZ);
 }
 
+glm::vec3 TransformComponent::getRotation()
+{
+	return glm::vec3(rotationX, rotationY, rotationZ);
+}
+
 void TransformComponent::setTransform(glm::vec3 vector)
 {
 	transformX = vector.x;
 	transformY = vector.y;
 	transformZ = vector.z;
+}
+
+void TransformComponent::setRotation(glm::vec3 vector)
+{
+	rotationX = vector.x;
+	rotationY = vector.y;
+	rotationZ = vector.z;
 }

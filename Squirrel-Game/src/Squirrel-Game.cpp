@@ -38,14 +38,15 @@ void Sandbox::Run()
 	
 	transformComponent->setParent(skeleton);
 	skeleton->transformComponent = transformComponent;
-	skeleton->transformComponent->setTransform(glm::vec3(1.7, 0, -1));
+	skeleton->transformComponent->setTransform(glm::vec3(1.7, 0, -30));
+	skeleton->transformComponent->setRotation(glm::vec3(-1.0f, -1.0f, 10.0f));
 	skeleton->insertComponent("transformComponent", transformComponent);
 
 
 	
 	RenderComponent* renderComponent = new RenderComponent();
 	
-	renderComponent->C_ModelID = 1;
+	renderComponent->C_ModelID = 0;
 	renderComponent->C_MaterialID_0 = 0;
 	renderComponent->C_MaterialID_1 = 1;
 

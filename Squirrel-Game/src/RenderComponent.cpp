@@ -20,7 +20,7 @@ void RenderComponent::Update()
 									  Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID));
 
 	uniformDesc.model = getComponent<TransformComponent*>("transformComponent")->getTransform();
-
+	uniformDesc.rotation = getComponent<TransformComponent*>("transformComponent")->getRotation();
 	drawCall->model->uniformDesc = uniformDesc;
 
 
