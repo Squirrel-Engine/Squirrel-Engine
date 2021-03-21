@@ -91,8 +91,6 @@ namespace Squirrel
 				std::swap(jobQueueLowOrder, empty);
 			}
 		}
-
-
 	}
 
 	void Nut::stopScheduler()

@@ -5,6 +5,7 @@ namespace Squirrel {
 	{
 		renderConfig.setup();
 		schedulerConfig.setup();
+		audioConfig.setup();
 	}
 	
 	Configuration& Configuration::getInstance()

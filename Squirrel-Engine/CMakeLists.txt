@@ -40,7 +40,7 @@ target_link_libraries(${PROJECT_NAME} "glad" )
 set(GLM_DIR "${INC_DIR}/vendor/glm")
 add_subdirectory("${GLM_DIR}")
 #target_include_directories(${PROJECT_NAME} PRIVATE "${GLM_DIR}/glm")
-target_link_libraries(${PROJECT_NAME} glm)
+target_link_libraries(${PROJECT_NAME} glm)	
 
 #ASSIMP
 set(ASSIMP_LIBRARY "${LIB_DIR}/assimp")
@@ -59,5 +59,12 @@ add_custom_target(assimp_dll
   COMMAND ${CMAKE_COMMAND} -E copy ${ASSIMP_LIBRARY}/assimp-vc142-mtd.dll      ${CMAKE_BINARY_DIR}/Squirrel-Game/Release
 )
 add_dependencies(${PROJECT_NAME} assimp_dll)
+
+
+# OPENAL
+set(AL_DIR "${LIB_DIR}/AL")
+#target_include_directories(${PROJECT_NAME} PUBLIC "${GLFW_DIR}/include")	
+target_link_libraries(${PROJECT_NAME} "${AL_DIR}/OpenAL32.lib")
+
 
 # TODO: Add tests and install targets if needed.

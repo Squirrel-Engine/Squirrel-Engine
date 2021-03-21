@@ -6,15 +6,16 @@
 #include "RuntimeManager.h"
 #include "DrawCall.h"
 #include "InterfaceFactory.h"
-
+#include "AL/al.h"
+#include "AL/alc.h"
+#include <bit>
 int main(int argc, char** argv)
 {
     Squirrel::RuntimeManager runtimeManager = Squirrel::RuntimeManager::getInstance();
 	
-	
-	//RD_Interface 
+
 	auto app = Squirrel::CreateApplication();
-	
+
 	runtimeManager.engineStartup();
 	app->Run();
 
@@ -23,3 +24,4 @@ int main(int argc, char** argv)
 
 	delete app;
 }
+

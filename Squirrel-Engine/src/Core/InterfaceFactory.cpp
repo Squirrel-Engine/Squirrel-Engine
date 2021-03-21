@@ -28,4 +28,8 @@ namespace Squirrel
 		return rm_Interface;
 	}
 
+	AU_Interface& InterfaceFactory::getAUInterface()
+	{
+		return au_Interface;
+	}
 }

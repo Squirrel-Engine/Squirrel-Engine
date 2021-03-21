@@ -38,8 +38,8 @@ void Sandbox::Run()
 	
 	transformComponent->setParent(skeleton);
 	skeleton->transformComponent = transformComponent;
-	skeleton->transformComponent->setTransform(glm::vec3(1.7, 0, -30));
-	skeleton->transformComponent->setRotation(glm::vec3(-1.0f, -1.0f, 10.0f));
+	skeleton->transformComponent->setTransform(glm::vec3(0, -0.5f, -10.0f));
+	skeleton->transformComponent->setRotation(glm::vec3(0.0f, -5.0f, 0.0f));
 	skeleton->insertComponent("transformComponent", transformComponent);
 
 
@@ -47,17 +47,15 @@ void Sandbox::Run()
 	RenderComponent* renderComponent = new RenderComponent();
 	
 	renderComponent->C_ModelID = 0;
-	renderComponent->C_MaterialID_0 = 0;
+	renderComponent->C_MaterialID_0 = 1;
 	renderComponent->C_MaterialID_1 = 1;
-
 	renderComponent->C_ShaderID = 0;
 	renderComponent->setup();
 	
 	renderComponent->setParent(skeleton);
 	skeleton->renderComponent = renderComponent;
 	skeleton->insertComponent("renderComponent", renderComponent);
-
-
+	
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton);
 
 	

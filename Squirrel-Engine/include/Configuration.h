@@ -1,4 +1,5 @@
 #pragma once
+#include "AudioConfig.h"
 #include "RenderConfig.h"
 #include "SchedulerConfig.h"
 
@@ -13,5 +14,6 @@ namespace Squirrel {
 		static Configuration& getInstance();
 		RenderConfig renderConfig;
 		SchedulerConfig schedulerConfig;
+		AudioConfig audioConfig;
 	};
 }

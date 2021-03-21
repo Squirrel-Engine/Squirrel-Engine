@@ -17,6 +17,7 @@ namespace Squirrel{
 
         //Interface Initialization
 
+        InterfaceFactory::getInstance().getAUInterface().startAudioEngine();
         InterfaceFactory::getInstance().getRDInterface().startRenderEngine();
         InterfaceFactory::getInstance().getRMInterface().loadAssetMT();
 
