@@ -6,6 +6,7 @@ namespace Squirrel
 {
 	AU_Interface::AU_Interface()
 	{
+		ear = new Ear();
 	}
 
 	void AU_Interface::startAudioEngine()

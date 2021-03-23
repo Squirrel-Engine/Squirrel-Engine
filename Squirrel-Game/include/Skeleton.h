@@ -3,6 +3,7 @@
 #include "../../Squirrel-Engine/include/Actor.h"
 #include "Components/RenderComponent.h"
 #include "Components/TransformComponent.h"
+#include "Components/AudioComponent.h"
 SR_ACTOR()
 class Skeleton : public Squirrel::Actor
 {
@@ -19,6 +20,7 @@ public:
 	SR_COMP_START()
 	RenderComponent* renderComponent;
 	TransformComponent* transformComponent;
+	AudioComponent* audioComponent;
 	SR_COMP_END()
 };
 

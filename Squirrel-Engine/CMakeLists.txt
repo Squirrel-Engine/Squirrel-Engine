@@ -61,10 +61,7 @@ add_custom_target(assimp_dll
 add_dependencies(${PROJECT_NAME} assimp_dll)
 
 
-# OPENAL
-set(AL_DIR "${LIB_DIR}/AL")
-#target_include_directories(${PROJECT_NAME} PUBLIC "${GLFW_DIR}/include")	
-target_link_libraries(${PROJECT_NAME} "${AL_DIR}/OpenAL32.lib")
+
 
 
 # TODO: Add tests and install targets if needed.

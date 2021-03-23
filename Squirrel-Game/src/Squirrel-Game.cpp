@@ -4,7 +4,7 @@
 #include "../Squirrel-Engine/include/Squirrel.h"
 #include "../../Squirrel-Engine/include/Mesh.h"
 #include "Components/RenderComponent.h"
-
+#include "Components/AudioComponent.h"
 class Sandbox : public Squirrel::Application
 {
 public:
@@ -56,7 +56,22 @@ void Sandbox::Run()
 	skeleton->renderComponent = renderComponent;
 	skeleton->insertComponent("renderComponent", renderComponent);
 	
+
+	AudioComponent* audioComponent = new AudioComponent();
+
+	audioComponent->C_AudioSourceID = 0;
+	audioComponent->setup();
+	audioComponent->setParent(skeleton);
+	skeleton->audioComponent = audioComponent;
+	skeleton->insertComponent("audioComponent", audioComponent);
+	audioComponent->play();
+
+
+
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton);
+
+
+	//Squirrel::InterfaceFactory::getInstance().getAUInterface().playAudio(Squirrel::InterfaceFactory::getInstance().getRMInterface().getAudio(2)->audioObject);
 
 	
 

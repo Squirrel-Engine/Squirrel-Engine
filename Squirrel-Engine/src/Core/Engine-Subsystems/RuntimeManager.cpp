@@ -1,7 +1,7 @@
 #include "RuntimeManager.h"
 #include "InterfaceFactory.h"
 #include "StoreManager.h"
-
+#include <dsound.h>
 namespace Squirrel{
     RuntimeManager::RuntimeManager() {
 
@@ -16,7 +16,7 @@ namespace Squirrel{
         std::cout << "Engine is Loading" << std::endl;
 
         //Interface Initialization
-
+        IDirectSound8* m_pDS = NULL;
         InterfaceFactory::getInstance().getAUInterface().startAudioEngine();
         InterfaceFactory::getInstance().getRDInterface().startRenderEngine();
         InterfaceFactory::getInstance().getRMInterface().loadAssetMT();

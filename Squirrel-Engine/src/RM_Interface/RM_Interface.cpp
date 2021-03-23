@@ -19,7 +19,10 @@ namespace Squirrel
 		materialCount = 2;
 
 
-		
+		audioAssetMap.insert({0, "../../Squirrel-Engine/res/audio/EasyStreet.wav"});
+		audioAssetMap.insert({ 1, "../../Squirrel-Engine/res/audio/spell.ogg" });
+		audioAssetMap.insert({ 2, "../../Squirrel-Engine/res/audio/iamtheprotectorofthissystem.wav"});
+
 		// TEXTURE LOADING FUNCTION !!!!!!!!!!!!
 	}
 
@@ -39,6 +42,16 @@ namespace Squirrel
 			Texture* texture = new Texture(textureAssetMap[i]);
 			textureBuffer.insert({ i, texture });
 		}
+	}
+
+	void RM_Interface::loadAudioAsset()
+	{
+		for (int i = 0; i < audioAssetMap.size(); i++)
+		{
+			Audio* audioObj = new Audio(audioAssetMap[i]);
+			audioBuffer.insert({ i, audioObj });
+		}
+
 	}
 
 	void RM_Interface::loadShaderAsset()
@@ -70,6 +83,7 @@ namespace Squirrel
 		loadMeshAsset();
 		loadTextureAsset();
 		loadMaterialAsset();
+		loadAudioAsset();
 		loadShaderAsset();
 	}
 
@@ -98,5 +112,8 @@ namespace Squirrel
 		return materialBuffer[index];
 	}
 
-
+	Audio* RM_Interface::getAudio(int index)
+	{
+		return audioBuffer[index];
+	}
 }

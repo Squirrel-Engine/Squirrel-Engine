@@ -5,6 +5,8 @@
 #include <mutex>
 #include <vector>
 
+
+#include "Audio.h"
 #include "Model.h"
 #include "Texture.h"
 #include "Timer.h" 
@@ -20,6 +22,7 @@ namespace Squirrel
 
 		void loadMeshAsset();
 		void loadTextureAsset();
+		void loadAudioAsset();
 		void loadMaterialAsset();
 		void loadShaderAsset();
 		void loadAssetMT();
@@ -28,12 +31,14 @@ namespace Squirrel
 		Texture* getTexture(int index);
 		Shader* getShader(int index);
 		Material* getMaterial(int index);
+		Audio* getAudio(int index);
 		//Model
 
 		//Tex
 		std::unordered_map<int, const std::string> meshAssetMap;
 		std::unordered_map<int, std::string> textureAssetMap;
 		std::unordered_map<int, std::string> shaderAssetMap;
+		std::unordered_map<int, std::string> audioAssetMap;
 		//Thread
 		std::mutex meshesMutex;
 		std::vector<std::thread> vecOfThreads;
@@ -42,6 +47,7 @@ namespace Squirrel
 		std::unordered_map<int, Texture*> textureBuffer;
 		std::unordered_map<int, Material*> materialBuffer;
 		std::unordered_map<int, Shader*> shaderBuffer;
+		std::unordered_map<int, Audio*> audioBuffer;
 		
 		int assignAsset();
 	private:

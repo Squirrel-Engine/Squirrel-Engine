@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
 
+
+
+
 namespace Squirrel
 {
 	class Ear
@@ -9,6 +12,7 @@ namespace Squirrel
 		Ear();
 		void startAudioEngine();
 		void playAudio();
+
 	};
 }
 
