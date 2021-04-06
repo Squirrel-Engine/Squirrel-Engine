@@ -8,8 +8,7 @@ namespace Squirrel
 		glm::vec3 lightPos;
 		glm::vec3 viewPos;
 		glm::mat4 viewProjection;
-		glm::vec3 model;
-		glm::vec3 rotation;
+		glm::mat4 model;
 	}UNIFORM_DESC;
 
 }

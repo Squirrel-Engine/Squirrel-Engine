@@ -64,9 +64,9 @@ uniform Material material;
 
 void main()
 {
-    float gamma = 2.2;
-    float distance = length(fs_in.TangentViewPos - fs_in.TangentFragPos);
-    float attenuation = 1.0 / (distance * distance);
+    float gamma = 2.2f;
+    float distance = length(fs_in.TangentLightPos - fs_in.TangentFragPos);
+    float attenuation = 1.0 / distance;
     // obtain normal from normal map in range [0,1]
     vec3 normal = texture(material.texture_normal1, fs_in.TexCoords).rgb;
     // transform normal vector to range [-1,1]
@@ -76,7 +76,7 @@ void main()
     vec3 color = texture(material.texture_diffuse1, fs_in.TexCoords).rgb;
 
     // ambient
-    vec3 ambient = 0.5 * color;
+    vec3 ambient = color;
 
     // diffuse
     vec3 lightDir = normalize(fs_in.TangentLightPos - fs_in.TangentFragPos);
@@ -93,7 +93,7 @@ void main()
     // gamma correction
     vec3 result = ambient + diffuse + specular;
     result *= attenuation;
-    result = pow(result, vec3(1.0 / gamma));
+    result = pow(result, vec3(1.0f / gamma));
 
     // final
     FragColor = vec4(result, 1.0);

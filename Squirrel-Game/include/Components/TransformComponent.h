@@ -1,17 +1,19 @@
 #pragma once
-
 #include "../../Squirrel-Engine/include/Actor.h"
 #include "Macros.h"
 #include <iostream>
 #include "glm/glm.hpp"
 #include <glm/ext/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
+
 SR_COMPONENT()
 class 	TransformComponent : public Squirrel::ActorComponent
 {
 private:
 	glm::mat4 transformMat;
 	SR_VAR_START()
-		float transformX = 5;
+		float transformX = 0;
 		float transformY = 0;
 		float transformZ = 0;
 

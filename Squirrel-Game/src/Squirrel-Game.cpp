@@ -34,16 +34,16 @@ void Sandbox::Run()
 	Camera* camera = new Camera();
 
 	TransformComponent* transformComponent1 = new TransformComponent();
-	transformComponent1->setup();
+	transformComponent1->setTransform(glm::vec3(0, 0, 0));
 	transformComponent1->setParent(camera);
 	camera->transformComponent = transformComponent1;
-	camera->transformComponent->setTransform(glm::vec3(0, 0, 0));
+	camera->transformComponent->setup();
 	camera->insertComponent("transformComponent", transformComponent1);
 
 	CameraComponent* cameraComponent = new CameraComponent();
-	cameraComponent->setup();
 	cameraComponent->setParent(camera);
 	camera->cameraComponent = cameraComponent;
+	camera->cameraComponent->setup();
 	camera->insertComponent("cameraComponent", cameraComponent);
 	//////
 
@@ -52,11 +52,11 @@ void Sandbox::Run()
 	skeleton->attackPower = 0;
 	
 	TransformComponent* transformComponent = new TransformComponent();
-	transformComponent->setup();
+	transformComponent->setTransform(glm::vec3(0, 0, -50));
+	transformComponent->setRotation(glm::vec3(20, 20, 20));
 	transformComponent->setParent(skeleton);
 	skeleton->transformComponent = transformComponent;
-	skeleton->transformComponent->setTransform(glm::vec3(1.7, 0, -30));
-	skeleton->transformComponent->setRotation(glm::vec3(-1.0f, -1.0f, 10.0f));
+	skeleton->transformComponent->setup();
 	skeleton->insertComponent("transformComponent", transformComponent);
 
 	RenderComponent* renderComponent = new RenderComponent();
@@ -64,9 +64,9 @@ void Sandbox::Run()
 	renderComponent->C_MaterialID_0 = 0;
 	renderComponent->C_MaterialID_1 = 1;
 	renderComponent->C_ShaderID = 0;
-	renderComponent->setup();
 	renderComponent->setParent(skeleton);
 	skeleton->renderComponent = renderComponent;
+	renderComponent->setup();
 	skeleton->insertComponent("renderComponent", renderComponent);
 
 	//////////////////
