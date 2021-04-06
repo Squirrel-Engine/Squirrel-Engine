@@ -32,7 +32,6 @@ public:
 	Model(){}
 	Model(string const& path, bool gamma = false);
 	~Model();
-	Squirrel::UNIFORM_DESC uniformDesc;
 	void Draw(Shader& shader);
 
 private:

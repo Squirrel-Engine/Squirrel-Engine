@@ -1,8 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
 
-
-
 namespace Squirrel
 {
 	typedef struct UNIFORM_DESC

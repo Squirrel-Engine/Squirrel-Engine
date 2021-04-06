@@ -1,8 +1,7 @@
 #pragma once
+#include "Macros.h"
 #include <vector>
 #include "../../../Squirrel-Engine/include/ActorComponent.h"
-#include "Macros.h"
-#include "../../../Squirrel-Engine/include/UniformDesc.h"
 #include "Components/TransformComponent.h"
 
 SR_COMPONENT()
@@ -17,7 +16,6 @@ public:
 	int shaderID;
 	int modelID;
 	std::vector<int> materials;
-	Squirrel::UNIFORM_DESC uniformDesc;
 	SR_VAR_START()
 	int C_ModelID;
 	

@@ -21,12 +21,12 @@ void Model::Draw(Shader& shader)
 	// Uniforms
 	//Later there will be a iterator for all
 	shader.setVec3("lightPos", vec3(0.0f));	//take it from light sources
-	shader.setVec3("viewPos", camera->getPosition());	
-	shader.setMat4("viewProjection", camera->getViewProjection());
+	shader.setVec3("viewPos", uniformDesc->viewPos);	
+	shader.setMat4("viewProjection", uniformDesc->viewProjection);
 	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::translate(model, uniformDesc.model);
+	model = glm::translate(model, uniformDesc->model);
 	// This rotation should not work on every frame.
-	model = glm::rotate(model, (float)glfwGetTime(), uniformDesc.rotation);
+	model = glm::rotate(model, (float)glfwGetTime(), uniformDesc->rotation);
 	shader.setMat4("model",model);			//take it from transform component
 
 	for (unsigned int i = 0; i < meshes.size(); i++)

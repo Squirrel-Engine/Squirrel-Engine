@@ -1,5 +1,4 @@
 #include "Renderer.h"
-
 #include <queue>
 
 void furRender()
@@ -15,7 +14,6 @@ void furRender()
 			firstCommandBuffer->pop();
 			delete drawcall;
 		}
-		
 	}
 	glfwSwapBuffers(furWindow);
 	glfwPollEvents();

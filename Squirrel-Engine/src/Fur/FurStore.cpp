@@ -2,4 +2,4 @@
 
 GLFWwindow* furWindow;
 std::queue<DrawCall*>* firstCommandBuffer = new std::queue<DrawCall*>;
-EditorCamera* camera = new EditorCamera();
+Squirrel::UNIFORM_DESC* uniformDesc = new Squirrel::UNIFORM_DESC;

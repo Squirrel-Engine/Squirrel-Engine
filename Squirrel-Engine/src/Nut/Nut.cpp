@@ -1,13 +1,8 @@
 #include "Nut.h"
-
 #include <iostream>
-
-
 #include "InterfaceFactory.h"
 #include "NJ_InitializeFrame.h"
 #include "Configuration.h"
-
-
 
 namespace Squirrel
 {
@@ -33,10 +28,6 @@ namespace Squirrel
 			}
 		}
 	}
-
-
-
-
 	
 	void Nut::startScheduler()
 	{
@@ -83,7 +74,6 @@ namespace Squirrel
 						jobQueueLowOrder.front()->run();
 						free(jobQueueLowOrder.front());
 						jobQueueLowOrder.pop();
-
 					}
 				}
 				std::queue<NJob*> empty;

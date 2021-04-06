@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
-
 #include "Actor.h"
+#include "FurStore.h"
 
 namespace Squirrel
 {
