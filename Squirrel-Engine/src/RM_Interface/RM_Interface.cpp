@@ -22,7 +22,7 @@ namespace Squirrel
 		audioAssetMap.insert({0, "../../Squirrel-Engine/res/audio/EasyStreet.wav"});
 		audioAssetMap.insert({ 1, "../../Squirrel-Engine/res/audio/spell.ogg" });
 		audioAssetMap.insert({ 2, "../../Squirrel-Engine/res/audio/iamtheprotectorofthissystem.wav"});
-
+		audioAssetMap.insert({ 3, "../../Squirrel-Engine/res/audio/Pala.wav" });
 		// TEXTURE LOADING FUNCTION !!!!!!!!!!!!
 	}
 

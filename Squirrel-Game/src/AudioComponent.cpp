@@ -25,7 +25,7 @@ void AudioComponent::setup()
 	audioVolume = C_AudioVolume;
 
 
-	SetConsoleTitle(TEXT("Simplest Audio Play DirectSound"));//Console Title
+	//SetConsoleTitle(TEXT("Simplest Audio Play DirectSound"));//Console Title
 	//Init DirectSound
 	if (FAILED(DirectSoundCreate8(NULL, &m_pDS, NULL)))
 		std::cout << "Error" << std::endl;;
@@ -90,11 +90,11 @@ void AudioComponent::thFunc()
 	while (isPlaying) {
 		if ((res >= WAIT_OBJECT_0) && (res <= WAIT_OBJECT_0 + 3)) {
 			m_pDSBuffer8->Lock(offset, BUFFERNOTIFYSIZE, &buf, &buf_len, NULL, NULL, 0);
-			if (fread(buf, 1, buf_len, Squirrel::InterfaceFactory::getInstance().getRMInterface().getAudio(0)->audioObject) != buf_len) {
+			if (fread(buf, 1, buf_len, Squirrel::InterfaceFactory::getInstance().getRMInterface().getAudio(audioSourceID)->audioObject) != buf_len) {
 				//File End
 				//Loop:
-				fseek(Squirrel::InterfaceFactory::getInstance().getRMInterface().getAudio(0)->audioObject, 0, SEEK_SET);
-				fread(buf, 1, buf_len, Squirrel::InterfaceFactory::getInstance().getRMInterface().getAudio(0)->audioObject);
+				fseek(Squirrel::InterfaceFactory::getInstance().getRMInterface().getAudio(audioSourceID)->audioObject, 0, SEEK_SET);
+				fread(buf, 1, buf_len, Squirrel::InterfaceFactory::getInstance().getRMInterface().getAudio(audioSourceID)->audioObject);
 				//Close:
 				isPlaying=0;
 			}

@@ -38,7 +38,7 @@ void Sandbox::Run()
 	
 	transformComponent->setParent(skeleton);
 	skeleton->transformComponent = transformComponent;
-	skeleton->transformComponent->setTransform(glm::vec3(0, -0.5f, -10.0f));
+	skeleton->transformComponent->setTransform(glm::vec3(0, -0.5f, -50.0f));
 	skeleton->transformComponent->setRotation(glm::vec3(0.0f, -5.0f, 0.0f));
 	skeleton->insertComponent("transformComponent", transformComponent);
 
@@ -65,7 +65,7 @@ void Sandbox::Run()
 	skeleton->audioComponent = audioComponent;
 	skeleton->insertComponent("audioComponent", audioComponent);
 	audioComponent->play();
-
+	//TODO: Bütün sesleri tek bir buffer içine topla ve bufferı çal 
 
 
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton);
