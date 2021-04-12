@@ -19,6 +19,7 @@ public:
 	SR_COMP_START()
 	RenderComponent* renderComponent;
 	TransformComponent* transformComponent;
+
 	SR_COMP_END()
 };
 

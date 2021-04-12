@@ -6,4 +6,5 @@
 
 extern GLFWwindow* furWindow;
 extern queue<DrawCall*>* firstCommandBuffer;
-extern Squirrel::UNIFORM_DESC* uniformDesc;
+extern Squirrel::CAMERA_DESC* cameraDesc;
+extern Squirrel::LIGHT_DESC* lightDesc;

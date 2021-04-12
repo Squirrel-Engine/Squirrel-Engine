@@ -2,6 +2,7 @@
 #include "../../Squirrel-Engine/include/Actor.h"
 #include "Macros.h"
 #include <iostream>
+#include "Components/RenderComponent.h"
 #include "glm/glm.hpp"
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
@@ -11,8 +12,9 @@ SR_COMPONENT()
 class 	TransformComponent : public Squirrel::ActorComponent
 {
 private:
-	glm::mat4 transformMat;
+
 public:
+	glm::mat4 transformMat;
 	SR_VAR_START()
 		float positionX = 0;
 		float positionY = 0;

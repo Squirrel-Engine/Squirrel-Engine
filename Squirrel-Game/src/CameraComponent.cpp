@@ -13,8 +13,8 @@ void CameraComponent::BeginPlay()
 
 void CameraComponent::Update()
 {
-	uniformDesc->viewPos = getComponent<TransformComponent*>("transformComponent")->getTransform();
-	uniformDesc->viewProjection = getViewProjection();
+	cameraDesc->viewPos = getComponent<TransformComponent*>("transformComponent")->getTransform();
+	cameraDesc->viewProjection = getViewProjection();
 }
 
 void CameraComponent::setup()

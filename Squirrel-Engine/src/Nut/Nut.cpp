@@ -6,7 +6,7 @@
 
 namespace Squirrel
 {
-	std::mutex g_pages_mutex;
+	std::mutex m;
 	Nut::Nut()
 	{
 	}
@@ -47,11 +47,16 @@ namespace Squirrel
 			while (true)
 			{
 				jobQueueHighOrder.push(new NJ_InitializeFrame());
+
 				while (jobQueueHighOrder.size() != 0)
 				{
-					jobQueueHighOrder.front()->run();
-					free(jobQueueHighOrder.front());
-					jobQueueHighOrder.pop();
+					if (jobQueueLowOrder.size() == 0) {
+						jobQueueHighOrder.front()->run();
+						free(jobQueueHighOrder.front());
+						jobQueueHighOrder.pop();
+					}
+
+
 				}
 			}
 
@@ -94,7 +99,7 @@ namespace Squirrel
 
 	NJob* Nut::schedular()
 	{
-		std::lock_guard<std::mutex> guard(g_pages_mutex);
+		m.lock();
 		NJob* job;
 		if(jobQueueLowOrder.empty() == true)
 		{
@@ -104,6 +109,7 @@ namespace Squirrel
 			job = jobQueueLowOrder.front();
 			jobQueueLowOrder.pop();
 		}
+		m.unlock();
 		return job;
 	}
 

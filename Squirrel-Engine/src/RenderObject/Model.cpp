@@ -14,16 +14,16 @@ Model::~Model() {
 	meshes.clear();
 }
 
-void Model::Draw(Shader& shader)
+void Model::Draw(Shader& shader, Squirrel::UNIFORM_DESC uniformDesc)
 {
 	shader.use();
 
 	// Uniforms
 	//Later there will be a iterator for all
 	shader.setVec3("lightPos", vec3(0.0f));	//take it from light sources
-	shader.setVec3("viewPos", uniformDesc->viewPos);	
-	shader.setMat4("viewProjection", uniformDesc->viewProjection);
-	shader.setMat4("model", uniformDesc->model);
+	shader.setVec3("viewPos", cameraDesc->viewPos);	
+	shader.setMat4("viewProjection", cameraDesc->viewProjection);
+	shader.setMat4("model", uniformDesc.model);
 
 	for (unsigned int i = 0; i < meshes.size(); i++)
 		meshes[i].Draw(shader);

@@ -1,6 +1,6 @@
 #include "Renderer.h"
 #include <queue>
-
+#include <thread>
 void furRender()
 {
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -10,9 +10,18 @@ void furRender()
 		DrawCall* drawcall = firstCommandBuffer->front();
 		if(drawcall != nullptr)
 		{
-			drawcall->model->Draw(*drawcall->shader);
-			firstCommandBuffer->pop();
-			delete drawcall;
+			try
+			{
+				drawcall->model->Draw(*drawcall->shader, drawcall->uniformDesc);
+				firstCommandBuffer->pop();
+				delete drawcall;
+			}
+			catch (std::exception& e)
+			{
+				
+			}
+
+
 		}
 	}
 	glfwSwapBuffers(furWindow);

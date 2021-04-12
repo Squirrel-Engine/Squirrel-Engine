@@ -38,5 +38,7 @@ public:
 
 	int C_ShaderID;
 	SR_VAR_END()
+
+	Squirrel::UNIFORM_DESC uniformDesc;
 };
 SR_COMPONENT()

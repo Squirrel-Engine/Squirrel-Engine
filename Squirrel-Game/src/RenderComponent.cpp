@@ -14,8 +14,9 @@ void RenderComponent::BeginPlay()
 
 void RenderComponent::Update()
 {
+	uniformDesc.model = getComponent<TransformComponent*>("transformComponent")->transformMat;
 	auto drawCall = new DrawCall(Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID), 
-								 Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID));
+								 Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID), uniformDesc);
 	
 	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(*drawCall);
 }
