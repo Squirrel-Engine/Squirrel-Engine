@@ -24,7 +24,6 @@ namespace Squirrel
 			else
 			{
 				job->run();
-				free(job);
 			}
 		}
 	}

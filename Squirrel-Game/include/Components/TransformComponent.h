@@ -12,10 +12,11 @@ class 	TransformComponent : public Squirrel::ActorComponent
 {
 private:
 	glm::mat4 transformMat;
+public:
 	SR_VAR_START()
-		float transformX = 0;
-		float transformY = 0;
-		float transformZ = 0;
+		float positionX = 0;
+		float positionY = 0;
+		float positionZ = 0;
 
 		float rotationX = 0;
 		float rotationY = 0;

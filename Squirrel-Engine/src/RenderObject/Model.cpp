@@ -23,7 +23,7 @@ void Model::Draw(Shader& shader)
 	shader.setVec3("lightPos", vec3(0.0f));	//take it from light sources
 	shader.setVec3("viewPos", uniformDesc->viewPos);	
 	shader.setMat4("viewProjection", uniformDesc->viewProjection);
-	shader.setMat4("model", uniformDesc->model); //take it from transform component
+	shader.setMat4("model", uniformDesc->model);
 
 	for (unsigned int i = 0; i < meshes.size(); i++)
 		meshes[i].Draw(shader);

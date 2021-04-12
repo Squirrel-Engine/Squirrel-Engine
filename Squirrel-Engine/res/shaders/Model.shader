@@ -72,16 +72,13 @@ void main()
     // transform normal vector to range [-1,1]
     normal = normalize(normal * 2.0 - 1.0);  // this normal is in tangent space
 
-    // diffuse color
-    vec3 color = texture(material.texture_diffuse1, fs_in.TexCoords).rgb;
-
     // ambient
-    vec3 ambient = color;
+    vec3 ambient = texture(material.texture_diffuse1, fs_in.TexCoords).rgb;
 
     // diffuse
     vec3 lightDir = normalize(fs_in.TangentLightPos - fs_in.TangentFragPos);
     float diff = max(dot(lightDir, normal), 0.0);
-    vec3 diffuse = diff * color;
+    vec3 diffuse = diff * ambient;
 
     // specular
     vec3 viewDir = normalize(fs_in.TangentViewPos - fs_in.TangentFragPos);
