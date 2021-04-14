@@ -13,13 +13,15 @@ namespace Squirrel
 		LevelStore();
 
 		std::vector<Actor*> actors;
-		//camera
-		//lights
+		Actor* mainCamera;
+		
 		std::string name;
 
 
 		void spawnNewActor(Actor* actor);
-		Actor* getActor(int row);
+		void spawnNewCamera(Actor* camera);
+
+		Actor* getActor(int index);
 		void setupStore(std::string _name, std::vector<Actor*> initialActorVector);
 	};
 }

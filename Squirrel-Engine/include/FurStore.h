@@ -1,9 +1,11 @@
 #pragma once
 #include <queue>
 #include "DrawCall.h"
-#include "EditorCamera.h"
+#include "UniformDesc.h"
 #include <GLFW/glfw3.h>
 
 extern GLFWwindow* furWindow;
 extern queue<DrawCall*>* firstCommandBuffer;
-extern EditorCamera* camera;
+extern Squirrel::CAMERA_DESC* cameraDesc;
+extern Squirrel::LIGHT_DESC* lightDesc;
+extern std::queue<DrawCall*>* tempDrawCallBuffer;

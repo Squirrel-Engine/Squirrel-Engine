@@ -13,11 +13,9 @@ namespace Squirrel
 		virtual void Update() = 0;
 
 		Actor(){};
-
+	
 		std::unordered_map<std::string ,ActorComponent*> componentList;
-
+	public:
 		void insertComponent(std::string name, ActorComponent* component);
 	};
-
-
 }

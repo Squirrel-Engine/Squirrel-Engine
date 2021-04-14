@@ -14,8 +14,7 @@ namespace Squirrel
 
 	void NJ_Input::run()
 	{
-		std::cout << "Input Game" << std::endl;
-
+		
 	}
 
 	void NJ_Input::mount()

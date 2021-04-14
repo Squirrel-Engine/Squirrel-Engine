@@ -6,6 +6,11 @@ namespace Squirrel
 	{
 	}
 
+	void LevelStore::spawnNewCamera(Actor* camera)
+	{
+		mainCamera = camera;
+	}
+
 	void LevelStore::spawnNewActor(Actor* actor)
 	{
 		actors.push_back(actor);

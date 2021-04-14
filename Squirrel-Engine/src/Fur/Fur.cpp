@@ -38,6 +38,7 @@ namespace Fur
 		glBindVertexArray(0);
 		//
 		glEnable(GL_DEPTH_TEST);
+		glEnable(GL_BLEND);
 	}
 
 	void Fur::pauseRenderEngine()

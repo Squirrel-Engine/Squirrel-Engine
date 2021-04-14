@@ -4,6 +4,8 @@
 #include "../Squirrel-Engine/include/Squirrel.h"
 #include "../../Squirrel-Engine/include/Mesh.h"
 #include "Components/RenderComponent.h"
+#include "Components/CameraComponent.h"
+#include <include/Camera.h>
 
 class Sandbox : public Squirrel::Application
 {
@@ -28,38 +30,46 @@ Squirrel::Application* Squirrel::CreateApplication()
 
 void Sandbox::Run()
 {
+	/////
+	Camera* mainCamera = new Camera();
+
+	TransformComponent* camera_transformComponent = new TransformComponent();
+	//camera_transformComponent->setTransform(glm::vec3(0, 30, 0));
+	camera_transformComponent->setParent(mainCamera);
+	mainCamera->transformComponent = camera_transformComponent;
+	mainCamera->transformComponent->setup();
+	mainCamera->insertComponent("transformComponent", camera_transformComponent);
+
+	CameraComponent* camera_cameraComponent = new CameraComponent();
+	camera_cameraComponent->setParent(mainCamera);
+	mainCamera->cameraComponent = camera_cameraComponent;
+	mainCamera->cameraComponent->setup();
+	mainCamera->insertComponent("cameraComponent", camera_cameraComponent);
+
+
+	/////
+	/////
+
+
 	Skeleton* skeleton = new Skeleton();
-	skeleton->health = 0;
-	skeleton->attackPower = 0;
-	
-	TransformComponent* transformComponent = new TransformComponent();
-	
-	transformComponent->setup();
-	
-	transformComponent->setParent(skeleton);
-	skeleton->transformComponent = transformComponent;
-	skeleton->transformComponent->setTransform(glm::vec3(1.7, 0, -30));
-	skeleton->transformComponent->setRotation(glm::vec3(-1.0f, -1.0f, 10.0f));
-	skeleton->insertComponent("transformComponent", transformComponent);
+
+	/////
+	skeleton->transformComponent->setTransform(glm::vec3(0, 0, -30));
+	skeleton->transformComponent->setRotation(glm::vec3(20, 20, 20));
 
 
-	
-	RenderComponent* renderComponent = new RenderComponent();
-	
-	renderComponent->C_ModelID = 0;
-	renderComponent->C_MaterialID_0 = 0;
-	renderComponent->C_MaterialID_1 = 1;
+	Skeleton* skeleton1 = new Skeleton();
 
-	renderComponent->C_ShaderID = 0;
-	renderComponent->setup();
-	
-	renderComponent->setParent(skeleton);
-	skeleton->renderComponent = renderComponent;
-	skeleton->insertComponent("renderComponent", renderComponent);
+	/////
+	skeleton1->transformComponent->setTransform(glm::vec3(0, 10, -50));
+	skeleton1->transformComponent->setRotation(glm::vec3(-20, -20, -20));
+
+	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewCamera(mainCamera);
 
 
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton);
 
-	
+	//Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton1);
+
 
 }

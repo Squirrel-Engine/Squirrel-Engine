@@ -1,17 +1,12 @@
 #include "Nut.h"
-
 #include <iostream>
-
-
 #include "InterfaceFactory.h"
 #include "NJ_InitializeFrame.h"
 #include "Configuration.h"
 
-
-
 namespace Squirrel
 {
-	std::mutex g_pages_mutex;
+	std::mutex m;
 	Nut::Nut()
 	{
 	}
@@ -29,14 +24,9 @@ namespace Squirrel
 			else
 			{
 				job->run();
-				free(job);
 			}
 		}
 	}
-
-
-
-
 	
 	void Nut::startScheduler()
 	{
@@ -54,14 +44,20 @@ namespace Squirrel
 			{
 				threadPool.at(i).detach();
 			}
+
 			while (true)
 			{
 				jobQueueHighOrder.push(new NJ_InitializeFrame());
+
 				while (jobQueueHighOrder.size() != 0)
 				{
-					jobQueueHighOrder.front()->run();
-					free(jobQueueHighOrder.front());
-					jobQueueHighOrder.pop();
+					if (jobQueueLowOrder.size() == 0) {
+						jobQueueHighOrder.front()->run();
+						free(jobQueueHighOrder.front());
+						jobQueueHighOrder.pop();
+					}
+
+
 				}
 			}
 
@@ -83,7 +79,6 @@ namespace Squirrel
 						jobQueueLowOrder.front()->run();
 						free(jobQueueLowOrder.front());
 						jobQueueLowOrder.pop();
-
 					}
 				}
 				std::queue<NJob*> empty;
@@ -105,7 +100,7 @@ namespace Squirrel
 
 	NJob* Nut::schedular()
 	{
-		std::lock_guard<std::mutex> guard(g_pages_mutex);
+		m.lock();
 		NJob* job;
 		if(jobQueueLowOrder.empty() == true)
 		{
@@ -115,6 +110,7 @@ namespace Squirrel
 			job = jobQueueLowOrder.front();
 			jobQueueLowOrder.pop();
 		}
+		m.unlock();
 		return job;
 	}
 

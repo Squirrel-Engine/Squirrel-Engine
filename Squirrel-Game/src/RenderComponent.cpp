@@ -1,8 +1,6 @@
 #include "Components/RenderComponent.h"
 #include "../../Squirrel-Engine/include/InterfaceFactory.h"
 
-
-
 RenderComponent::RenderComponent()
 {
 
@@ -16,24 +14,17 @@ void RenderComponent::BeginPlay()
 
 void RenderComponent::Update()
 {
+	uniformDesc.model = getComponent<TransformComponent*>("transformComponent")->transformMat;
 	auto drawCall = new DrawCall(Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID), 
-									  Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID));
-
-	uniformDesc.model = getComponent<TransformComponent*>("transformComponent")->getTransform();
-	uniformDesc.rotation = getComponent<TransformComponent*>("transformComponent")->getRotation();
-	drawCall->model->uniformDesc = uniformDesc;
-
-
+								 Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID), uniformDesc);
 	
 	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(*drawCall);
-	std::cout << "Render Component" << std::endl;
 }
 
 void RenderComponent::setup()
 {
 	modelID = C_ModelID;
 	shaderID = C_ShaderID;
-
 
 	int size = Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.size();
 	std::cout << "Size: " << size << std::endl;
