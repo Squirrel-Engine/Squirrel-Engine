@@ -18,6 +18,7 @@ void Model::Draw(Shader& shader, Squirrel::UNIFORM_DESC uniformDesc)
 {
 	shader.use();
 
+
 	// Uniforms
 	//Later there will be a iterator for all
 	shader.setVec3("lightPos", vec3(0.0f));	//take it from light sources

@@ -17,15 +17,6 @@ void TransformComponent::Update()
 	transformMat = glm::rotate(transformMat, glm::radians(rotationX), glm::vec3(1, 0, 0));	//rotation x 
 	transformMat = glm::rotate(transformMat, glm::radians(rotationY), glm::vec3(0, 1, 0));	//rotation y
 	transformMat = glm::rotate(transformMat, glm::radians(rotationZ), glm::vec3(0, 0, 1));	//rotation z 
-	if ((int)rotationX % 360 == 0) {
-		rotationX = 0;
-	}
-	if ((int)rotationY % 360 == 0) {
-		rotationY = 0;
-	}
-	if ((int)rotationZ % 360 == 0) {
-		rotationZ = 0;
-	}
 	transformMat = glm::scale(transformMat, glm::vec3(scaleX, scaleY, scaleZ));
 }
 

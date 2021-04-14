@@ -34,7 +34,7 @@ void Sandbox::Run()
 	Camera* mainCamera = new Camera();
 
 	TransformComponent* camera_transformComponent = new TransformComponent();
-	//camera_transformComponent->setTransform(glm::vec3(0, 0, -50));
+	//camera_transformComponent->setTransform(glm::vec3(0, 30, 0));
 	camera_transformComponent->setParent(mainCamera);
 	mainCamera->transformComponent = camera_transformComponent;
 	mainCamera->transformComponent->setup();
@@ -58,10 +58,18 @@ void Sandbox::Run()
 	skeleton->transformComponent->setRotation(glm::vec3(20, 20, 20));
 
 
+	Skeleton* skeleton1 = new Skeleton();
+
+	/////
+	skeleton1->transformComponent->setTransform(glm::vec3(0, 10, -50));
+	skeleton1->transformComponent->setRotation(glm::vec3(-20, -20, -20));
+
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewCamera(mainCamera);
 
 
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton);
+
+	//Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton1);
 
 
 }

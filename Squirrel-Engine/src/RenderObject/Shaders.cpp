@@ -55,15 +55,11 @@ Shader::Shader(const std::string& filepath)
     glDeleteShader(vertex);
     glDeleteShader(fragment);
 }
-Shader::~Shader()
-{
-	glDetachShader(ID, vertex);
-	glDetachShader(ID, fragment);
-	glDeleteProgram(ID);
-}
 void Shader::use()
 {
     glUseProgram(ID);
+
+
 }
 
 GLint Shader::getUniformLocation(const std::string& name) const {

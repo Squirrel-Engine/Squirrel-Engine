@@ -1,6 +1,7 @@
 #pragma once
 #include "Actor.h"
 #include "NJob.h"
+#include <thread>
 
 namespace Squirrel
 {

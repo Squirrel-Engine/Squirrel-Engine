@@ -44,6 +44,7 @@ namespace Squirrel
 			{
 				threadPool.at(i).detach();
 			}
+
 			while (true)
 			{
 				jobQueueHighOrder.push(new NJ_InitializeFrame());

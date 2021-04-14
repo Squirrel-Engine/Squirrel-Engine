@@ -5,7 +5,6 @@ Skeleton::Skeleton()
 	health = 100;
 	attackPower = 50;
 
-
 	TransformComponent* skeleton_transformComponent = new TransformComponent();
 	skeleton_transformComponent->setParent(this);
 	transformComponent = skeleton_transformComponent;

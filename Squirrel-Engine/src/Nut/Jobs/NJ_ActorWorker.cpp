@@ -20,5 +20,4 @@ void Squirrel::NJ_ActorWorker::run()
 	{
 		component.second->Update();
 	}
-
 }
