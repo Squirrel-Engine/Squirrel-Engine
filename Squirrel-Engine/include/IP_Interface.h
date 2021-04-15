@@ -12,5 +12,8 @@ namespace Squirrel
 		ControlSchematic* controlSchematic;
 		void execInput();
 		void setControlSchema(ControlSchematic* _controlSchema);
+
+		float mouseX;
+		float mouseY;
 	};
 }

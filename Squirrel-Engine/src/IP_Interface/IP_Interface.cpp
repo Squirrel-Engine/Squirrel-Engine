@@ -12,6 +12,7 @@ namespace Squirrel
 	{
 		//glfwSetWindowUserPointer(furWindow, this);
 		glfwSetKeyCallback(furWindow, key_callback);
+		glfwSetCursorPosCallback(furWindow, cursor_position_callback);
 		glfwPollEvents();
 	}
 
