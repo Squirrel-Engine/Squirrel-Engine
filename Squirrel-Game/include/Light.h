@@ -20,7 +20,6 @@ public:
 	SR_COMP_START()
 	TransformComponent* transformComponent;
 	LightComponent* lightComponent;
-	RenderComponent* renderComponent;
 	SR_COMP_END()
 };
 SR_ACTOR()

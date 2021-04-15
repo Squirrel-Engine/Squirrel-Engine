@@ -14,7 +14,7 @@ Model::~Model() {
 	meshes.clear();
 }
 
-void Model::Draw(Shader& shader, Squirrel::TRANSFORM_DESC uniformDesc)
+void Model::Draw(Shader& shader, Squirrel::TRANSFORM_DESC& uniformDesc)
 {
 	shader.use();
 

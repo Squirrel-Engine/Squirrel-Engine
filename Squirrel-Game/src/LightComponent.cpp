@@ -13,10 +13,13 @@ void LightComponent::BeginPlay()
 
 void LightComponent::Update()
 {
+	dynamic_cast<Squirrel::LIGHT_DESC*>(uniform)->lightColor = color;
 	dynamic_cast<Squirrel::LIGHT_DESC*>(uniform)->lightPos = getComponent<TransformComponent*>("transformComponent")->getTransform();
 
-	auto drawCall = new LightDrawCall(Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID),
-								      dynamic_cast<Squirrel::LIGHT_DESC*>(uniform));
+	auto drawCall = new LightDrawCall(	&light,
+										Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID),
+										dynamic_cast<Squirrel::TRANSFORM_DESC*>(getComponent<TransformComponent*>("transformComponent")->uniform),
+										dynamic_cast<Squirrel::LIGHT_DESC*>(uniform));
 
 	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(*drawCall);
 }

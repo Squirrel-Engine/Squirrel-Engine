@@ -28,6 +28,7 @@ namespace Squirrel
 	public:
 		LIGHT_DESC() {};
 		inline void setup() override {};
+		glm::vec3 lightColor;
 		glm::vec3 lightPos;
 	};
 }

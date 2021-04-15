@@ -7,4 +7,3 @@ namespace Squirrel
 		componentList.insert(std::make_pair(name, component));
 	}
 }
-

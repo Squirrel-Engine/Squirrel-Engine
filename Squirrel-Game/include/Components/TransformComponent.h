@@ -12,7 +12,7 @@ SR_COMPONENT()
 class 	TransformComponent : public Squirrel::ActorComponent
 {
 private:
-
+	glm::vec3 transform;
 public:
 	glm::mat4 transformMat;
 	SR_VAR_START()
@@ -36,7 +36,7 @@ public:
 	void setup() override;
 
 	
-	glm::vec3 getTransform();
+	glm::vec3& getTransform();
 	glm::vec3 getRotation();
 	void setTransform(float x, float y, float z);
 	void setRotation(float x, float y, float z);

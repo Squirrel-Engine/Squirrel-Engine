@@ -1,6 +1,7 @@
 #pragma once
 #include "Macros.h"
 #include <iostream>
+#include "../../Squirrel-Engine/include/Light.h"
 #include "../../../Squirrel-Engine/include/ActorComponent.h"
 #include "../../Squirrel-Engine/include/InterfaceFactory.h"
 #include "../../Squirrel-Engine/include/LightDrawCall.h"
@@ -11,8 +12,7 @@ class LightComponent : public Squirrel::ActorComponent
 {
 private:
 	int shaderID;
-private:
-	inline int getShaderID() { return shaderID; }
+	Squirrel::Light light;
 public:
 	SR_VAR_START()
 	glm::vec3 color;
@@ -25,5 +25,8 @@ public:
 	void setup() override;
 
 	void setColor(float r, float g, float b);
+
+private:
+	inline int getShaderID() { return shaderID; }
 };
 SR_COMPONENT()

@@ -12,8 +12,9 @@ void TransformComponent::BeginPlay()
 
 void TransformComponent::Update()
 {
+	transform = glm::vec3(positionX, positionY, positionZ);
 	transformMat = glm::mat4(1.0f);
-	transformMat = glm::translate(transformMat, glm::vec3(positionX, positionY, positionZ));
+	transformMat = glm::translate(transformMat, transform);
 	transformMat = glm::rotate(transformMat, glm::radians(rotationX), glm::vec3(1, 0, 0));	//rotation x 
 	transformMat = glm::rotate(transformMat, glm::radians(rotationY), glm::vec3(0, 1, 0));	//rotation y
 	transformMat = glm::rotate(transformMat, glm::radians(rotationZ), glm::vec3(0, 0, 1));	//rotation z 
@@ -27,9 +28,9 @@ void TransformComponent::setup()
 	uniform = new Squirrel::TRANSFORM_DESC();
 }
 
-glm::vec3 TransformComponent::getTransform()
+glm::vec3& TransformComponent::getTransform()
 {
-	return glm::vec3(positionX, positionY, positionZ);
+	return transform;
 }
 
 glm::vec3 TransformComponent::getRotation()

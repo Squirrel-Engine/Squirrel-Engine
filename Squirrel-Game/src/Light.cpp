@@ -11,16 +11,7 @@ Light::Light() {
 	lightComponent->setParent(this);
 	this->lightComponent = lightComponent;
 	this->lightComponent->setup();
-	insertComponent("transformComponent", lightComponent);
-
-	RenderComponent* renderComponent = new RenderComponent();
-	renderComponent->C_ModelID = 0;
-	renderComponent->C_MaterialID_0 = 0;
-	renderComponent->C_ShaderID = 0;
-	renderComponent->setParent(this);
-	this->renderComponent = renderComponent;
-	this->renderComponent->setup();
-	insertComponent("renderComponent", renderComponent);
+	insertComponent("lightComponent", lightComponent);
 }
 
 void Light::BeginPlay()

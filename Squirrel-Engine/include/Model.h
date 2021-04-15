@@ -32,7 +32,7 @@ public:
 	Model(){}
 	Model(string const& path, bool gamma = false);
 	~Model();
-	void Draw(Shader& shader, Squirrel::TRANSFORM_DESC uniformDesc);
+	void Draw(Shader& shader, Squirrel::TRANSFORM_DESC& uniformDesc);
 
 private:
 	void loadModel(string const& path);
