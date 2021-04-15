@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <vector>
 #include "ActorComponent.h"
-
+#include "UniformDesc.h"
 namespace Squirrel
 {
 	class ActorComponent;
@@ -13,7 +13,7 @@ namespace Squirrel
 		virtual void Update() = 0;
 
 		Actor(){};
-	
+		
 		std::unordered_map<std::string ,ActorComponent*> componentList;
 	public:
 		void insertComponent(std::string name, ActorComponent* component);

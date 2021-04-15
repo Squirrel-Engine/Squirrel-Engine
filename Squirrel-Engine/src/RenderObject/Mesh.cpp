@@ -36,6 +36,7 @@ void Mesh::Draw(Shader& shader)
 		// and finally bind the texture
 		glBindTexture(GL_TEXTURE_2D, material.textures[i].id);
 	}
+
 	// draw mesh
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);

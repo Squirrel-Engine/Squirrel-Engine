@@ -58,8 +58,6 @@ Shader::Shader(const std::string& filepath)
 void Shader::use()
 {
     glUseProgram(ID);
-
-
 }
 
 GLint Shader::getUniformLocation(const std::string& name) const {

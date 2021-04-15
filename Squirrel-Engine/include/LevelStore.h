@@ -6,6 +6,12 @@
 
 namespace Squirrel
 {
+	enum class EActorType {
+		ACTOR,
+		CAMERA,
+		LIGHT
+	};
+
 	class LevelStore
 	{
 		
@@ -13,15 +19,15 @@ namespace Squirrel
 		LevelStore();
 
 		std::vector<Actor*> actors;
+		std::vector<Actor*> lights;
 		Actor* mainCamera;
 		
 		std::string name;
 
-
-		void spawnNewActor(Actor* actor);
-		void spawnNewCamera(Actor* camera);
+		void spawnNewActor(EActorType type, Actor* actor);
 
 		Actor* getActor(int index);
 		void setupStore(std::string _name, std::vector<Actor*> initialActorVector);
 	};
+
 }

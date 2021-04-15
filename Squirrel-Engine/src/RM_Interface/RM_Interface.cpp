@@ -14,6 +14,7 @@ namespace Squirrel
 
 		//Shader
 		shaderAssetMap.insert({ 0, "../../Squirrel-Engine/res/shaders/Model.shader" });
+		shaderAssetMap.insert({ 1, "../../Squirrel-Engine/res/shaders/LightSource.shader" });
 
 		//Material
 		materialCount = 2;

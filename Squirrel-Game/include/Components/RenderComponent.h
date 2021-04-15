@@ -3,6 +3,7 @@
 #include <vector>
 #include "../../../Squirrel-Engine/include/ActorComponent.h"
 #include "Components/TransformComponent.h"
+#include "../../../Squirrel-Engine/include/ModelDrawCall.h"
 
 SR_COMPONENT()
 class RenderComponent : public Squirrel::ActorComponent
@@ -38,7 +39,5 @@ public:
 
 	int C_ShaderID;
 	SR_VAR_END()
-
-	Squirrel::UNIFORM_DESC uniformDesc;
 };
 SR_COMPONENT()

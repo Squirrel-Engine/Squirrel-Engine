@@ -56,8 +56,6 @@ namespace Squirrel
 						free(jobQueueHighOrder.front());
 						jobQueueHighOrder.pop();
 					}
-
-
 				}
 			}
 
@@ -81,13 +79,8 @@ namespace Squirrel
 						jobQueueLowOrder.pop();
 					}
 				}
-				std::queue<NJob*> empty;
-				std::swap(jobQueueHighOrder, empty);
-				std::swap(jobQueueLowOrder, empty);
 			}
 		}
-
-
 	}
 
 	void Nut::stopScheduler()
@@ -128,8 +121,4 @@ namespace Squirrel
 			break;
 		}
 	}
-
 }
-
-
-

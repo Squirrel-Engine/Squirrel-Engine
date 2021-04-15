@@ -9,11 +9,9 @@ void furRender()
 	for (int i = 0; i < firstCommandBuffer->size(); i++) {
 		if (firstCommandBuffer->front() != nullptr) {
 			drawcall = firstCommandBuffer->front();
-			drawcall->model->Draw(*drawcall->shader, drawcall->uniformDesc);
+			drawcall->draw();
 			firstCommandBuffer->pop();
-			
 		}
-
 	}
 
 	glfwSwapBuffers(furWindow);

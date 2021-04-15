@@ -11,12 +11,9 @@
 class DrawCall
 {
 public:
-	DrawCall(Model* model, Shader* shader, Squirrel::UNIFORM_DESC uniformDesc);
-	//void Draw(){setUniforms(); model.draw();}
-	Model* model;
-	Shader* shader;
-	Squirrel::UNIFORM_DESC uniformDesc;
-//private: 
-	//void setUniforms();
+	DrawCall() {};
+
+public:
+	virtual void draw() = 0;
 };
 

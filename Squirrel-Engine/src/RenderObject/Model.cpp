@@ -14,10 +14,9 @@ Model::~Model() {
 	meshes.clear();
 }
 
-void Model::Draw(Shader& shader, Squirrel::UNIFORM_DESC uniformDesc)
+void Model::Draw(Shader& shader, Squirrel::TRANSFORM_DESC uniformDesc)
 {
 	shader.use();
-
 
 	// Uniforms
 	//Later there will be a iterator for all

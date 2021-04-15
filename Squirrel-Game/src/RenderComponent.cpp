@@ -3,7 +3,7 @@
 
 RenderComponent::RenderComponent()
 {
-
+	
 }
 
 
@@ -14,10 +14,10 @@ void RenderComponent::BeginPlay()
 
 void RenderComponent::Update()
 {
-	uniformDesc.model = getComponent<TransformComponent*>("transformComponent")->transformMat;
-	auto drawCall = new DrawCall(Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID), 
-								 Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID), uniformDesc);
-	
+	auto drawCall = new ModelDrawCall(Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID),
+									  Squirrel::InterfaceFactory::getInstance().getRMInterface().getShader(shaderID),
+								      dynamic_cast<Squirrel::TRANSFORM_DESC*>(getComponent<TransformComponent*>("transformComponent")->uniform));
+
 	Squirrel::InterfaceFactory::getInstance().getRDInterface().submitDrawCall(*drawCall);
 }
 
