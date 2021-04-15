@@ -1,11 +1,6 @@
 ﻿// Squirrel-Engine.cpp : Defines the entry point for the application.
 //
-#include "Skeleton.h"
-#include "../Squirrel-Engine/include/Squirrel.h"
-#include "../../Squirrel-Engine/include/Mesh.h"
-#include "Components/RenderComponent.h"
-#include "Components/CameraComponent.h"
-#include <include/Camera.h>
+#include "Squirrel-Game.h"
 
 class Sandbox : public Squirrel::Application
 {
@@ -30,6 +25,8 @@ Squirrel::Application* Squirrel::CreateApplication()
 
 void Sandbox::Run()
 {
+	TestControlSchema* testSchema = new TestControlSchema();
+	Squirrel::InterfaceFactory::getInstance().getIPInterface().setControlSchema(testSchema);
 	/////
 	Camera* mainCamera = new Camera();
 
@@ -70,6 +67,5 @@ void Sandbox::Run()
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton);
 
 	//Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton1);
-
 
 }

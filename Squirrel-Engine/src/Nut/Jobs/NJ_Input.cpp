@@ -1,10 +1,5 @@
 #include "NJ_Input.h"
 
-#include <iostream>
-
-#include "InterfaceFactory.h"
-#include "NJ_InitializeSimulation.h"
-
 namespace Squirrel
 {
 	NJ_Input::NJ_Input()
@@ -14,7 +9,7 @@ namespace Squirrel
 
 	void NJ_Input::run()
 	{
-		
+		InterfaceFactory::getInstance().getIPInterface().execInput();
 	}
 
 	void NJ_Input::mount()

@@ -28,5 +28,5 @@ void Skeleton::BeginPlay()
 
 void Skeleton::Update()
 {
-	transformComponent->getComponent<TransformComponent*>("transformComponent")->rotationY += 5;
+	transformComponent->rotationY += 5;
 }
