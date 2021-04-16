@@ -15,9 +15,24 @@ void Squirrel::NJ_ActorWorker::unmount()
 
 void Squirrel::NJ_ActorWorker::run()
 {
-	actor->Update();
-	for (auto& component : actor->componentList)
+	if (isFirstFrame == true)
 	{
-		component.second->Update();
+		actor->BeginPlay();
+		actor->Update();
+		for (auto& component : actor->componentList)
+		{
+			component.second->setup();
+			component.second->BeginPlay();
+			component.second->Update();
+		}
+		isFirstFrame = false;
 	}
+	else {
+		actor->Update();
+		for (auto& component : actor->componentList)
+		{
+			component.second->Update();
+		}
+	}
+
 }
