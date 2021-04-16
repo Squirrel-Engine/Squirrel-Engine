@@ -27,6 +27,4 @@ namespace Squirrel
 		IP_Interface& getIPInterface();
 		static InterfaceFactory& getInstance();
 	};
-
-	
 }
