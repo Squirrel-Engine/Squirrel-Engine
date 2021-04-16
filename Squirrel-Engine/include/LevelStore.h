@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-
 #include "Actor.h"
 #include "IStore.h"
 
@@ -26,7 +25,8 @@ namespace Squirrel
 
 		void spawnNewActor(EActorType type, Actor* actor);
 
-		Actor* getActor(int index);
+		Actor* getActor(EActorType type, int row);
+
 		void setupStore(std::string _name, std::vector<Actor*> initialActorVector);
 	};
 

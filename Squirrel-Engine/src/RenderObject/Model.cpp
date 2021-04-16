@@ -1,5 +1,6 @@
 #include "Model.h"
 #include "FurStore.h"
+#include "InterfaceFactory.h"
 
 unsigned int TextureFromFile(const char* path, const string& directory, bool gamma);
 
@@ -17,13 +18,19 @@ Model::~Model() {
 void Model::Draw(Shader& shader, Squirrel::TRANSFORM_DESC& uniformDesc)
 {
 	shader.use();
-
 	// Uniforms
 	//Later there will be a iterator for all
-	shader.setVec3("lightPos", vec3(0.0f));	//take it from light sources
 	shader.setVec3("viewPos", cameraDesc->viewPos);	
 	shader.setMat4("viewProjection", cameraDesc->viewProjection);
 	shader.setMat4("model", uniformDesc.model);
+	for (Squirrel::Actor* light : Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->lights) {
+		Squirrel::LIGHT_DESC* desc  = dynamic_cast<Squirrel::LIGHT_DESC*>(light->componentList.at("lightComponent")->uniform);
+		shader.setVec3("light.color", desc->lightColor);
+		shader.setVec3("light.position", desc->lightPos);
+		shader.setFloat("light.constant", desc->constant);
+		shader.setFloat("light.linear", desc->linear);
+		shader.setFloat("light.quadratic", desc->quadratic);
+	}
 
 	for (unsigned int i = 0; i < meshes.size(); i++)
 		meshes[i].Draw(shader);

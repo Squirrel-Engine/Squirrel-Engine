@@ -36,7 +36,7 @@ void Sandbox::Run()
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(Squirrel::EActorType::CAMERA, mainCamera);
 	//
 	Skeleton* skeleton = new Skeleton();
-	skeleton->transformComponent->setTransform(0, 0, -30);
+	skeleton->transformComponent->setTransform(0, 0, -60);
 	skeleton->transformComponent->setRotation(20, 20, 20);
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(Squirrel::EActorType::ACTOR, skeleton);
 	//
@@ -48,7 +48,7 @@ void Sandbox::Run()
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(Squirrel::EActorType::ACTOR, skeleton1);
 	//
 	Light* light = new Light();
-	light->transformComponent->setTransform(0, 2, -5);
-	light->lightComponent->setColor(1, 0.5, 0);
+	light->transformComponent->setTransform(0, 20, -20);
+	light->lightComponent->setColor(1, 0, 0);
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(Squirrel::EActorType::LIGHT, light);
 }

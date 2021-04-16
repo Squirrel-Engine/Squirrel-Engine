@@ -13,6 +13,9 @@ void LightComponent::BeginPlay()
 
 void LightComponent::Update()
 {
+	dynamic_cast<Squirrel::LIGHT_DESC*>(uniform)->constant = 1.0f;
+	dynamic_cast<Squirrel::LIGHT_DESC*>(uniform)->linear = 0.14f;
+	dynamic_cast<Squirrel::LIGHT_DESC*>(uniform)->quadratic = 0.07f;
 	dynamic_cast<Squirrel::LIGHT_DESC*>(uniform)->lightColor = color;
 	dynamic_cast<Squirrel::LIGHT_DESC*>(uniform)->lightPos = getComponent<TransformComponent*>("transformComponent")->getTransform();
 

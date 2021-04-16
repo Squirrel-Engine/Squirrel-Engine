@@ -39,6 +39,7 @@ namespace Fur
 		//
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	}
 
 	void Fur::pauseRenderEngine()
