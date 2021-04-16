@@ -56,9 +56,9 @@ in VS_OUT{
 } fs_in;
 
 struct Material {
-    sampler2D texture_diffuse1;
-    sampler2D texture_normal1;
-    sampler2D texture_specular1;
+    sampler2D texture_diffuse;
+    sampler2D texture_normal;
+    sampler2D texture_specular;
 };
 uniform Material material;
 
@@ -68,12 +68,12 @@ void main()
     float distance = length(fs_in.TangentLightPos - fs_in.TangentFragPos);
     float attenuation = 1.0 / distance;
     // obtain normal from normal map in range [0,1]
-    vec3 normal = texture(material.texture_normal1, fs_in.TexCoords).rgb;
+    vec3 normal = texture(material.texture_normal, fs_in.TexCoords).rgb;
     // transform normal vector to range [-1,1]
     normal = normalize(normal * 2.0 - 1.0);  // this normal is in tangent space
 
     // ambient
-    vec3 ambient = texture(material.texture_diffuse1, fs_in.TexCoords).rgb;
+    vec3 ambient = texture(material.texture_diffuse, fs_in.TexCoords).rgb;
 
     // diffuse
     vec3 lightDir = normalize(fs_in.TangentLightPos - fs_in.TangentFragPos);
@@ -85,7 +85,7 @@ void main()
     vec3 reflectDir = reflect(-lightDir, normal);
     vec3 halfwayDir = normalize(lightDir + viewDir);
     float spec = pow(max(dot(normal, halfwayDir), 0.0), 32.0);
-    vec3 specular = vec3(0.2) * spec * texture(material.texture_specular1, fs_in.TexCoords).rgb;
+    vec3 specular = vec3(0.2) * spec * texture(material.texture_specular, fs_in.TexCoords).rgb;
 
     // gamma correction
     vec3 result = ambient + diffuse + specular;

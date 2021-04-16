@@ -1,26 +1,31 @@
 #include "RM_Interface.h"
+#define MATERIAL_COUNT 4
 
 namespace Squirrel
 {
+	int MaterialDataBase[MATERIAL_COUNT][3] = {
+	//diffuse	//normal	//specular
+		{0,			1,			2},
+		{0,			1,			2},
+		{0,			1,			2}
+	};
+
 	void RM_Interface::loadAssetMap()
 	{
 		//Mesh
 		meshAssetMap.insert({ 0, "../../Squirrel-Engine/res/models/Model1.obj" });
 		meshAssetMap.insert({ 1, "../../Squirrel-Engine/res/models/girl2.fbx" });
 		meshAssetMap.insert({ 2, "../../Squirrel-Engine/res/models/backpack/backpack.obj" });
+		
 		//Texture
 		textureAssetMap.insert({ 0, "../../Squirrel-Engine/res/textures/wall.jpg" });
 		textureAssetMap.insert({ 1, "../../Squirrel-Engine/res/textures/test_emis.jpg" });
+		textureAssetMap.insert({ 2, "../../Squirrel-Engine/res/textures/sci-fi_diff.jpg" });
 
 		//Shader
 		shaderAssetMap.insert({ 0, "../../Squirrel-Engine/res/shaders/Model.shader" });
 		shaderAssetMap.insert({ 1, "../../Squirrel-Engine/res/shaders/LightSource.shader" });
 
-		//Material
-		materialCount = 2;
-
-
-		
 		// TEXTURE LOADING FUNCTION !!!!!!!!!!!!
 	}
 
@@ -53,15 +58,14 @@ namespace Squirrel
 
 	void RM_Interface::loadMaterialAsset( )
 	{
-		for (int i = 0; i < materialCount; i++)
+		for (int i = 0; i < MATERIAL_COUNT; i++)
 		{
 			Material* material = new Material();
-			material->setTexture("texture_diffuse", textureAssetMap.at(i));
-			material->setTexture("texture_normal", textureAssetMap.at(i));
-			material->setTexture("texture_specular", textureAssetMap.at(i));
+			material->setTexture("texture_diffuse", textureAssetMap.at(MaterialDataBase[i][0]));
+			material->setTexture("texture_normal", textureAssetMap.at(MaterialDataBase[i][1]));
+			material->setTexture("texture_specular", textureAssetMap.at(MaterialDataBase[i][2]));
 
 			materialBuffer.insert({ i, material });
-		
 		}
 	}
 
@@ -98,6 +102,4 @@ namespace Squirrel
 	{
 		return materialBuffer[index];
 	}
-
-
 }

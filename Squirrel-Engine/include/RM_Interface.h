@@ -45,6 +45,6 @@ namespace Squirrel
 		
 		int assignAsset();
 	private:
-		int materialCount;
+
 	};
 }
