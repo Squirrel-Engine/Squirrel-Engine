@@ -1,11 +1,6 @@
 ﻿// Squirrel-Engine.cpp : Defines the entry point for the application.
 //
-#include "Skeleton.h"
-#include "../Squirrel-Engine/include/Squirrel.h"
-#include "../../Squirrel-Engine/include/Mesh.h"
-#include "Components/RenderComponent.h"
-#include "Components/CameraComponent.h"
-#include <include/Camera.h>
+#include "Squirrel-Game.h"
 
 class Sandbox : public Squirrel::Application
 {
@@ -30,6 +25,8 @@ Squirrel::Application* Squirrel::CreateApplication()
 
 void Sandbox::Run()
 {
+	TestControlSchema* testSchema = new TestControlSchema();
+	Squirrel::InterfaceFactory::getInstance().getIPInterface().setControlSchema(testSchema);
 	/////
 	Camera* mainCamera = new Camera();
 
@@ -37,18 +34,12 @@ void Sandbox::Run()
 	//camera_transformComponent->setTransform(glm::vec3(0, 30, 0));
 	camera_transformComponent->setParent(mainCamera);
 	mainCamera->transformComponent = camera_transformComponent;
-	mainCamera->transformComponent->setup();
 	mainCamera->insertComponent("transformComponent", camera_transformComponent);
 
 	CameraComponent* camera_cameraComponent = new CameraComponent();
 	camera_cameraComponent->setParent(mainCamera);
 	mainCamera->cameraComponent = camera_cameraComponent;
-	mainCamera->cameraComponent->setup();
 	mainCamera->insertComponent("cameraComponent", camera_cameraComponent);
-
-
-	/////
-	/////
 
 
 	Skeleton* skeleton = new Skeleton();
@@ -57,19 +48,17 @@ void Sandbox::Run()
 	skeleton->transformComponent->setTransform(glm::vec3(0, 0, -30));
 	skeleton->transformComponent->setRotation(glm::vec3(20, 20, 20));
 
+	skeleton->renderComponent->C_ModelID = 0;
+	skeleton->renderComponent->C_MaterialID_0 = 0;
+	skeleton->renderComponent->C_MaterialID_1 = 1;
+	skeleton->renderComponent->C_ShaderID = 0;
 
-	Skeleton* skeleton1 = new Skeleton();
-
-	/////
-	skeleton1->transformComponent->setTransform(glm::vec3(0, 10, -50));
-	skeleton1->transformComponent->setRotation(glm::vec3(-20, -20, -20));
+ 
 
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewCamera(mainCamera);
 
 
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton);
-
-	//Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton1);
 
 
 }

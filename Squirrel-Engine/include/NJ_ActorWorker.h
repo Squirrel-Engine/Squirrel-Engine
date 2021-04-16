@@ -13,5 +13,7 @@ namespace Squirrel
 		void mount() override;
 		void unmount() override;
 		void run() override;
+
+		bool isFirstFrame = true;
 	};
 }

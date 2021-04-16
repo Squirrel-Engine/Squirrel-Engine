@@ -38,8 +38,9 @@ public:
 	
 	glm::vec3 getTransform();
 	glm::vec3 getRotation();
+	glm::vec3 getScale();
 	void setTransform(glm::vec3 vector);
 	void setRotation(glm::vec3 vector);
-	
+	void setScale(glm::vec3 vector);
 };
 SR_COMPONENT()

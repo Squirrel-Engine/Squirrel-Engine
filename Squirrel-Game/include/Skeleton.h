@@ -3,6 +3,11 @@
 #include "../../Squirrel-Engine/include/Actor.h"
 #include "Components/RenderComponent.h"
 #include "Components/TransformComponent.h"
+
+
+
+
+
 SR_ACTOR()
 class Skeleton : public Squirrel::Actor
 {

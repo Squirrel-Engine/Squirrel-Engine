@@ -1,5 +1,7 @@
 #pragma once
 #include "NJob.h"
+
+#include "InterfaceFactory.h"
 namespace Squirrel
 {
 	class NJ_InitializeSimulation final : public NJob

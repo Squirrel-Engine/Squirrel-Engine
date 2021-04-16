@@ -3,7 +3,7 @@
 #include "RD_Interface.h"
 #include "MT_Interface.h"
 #include "RM_Interface.h"
-
+#include "IP_Interface.h"
 namespace Squirrel
 {
 	class InterfaceFactory
@@ -17,14 +17,14 @@ namespace Squirrel
 		MT_Interface mt_Interface;
 		GM_Interface gm_Interface;
 		RM_Interface rm_Interface;
+		IP_Interface ip_Interface;
 	public:
 		// Getter Setter
 		RD_Interface& getRDInterface();
 		MT_Interface& getMTInterface();
 		GM_Interface& getGMInterface();
 		RM_Interface& getRMInterface();
+		IP_Interface& getIPInterface();
 		static InterfaceFactory& getInstance();
 	};
-
-	
 }
