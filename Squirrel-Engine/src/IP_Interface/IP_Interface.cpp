@@ -1,10 +1,8 @@
 #include "IP_Interface.h"
 
 
-
 IP_Interface::IP_Interface()
 {
-
 }
 
 void IP_Interface::execInput()
@@ -18,10 +16,7 @@ void IP_Interface::execInput()
 }
 
 
-
 void IP_Interface::setControlSchema(ControlSchematic* _controlSchema)
 {
 	controlSchematic = _controlSchema;
 }
-
-

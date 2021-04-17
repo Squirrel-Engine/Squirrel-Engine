@@ -129,9 +129,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifdef _MSC_VER
 #   undef ASSIMP_API
 
-    //////////////////////////////////////////////////////////////////////////
-    /* Define 'ASSIMP_BUILD_DLL_EXPORT' to build a DLL of the library */
-    //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+/* Define 'ASSIMP_BUILD_DLL_EXPORT' to build a DLL of the library */
+//////////////////////////////////////////////////////////////////////////
 #   ifdef ASSIMP_BUILD_DLL_EXPORT
 #       define ASSIMP_API __declspec(dllexport)
 #       define ASSIMP_API_WINONLY __declspec(dllexport)
@@ -149,17 +149,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #       define ASSIMP_API_WINONLY
 #   endif
 
-    /* Force the compiler to inline a function, if possible
-     */
+/* Force the compiler to inline a function, if possible
+ */
 #   define AI_FORCE_INLINE __forceinline
 
-    /* Tells the compiler that a function never returns. Used in code analysis
-     * to skip dead paths (e.g. after an assertion evaluated to false). */
+/* Tells the compiler that a function never returns. Used in code analysis
+ * to skip dead paths (e.g. after an assertion evaluated to false). */
 #   define AI_WONT_RETURN __declspec(noreturn)
 
 #elif defined(SWIG)
 
-    /* Do nothing, the relevant defines are all in AssimpSwigPort.i */
+/* Do nothing, the relevant defines are all in AssimpSwigPort.i */
 
 #else
 
@@ -177,17 +177,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endif // (defined __clang__)
 
 #ifdef __cplusplus
-    /* No explicit 'struct' and 'enum' tags for C++, this keeps showing up
-     * in doxydocs.
-     */
+/* No explicit 'struct' and 'enum' tags for C++, this keeps showing up
+ * in doxydocs.
+ */
 #   define C_STRUCT
 #   define C_ENUM
 #else
-    //////////////////////////////////////////////////////////////////////////
-    /* To build the documentation, make sure ASSIMP_DOXYGEN_BUILD
-     * is defined by Doxygen's preprocessor. The corresponding
-     * entries in the DOXYFILE are: */
-    //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+/* To build the documentation, make sure ASSIMP_DOXYGEN_BUILD
+ * is defined by Doxygen's preprocessor. The corresponding
+ * entries in the DOXYFILE are: */
+//////////////////////////////////////////////////////////////////////////
 #if 0
     ENABLE_PREPROCESSING   = YES
     MACRO_EXPANSION        = YES
@@ -199,12 +199,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     EXPAND_AS_DEFINED      = C_STRUCT C_ENUM
     SKIP_FUNCTION_MACROS   = YES
 #endif
-    //////////////////////////////////////////////////////////////////////////
-    /* Doxygen gets confused if we use c-struct typedefs to avoid
-     * the explicit 'struct' notation. This trick here has the same
-     * effect as the TYPEDEF_HIDES_STRUCT option, but we don't need
-     * to typedef all structs/enums. */
-     //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+/* Doxygen gets confused if we use c-struct typedefs to avoid
+ * the explicit 'struct' notation. This trick here has the same
+ * effect as the TYPEDEF_HIDES_STRUCT option, but we don't need
+ * to typedef all structs/enums. */
+//////////////////////////////////////////////////////////////////////////
 #   if (defined ASSIMP_DOXYGEN_BUILD)
 #       define C_STRUCT
 #       define C_ENUM
@@ -219,11 +219,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endif
 
 
-    //////////////////////////////////////////////////////////////////////////
-    /* Define ASSIMP_BUILD_SINGLETHREADED to compile assimp
-     * without threading support. The library doesn't utilize
-     * threads then and is itself not threadsafe. */
-    //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+/* Define ASSIMP_BUILD_SINGLETHREADED to compile assimp
+ * without threading support. The library doesn't utilize
+ * threads then and is itself not threadsafe. */
+//////////////////////////////////////////////////////////////////////////
 #ifndef ASSIMP_BUILD_SINGLETHREADED
 #   define ASSIMP_BUILD_SINGLETHREADED
 #endif
@@ -232,10 +232,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #   define ASSIMP_BUILD_DEBUG
 #endif
 
-    //////////////////////////////////////////////////////////////////////////
-    /* Define ASSIMP_DOUBLE_PRECISION to compile assimp
-     * with double precision support (64-bit). */
-    //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+/* Define ASSIMP_DOUBLE_PRECISION to compile assimp
+ * with double precision support (64-bit). */
+//////////////////////////////////////////////////////////////////////////
 
 #ifdef ASSIMP_DOUBLE_PRECISION
     typedef double ai_real;
@@ -245,17 +245,17 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define ASSIMP_AI_REAL_TEXT_PRECISION 16
 #endif // ASSIMP_AI_REAL_TEXT_PRECISION
 #else // ASSIMP_DOUBLE_PRECISION
-    typedef float ai_real;
-    typedef signed int ai_int;
-    typedef unsigned int ai_uint;
+using ai_real = float;
+using ai_int = signed int;
+using ai_uint = unsigned int;
 #ifndef ASSIMP_AI_REAL_TEXT_PRECISION
 #define ASSIMP_AI_REAL_TEXT_PRECISION 8
 #endif // ASSIMP_AI_REAL_TEXT_PRECISION
 #endif // ASSIMP_DOUBLE_PRECISION
 
-    //////////////////////////////////////////////////////////////////////////
-    /* Useful constants */
-    //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+/* Useful constants */
+//////////////////////////////////////////////////////////////////////////
 
 /* This is PI. Hi PI. */
 #define AI_MATH_PI          (3.141592653589793238462643383279 )
@@ -272,7 +272,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define AI_RAD_TO_DEG(x) ((x)*(ai_real)57.2957795)
 
 /* Numerical limits */
-static const ai_real ai_epsilon = (ai_real) 0.00001;
+static const ai_real ai_epsilon = static_cast<ai_real>(0.00001);
 
 /* Support for big-endian builds */
 #if defined(__BYTE_ORDER__)

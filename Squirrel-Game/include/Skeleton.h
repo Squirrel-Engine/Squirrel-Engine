@@ -5,10 +5,8 @@
 #include "Components/TransformComponent.h"
 
 
-
-
-
 SR_ACTOR()
+
 class Skeleton : public Actor
 {
 public:

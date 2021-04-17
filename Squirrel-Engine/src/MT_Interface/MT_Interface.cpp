@@ -27,7 +27,6 @@ void MT_Interface::startScheduler()
 	{
 		std::cout << e.what() << '\n';
 	}
-
 }
 
 void MT_Interface::stopScheduler()
@@ -46,7 +45,6 @@ void MT_Interface::stopScheduler()
 	{
 		std::cout << e.what() << '\n';
 	}
-
 }
 
 void MT_Interface::pauseScheduler()

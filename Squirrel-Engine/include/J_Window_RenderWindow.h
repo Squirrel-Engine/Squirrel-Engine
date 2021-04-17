@@ -1,6 +1,7 @@
 #pragma once
 #include "JobFactory.h"
 #include "Job.h"
+
 namespace Squirrel
 {
 	class J_Window_RenderWindow : public Job
@@ -14,4 +15,3 @@ namespace Squirrel
 	private:
 	};
 }
-

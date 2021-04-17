@@ -17,4 +17,3 @@ public:
 	float scrollX;
 	float scrollY;
 };
-

@@ -1,13 +1,14 @@
 #include "Camera.h"
 
-Camera::Camera() {
-	TransformComponent* transformComponent = new TransformComponent();
+Camera::Camera()
+{
+	auto transformComponent = new TransformComponent();
 	transformComponent->setParent(this);
 	this->transformComponent = transformComponent;
 	this->transformComponent->setup();
 	insertComponent("transformComponent", transformComponent);
 
-	CameraComponent* cameraComponent = new CameraComponent();
+	auto cameraComponent = new CameraComponent();
 	cameraComponent->setParent(this);
 	this->cameraComponent = cameraComponent;
 	this->cameraComponent->setup();
@@ -20,5 +21,4 @@ void Camera::BeginPlay()
 
 void Camera::Update()
 {
-
 }

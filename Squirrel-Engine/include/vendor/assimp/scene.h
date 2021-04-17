@@ -59,6 +59,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #ifdef __cplusplus
 #  include <cstdlib>
+
 extern "C" {
 #endif
 
@@ -147,13 +148,13 @@ struct ASSIMP_API aiNode
      *  @param name Name to search for
      *  @return NULL or a valid Node if the search was successful.
      */
-    inline 
-    const aiNode* FindNode(const aiString& name) const {
+    const aiNode* FindNode(const aiString& name) const
+    {
         return FindNode(name.data);
     }
 
-    inline 
-    aiNode* FindNode(const aiString& name) {
+    aiNode* FindNode(const aiString& name)
+    {
         return FindNode(name.data);
     }
 
@@ -166,7 +167,7 @@ struct ASSIMP_API aiNode
      * @param   numChildren  Number of children to add.
      * @param   children     The array with pointers showing to the children.
      */
-    void addChildren(unsigned int numChildren, aiNode **children);
+    void addChildren(unsigned int numChildren, aiNode** children);
 #endif // __cplusplus
 };
 
@@ -208,26 +209,26 @@ struct ASSIMP_API aiNode
  */
 #define AI_SCENE_FLAGS_NON_VERBOSE_FORMAT   0x8
 
- /**
- * Denotes pure height-map terrain data. Pure terrains usually consist of quads,
- * sometimes triangles, in a regular grid. The x,y coordinates of all vertex
- * positions refer to the x,y coordinates on the terrain height map, the z-axis
- * stores the elevation at a specific point.
- *
- * TER (Terragen) and HMP (3D Game Studio) are height map formats.
- * @note Assimp is probably not the best choice for loading *huge* terrains -
- * fully triangulated data takes extremely much free store and should be avoided
- * as long as possible (typically you'll do the triangulation when you actually
- * need to render it).
- */
+/**
+* Denotes pure height-map terrain data. Pure terrains usually consist of quads,
+* sometimes triangles, in a regular grid. The x,y coordinates of all vertex
+* positions refer to the x,y coordinates on the terrain height map, the z-axis
+* stores the elevation at a specific point.
+*
+* TER (Terragen) and HMP (3D Game Studio) are height map formats.
+* @note Assimp is probably not the best choice for loading *huge* terrains -
+* fully triangulated data takes extremely much free store and should be avoided
+* as long as possible (typically you'll do the triangulation when you actually
+* need to render it).
+*/
 #define AI_SCENE_FLAGS_TERRAIN 0x10
 
- /**
- * Specifies that the scene data can be shared between structures. For example:
- * one vertex in few faces. \ref AI_SCENE_FLAGS_NON_VERBOSE_FORMAT can not be
- * used for this because \ref AI_SCENE_FLAGS_NON_VERBOSE_FORMAT has internal
- * meaning about postprocessing steps.
- */
+/**
+* Specifies that the scene data can be shared between structures. For example:
+* one vertex in few faces. \ref AI_SCENE_FLAGS_NON_VERBOSE_FORMAT can not be
+* used for this because \ref AI_SCENE_FLAGS_NON_VERBOSE_FORMAT has internal
+* meaning about postprocessing steps.
+*/
 #define AI_SCENE_FLAGS_ALLOW_SHARED			0x20
 
 // -------------------------------------------------------------------------------
@@ -348,40 +349,48 @@ struct aiScene
 
     //! Check whether the scene contains meshes
     //! Unless no special scene flags are set this will always be true.
-    inline bool HasMeshes() const { 
-        return mMeshes != NULL && mNumMeshes > 0; 
+    bool HasMeshes() const
+    {
+        return mMeshes != nullptr && mNumMeshes > 0;
     }
 
     //! Check whether the scene contains materials
     //! Unless no special scene flags are set this will always be true.
-    inline bool HasMaterials() const { 
-        return mMaterials != NULL && mNumMaterials > 0; 
+    bool HasMaterials() const
+    {
+        return mMaterials != nullptr && mNumMaterials > 0;
     }
 
     //! Check whether the scene contains lights
-    inline bool HasLights() const { 
-        return mLights != NULL && mNumLights > 0; 
+    bool HasLights() const
+    {
+        return mLights != nullptr && mNumLights > 0;
     }
 
     //! Check whether the scene contains textures
-    inline bool HasTextures() const {
-        return mTextures != NULL && mNumTextures > 0; 
+    bool HasTextures() const
+    {
+        return mTextures != nullptr && mNumTextures > 0;
     }
 
     //! Check whether the scene contains cameras
-    inline bool HasCameras() const {
-        return mCameras != NULL && mNumCameras > 0; 
+    bool HasCameras() const
+    {
+        return mCameras != nullptr && mNumCameras > 0;
     }
 
     //! Check whether the scene contains animations
-    inline bool HasAnimations() const { 
-        return mAnimations != NULL && mNumAnimations > 0; 
+    bool HasAnimations() const
+    {
+        return mAnimations != nullptr && mNumAnimations > 0;
     }
 
     //! Returns a short filename from a full path
-    static const char* GetShortFilename(const char* filename) {
+    static const char* GetShortFilename(const char* filename)
+    {
         const char* lastSlash = strrchr(filename, '/');
-        if (lastSlash == nullptr) {
+        if (lastSlash == nullptr)
+        {
             lastSlash = strrchr(filename, '\\');
         }
         const char* shortFilename = lastSlash != nullptr ? lastSlash + 1 : filename;
@@ -389,9 +398,11 @@ struct aiScene
     }
 
     //! Returns an embedded texture
-    const aiTexture* GetEmbeddedTexture(const char* filename) const {
+    const aiTexture* GetEmbeddedTexture(const char* filename) const
+    {
         // lookup using texture ID (if referenced like: "*1", "*2", etc.)
-        if ('*' == *filename) {
+        if ('*' == *filename)
+        {
             int index = std::atoi(filename + 1);
             if (0 > index || mNumTextures <= static_cast<unsigned>(index))
                 return nullptr;
@@ -399,9 +410,11 @@ struct aiScene
         }
         // lookup using filename
         const char* shortFilename = GetShortFilename(filename);
-        for (unsigned int i = 0; i < mNumTextures; i++) {
+        for (unsigned int i = 0; i < mNumTextures; i++)
+        {
             const char* shortTextureFilename = GetShortFilename(mTextures[i]->mFilename.C_Str());
-            if (strcmp(shortTextureFilename, shortFilename) == 0) {
+            if (strcmp(shortTextureFilename, shortFilename) == 0)
+            {
                 return mTextures[i];
             }
         }
@@ -415,7 +428,6 @@ struct aiScene
 #else
     char* mPrivate;
 #endif
-
 };
 
 #ifdef __cplusplus

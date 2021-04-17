@@ -1,5 +1,6 @@
 #pragma once
 
-enum class ERenderer { 
-	Fur 
+enum class ERenderer
+{
+	Fur
 };

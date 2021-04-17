@@ -55,9 +55,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct aiScene;  // aiScene.h
+struct aiScene; // aiScene.h
 struct aiFileIO; // aiFileIO.h
-typedef void (*aiLogStreamCallback)(const char* /* message */, char* /* user */);
+using aiLogStreamCallback = void(*)(const char* /* message */, char* /* user */);
 
 // --------------------------------------------------------------------------------
 /** C-API: Represents a log stream. A log stream receives all log messages and
@@ -87,10 +87,13 @@ struct aiLogStream
  *  @see aiSetPropertyMatrix
  */
 // --------------------------------------------------------------------------------
-struct aiPropertyStore { char sentinel; };
+struct aiPropertyStore
+{
+    char sentinel;
+};
 
 /** Our own C boolean type */
-typedef int aiBool;
+using aiBool = int;
 
 #define AI_FALSE 0
 #define AI_TRUE 1
@@ -371,7 +374,6 @@ ASSIMP_API void aiGetMemoryRequirements(
     C_STRUCT aiMemoryInfo* in);
 
 
-
 // --------------------------------------------------------------------------------
 /** Create an empty property store. Property stores are used to collect import
  *  settings.
@@ -557,7 +559,7 @@ ASSIMP_API size_t aiGetImportFormatCount(void);
  *    0 to #aiGetImportFormatCount()
  * @return A description of that specific import format. NULL if pIndex is out of range.
  */
-ASSIMP_API const C_STRUCT aiImporterDesc* aiGetImportFormatDescription( size_t pIndex);
+ASSIMP_API const C_STRUCT aiImporterDesc* aiGetImportFormatDescription(size_t pIndex);
 #ifdef __cplusplus
 }
 #endif

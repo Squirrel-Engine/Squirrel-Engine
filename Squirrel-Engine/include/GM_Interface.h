@@ -7,4 +7,3 @@ public:
 	GM_Interface();
 	LevelStore* levelStore;
 };
-

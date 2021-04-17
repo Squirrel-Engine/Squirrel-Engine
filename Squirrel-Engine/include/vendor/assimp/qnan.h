@@ -64,10 +64,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 union _IEEESingle
 {
     float Float;
+
     struct
     {
         uint32_t Frac : 23;
-        uint32_t Exp  : 8;
+        uint32_t Exp : 8;
         uint32_t Sign : 1;
     } IEEE;
 };
@@ -78,10 +79,11 @@ union _IEEESingle
 union _IEEEDouble
 {
     double Double;
+
     struct
     {
         uint64_t Frac : 52;
-        uint64_t Exp  : 11;
+        uint64_t Exp : 11;
         uint64_t Sign : 1;
     } IEEE;
 };
@@ -100,7 +102,7 @@ AI_FORCE_INLINE bool is_qnan(float in)
     // FIXME: Use <float> stuff instead? I think fpclassify needs C99
     _IEEESingle temp;
     memcpy(&temp, &in, sizeof(float));
-    return (temp.IEEE.Exp == (1u << 8)-1 &&
+    return (temp.IEEE.Exp == (1u << 8) - 1 &&
         temp.IEEE.Frac);
 }
 
@@ -118,7 +120,7 @@ AI_FORCE_INLINE bool is_qnan(double in)
     // FIXME: Use <float> stuff instead? I think fpclassify needs C99
     _IEEEDouble temp;
     memcpy(&temp, &in, sizeof(in));
-    return (temp.IEEE.Exp == (1u << 11)-1 &&
+    return (temp.IEEE.Exp == (1u << 11) - 1 &&
         temp.IEEE.Frac);
 }
 
@@ -131,7 +133,7 @@ AI_FORCE_INLINE bool is_special_float(float in)
 {
     _IEEESingle temp;
     memcpy(&temp, &in, sizeof(float));
-    return (temp.IEEE.Exp == (1u << 8)-1);
+    return (temp.IEEE.Exp == (1u << 8) - 1);
 }
 
 // ---------------------------------------------------------------------------
@@ -141,15 +143,15 @@ AI_FORCE_INLINE bool is_special_float(float in)
  *  @param in Input value */
 AI_FORCE_INLINE bool is_special_float(double in)
 {
-   _IEEESingle temp;
+    _IEEESingle temp;
     memcpy(&temp, &in, sizeof(float));
-    return (temp.IEEE.Exp == (1u << 11)-1);
+    return (temp.IEEE.Exp == (1u << 11) - 1);
 }
 
 // ---------------------------------------------------------------------------
 /** Check whether a float is NOT qNaN.
  *  @param in Input value */
-template<class TReal>
+template <class TReal>
 AI_FORCE_INLINE bool is_not_qnan(TReal in)
 {
     return !is_qnan(in);

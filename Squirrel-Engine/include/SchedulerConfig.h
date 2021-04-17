@@ -11,8 +11,7 @@ public:
 	bool renderDebug;
 	bool mtMode;
 
-	void setup();
+	void setup() override;
 private:
 	JSONParser* jsonConfigurator = new JSONParser("../../Squirrel-Engine/src/configs/schedulerConfig.json");
-
 };

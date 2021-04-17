@@ -10,7 +10,6 @@
 
 NJ_InitializeFrame::NJ_InitializeFrame()
 {
-
 }
 
 void NJ_InitializeFrame::mount()

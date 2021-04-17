@@ -7,6 +7,7 @@ ModelDrawCall::ModelDrawCall(Model* model, Shader* shader, TRANSFORM_DESC* unifo
 	this->uniformDesc = uniformDesc;
 }
 
-void ModelDrawCall::draw() {
+void ModelDrawCall::draw()
+{
 	model->Draw(*this->shader, *this->uniformDesc);
 }

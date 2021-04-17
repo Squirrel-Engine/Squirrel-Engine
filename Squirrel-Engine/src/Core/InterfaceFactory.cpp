@@ -30,7 +30,3 @@ IP_Interface& InterfaceFactory::getIPInterface()
 {
 	return ip_Interface;
 }
-
-
-
-

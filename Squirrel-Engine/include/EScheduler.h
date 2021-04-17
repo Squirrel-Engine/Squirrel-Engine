@@ -1,6 +1,7 @@
 #pragma once
 
-enum class EScheduler { 
-	DummyScheduler, 
-	Nut 
+enum class EScheduler
+{
+	DummyScheduler,
+	Nut
 };

@@ -9,8 +9,13 @@ class InterfaceFactory
 {
 private:
 	// Singleton
-	InterfaceFactory() {};
-	~InterfaceFactory() {};
+	InterfaceFactory()
+	{
+	};
+
+	~InterfaceFactory()
+	{
+	};
 
 
 	RD_Interface rd_Interface;
@@ -27,27 +32,36 @@ public:
 	IP_Interface& getIPInterface();
 	static InterfaceFactory& getInstance();
 };
+
 template <typename T>
 T& getInterface();
 
-template<>
-inline RD_Interface& getInterface<RD_Interface>() {
+template <>
+inline RD_Interface& getInterface<RD_Interface>()
+{
 	return InterfaceFactory::getInstance().getRDInterface();
 };
-template<>
-inline MT_Interface& getInterface<MT_Interface>() {
+
+template <>
+inline MT_Interface& getInterface<MT_Interface>()
+{
 	return InterfaceFactory::getInstance().getMTInterface();
 };
-template<>
-inline GM_Interface& getInterface<GM_Interface>() {
+
+template <>
+inline GM_Interface& getInterface<GM_Interface>()
+{
 	return InterfaceFactory::getInstance().getGMInterface();
 };
-template<>
-inline RM_Interface& getInterface<RM_Interface>() {
+
+template <>
+inline RM_Interface& getInterface<RM_Interface>()
+{
 	return InterfaceFactory::getInstance().getRMInterface();
 };
-template<>
-inline IP_Interface& getInterface<IP_Interface>() {
+
+template <>
+inline IP_Interface& getInterface<IP_Interface>()
+{
 	return InterfaceFactory::getInstance().getIPInterface();
 };
-

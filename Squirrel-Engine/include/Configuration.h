@@ -12,4 +12,3 @@ public:
 	RenderConfig renderConfig;
 	SchedulerConfig schedulerConfig;
 };
-

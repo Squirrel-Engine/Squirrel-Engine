@@ -1,34 +1,31 @@
 ﻿#include "Skeleton.h"
 
 
-
 Skeleton::Skeleton()
 {
-	TransformComponent* transformComponent = new TransformComponent();
+	auto transformComponent = new TransformComponent();
 	transformComponent->setParent(this);
 	this->transformComponent = transformComponent;
 	this->transformComponent->setup();
 	insertComponent("transformComponent", transformComponent);
 
-	TransformComponent* skeleton_transformComponent = new TransformComponent();
+	auto skeleton_transformComponent = new TransformComponent();
 	skeleton_transformComponent->setParent(this);
 	transformComponent = skeleton_transformComponent;
 	insertComponent("transformComponent", skeleton_transformComponent);
 
-	RenderComponent* skeleton_renderComponent = new RenderComponent();
+	auto skeleton_renderComponent = new RenderComponent();
 	skeleton_renderComponent->setParent(this);
 	renderComponent = skeleton_renderComponent;
 
 	insertComponent("renderComponent", skeleton_renderComponent);
-
 }
 
 void Skeleton::BeginPlay()
 {
-
 }
 
 void Skeleton::Update()
 {
-  transformComponent->rotationY += 5;
+	transformComponent->rotationY += 5;
 }

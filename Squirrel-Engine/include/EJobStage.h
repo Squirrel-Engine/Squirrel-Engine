@@ -1,4 +1,5 @@
-enum class EJobStage {
+enum class EJobStage
+{
 	SYSTEM,
 	SIMULATION,
 	DRAWCALL,

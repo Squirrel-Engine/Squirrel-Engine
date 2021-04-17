@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
 
-class RuntimeManager {
+class RuntimeManager
+{
 public:
 	RuntimeManager();
 

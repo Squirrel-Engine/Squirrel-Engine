@@ -10,9 +10,10 @@
 class DrawCall
 {
 public:
-	DrawCall() {};
+	DrawCall()
+	{
+	};
 
 public:
 	virtual void draw() = 0;
 };
-

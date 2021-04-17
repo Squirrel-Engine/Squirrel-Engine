@@ -1,6 +1,7 @@
 #pragma once
 
-class IConfig {
+class IConfig
+{
 public:
 	virtual void setup() = 0;
 };

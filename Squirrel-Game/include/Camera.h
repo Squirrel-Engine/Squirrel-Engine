@@ -5,6 +5,7 @@
 #include "Components/TransformComponent.h"
 #include "Components/CameraComponent.h"
 SR_ACTOR()
+
 class Camera : public Actor
 {
 public:
@@ -20,4 +21,5 @@ public:
 	CameraComponent* cameraComponent;
 	SR_COMP_END()
 };
+
 SR_ACTOR()

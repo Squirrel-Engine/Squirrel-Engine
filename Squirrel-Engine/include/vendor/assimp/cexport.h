@@ -55,7 +55,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 extern "C" {
 #endif
 
-struct aiScene;  // aiScene.h
+struct aiScene; // aiScene.h
 struct aiFileIO; // aiFileIO.h
 
 // --------------------------------------------------------------------------------
@@ -93,14 +93,14 @@ ASSIMP_API size_t aiGetExportFormatCount(void);
  *    0 to #aiGetExportFormatCount()
  * @return A description of that specific export format. NULL if pIndex is out of range.
  */
-ASSIMP_API const C_STRUCT aiExportFormatDesc* aiGetExportFormatDescription( size_t pIndex);
+ASSIMP_API const C_STRUCT aiExportFormatDesc* aiGetExportFormatDescription(size_t pIndex);
 
 // --------------------------------------------------------------------------------
 /** Release a description of the nth export file format. Must be returned by
 * aiGetExportFormatDescription
 * @param desc Pointer to the description
 */
-ASSIMP_API void aiReleaseExportFormatDescription( const C_STRUCT aiExportFormatDesc *desc );
+ASSIMP_API void aiReleaseExportFormatDescription(const C_STRUCT aiExportFormatDesc* desc);
 
 // --------------------------------------------------------------------------------
 /** Create a modifiable copy of a scene.
@@ -112,7 +112,7 @@ ASSIMP_API void aiReleaseExportFormatDescription( const C_STRUCT aiExportFormatD
  *    delete it again.
  */
 ASSIMP_API void aiCopyScene(const C_STRUCT aiScene* pIn,
-    C_STRUCT aiScene** pOut);
+                            C_STRUCT aiScene** pOut);
 
 
 // --------------------------------------------------------------------------------
@@ -158,10 +158,10 @@ ASSIMP_API void aiFreeScene(const C_STRUCT aiScene* pIn);
 * @note Use aiCopyScene() to get a modifiable copy of a previously
 *   imported scene.
 */
-ASSIMP_API aiReturn aiExportScene( const C_STRUCT aiScene* pScene,
-    const char* pFormatId,
-    const char* pFileName,
-    unsigned int pPreprocessing);
+ASSIMP_API aiReturn aiExportScene(const C_STRUCT aiScene* pScene,
+                                  const char* pFormatId,
+                                  const char* pFileName,
+                                  unsigned int pPreprocessing);
 
 
 // --------------------------------------------------------------------------------
@@ -179,11 +179,11 @@ ASSIMP_API aiReturn aiExportScene( const C_STRUCT aiScene* pScene,
 * @note Use aiCopyScene() to get a modifiable copy of a previously
 *   imported scene.
 */
-ASSIMP_API aiReturn aiExportSceneEx( const C_STRUCT aiScene* pScene,
-    const char* pFormatId,
-    const char* pFileName,
-    C_STRUCT aiFileIO* pIO,
-    unsigned int pPreprocessing );
+ASSIMP_API aiReturn aiExportSceneEx(const C_STRUCT aiScene* pScene,
+                                    const char* pFormatId,
+                                    const char* pFileName,
+                                    C_STRUCT aiFileIO* pIO,
+                                    unsigned int pPreprocessing);
 
 // --------------------------------------------------------------------------------
 /** Describes a blob of exported scene data. Use #aiExportSceneToBlob() to create a blob containing an
@@ -218,18 +218,27 @@ struct aiExportDataBlob
     C_STRUCT aiString name;
 
     /** Pointer to the next blob in the chain or NULL if there is none. */
-    C_STRUCT aiExportDataBlob * next;
+    C_STRUCT aiExportDataBlob* next;
 
 #ifdef __cplusplus
     /// Default constructor
-    aiExportDataBlob() { size = 0; data = next = NULL; }
+    aiExportDataBlob()
+    {
+        size = 0;
+        data = next = nullptr;
+    }
+
     /// Releases the data
-    ~aiExportDataBlob() { delete [] static_cast<unsigned char*>( data ); delete next; }
+    ~aiExportDataBlob()
+    {
+        delete [] static_cast<unsigned char*>(data);
+        delete next;
+    }
 
 private:
     // no copying
-    aiExportDataBlob(const aiExportDataBlob& );
-    aiExportDataBlob& operator= (const aiExportDataBlob& );
+    aiExportDataBlob(const aiExportDataBlob&);
+    aiExportDataBlob& operator=(const aiExportDataBlob&);
 #endif // __cplusplus
 };
 
@@ -243,15 +252,15 @@ private:
 * @param pPreprocessing Please see the documentation for #aiExportScene
 * @return the exported data or NULL in case of error
 */
-ASSIMP_API const C_STRUCT aiExportDataBlob* aiExportSceneToBlob( const C_STRUCT aiScene* pScene, const char* pFormatId,
-    unsigned int pPreprocessing );
+ASSIMP_API const C_STRUCT aiExportDataBlob* aiExportSceneToBlob(const C_STRUCT aiScene* pScene, const char* pFormatId,
+                                                                unsigned int pPreprocessing);
 
 // --------------------------------------------------------------------------------
 /** Releases the memory associated with the given exported data. Use this function to free a data blob
 * returned by aiExportScene().
 * @param pData the data blob returned by #aiExportSceneToBlob
 */
-ASSIMP_API void aiReleaseExportBlob( const C_STRUCT aiExportDataBlob* pData );
+ASSIMP_API void aiReleaseExportBlob(const C_STRUCT aiExportDataBlob* pData);
 
 #ifdef __cplusplus
 }

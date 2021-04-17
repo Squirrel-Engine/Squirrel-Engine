@@ -3,7 +3,8 @@
 
 #include "Window.h"
 
-namespace Squirrel {
+namespace Squirrel
+{
 	class IWindowRenderer
 	{
 	public:
@@ -13,5 +14,3 @@ namespace Squirrel {
 		virtual void render() = 0;
 	};
 }
-
-

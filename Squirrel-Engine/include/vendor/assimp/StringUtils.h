@@ -92,7 +92,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ///	@return	The value as a std::string
 template <typename T>
 AI_FORCE_INLINE
-std::string to_string( T value ) {
+std::string to_string(T value)
+{
     std::ostringstream os;
     os << value;
 
@@ -105,17 +106,22 @@ std::string to_string( T value ) {
 /// @param  end     The last character
 ///	@return	The float value, 0.0f in cas of an error.
 AI_FORCE_INLINE
-float ai_strtof( const char *begin, const char *end ) {
-    if ( nullptr == begin ) {
+float ai_strtof(const char* begin, const char* end)
+{
+    if (nullptr == begin)
+    {
         return 0.0f;
     }
-    float val( 0.0f );
-    if ( nullptr == end ) {
-        val = static_cast< float >( ::atof( begin ) );
-    } else {
-        std::string::size_type len( end - begin );
-        std::string token( begin, len );
-        val = static_cast< float >( ::atof( token.c_str() ) );
+    float val(0.0f);
+    if (nullptr == end)
+    {
+        val = static_cast<float>(atof(begin));
+    }
+    else
+    {
+        std::string::size_type len(end - begin);
+        std::string token(begin, len);
+        val = static_cast<float>(atof(token.c_str()));
     }
 
     return val;
@@ -125,16 +131,18 @@ float ai_strtof( const char *begin, const char *end ) {
 ///	@brief	The portable to convert a decimal value into a hexadecimal string.
 ///	@param	toConvert   Value to convert
 ///	@return	The hexadecimal string, is empty in case of an error.
-template<class T>
+template <class T>
 AI_FORCE_INLINE
-std::string DecimalToHexa( T toConvert ) {
+std::string DecimalToHexa(T toConvert)
+{
     std::string result;
     std::stringstream ss;
     ss << std::hex << toConvert;
     ss >> result;
 
-    for ( size_t i = 0; i < result.size(); ++i ) {
-        result[ i ] = toupper( result[ i ] );
+    for (size_t i = 0; i < result.size(); ++i)
+    {
+        result[i] = toupper(result[i]);
     }
 
     return result;

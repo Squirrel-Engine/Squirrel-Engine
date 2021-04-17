@@ -7,8 +7,14 @@
 class RD_Interface
 {
 public:
-	RD_Interface() {}
-	~RD_Interface() {}
+	RD_Interface()
+	{
+	}
+
+	~RD_Interface()
+	{
+	}
+
 	void startRenderEngine();
 	void pauseRenderEngine();
 	void stopRenderEngine();
@@ -26,4 +32,3 @@ public:
 private:
 	Fur::Fur fur;
 };
-

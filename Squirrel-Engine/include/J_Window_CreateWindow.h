@@ -3,6 +3,7 @@
 #include "JobFactory.h"
 #include <iostream>
 #include <string.h>
+
 namespace Squirrel
 {
 	class J_Window_CreateWindow : public Job

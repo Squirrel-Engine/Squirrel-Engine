@@ -5,7 +5,8 @@
 #include "FurStore.h"
 #include "LightObject.h"
 
-class LightDrawCall : public DrawCall{
+class LightDrawCall : public DrawCall
+{
 public:
 	LightDrawCall(LightObject* light, Shader* shader, TRANSFORM_DESC* transformUniform, LIGHT_DESC* lightUniform);
 

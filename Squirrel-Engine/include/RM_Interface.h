@@ -6,13 +6,18 @@
 
 #include "Model.h"
 #include "Texture.h"
-#include "Timer.h" 
+#include "Timer.h"
 
 class RM_Interface
 {
 public:
-	RM_Interface(){}
-	~RM_Interface(){}
+	RM_Interface()
+	{
+	}
+
+	~RM_Interface()
+	{
+	}
 
 	void loadAssetMap();
 
@@ -26,7 +31,7 @@ public:
 	Texture* getTexture(int index);
 	Shader* getShader(int index);
 	Material* getMaterial(int index);
-	
+
 	//Maps
 	std::unordered_map<int, const std::string> meshAssetMap;
 	std::unordered_map<int, std::string> textureAssetMap;
@@ -37,4 +42,3 @@ public:
 	std::unordered_map<int, Shader*> shaderBuffer;
 	std::unordered_map<int, Material*> materialBuffer;
 };
-

@@ -4,7 +4,8 @@
 #include <map>
 #include "vendor/json.hpp"
 
-class JSONParser {
+class JSONParser
+{
 public:
 	JSONParser(std::string path);
 	nlohmann::json parseFile_json();
@@ -12,4 +13,3 @@ public:
 private:
 	std::string parsePath;
 };
-

@@ -2,6 +2,7 @@
 #include "Actor.h"
 #include "NJob.h"
 #include "InterfaceFactory.h"
+
 class NJ_ActorWorker final : public NJob
 {
 public:
@@ -11,4 +12,3 @@ public:
 	void unmount() override;
 	void run() override;
 };
-

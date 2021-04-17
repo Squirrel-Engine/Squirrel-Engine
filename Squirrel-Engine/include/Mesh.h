@@ -10,19 +10,21 @@
 #include <vector>
 using namespace std;
 
-struct s_Vertex {
-	glm::vec3 Position;
-	glm::vec3 Normal;
-	glm::vec2 TexCoords;
-	glm::vec3 Tangent;
-	glm::vec3 Bitangent;
+struct s_Vertex
+{
+	vec3 Position;
+	vec3 Normal;
+	vec2 TexCoords;
+	vec3 Tangent;
+	vec3 Bitangent;
 };
 
-class Mesh {
+class Mesh
+{
 public:
-	vector<s_Vertex>		vertices;
-	vector<unsigned int>	indices;
-	Material				material;
+	vector<s_Vertex> vertices;
+	vector<unsigned int> indices;
+	Material material;
 	unsigned int VAO;
 
 	Mesh(vector<s_Vertex>& vertices, vector<unsigned int>& indices);

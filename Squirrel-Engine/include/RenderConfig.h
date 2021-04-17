@@ -4,7 +4,8 @@
 #include "vendor/json.hpp"
 #include "ERenderer.h"
 
-class RenderConfig : IConfig {
+class RenderConfig : IConfig
+{
 public:
 	RenderConfig();
 
@@ -13,7 +14,7 @@ public:
 	int screenHeight;
 	std::string windowName;
 
-	void setup();
+	void setup() override;
 private:
 	JSONParser* jsonConfigurator = new JSONParser("../../Squirrel-Engine/src/configs/renderConfig.json");
 };

@@ -59,39 +59,47 @@ template <typename TReal>
 class aiColor4t
 {
 public:
-    aiColor4t() AI_NO_EXCEPT : r(), g(), b(), a() {}
-    aiColor4t (TReal _r, TReal _g, TReal _b, TReal _a)
-        : r(_r), g(_g), b(_b), a(_a) {}
-    explicit aiColor4t (TReal _r) : r(_r), g(_r), b(_r), a(_r) {}
-    aiColor4t (const aiColor4t& o) = default;
+    aiColor4t() AI_NO_EXCEPT : r(), g(), b(), a()
+    {
+    }
+
+    aiColor4t(TReal _r, TReal _g, TReal _b, TReal _a)
+        : r(_r), g(_g), b(_b), a(_a)
+    {
+    }
+
+    explicit aiColor4t(TReal _r) : r(_r), g(_r), b(_r), a(_r)
+    {
+    }
+
+    aiColor4t(const aiColor4t& o) = default;
 
 public:
     // combined operators
-    const aiColor4t& operator += (const aiColor4t& o);
-    const aiColor4t& operator -= (const aiColor4t& o);
-    const aiColor4t& operator *= (TReal f);
-    const aiColor4t& operator /= (TReal f);
+    const aiColor4t& operator +=(const aiColor4t& o);
+    const aiColor4t& operator -=(const aiColor4t& o);
+    const aiColor4t& operator *=(TReal f);
+    const aiColor4t& operator /=(TReal f);
 
 public:
     // comparison
-    bool operator == (const aiColor4t& other) const;
-    bool operator != (const aiColor4t& other) const;
-    bool operator <  (const aiColor4t& other) const;
+    bool operator ==(const aiColor4t& other) const;
+    bool operator !=(const aiColor4t& other) const;
+    bool operator <(const aiColor4t& other) const;
 
     // color tuple access, rgba order
-    inline TReal operator[](unsigned int i) const;
-    inline TReal& operator[](unsigned int i);
+    TReal operator[](unsigned int i) const;
+    TReal& operator[](unsigned int i);
 
     /** check whether a color is (close to) black */
-    inline bool IsBlack() const;
+    bool IsBlack() const;
 
 public:
-
     // Red, green, blue and alpha color values
     TReal r, g, b, a;
-};  // !struct aiColor4D
+}; // !struct aiColor4D
 
-typedef aiColor4t<ai_real> aiColor4D;
+using aiColor4D = aiColor4t<ai_real>;
 
 #else
 

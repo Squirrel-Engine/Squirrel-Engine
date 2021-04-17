@@ -52,10 +52,12 @@ http://www.jalix.org/ressources/graphics/3DS/_unofficials/3ds-unofficial.txt */
 
 // ---------------------------------------------------------------------------
 /** Helper structure representing a face with smoothing groups assigned */
-struct FaceWithSmoothingGroup {
+struct FaceWithSmoothingGroup
+{
     FaceWithSmoothingGroup() AI_NO_EXCEPT
-    : mIndices()
-    , iSmoothGroup(0) {
+        : mIndices()
+          , iSmoothGroup(0)
+    {
         // in debug builds set all indices to a common magic value
 #ifdef ASSIMP_BUILD_DEBUG
         this->mIndices[0] = 0xffffffff;

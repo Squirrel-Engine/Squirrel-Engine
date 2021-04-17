@@ -13,15 +13,13 @@ class Sandbox : public Application
 public:
 	Sandbox()
 	{
-
 	}
 
-	~Sandbox()
+	~Sandbox() override
 	{
-
 	}
 
-	virtual void Run() override;
+	void Run() override;
 };
 
 Application* CreateApplication()
@@ -31,12 +29,11 @@ Application* CreateApplication()
 
 void Sandbox::Run()
 {
-
-	TestControlSchema* testSchema = new TestControlSchema();
+	auto testSchema = new TestControlSchema();
 	getInterface<IP_Interface>().setControlSchema(testSchema);
-	Camera* mainCamera = new Camera();
+	auto mainCamera = new Camera();
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::CAMERA, mainCamera);
-	Skeleton* skeleton = new Skeleton();
+	auto skeleton = new Skeleton();
 	skeleton->health = 100;
 	skeleton->attackPower = 50;
 	skeleton->transformComponent->setTransform(0, 0, -60);
@@ -46,13 +43,12 @@ void Sandbox::Run()
 	skeleton->renderComponent->C_MaterialID_1 = 1;
 	skeleton->renderComponent->C_ShaderID = 0;
 
-	
+
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);
 
 	//
-	Light* light = new Light();
+	auto light = new Light();
 	light->transformComponent->setTransform(0, 20, -20);
 	light->lightComponent->setColor(1, 0, 0);
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::LIGHT, light);
-
 }

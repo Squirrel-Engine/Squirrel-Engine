@@ -6,20 +6,21 @@
 #include "../../../Squirrel-Engine/include/ModelDrawCall.h"
 
 SR_COMPONENT()
+
 class RenderComponent : public ActorComponent
 {
 public:
 	RenderComponent();
 	void BeginPlay() override;
 	void Update() override;
-	void setup();
+	void setup() override;
 
 	int shaderID;
 	int modelID;
 	std::vector<int> materials;
 	SR_VAR_START()
 	int C_ModelID;
-	
+
 	int C_MaterialID_0;
 	int C_MaterialID_1;
 	int C_MaterialID_2;
@@ -40,4 +41,5 @@ public:
 	int C_ShaderID;
 	SR_VAR_END()
 };
+
 SR_COMPONENT()

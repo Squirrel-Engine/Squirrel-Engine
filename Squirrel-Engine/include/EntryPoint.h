@@ -9,12 +9,12 @@
 
 int main(int argc, char** argv)
 {
-    RuntimeManager runtimeManager = RuntimeManager::getInstance();
-	
-	
+	RuntimeManager runtimeManager = RuntimeManager::getInstance();
+
+
 	//RD_Interface 
 	auto app = CreateApplication();
-	
+
 	runtimeManager.engineStartup();
 	app->Run();
 

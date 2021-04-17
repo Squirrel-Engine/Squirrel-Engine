@@ -2,7 +2,8 @@
 #include "Shader.h"
 #include "UniformDesc.h"
 
-class LightObject {
+class LightObject
+{
 private:
 	unsigned int VBO;
 public:

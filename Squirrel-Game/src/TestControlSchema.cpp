@@ -32,6 +32,4 @@ void TestControlSchema::Mouse_Left_PRESS()
 void TestControlSchema::Mouse_Left_HOLD()
 {
 	std::cout << "HOLD" << std::endl;
-
 }
-

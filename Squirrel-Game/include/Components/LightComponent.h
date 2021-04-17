@@ -8,6 +8,7 @@
 #include "include/Components/TransformComponent.h"
 
 SR_COMPONENT()
+
 class LightComponent : public ActorComponent
 {
 private:
@@ -15,7 +16,7 @@ private:
 	LightObject light;
 public:
 	SR_VAR_START()
-	glm::vec3 color;
+	vec3 color;
 	SR_VAR_END()
 
 public:
@@ -27,6 +28,7 @@ public:
 	void setColor(float r, float g, float b);
 
 private:
-	inline int getShaderID() { return shaderID; }
+	int getShaderID() { return shaderID; }
 };
+
 SR_COMPONENT()

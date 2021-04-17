@@ -49,102 +49,104 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <vector>
 #include <stdint.h>
 
-namespace Assimp    {
-
-// ----------------------------------------------------------------------------------
-/** Specialized version of SpatialSort to support smoothing groups
- *  This is used in by the 3DS, ASE and LWO loaders. 3DS and ASE share their
- *  normal computation code in SmoothingGroups.inl, the LWO loader has its own
- *  implementation to handle all details of its file format correctly.
- */
-// ----------------------------------------------------------------------------------
-class ASSIMP_API SGSpatialSort
+namespace Assimp
 {
-public:
-
-    SGSpatialSort();
-
-    // -------------------------------------------------------------------
-    /** Construction from a given face array, handling smoothing groups
-     *  properly
+    // ----------------------------------------------------------------------------------
+    /** Specialized version of SpatialSort to support smoothing groups
+     *  This is used in by the 3DS, ASE and LWO loaders. 3DS and ASE share their
+     *  normal computation code in SmoothingGroups.inl, the LWO loader has its own
+     *  implementation to handle all details of its file format correctly.
      */
-    explicit SGSpatialSort(const std::vector<aiVector3D>& vPositions);
+    // ----------------------------------------------------------------------------------
+    class ASSIMP_API SGSpatialSort
+    {
+    public:
+        SGSpatialSort();
 
-    // -------------------------------------------------------------------
-    /** Add a vertex to the spatial sort
-     * @param vPosition Vertex position to be added
-     * @param index Index of the vrtex
-     * @param smoothingGroup SmoothingGroup for this vertex
-     */
-    void Add(const aiVector3D& vPosition, unsigned int index,
-        unsigned int smoothingGroup);
+        // -------------------------------------------------------------------
+        /** Construction from a given face array, handling smoothing groups
+         *  properly
+         */
+        explicit SGSpatialSort(const std::vector<aiVector3D>& vPositions);
 
-    // -------------------------------------------------------------------
-    /** Prepare the spatial sorter for use. This step runs in O(logn)
-     */
-    void Prepare();
+        // -------------------------------------------------------------------
+        /** Add a vertex to the spatial sort
+         * @param vPosition Vertex position to be added
+         * @param index Index of the vrtex
+         * @param smoothingGroup SmoothingGroup for this vertex
+         */
+        void Add(const aiVector3D& vPosition, unsigned int index,
+                 unsigned int smoothingGroup);
 
-    /** Destructor */
-    ~SGSpatialSort();
+        // -------------------------------------------------------------------
+        /** Prepare the spatial sorter for use. This step runs in O(logn)
+         */
+        void Prepare();
 
-    // -------------------------------------------------------------------
-    /** Returns an iterator for all positions close to the given position.
-     * @param pPosition The position to look for vertices.
-     * @param pSG Only included vertices with at least one shared smooth group
-     * @param pRadius Maximal distance from the position a vertex may have
-     *   to be counted in.
-     * @param poResults The container to store the indices of the found
-     *   positions. Will be emptied by the call so it may contain anything.
-     * @param exactMatch Specifies whether smoothing groups are bit masks
-     *   (false) or integral values (true). In the latter case, a vertex
-     *   cannot belong to more than one smoothing group.
-     * @return An iterator to iterate over all vertices in the given area.
-     */
-    // -------------------------------------------------------------------
-    void FindPositions( const aiVector3D& pPosition, uint32_t pSG,
-        float pRadius, std::vector<unsigned int>& poResults,
-        bool exactMatch = false) const;
+        /** Destructor */
+        ~SGSpatialSort();
 
-protected:
-    /** Normal of the sorting plane, normalized. The center is always at (0, 0, 0) */
-    aiVector3D mPlaneNormal;
+        // -------------------------------------------------------------------
+        /** Returns an iterator for all positions close to the given position.
+         * @param pPosition The position to look for vertices.
+         * @param pSG Only included vertices with at least one shared smooth group
+         * @param pRadius Maximal distance from the position a vertex may have
+         *   to be counted in.
+         * @param poResults The container to store the indices of the found
+         *   positions. Will be emptied by the call so it may contain anything.
+         * @param exactMatch Specifies whether smoothing groups are bit masks
+         *   (false) or integral values (true). In the latter case, a vertex
+         *   cannot belong to more than one smoothing group.
+         * @return An iterator to iterate over all vertices in the given area.
+         */
+        // -------------------------------------------------------------------
+        void FindPositions(const aiVector3D& pPosition, uint32_t pSG,
+                           float pRadius, std::vector<unsigned int>& poResults,
+                           bool exactMatch = false) const;
 
-    // -------------------------------------------------------------------
-    /** An entry in a spatially sorted position array. Consists of a
-     *  vertex index, its position and its pre-calculated distance from
-     *  the reference plane */
-    // -------------------------------------------------------------------
-    struct Entry {
-        unsigned int mIndex;    ///< The vertex referred by this entry
-        aiVector3D mPosition;   ///< Position
-        uint32_t mSmoothGroups;
-        float mDistance;        ///< Distance of this vertex to the sorting plane
+    protected:
+        /** Normal of the sorting plane, normalized. The center is always at (0, 0, 0) */
+        aiVector3D mPlaneNormal;
 
-        Entry() AI_NO_EXCEPT
-        : mIndex(0)
-        , mPosition()
-        , mSmoothGroups(0)
-        , mDistance(0.0f) {
-            // empty
-        }
+        // -------------------------------------------------------------------
+        /** An entry in a spatially sorted position array. Consists of a
+         *  vertex index, its position and its pre-calculated distance from
+         *  the reference plane */
+        // -------------------------------------------------------------------
+        struct Entry
+        {
+            unsigned int mIndex; ///< The vertex referred by this entry
+            aiVector3D mPosition; ///< Position
+            uint32_t mSmoothGroups;
+            float mDistance; ///< Distance of this vertex to the sorting plane
 
-        Entry( unsigned int pIndex, const aiVector3D& pPosition, float pDistance,uint32_t pSG)
-        : mIndex( pIndex)
-        , mPosition( pPosition)
-        , mSmoothGroups(pSG)
-        , mDistance( pDistance) {
-            // empty
-        }
+            Entry() AI_NO_EXCEPT
+                : mIndex(0)
+                  , mPosition()
+                  , mSmoothGroups(0)
+                  , mDistance(0.0f)
+            {
+                // empty
+            }
 
-        bool operator < (const Entry& e) const {
-            return mDistance < e.mDistance;
-        }
+            Entry(unsigned int pIndex, const aiVector3D& pPosition, float pDistance, uint32_t pSG)
+                : mIndex(pIndex)
+                  , mPosition(pPosition)
+                  , mSmoothGroups(pSG)
+                  , mDistance(pDistance)
+            {
+                // empty
+            }
+
+            bool operator <(const Entry& e) const
+            {
+                return mDistance < e.mDistance;
+            }
+        };
+
+        // all positions, sorted by distance to the sorting plane
+        std::vector<Entry> mPositions;
     };
-
-    // all positions, sorted by distance to the sorting plane
-    std::vector<Entry> mPositions;
-};
-
 } // end of namespace Assimp
 
 #endif // AI_SPATIALSORT_H_INC

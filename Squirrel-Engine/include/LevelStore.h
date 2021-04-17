@@ -2,7 +2,8 @@
 #include <string>
 #include "Actor.h"
 
-enum class EActorType {
+enum class EActorType
+{
 	ACTOR,
 	CAMERA,
 	LIGHT
@@ -10,7 +11,6 @@ enum class EActorType {
 
 class LevelStore
 {
-
 public:
 	LevelStore();
 

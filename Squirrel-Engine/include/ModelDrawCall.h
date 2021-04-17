@@ -8,12 +8,12 @@
 #include "Model.h"
 #include "DrawCall.h"
 
-class ModelDrawCall :  public DrawCall
+class ModelDrawCall : public DrawCall
 {
 public:
 	ModelDrawCall(Model* model, Shader* shader, TRANSFORM_DESC* uniformDesc);
 	void draw() override;
-	
+
 public:
 	Model* model;
 	Shader* shader;

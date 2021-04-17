@@ -1,16 +1,18 @@
 #include "RuntimeManager.h"
 #include "InterfaceFactory.h"
 
-RuntimeManager::RuntimeManager() {
-
+RuntimeManager::RuntimeManager()
+{
 }
 
-RuntimeManager& RuntimeManager::getInstance() {
+RuntimeManager& RuntimeManager::getInstance()
+{
 	static RuntimeManager instance;
 	return instance;
 }
 
-void RuntimeManager::engineStartup() {
+void RuntimeManager::engineStartup()
+{
 	std::cout << "Engine is Loading" << std::endl;
 
 	//Interface Initialization
@@ -18,11 +20,11 @@ void RuntimeManager::engineStartup() {
 	getInterface<RM_Interface>().loadAssetMT();
 }
 
-void RuntimeManager::engineShutdown() {
+void RuntimeManager::engineShutdown()
+{
 	std::cout << "Shutdown" << std::endl;
 
 	// Memory Deallocation
 
 	// Export Log History
 }
-

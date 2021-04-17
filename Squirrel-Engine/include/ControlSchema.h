@@ -3,22 +3,51 @@
 class ControlSchematic
 {
 public:
-	ControlSchematic() {}
-	virtual void Key_SPACE_PRESS() {};
-	virtual void Key_SPACE_RELEASE() {};
-	virtual void Key_Space_HOLD() {};
+	ControlSchematic()
+	{
+	}
 
-	virtual void Mouse_Movement() {};
+	virtual void Key_SPACE_PRESS()
+	{
+	};
 
-	virtual void ScrollMovement() {};
+	virtual void Key_SPACE_RELEASE()
+	{
+	};
 
-	virtual void Mouse_Left_PRESS() {};
-	virtual void Mouse_Left_RELEASE() {};
-	virtual void Mouse_Left_HOLD() {};
+	virtual void Key_Space_HOLD()
+	{
+	};
 
-	virtual void Mouse_Right_PRESS() {};
-	virtual void Mouse_Right_RELEASE() {};
-	virtual void Mouse_Right_HOLD() {};
+	virtual void Mouse_Movement()
+	{
+	};
 
+	virtual void ScrollMovement()
+	{
+	};
+
+	virtual void Mouse_Left_PRESS()
+	{
+	};
+
+	virtual void Mouse_Left_RELEASE()
+	{
+	};
+
+	virtual void Mouse_Left_HOLD()
+	{
+	};
+
+	virtual void Mouse_Right_PRESS()
+	{
+	};
+
+	virtual void Mouse_Right_RELEASE()
+	{
+	};
+
+	virtual void Mouse_Right_HOLD()
+	{
+	};
 };
-

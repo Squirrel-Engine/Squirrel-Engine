@@ -8,7 +8,6 @@ void RD_Interface::startRenderEngine()
 		{
 		case ERenderer::Fur:
 			fur.startRenderEngine();
-
 		}
 	}
 	catch (std::exception& e)
@@ -25,7 +24,6 @@ void RD_Interface::pauseRenderEngine()
 		{
 		case ERenderer::Fur:
 			fur.pauseRenderEngine();
-
 		}
 	}
 	catch (std::exception& e)
@@ -42,7 +40,6 @@ void RD_Interface::stopRenderEngine()
 		{
 		case ERenderer::Fur:
 			fur.stopRenderEngine();
-
 		}
 	}
 	catch (std::exception& e)
@@ -76,7 +73,6 @@ void RD_Interface::addActorToRenderQueue()
 		{
 		case ERenderer::Fur:
 			fur.addActorToRenderQueue();
-
 		}
 	}
 	catch (std::exception& e)
@@ -93,7 +89,6 @@ void RD_Interface::submitDrawCall(DrawCall& drawCall)
 		{
 		case ERenderer::Fur:
 			fur.submitDrawCall(drawCall);
-
 		}
 	}
 	catch (std::exception& e)
@@ -126,7 +121,6 @@ void RD_Interface::updateRenderEngineOptions(std::string parameterName, float pa
 		{
 		case ERenderer::Fur:
 			fur.updateRenderEngineOptions(parameterName, parameter);
-
 		}
 	}
 	catch (std::exception& e)
@@ -143,7 +137,6 @@ void RD_Interface::updateRenderEngineOptions(std::string parameterName, std::str
 		{
 		case ERenderer::Fur:
 			fur.updateRenderEngineOptions(parameterName, parameter);
-
 		}
 	}
 	catch (std::exception& e)

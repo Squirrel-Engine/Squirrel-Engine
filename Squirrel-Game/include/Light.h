@@ -6,6 +6,7 @@
 #include "Components/RenderComponent.h"
 
 SR_ACTOR()
+
 class Light : public Actor
 {
 public:
@@ -22,4 +23,5 @@ public:
 	LightComponent* lightComponent;
 	SR_COMP_END()
 };
+
 SR_ACTOR()

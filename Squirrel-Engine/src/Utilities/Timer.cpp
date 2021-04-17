@@ -17,5 +17,3 @@ float Timer::setTimeStamp()
 {
 	return std::chrono::duration<float>(std::chrono::steady_clock::now() - last).count();
 }
-
-

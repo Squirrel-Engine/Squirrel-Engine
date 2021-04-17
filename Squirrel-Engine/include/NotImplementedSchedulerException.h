@@ -7,9 +7,8 @@
 
 class NotImplementedSchedulerException : public std::exception
 {
-    virtual const char* what() const throw()
-    {
-        return "This Scheduler is Not Yet Implemented";
-    }
+	const char* what() const throw() override
+	{
+		return "This Scheduler is Not Yet Implemented";
+	}
 } NotImplementedSchedulerException;
-

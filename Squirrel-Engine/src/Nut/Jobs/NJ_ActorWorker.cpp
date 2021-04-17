@@ -1,11 +1,8 @@
 #include "NJ_ActorWorker.h"
 
 
-
-
 NJ_ActorWorker::NJ_ActorWorker(Actor* _actor) : actor(_actor)
 {
-
 }
 
 void NJ_ActorWorker::mount()
@@ -28,14 +25,13 @@ void NJ_ActorWorker::run()
 			component.second->BeginPlay();
 			component.second->Update();
 		}
-
 	}
-	else {
+	else
+	{
 		actor->Update();
 		for (auto& component : actor->componentList)
 		{
 			component.second->Update();
 		}
 	}
-
 }
