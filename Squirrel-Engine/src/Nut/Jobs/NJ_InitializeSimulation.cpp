@@ -1,9 +1,5 @@
 #include "NJ_InitializeSimulation.h"
-
-#include "InterfaceFactory.h"
 #include "NJ_ActorWorker.h"
-namespace Squirrel
-{
 
 	NJ_InitializeSimulation::NJ_InitializeSimulation()
 	{
@@ -30,4 +26,3 @@ namespace Squirrel
 		//Camera
 		InterfaceFactory::getInstance().getMTInterface().submitJob(*new NJ_ActorWorker(InterfaceFactory::getInstance().getGMInterface().levelStore->mainCamera), EQueueOrder::LOW_ORDER);
 	}
-}

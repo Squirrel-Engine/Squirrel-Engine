@@ -25,7 +25,7 @@ namespace Fur
 			glfwTerminate();
 		}
 		glfwMakeContextCurrent(furWindow);
-
+		glfwSetFramebufferSizeCallback(furWindow, Fur::framebuffer_size_callback);
 		// glad: load all OpenGL function pointers
 		// ---------------------------------------
 		if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -50,6 +50,13 @@ namespace Fur
 	void Fur::stopRenderEngine()
 	{
 		
+	}
+
+	void Fur::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+	{
+		// make sure the viewport matches the new window dimensions; note that width and 
+// height will be significantly larger than specified on retina displays.
+		glViewport(0, 0, width, height);
 	}
 
 	void Fur::render()

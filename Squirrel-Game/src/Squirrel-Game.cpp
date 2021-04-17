@@ -1,9 +1,12 @@
 ﻿// Squirrel-Engine.cpp : Defines the entry point for the application.
 //
+
 #include "../Squirrel-Engine/include/Squirrel.h"
 #include "include/Skeleton.h"
 #include "include/Camera.h"
 #include "include/Light.h"
+#include "Squirrel-Game.h"
+
 
 class Sandbox : public Application
 {
@@ -28,6 +31,9 @@ Application* CreateApplication()
 
 void Sandbox::Run()
 {
+
+  TestControlSchema* testSchema = new TestControlSchema();
+	Squirrel::InterfaceFactory::getInstance().getIPInterface().setControlSchema(testSchema);
 	Camera* mainCamera = new Camera();
 	InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(EActorType::CAMERA, mainCamera);
 	//
@@ -49,4 +55,5 @@ void Sandbox::Run()
 	light->transformComponent->setTransform(0, 20, -20);
 	light->lightComponent->setColor(1, 0, 0);
 	InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(EActorType::LIGHT, light);
+
 }

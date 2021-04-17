@@ -3,6 +3,7 @@
 #include "RD_Interface.h"
 #include "MT_Interface.h"
 #include "RM_Interface.h"
+#include "IP_Interface.h"
 
 class InterfaceFactory
 {
@@ -10,6 +11,7 @@ private:
 	// Singleton
 	InterfaceFactory() {};
 	~InterfaceFactory() {};
+
 
 	RD_Interface rd_Interface;
 	MT_Interface mt_Interface;
@@ -42,3 +44,4 @@ template<>
 inline RM_Interface& getInterface<RM_Interface>() {
 	return InterfaceFactory::getInstance().getRMInterface();
 };
+}

@@ -26,6 +26,7 @@ void TransformComponent::Update()
 void TransformComponent::setup()
 {
 	uniform = new TRANSFORM_DESC();
+
 }
 
 glm::vec3& TransformComponent::getTransform()
@@ -38,7 +39,13 @@ glm::vec3 TransformComponent::getRotation()
 	return glm::vec3(rotationX, rotationY, rotationZ);
 }
 
-void TransformComponent::setTransform(float x, float y, float z)
+
+glm::vec3 TransformComponent::getScale()
+{
+	return glm::vec3(scaleX, scaleY, scaleZ);
+}
+
+void TransformComponent::setTransform(glm::vec3 vector)
 {
 	glm::vec3 vector(x, y, z);
 	positionX = vector.x;
@@ -52,4 +59,11 @@ void TransformComponent::setRotation(float x, float y, float z)
 	rotationX = vector.x;
 	rotationY = vector.y;
 	rotationZ = vector.z;
+}
+
+void TransformComponent::setScale(glm::vec3 vector)
+{
+	scaleX = vector.x;
+	scaleY = vector.y;
+	scaleZ = vector.z;
 }

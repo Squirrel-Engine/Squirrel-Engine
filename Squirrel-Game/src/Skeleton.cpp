@@ -1,5 +1,7 @@
 ﻿#include "Skeleton.h"
 
+
+
 Skeleton::Skeleton()
 {
 	TransformComponent* transformComponent = new TransformComponent();
@@ -8,22 +10,25 @@ Skeleton::Skeleton()
 	this->transformComponent->setup();
 	insertComponent("transformComponent", transformComponent);
 
-	RenderComponent* renderComponent = new RenderComponent();
-	renderComponent->C_ModelID = 0;
-	renderComponent->C_MaterialID_0 = 0;
-	renderComponent->C_MaterialID_1 = 1;
-	renderComponent->C_ShaderID = 0;
-	renderComponent->setParent(this);
-	this->renderComponent = renderComponent;
-	this->renderComponent->setup();
-	insertComponent("renderComponent", renderComponent);
+	TransformComponent* skeleton_transformComponent = new TransformComponent();
+	skeleton_transformComponent->setParent(this);
+	transformComponent = skeleton_transformComponent;
+	insertComponent("transformComponent", skeleton_transformComponent);
+
+	RenderComponent* skeleton_renderComponent = new RenderComponent();
+	skeleton_renderComponent->setParent(this);
+	renderComponent = skeleton_renderComponent;
+
+	insertComponent("renderComponent", skeleton_renderComponent);
+
 }
 
 void Skeleton::BeginPlay()
 {
+
 }
 
 void Skeleton::Update()
 {
-	transformComponent->getComponent<TransformComponent*>("transformComponent")->rotationY += 0.05;
+  transformComponent->rotationY += 5;
 }
