@@ -5,19 +5,16 @@
 #include "vendor/json.hpp"
 #include "ERenderer.h"
 
-namespace Squirrel {
-	class RenderConfig : IConfig {
-	public:
-		RenderConfig();
+class RenderConfig : IConfig {
+public:
+	RenderConfig();
 
-		Squirrel::ERenderer renderer;
-		int screenWidth;
-		int screenHeight;
-		std::string windowName;
+	ERenderer renderer;
+	int screenWidth;
+	int screenHeight;
+	std::string windowName;
 
-		void setup();
-	private:
-		Squirrel::JSONParser* jsonConfigurator = new Squirrel::JSONParser("../../Squirrel-Engine/src/configs/renderConfig.json");
-	};
-}
-
+	void setup();
+private:
+	JSONParser* jsonConfigurator = new JSONParser("../../Squirrel-Engine/src/configs/renderConfig.json");
+};

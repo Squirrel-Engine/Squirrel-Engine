@@ -3,31 +3,27 @@
 #include "Actor.h"
 #include "IStore.h"
 
-namespace Squirrel
+enum class EActorType {
+	ACTOR,
+	CAMERA,
+	LIGHT
+};
+
+class LevelStore
 {
-	enum class EActorType {
-		ACTOR,
-		CAMERA,
-		LIGHT
-	};
 
-	class LevelStore
-	{
-		
-	public:
-		LevelStore();
+public:
+	LevelStore();
 
-		std::vector<Actor*> actors;
-		std::vector<Actor*> lights;
-		Actor* mainCamera;
-		
-		std::string name;
+	std::vector<Squirrel::Actor*> actors;
+	std::vector<Squirrel::Actor*> lights;
+	Squirrel::Actor* mainCamera;
 
-		void spawnNewActor(EActorType type, Actor* actor);
+	std::string name;
 
-		Actor* getActor(EActorType type, int row);
+	void spawnNewActor(EActorType type, Squirrel::Actor* actor);
 
-		void setupStore(std::string _name, std::vector<Actor*> initialActorVector);
-	};
+	Squirrel::Actor* getActor(EActorType type, int row);
 
-}
+	void setupStore(std::string _name, std::vector<Squirrel::Actor*> initialActorVector);
+};

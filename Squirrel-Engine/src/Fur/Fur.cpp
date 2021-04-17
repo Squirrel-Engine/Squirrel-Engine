@@ -10,7 +10,7 @@ namespace Fur
 	void Fur::startRenderEngine()
 	{
 		//access all rendering options
-		Squirrel::RenderConfig config = Squirrel::Configuration::getInstance().renderConfig;
+		RenderConfig config = Configuration::getInstance().renderConfig;
 		
 		//start
 		glfwInit();

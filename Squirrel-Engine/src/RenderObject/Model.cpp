@@ -23,7 +23,7 @@ void Model::Draw(Shader& shader, Squirrel::TRANSFORM_DESC& uniformDesc)
 	shader.setVec3("viewPos", cameraDesc->viewPos);	
 	shader.setMat4("viewProjection", cameraDesc->viewProjection);
 	shader.setMat4("model", uniformDesc.model);
-	for (Squirrel::Actor* light : Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->lights) {
+	for (Squirrel::Actor* light : InterfaceFactory::getInstance().getGMInterface().levelStore->lights) {
 		Squirrel::LIGHT_DESC* desc  = dynamic_cast<Squirrel::LIGHT_DESC*>(light->componentList.at("lightComponent")->uniform);
 		shader.setVec3("light.color", desc->lightColor);
 		shader.setVec3("light.position", desc->lightPos);

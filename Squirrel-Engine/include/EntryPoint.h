@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 	runtimeManager.engineStartup();
 	app->Run();
 
-	Squirrel::InterfaceFactory::getInstance().getMTInterface().startScheduler();
+	InterfaceFactory::getInstance().getMTInterface().startScheduler();
 	runtimeManager.engineShutdown();
 
 	delete app;

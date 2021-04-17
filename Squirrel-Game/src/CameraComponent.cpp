@@ -2,8 +2,8 @@
 
 CameraComponent::CameraComponent()
 {
-	m_ViewportHeight = Squirrel::Configuration::getInstance().renderConfig.screenHeight;
-	m_ViewportWidth = Squirrel::Configuration::getInstance().renderConfig.screenWidth;
+	m_ViewportHeight = Configuration::getInstance().renderConfig.screenHeight;
+	m_ViewportWidth = Configuration::getInstance().renderConfig.screenWidth;
 
 	updateProjection();
 }

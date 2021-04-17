@@ -4,121 +4,120 @@
 #include "NJ_InitializeFrame.h"
 #include "Configuration.h"
 
-namespace Squirrel
+std::mutex m;
+Nut::Nut()
 {
-	std::mutex m;
-	Nut::Nut()
-	{
-	}
-	
-	void Nut::threadProcess()
-	{
-		NJob* job;
-		while (true)
-		{
-			job = schedular();
-			if (job == nullptr)
-			{
+}
 
-			}
-			else
-			{
-				job->run();
-			}
+void Nut::threadProcess()
+{
+	NJob* job;
+	while (true)
+	{
+		job = schedular();
+		if (job == nullptr)
+		{
+
+		}
+		else
+		{
+			job->run();
 		}
 	}
-	
-	void Nut::startScheduler()
+}
+
+void Nut::startScheduler()
+{
+	if (Configuration::getInstance().schedulerConfig.mtMode == true)
 	{
-		if(Configuration::getInstance().schedulerConfig.mtMode == true)
+		int threadCount = 8;
+		std::vector<std::thread> threadPool;
+
+		for (int i = 0; i < threadCount; i++)
 		{
-			int threadCount = 8;
-			std::vector<std::thread> threadPool;
+			threadPool.push_back(std::thread(&Nut::threadProcess, this));
+		}
 
-			for (int i = 0; i < threadCount; i++)
-			{
-				threadPool.push_back(std::thread(&Nut::threadProcess, this));
-			}
-
-			for (int i = 0; i < threadCount; i++)
-			{
-				threadPool.at(i).detach();
-			}
-
-			while (true)
-			{
-				jobQueueHighOrder.push(new NJ_InitializeFrame());
-
-				while (jobQueueHighOrder.size() != 0)
-				{
-					if (jobQueueLowOrder.size() == 0) {
-						jobQueueHighOrder.front()->run();
-						free(jobQueueHighOrder.front());
-						jobQueueHighOrder.pop();
-					}
-				}
-			}
-
-		}else
+		for (int i = 0; i < threadCount; i++)
 		{
-			//Game Loop
-			while (true)
-			{
-				jobQueueHighOrder.push(new NJ_InitializeFrame());
+			threadPool.at(i).detach();
+		}
 
-				// Frame Loop
-				while (jobQueueHighOrder.size() != 0)
-				{
+		while (true)
+		{
+			jobQueueHighOrder.push(new Squirrel::NJ_InitializeFrame());
+
+			while (jobQueueHighOrder.size() != 0)
+			{
+				if (jobQueueLowOrder.size() == 0) {
 					jobQueueHighOrder.front()->run();
 					free(jobQueueHighOrder.front());
 					jobQueueHighOrder.pop();
-					while (jobQueueLowOrder.size() != 0)
-					{
-						jobQueueLowOrder.front()->run();
-						free(jobQueueLowOrder.front());
-						jobQueueLowOrder.pop();
-					}
+				}
+			}
+		}
+
+	}
+	else
+	{
+		//Game Loop
+		while (true)
+		{
+			jobQueueHighOrder.push(new Squirrel::NJ_InitializeFrame());
+
+			// Frame Loop
+			while (jobQueueHighOrder.size() != 0)
+			{
+				jobQueueHighOrder.front()->run();
+				free(jobQueueHighOrder.front());
+				jobQueueHighOrder.pop();
+				while (jobQueueLowOrder.size() != 0)
+				{
+					jobQueueLowOrder.front()->run();
+					free(jobQueueLowOrder.front());
+					jobQueueLowOrder.pop();
 				}
 			}
 		}
 	}
+}
 
-	void Nut::stopScheduler()
+void Nut::stopScheduler()
+{
+}
+
+void Nut::pauseScheduler()
+{
+}
+
+NJob* Nut::schedular()
+{
+	m.lock();
+	NJob* job;
+	if (jobQueueLowOrder.empty() == true)
 	{
+		job = nullptr;
 	}
-
-	void Nut::pauseScheduler()
+	else
 	{
+		job = jobQueueLowOrder.front();
+		jobQueueLowOrder.pop();
 	}
+	m.unlock();
+	return job;
+}
 
-	NJob* Nut::schedular()
+
+
+void Nut::submitJob(NJob& job, EQueueOrder order)
+{
+	switch (order)
 	{
-		m.lock();
-		NJob* job;
-		if(jobQueueLowOrder.empty() == true)
-		{
-			job = nullptr;
-		}else
-		{
-			job = jobQueueLowOrder.front();
-			jobQueueLowOrder.pop();
-		}
-		m.unlock();
-		return job;
-	}
-
-
-
-	void Nut::submitJob(NJob& job, EQueueOrder order)
-	{
-		switch (order)
-		{
-		case EQueueOrder::LOW_ORDER:
-			jobQueueLowOrder.push(&job);
-			break;
-		case EQueueOrder::HIGH_ORDER:
-			jobQueueHighOrder.push(&job);
-			break;
-		}
+	case EQueueOrder::LOW_ORDER:
+		jobQueueLowOrder.push(&job);
+		break;
+	case EQueueOrder::HIGH_ORDER:
+		jobQueueHighOrder.push(&job);
+		break;
 	}
 }

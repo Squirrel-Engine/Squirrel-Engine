@@ -1,45 +1,42 @@
 #include "LevelStore.h"
 
-namespace Squirrel
+LevelStore::LevelStore()
 {
-	LevelStore::LevelStore()
-	{
-	}
+}
 
-	void LevelStore::spawnNewActor(EActorType type, Actor* actor)
+void LevelStore::spawnNewActor(EActorType type, Squirrel::Actor* actor)
+{
+	switch (type)
 	{
-		switch (type)
-		{
-		case EActorType::ACTOR:
-			actors.push_back(actor);
-			break;
-		case EActorType::CAMERA:
-			mainCamera = actor;
-			break;
-		case EActorType::LIGHT:
-			lights.push_back(actor);
-			break;
-		default:
-			break;
-		}
+	case EActorType::ACTOR:
+		actors.push_back(actor);
+		break;
+	case EActorType::CAMERA:
+		mainCamera = actor;
+		break;
+	case EActorType::LIGHT:
+		lights.push_back(actor);
+		break;
+	default:
+		break;
 	}
+}
 
-	Actor* LevelStore::getActor(EActorType type, int row)
+Squirrel::Actor* LevelStore::getActor(EActorType type, int row)
+{
+	switch (type)
 	{
-		switch (type)
-		{
-		case EActorType::ACTOR:
-			return actors[row];
-		case EActorType::CAMERA:
-			return mainCamera;
-		case EActorType::LIGHT:
-			return lights[row];
-		}
+	case EActorType::ACTOR:
+		return actors[row];
+	case EActorType::CAMERA:
+		return mainCamera;
+	case EActorType::LIGHT:
+		return lights[row];
 	}
+}
 
-	void LevelStore::setupStore(std::string _name, std::vector<Actor*> initialActorVector)
-	{
-		name = name;
-		actors = initialActorVector;
-	}
+void LevelStore::setupStore(std::string _name, std::vector<Squirrel::Actor*> initialActorVector)
+{
+	name = name;
+	actors = initialActorVector;
 }
