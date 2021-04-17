@@ -16,37 +16,8 @@ namespace Squirrel{
         std::cout << "Engine is Loading" << std::endl;
 
         //Interface Initialization
-
-        InterfaceFactory::getInstance().getRDInterface().startRenderEngine();
-        InterfaceFactory::getInstance().getRMInterface().loadAssetMT();
-
-    	//!!!------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    	
-        //!!!------------------------------------------------------------------------------------------------------------------------------------------------------------
-        // Store Allocation
-        //renderStore = (struct RenderStore*)malloc(sizeof(struct RenderStore));
-        //jobFactory = (struct JobFactory*)malloc(sizeof(struct JobFactory));
-    	// Job Queue Allocation
-        // Memory Allocation
-
-        // Set Configurations
-
-        // Configure Profiler
+        getInterface<RD_Interface>().startRenderEngine();
+        getInterface<RM_Interface>().loadAssetMT();
     }
 
     void RuntimeManager::engineShutdown() {

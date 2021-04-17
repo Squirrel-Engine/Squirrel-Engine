@@ -1,8 +1,7 @@
+#pragma once
 #include <map>
 #include <iostream>
 #include <string>
-#include <thread>
-#include <mutex>
 #include <vector>
 
 #include "Model.h"
@@ -14,8 +13,8 @@ namespace Squirrel
 	{
 	public:
 		RM_Interface(){}
-		~RM_Interface() {}
-		//void loadAssetMap(FILE* fp);
+		~RM_Interface(){}
+
 		void loadAssetMap();
 
 		void loadMeshAsset();
@@ -28,23 +27,15 @@ namespace Squirrel
 		Texture* getTexture(int index);
 		Shader* getShader(int index);
 		Material* getMaterial(int index);
-		//Model
-
-		//Tex
+		
+		//Maps
 		std::unordered_map<int, const std::string> meshAssetMap;
 		std::unordered_map<int, std::string> textureAssetMap;
 		std::unordered_map<int, std::string> shaderAssetMap;
-		//Thread
-		std::mutex meshesMutex;
-		std::vector<std::thread> vecOfThreads;
-
+		//Buffers
 		std::unordered_map<int, Model*> meshBuffer;
 		std::unordered_map<int, Texture*> textureBuffer;
-		std::unordered_map<int, Material*> materialBuffer;
 		std::unordered_map<int, Shader*> shaderBuffer;
-		
-		int assignAsset();
-	private:
-
+		std::unordered_map<int, Material*> materialBuffer;
 	};
 }

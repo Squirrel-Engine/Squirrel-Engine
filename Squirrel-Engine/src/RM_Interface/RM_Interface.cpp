@@ -4,12 +4,11 @@
 namespace Squirrel
 {
 	int MaterialDataBase[MATERIAL_COUNT][3] = {
-	//diffuse	//normal	//specular
-		{0,			1,			2},
-		{0,			1,			2},
-		{0,			1,			2}
+		//diffuse	//normal	//specular
+			{0,			1,			2},
+			{0,			1,			2},
+			{0,			1,			2}
 	};
-
 	void RM_Interface::loadAssetMap()
 	{
 		//Mesh
@@ -76,11 +75,6 @@ namespace Squirrel
 		loadTextureAsset();
 		loadMaterialAsset();
 		loadShaderAsset();
-	}
-
-	int RM_Interface::assignAsset()
-	{
-		return 0;
 	}
 
 	Model* RM_Interface::getMesh(int index)

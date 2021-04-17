@@ -36,6 +36,8 @@ void Sandbox::Run()
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(Squirrel::EActorType::CAMERA, mainCamera);
 	//
 	Skeleton* skeleton = new Skeleton();
+	skeleton->health = 100;
+	skeleton->attackPower = 50;
 	skeleton->transformComponent->setTransform(0, 0, -60);
 	skeleton->transformComponent->setRotation(20, 20, 20);
 	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(Squirrel::EActorType::ACTOR, skeleton);

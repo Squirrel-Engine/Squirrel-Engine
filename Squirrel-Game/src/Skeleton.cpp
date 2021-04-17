@@ -2,9 +2,6 @@
 
 Skeleton::Skeleton()
 {
-	health = 100;
-	attackPower = 50;
-
 	TransformComponent* transformComponent = new TransformComponent();
 	transformComponent->setParent(this);
 	this->transformComponent = transformComponent;

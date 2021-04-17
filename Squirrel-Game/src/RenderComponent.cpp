@@ -26,7 +26,7 @@ void RenderComponent::setup()
 	modelID = C_ModelID;
 	shaderID = C_ShaderID;
 
-	int size = Squirrel::InterfaceFactory::getInstance().getRMInterface().getMesh(modelID)->meshes.size();
+	int size = Squirrel::getInterface<Squirrel::RM_Interface>().getMesh(modelID)->meshes.size();
 	std::cout << "Size: " << size << std::endl;
 	switch (size)
 	{

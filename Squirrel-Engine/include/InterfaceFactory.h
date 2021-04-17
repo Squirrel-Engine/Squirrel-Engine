@@ -25,6 +25,24 @@ namespace Squirrel
 		RM_Interface& getRMInterface();
 		static InterfaceFactory& getInstance();
 	};
+	template <typename T>
+	T& getInterface();
 
-	
+	template<>
+	inline RD_Interface& getInterface<RD_Interface>() {
+		return InterfaceFactory::getInstance().getRDInterface();
+	};
+	template<>
+	inline MT_Interface& getInterface<MT_Interface>() {
+		return InterfaceFactory::getInstance().getMTInterface();
+	};
+	template<>
+	inline GM_Interface& getInterface<GM_Interface>() {
+		return InterfaceFactory::getInstance().getGMInterface();
+	};
+	template<>
+	inline RM_Interface& getInterface<RM_Interface>() {
+		return InterfaceFactory::getInstance().getRMInterface();
+	};
+
 }
