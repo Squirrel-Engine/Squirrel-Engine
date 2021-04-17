@@ -1,23 +1,37 @@
 #pragma once
 #include <glm/glm.hpp>
 
-namespace Squirrel
-{
-	typedef struct UNIFORM_DESC
-	{
-		glm::mat4 model;
-	}UNIFORM_DESC;
+class Uniforms {
+public:
+	Uniforms() {};
+	virtual void setup() = 0;
+};
 
-	typedef struct CAMERA_DESC
-	{
-		glm::vec3 viewPos;
-		glm::mat4 viewProjection;
-	}CAMERA_DESC;
+class TRANSFORM_DESC : public Uniforms {
+public:
+	TRANSFORM_DESC() {};
+	inline void setup() override {};
+	glm::mat4 model;
+};
 
-	typedef struct LIGHT_DESC
-	{
-		glm::vec3 lightPos;
-		glm::vec3 viewPos;
-		glm::mat4 viewProjection;
-	}LIGHT_DESC;
-}
+class CAMERA_DESC : public Uniforms {
+public:
+	CAMERA_DESC() {};
+	inline void setup() override {};
+	glm::vec3 viewPos;
+	glm::mat4 viewProjection;
+};
+
+class LIGHT_DESC : public Uniforms {
+public:
+	LIGHT_DESC() {};
+	inline void setup() override {};
+
+	glm::vec3 lightColor;
+	glm::vec3 lightPos;
+
+	float constant;
+	float linear;
+	float quadratic;
+};
+

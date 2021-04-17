@@ -3,18 +3,16 @@
 #include "IConfig.h"
 #include "JSONParser.h"
 
-namespace Squirrel
+
+class SchedulerConfig : IConfig
 {
-	class SchedulerConfig : Squirrel::IConfig
-	{
-	public:
-		EScheduler scheduler;
-		bool renderDebug;
-		bool mtMode;
-		
-		void setup();
-	private:
-		JSONParser* jsonConfigurator = new JSONParser("../../Squirrel-Engine/src/configs/schedulerConfig.json");
-		
-	};
-}
+public:
+	EScheduler scheduler;
+	bool renderDebug;
+	bool mtMode;
+
+	void setup();
+private:
+	JSONParser* jsonConfigurator = new JSONParser("../../Squirrel-Engine/src/configs/schedulerConfig.json");
+
+};

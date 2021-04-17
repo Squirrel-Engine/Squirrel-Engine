@@ -1,4 +1,9 @@
 #include "NJ_Input.h"
+#include "InterfaceFactory.h"
+#include "NJ_InitializeSimulation.h"
+
+NJ_Input::NJ_Input()
+{
 
 namespace Squirrel
 {
@@ -19,20 +24,22 @@ namespace Squirrel
 		if (glfwGetMouseButton(furWindow, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
 			InterfaceFactory::getInstance().getIPInterface().controlSchematic->Mouse_Right_HOLD();
 		}
-		//std::cout << InterfaceFactory::getInstance().getIPInterface().isUpKeyHeldDown << std::endl;
 	}
 
-	void NJ_Input::mount()
-	{
 
-	}
-
-	void NJ_Input::unmount()
-	{
-
-	}
 }
 
+void NJ_Input::run()
+{
 
+}
 
+void NJ_Input::mount()
+{
 
+}
+
+void NJ_Input::unmount()
+{
+
+}

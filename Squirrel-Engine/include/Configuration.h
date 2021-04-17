@@ -2,16 +2,14 @@
 #include "RenderConfig.h"
 #include "SchedulerConfig.h"
 
-namespace Squirrel {
+class Configuration
+{
+private:
+	Configuration();
 
-	class Configuration
-	{
-	private:
-		Configuration();
+public:
+	static Configuration& getInstance();
+	RenderConfig renderConfig;
+	SchedulerConfig schedulerConfig;
+};
 
-	public:
-		static Configuration& getInstance();
-		RenderConfig renderConfig;
-		SchedulerConfig schedulerConfig;
-	};
-}

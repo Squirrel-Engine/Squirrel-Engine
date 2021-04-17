@@ -3,17 +3,13 @@
 #include "NJob.h"
 #include <thread>
 
-namespace Squirrel
+class NJ_ActorWorker final : public NJob
 {
-	class NJ_ActorWorker final : public NJob
-	{
-	public:
-		Actor* actor;
-		NJ_ActorWorker(Actor* _actor);
-		void mount() override;
-		void unmount() override;
-		void run() override;
+public:
+	Actor* actor;
+	NJ_ActorWorker(Actor* _actor);
+	void mount() override;
+	void unmount() override;
+	void run() override;
+};
 
-		bool isFirstFrame = true;
-	};
-}

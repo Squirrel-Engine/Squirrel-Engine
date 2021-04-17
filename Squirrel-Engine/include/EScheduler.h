@@ -1,5 +1,6 @@
 #pragma once
 
-namespace Squirrel {
-	enum class EScheduler { DummyScheduler, Nut };
-}
+enum class EScheduler { 
+	DummyScheduler, 
+	Nut 
+};

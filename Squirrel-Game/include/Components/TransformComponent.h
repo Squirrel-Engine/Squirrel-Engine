@@ -9,10 +9,10 @@
 #include <glm/gtx/quaternion.hpp>
 
 SR_COMPONENT()
-class 	TransformComponent : public Squirrel::ActorComponent
+class 	TransformComponent : public ActorComponent
 {
 private:
-
+	glm::vec3 transform;
 public:
 	glm::mat4 transformMat;
 	SR_VAR_START()
@@ -36,11 +36,13 @@ public:
 	void setup() override;
 
 	
-	glm::vec3 getTransform();
+	glm::vec3& getTransform();
 	glm::vec3 getRotation();
+  
 	glm::vec3 getScale();
 	void setTransform(glm::vec3 vector);
 	void setRotation(glm::vec3 vector);
 	void setScale(glm::vec3 vector);
+
 };
 SR_COMPONENT()

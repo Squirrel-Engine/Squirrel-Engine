@@ -4,8 +4,11 @@
 
 Skeleton::Skeleton()
 {
-	health = 100;
-	attackPower = 50;
+	TransformComponent* transformComponent = new TransformComponent();
+	transformComponent->setParent(this);
+	this->transformComponent = transformComponent;
+	this->transformComponent->setup();
+	insertComponent("transformComponent", transformComponent);
 
 	TransformComponent* skeleton_transformComponent = new TransformComponent();
 	skeleton_transformComponent->setParent(this);
@@ -17,6 +20,7 @@ Skeleton::Skeleton()
 	renderComponent = skeleton_renderComponent;
 
 	insertComponent("renderComponent", skeleton_renderComponent);
+
 }
 
 void Skeleton::BeginPlay()
@@ -26,5 +30,5 @@ void Skeleton::BeginPlay()
 
 void Skeleton::Update()
 {
-	transformComponent->rotationY += 5;
+  transformComponent->rotationY += 5;
 }

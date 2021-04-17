@@ -1,7 +1,6 @@
 #include "NJ_InitializeSimulation.h"
-
 #include "NJ_ActorWorker.h"
-namespace Squirrel {
+
 	NJ_InitializeSimulation::NJ_InitializeSimulation()
 	{
 	}
@@ -16,12 +15,14 @@ namespace Squirrel {
 
 	void NJ_InitializeSimulation::run()
 	{
-		for (int i = 0; i < InterfaceFactory::getInstance().getGMInterface().levelStore->actors.size(); i++)
-		{
-			InterfaceFactory::getInstance().getMTInterface().submitJob(*new NJ_ActorWorker(InterfaceFactory::getInstance().getGMInterface().levelStore->actors.at(i)), EQueueOrder::LOW_ORDER);
+		//Actors
+		for (auto& actor : InterfaceFactory::getInstance().getGMInterface().levelStore->actors) {
+			InterfaceFactory::getInstance().getMTInterface().submitJob(*new NJ_ActorWorker(actor), EQueueOrder::LOW_ORDER);
 		}
-		//Camera Job
+		//Lights
+		for (auto& light : InterfaceFactory::getInstance().getGMInterface().levelStore->lights) {
+			InterfaceFactory::getInstance().getMTInterface().submitJob(*new NJ_ActorWorker(light), EQueueOrder::LOW_ORDER);
+		}
+		//Camera
 		InterfaceFactory::getInstance().getMTInterface().submitJob(*new NJ_ActorWorker(InterfaceFactory::getInstance().getGMInterface().levelStore->mainCamera), EQueueOrder::LOW_ORDER);
 	}
-
-}
