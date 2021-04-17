@@ -40,9 +40,9 @@ public:
 	glm::vec3 getRotation();
   
 	glm::vec3 getScale();
-	void setTransform(glm::vec3 vector);
-	void setRotation(glm::vec3 vector);
-	void setScale(glm::vec3 vector);
+	void setTransform(float x, float y, float z);
+	void setRotation(float x, float y, float z);
+	void setScale(float x, float y, float z);
 
 };
 SR_COMPONENT()

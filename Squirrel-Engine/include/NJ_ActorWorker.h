@@ -1,8 +1,7 @@
 #pragma once
 #include "Actor.h"
 #include "NJob.h"
-#include <thread>
-
+#include "InterfaceFactory.h"
 class NJ_ActorWorker final : public NJob
 {
 public:

@@ -17,12 +17,14 @@ private:
 	MT_Interface mt_Interface;
 	GM_Interface gm_Interface;
 	RM_Interface rm_Interface;
+	IP_Interface ip_Interface;
 public:
 	// Getter Setter
 	RD_Interface& getRDInterface();
 	MT_Interface& getMTInterface();
 	GM_Interface& getGMInterface();
 	RM_Interface& getRMInterface();
+	IP_Interface& getIPInterface();
 	static InterfaceFactory& getInstance();
 };
 template <typename T>
@@ -44,4 +46,8 @@ template<>
 inline RM_Interface& getInterface<RM_Interface>() {
 	return InterfaceFactory::getInstance().getRMInterface();
 };
-}
+template<>
+inline IP_Interface& getInterface<IP_Interface>() {
+	return InterfaceFactory::getInstance().getIPInterface();
+};
+

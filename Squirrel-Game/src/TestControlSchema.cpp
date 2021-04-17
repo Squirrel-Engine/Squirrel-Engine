@@ -15,13 +15,13 @@ void TestControlSchema::Key_Space_HOLD()
 
 void TestControlSchema::Mouse_Movement()
 {
-	std::cout << "Cursor Position at (" << Squirrel::InterfaceFactory::getInstance().getIPInterface().mouseX << endl;
+	std::cout << "Cursor Position at (" << getInterface<IP_Interface>().mouseX << endl;
 }
 
 void TestControlSchema::ScrollMovement()
 {
-	std::cout << "Scroll X Value: " << Squirrel::InterfaceFactory::getInstance().getIPInterface().scrollX << endl;
-	std::cout << "Scroll Y Value: " << Squirrel::InterfaceFactory::getInstance().getIPInterface().scrollY << endl;
+	std::cout << "Scroll X Value: " << getInterface<IP_Interface>().scrollX << endl;
+	std::cout << "Scroll Y Value: " << getInterface<IP_Interface>().scrollY << endl;
 }
 
 void TestControlSchema::Mouse_Left_PRESS()

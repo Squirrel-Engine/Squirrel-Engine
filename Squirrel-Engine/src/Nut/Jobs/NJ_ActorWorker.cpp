@@ -1,5 +1,8 @@
 #include "NJ_ActorWorker.h"
 
+
+
+
 NJ_ActorWorker::NJ_ActorWorker(Actor* _actor) : actor(_actor)
 {
 
@@ -15,7 +18,7 @@ void NJ_ActorWorker::unmount()
 
 void NJ_ActorWorker::run()
 {
-	if (isFirstFrame == true)
+	if (getInterface<RD_Interface>().frameCounter == 1)
 	{
 		actor->BeginPlay();
 		actor->Update();
@@ -25,7 +28,7 @@ void NJ_ActorWorker::run()
 			component.second->BeginPlay();
 			component.second->Update();
 		}
-		isFirstFrame = false;
+
 	}
 	else {
 		actor->Update();

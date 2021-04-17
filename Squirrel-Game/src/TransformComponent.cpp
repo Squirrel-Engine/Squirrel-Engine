@@ -45,25 +45,23 @@ glm::vec3 TransformComponent::getScale()
 	return glm::vec3(scaleX, scaleY, scaleZ);
 }
 
-void TransformComponent::setTransform(glm::vec3 vector)
+void TransformComponent::setTransform(float x, float y, float z)
 {
-	glm::vec3 vector(x, y, z);
-	positionX = vector.x;
-	positionY = vector.y;
-	positionZ = vector.z;
+	positionX = x;
+	positionY = y;
+	positionZ = z;
 }
 
 void TransformComponent::setRotation(float x, float y, float z)
 {
-	glm::vec3 vector(x, y, z);
-	rotationX = vector.x;
-	rotationY = vector.y;
-	rotationZ = vector.z;
+	rotationX = x;
+	rotationY = y;
+	rotationZ = z;
 }
 
-void TransformComponent::setScale(glm::vec3 vector)
+void TransformComponent::setScale(float x, float y, float z)
 {
-	scaleX = vector.x;
-	scaleY = vector.y;
-	scaleZ = vector.z;
+	scaleX = x;
+	scaleY = y;
+	scaleZ = z;
 }

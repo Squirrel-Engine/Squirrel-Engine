@@ -2,7 +2,7 @@
 #include "../../Squirrel-Engine/include/ControlSchema.h"
 #include "../../Squirrel-Engine/include/InterfaceFactory.h"
 #include <iostream>
-class TestControlSchema: public Squirrel::ControlSchematic
+class TestControlSchema: public ControlSchematic
 {
 public:
 	TestControlSchema() {};

@@ -45,7 +45,7 @@ void Nut::startScheduler()
 
 		while (true)
 		{
-			jobQueueHighOrder.push(new Squirrel::NJ_InitializeFrame());
+			jobQueueHighOrder.push(new NJ_InitializeFrame());
 
 			while (jobQueueHighOrder.size() != 0)
 			{
@@ -63,7 +63,7 @@ void Nut::startScheduler()
 		//Game Loop
 		while (true)
 		{
-			jobQueueHighOrder.push(new Squirrel::NJ_InitializeFrame());
+			jobQueueHighOrder.push(new NJ_InitializeFrame());
 
 			// Frame Loop
 			while (jobQueueHighOrder.size() != 0)
