@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+
+#include "Audio.h"
 #include "Model.h"
 #include "Texture.h"
 #include "Timer.h"
@@ -18,7 +20,6 @@ public:
 	~RM_Interface()
 	{
 	}
-
 	void loadAssetMap();
 
 	void loadMeshAsset();
@@ -42,3 +43,4 @@ public:
 	std::unordered_map<int, Shader*> shaderBuffer;
 	std::unordered_map<int, Material*> materialBuffer;
 };
+

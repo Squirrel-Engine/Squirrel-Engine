@@ -21,9 +21,18 @@ void RM_Interface::loadAssetMap()
 	textureAssetMap.insert({1, "../../Squirrel-Engine/res/textures/test_emis.jpg"});
 	textureAssetMap.insert({2, "../../Squirrel-Engine/res/textures/sci-fi_diff.jpg"});
 
+
+		audioAssetMap.insert({0, "../../Squirrel-Engine/res/audio/EasyStreet.wav"});
+		audioAssetMap.insert({ 1, "../../Squirrel-Engine/res/audio/spell.ogg" });
+		audioAssetMap.insert({ 2, "../../Squirrel-Engine/res/audio/iamtheprotectorofthissystem.wav"});
+		audioAssetMap.insert({ 3, "../../Squirrel-Engine/res/audio/Pala.wav" });
+		// TEXTURE LOADING FUNCTION !!!!!!!!!!!!
+	}
+
 	//Shader
 	shaderAssetMap.insert({0, "../../Squirrel-Engine/res/shaders/Model.shader"});
 	shaderAssetMap.insert({1, "../../Squirrel-Engine/res/shaders/LightSource.shader"});
+
 
 	// TEXTURE LOADING FUNCTION !!!!!!!!!!!!
 }
@@ -37,6 +46,18 @@ void RM_Interface::loadMeshAsset()
 	}
 }
 
+
+	void RM_Interface::loadAudioAsset()
+	{
+		for (int i = 0; i < audioAssetMap.size(); i++)
+		{
+			Audio* audioObj = new Audio(audioAssetMap[i]);
+			audioBuffer.insert({ i, audioObj });
+		}
+
+	}
+
+void RM_Interface::loadShaderAsset()
 void RM_Interface::loadTextureAsset()
 {
 	for (int i = 0; i < textureAssetMap.size(); i++)
@@ -59,10 +80,20 @@ void RM_Interface::loadMaterialAsset()
 {
 	for (int i = 0; i < MATERIAL_COUNT; i++)
 	{
+
+		loadAssetMap();
+		loadMeshAsset();
+		loadTextureAsset();
+		loadMaterialAsset();
+		loadAudioAsset();
+		loadShaderAsset();
+	}
+=======
 		auto material = new Material();
 		material->setTexture("texture_diffuse", textureAssetMap.at(MaterialDataBase[i][0]));
 		material->setTexture("texture_normal", textureAssetMap.at(MaterialDataBase[i][1]));
 		material->setTexture("texture_specular", textureAssetMap.at(MaterialDataBase[i][2]));
+
 
 		materialBuffer.insert({i, material});
 	}
@@ -85,6 +116,12 @@ Model* RM_Interface::getMesh(int index)
 Texture* RM_Interface::getTexture(int index)
 {
 	return textureBuffer[index];
+}
+
+
+Audio* RM_Interface::getAudio(int index)
+{
+  return audioBuffer[index];
 }
 
 Shader* RM_Interface::getShader(int index)

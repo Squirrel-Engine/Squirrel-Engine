@@ -25,4 +25,4 @@ endif(MSVC)
 # TODO: Add tests and install targets if needed.
 
 target_include_directories(${PROJECT_NAME} PRIVATE "${SRC_DIR}")
-target_link_libraries (Squirrel-Game Squirrel-Engine)
+target_link_libraries (Squirrel-Game Squirrel-Engine dxguid.lib dsound.lib)

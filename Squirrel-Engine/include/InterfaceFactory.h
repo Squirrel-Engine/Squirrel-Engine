@@ -1,4 +1,5 @@
 #pragma once
+#include "AU_Interface.h"
 #include "GM_Interface.h"
 #include "RD_Interface.h"
 #include "MT_Interface.h"
@@ -23,6 +24,7 @@ private:
 	GM_Interface gm_Interface;
 	RM_Interface rm_Interface;
 	IP_Interface ip_Interface;
+  AU_Interface au_Interface;
 public:
 	// Getter Setter
 	RD_Interface& getRDInterface();
@@ -30,6 +32,7 @@ public:
 	GM_Interface& getGMInterface();
 	RM_Interface& getRMInterface();
 	IP_Interface& getIPInterface();
+  AU_Interface& getAUInterface();
 	static InterfaceFactory& getInstance();
 };
 
@@ -65,3 +68,4 @@ inline IP_Interface& getInterface<IP_Interface>()
 {
 	return InterfaceFactory::getInstance().getIPInterface();
 };
+

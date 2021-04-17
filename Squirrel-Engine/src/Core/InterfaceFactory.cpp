@@ -26,6 +26,11 @@ RM_Interface& InterfaceFactory::getRMInterface()
 	return rm_Interface;
 }
 
+AU_Interface& InterfaceFactory::getAUInterface()
+{
+  return au_Interface;
+}
+
 IP_Interface& InterfaceFactory::getIPInterface()
 {
 	return ip_Interface;

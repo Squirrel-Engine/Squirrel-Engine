@@ -6,7 +6,9 @@
 #include "RuntimeManager.h"
 #include "DrawCall.h"
 #include "InterfaceFactory.h"
-
+#include "AL/al.h"
+#include "AL/alc.h"
+#include <bit>
 int main(int argc, char** argv)
 {
 	RuntimeManager runtimeManager = RuntimeManager::getInstance();

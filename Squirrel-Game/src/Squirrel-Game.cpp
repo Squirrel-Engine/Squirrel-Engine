@@ -29,6 +29,7 @@ Application* CreateApplication()
 
 void Sandbox::Run()
 {
+
 	auto testSchema = new TestControlSchema();
 	getInterface<IP_Interface>().setControlSchema(testSchema);
 	auto mainCamera = new Camera();
@@ -43,6 +44,14 @@ void Sandbox::Run()
 	skeleton->renderComponent->C_MaterialID_1 = 1;
 	skeleton->renderComponent->C_ShaderID = 0;
 
+	AudioComponent* audioComponent = new AudioComponent();
+
+	audioComponent->C_AudioSourceID = 0;
+	audioComponent->setup();
+	audioComponent->setParent(skeleton);
+	skeleton->audioComponent = audioComponent;
+	skeleton->insertComponent("audioComponent", audioComponent);
+	audioComponent->play();
 
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);
 
@@ -52,3 +61,4 @@ void Sandbox::Run()
 	light->lightComponent->setColor(1, 0, 0);
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::LIGHT, light);
 }
+
