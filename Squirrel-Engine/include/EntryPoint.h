@@ -20,7 +20,7 @@ int main(int argc, char** argv)
 	runtimeManager.engineStartup();
 	app->Run();
 
-	InterfaceFactory::getInstance().getMTInterface().startScheduler();
+	getInterface<MT_Interface>().startScheduler();
 	runtimeManager.engineShutdown();
 
 	delete app;

@@ -4,16 +4,16 @@
 #include "SchedulerConfig.h"
 
 
-	class Configuration
-	{
-	private:
-		Configuration();
+class Configuration
+{
+private:
+	Configuration();
 
-	public:
-		static Configuration& getInstance();
-		RenderConfig renderConfig;
-		SchedulerConfig schedulerConfig;
-		AudioConfig audioConfig;
-	};
-}
+public:
+	static Configuration& getInstance();
+	RenderConfig renderConfig;
+	SchedulerConfig schedulerConfig;
+	AudioConfig audioConfig;
+};
+
 

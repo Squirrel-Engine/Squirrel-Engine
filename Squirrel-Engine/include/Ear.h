@@ -2,19 +2,15 @@
 #include <iostream>
 
 
-
-
-namespace Squirrel
+class Ear
 {
-	class Ear
-	{
-	public:
-		Ear();
-		void startAudioEngine();
-		void playAudio();
+public:
+	Ear();
+	void startAudioEngine();
+	void playAudio();
 
-	};
-}
+};
+
 
 
 

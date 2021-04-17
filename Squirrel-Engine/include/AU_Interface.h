@@ -1,20 +1,19 @@
 
 #include "Ear.h"
 
-namespace Squirrel
+
+class AU_Interface
 {
-	class AU_Interface
-	{
-	public:
-		AU_Interface();
-		void startAudioEngine();
-		void playAudio();
+public:
+	AU_Interface();
+	void startAudioEngine();
+	void playAudio();
 
-	private:
-		// Options
+private:
+	// Options
 
-		
-		// Audio Engine
-		Ear* ear;
-	};
-}
+	
+	// Audio Engine
+	Ear* ear;
+};
+

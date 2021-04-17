@@ -3,17 +3,15 @@
 #include "IConfig.h"
 #include "JSONParser.h"
 
-namespace Squirrel {
 
-	class AudioConfig : Squirrel::IConfig
-	{
-	public:
-		AudioConfig();
-		EAudioEngine audioEngine;
-		void setup() override;
+class AudioConfig : IConfig
+{
+public:
+	AudioConfig();
+	EAudioEngine audioEngine;
+	void setup() override;
 
-	private:
-		Squirrel::JSONParser* jsonConfigurator = new Squirrel::JSONParser("../../Squirrel-Engine/src/configs/audioConfig.json");
-	};
+private:
+	JSONParser* jsonConfigurator = new JSONParser("../../Squirrel-Engine/src/configs/audioConfig.json");
+};
 
-}

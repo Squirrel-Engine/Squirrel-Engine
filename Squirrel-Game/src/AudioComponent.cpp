@@ -90,11 +90,11 @@ void AudioComponent::thFunc()
 	while (isPlaying) {
 		if ((res >= WAIT_OBJECT_0) && (res <= WAIT_OBJECT_0 + 3)) {
 			m_pDSBuffer8->Lock(offset, BUFFERNOTIFYSIZE, &buf, &buf_len, NULL, NULL, 0);
-			if (fread(buf, 1, buf_len, Squirrel::InterfaceFactory::getInstance().getRMInterface().getAudio(audioSourceID)->audioObject) != buf_len) {
+			if (fread(buf, 1, buf_len, getInterface<RM_Interface>().getAudio(audioSourceID)->audioObject) != buf_len) {
 				//File End
 				//Loop:
-				fseek(Squirrel::InterfaceFactory::getInstance().getRMInterface().getAudio(audioSourceID)->audioObject, 0, SEEK_SET);
-				fread(buf, 1, buf_len, Squirrel::InterfaceFactory::getInstance().getRMInterface().getAudio(audioSourceID)->audioObject);
+				fseek(getInterface<RM_Interface>().getAudio(audioSourceID)->audioObject, 0, SEEK_SET);
+				fread(buf, 1, buf_len, getInterface<RM_Interface>().getAudio(audioSourceID)->audioObject);
 				//Close:
 				isPlaying=0;
 			}

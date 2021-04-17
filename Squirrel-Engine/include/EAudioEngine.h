@@ -1,5 +1,4 @@
 #pragma once
 
-namespace Squirrel {
-	enum class EAudioEngine { EAR };
-}
+
+enum class EAudioEngine { EAR };

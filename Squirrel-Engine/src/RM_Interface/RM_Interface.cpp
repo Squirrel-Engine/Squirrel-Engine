@@ -22,12 +22,11 @@ void RM_Interface::loadAssetMap()
 	textureAssetMap.insert({2, "../../Squirrel-Engine/res/textures/sci-fi_diff.jpg"});
 
 
-		audioAssetMap.insert({0, "../../Squirrel-Engine/res/audio/EasyStreet.wav"});
-		audioAssetMap.insert({ 1, "../../Squirrel-Engine/res/audio/spell.ogg" });
-		audioAssetMap.insert({ 2, "../../Squirrel-Engine/res/audio/iamtheprotectorofthissystem.wav"});
-		audioAssetMap.insert({ 3, "../../Squirrel-Engine/res/audio/Pala.wav" });
+	audioAssetMap.insert({ 0, "../../Squirrel-Engine/res/audio/EasyStreet.wav" });
+	audioAssetMap.insert({ 1, "../../Squirrel-Engine/res/audio/spell.ogg" });
+	audioAssetMap.insert({ 2, "../../Squirrel-Engine/res/audio/iamtheprotectorofthissystem.wav" });
+	audioAssetMap.insert({ 3, "../../Squirrel-Engine/res/audio/Pala.wav" });
 		// TEXTURE LOADING FUNCTION !!!!!!!!!!!!
-	}
 
 	//Shader
 	shaderAssetMap.insert({0, "../../Squirrel-Engine/res/shaders/Model.shader"});
@@ -57,7 +56,7 @@ void RM_Interface::loadMeshAsset()
 
 	}
 
-void RM_Interface::loadShaderAsset()
+
 void RM_Interface::loadTextureAsset()
 {
 	for (int i = 0; i < textureAssetMap.size(); i++)
@@ -80,22 +79,12 @@ void RM_Interface::loadMaterialAsset()
 {
 	for (int i = 0; i < MATERIAL_COUNT; i++)
 	{
-
-		loadAssetMap();
-		loadMeshAsset();
-		loadTextureAsset();
-		loadMaterialAsset();
-		loadAudioAsset();
-		loadShaderAsset();
-	}
-=======
 		auto material = new Material();
 		material->setTexture("texture_diffuse", textureAssetMap.at(MaterialDataBase[i][0]));
 		material->setTexture("texture_normal", textureAssetMap.at(MaterialDataBase[i][1]));
 		material->setTexture("texture_specular", textureAssetMap.at(MaterialDataBase[i][2]));
 
-
-		materialBuffer.insert({i, material});
+		materialBuffer.insert({ i, material });
 	}
 }
 

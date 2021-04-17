@@ -1,15 +1,14 @@
 #pragma once
 #include <iostream>
 
-namespace Squirrel
+
+class Audio
 {
-	class Audio
-	{
-	public:
-		Audio(std::string filename);
-		FILE* audioObject;
-	};
-}
+public:
+	Audio(std::string filename);
+	FILE* audioObject;
+};
+
 
 
 

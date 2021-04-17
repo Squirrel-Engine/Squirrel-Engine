@@ -17,7 +17,7 @@
 
 
 SR_COMPONENT()
-class 	AudioComponent : public Squirrel::ActorComponent
+class 	AudioComponent : public ActorComponent
 {
 public:
 	AudioComponent();

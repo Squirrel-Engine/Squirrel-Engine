@@ -1,25 +1,23 @@
 #include "Ear.h"
 
 
-namespace Squirrel
+
+
+void Ear::startAudioEngine()
 {
 
-	void Ear::startAudioEngine()
-	{
-		
-		
-	}
-
-	Ear::Ear()
-	{
-	}
-
-
-
-	void Ear::playAudio()
-	{
-
-	}
 
 }
+
+Ear::Ear()
+{
+}
+
+
+
+void Ear::playAudio()
+{
+
+}
+
 

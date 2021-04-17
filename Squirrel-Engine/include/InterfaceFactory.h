@@ -24,7 +24,7 @@ private:
 	GM_Interface gm_Interface;
 	RM_Interface rm_Interface;
 	IP_Interface ip_Interface;
-  AU_Interface au_Interface;
+	AU_Interface au_Interface;
 public:
 	// Getter Setter
 	RD_Interface& getRDInterface();

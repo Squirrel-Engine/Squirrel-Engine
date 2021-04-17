@@ -30,5 +30,5 @@ public:
 
 	int frameCounter = 0;
 private:
-	Fur::Fur fur;
+	Fur fur;
 };
