@@ -3,16 +3,16 @@
 #include "UniformDesc.h"
 #include "DrawCall.h"
 #include "FurStore.h"
-#include "Light.h"
+#include "LightObject.h"
 
 class LightDrawCall : public DrawCall{
 public:
-	LightDrawCall(Squirrel::Light* light, Shader* shader, Squirrel::TRANSFORM_DESC* transformUniform, Squirrel::LIGHT_DESC* lightUniform);
+	LightDrawCall(LightObject* light, Shader* shader, TRANSFORM_DESC* transformUniform, LIGHT_DESC* lightUniform);
 
 	void draw() override;
 public:
-	Squirrel::Light* light;
+	LightObject* light;
 	Shader* shader;
-	Squirrel::TRANSFORM_DESC* transformUniform;
-	Squirrel::LIGHT_DESC* lightUniform;
+	TRANSFORM_DESC* transformUniform;
+	LIGHT_DESC* lightUniform;
 };

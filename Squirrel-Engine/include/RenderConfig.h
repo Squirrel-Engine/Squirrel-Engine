@@ -1,6 +1,5 @@
 #pragma once
 #include"IConfig.h"
-#include"EGraphicAPI.h"
 #include"JSONParser.h"
 #include "vendor/json.hpp"
 #include "ERenderer.h"

@@ -6,7 +6,7 @@
 #include "Components/RenderComponent.h"
 
 SR_ACTOR()
-class Light : public Squirrel::Actor
+class Light : public Actor
 {
 public:
 	Light();

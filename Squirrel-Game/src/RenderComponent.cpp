@@ -16,7 +16,7 @@ void RenderComponent::Update()
 {
 	auto drawCall = new ModelDrawCall(InterfaceFactory::getInstance().getRMInterface().getMesh(modelID),
 									 InterfaceFactory::getInstance().getRMInterface().getShader(shaderID),
-								      dynamic_cast<Squirrel::TRANSFORM_DESC*>(getComponent<TransformComponent*>("transformComponent")->uniform));
+								      dynamic_cast<TRANSFORM_DESC*>(getComponent<TransformComponent*>("transformComponent")->uniform));
 
 	InterfaceFactory::getInstance().getRDInterface().submitDrawCall(*drawCall);
 }

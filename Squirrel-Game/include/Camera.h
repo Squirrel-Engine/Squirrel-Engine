@@ -5,7 +5,7 @@
 #include "Components/TransformComponent.h"
 #include "Components/CameraComponent.h"
 SR_ACTOR()
-class Camera : public Squirrel::Actor
+class Camera : public Actor
 {
 public:
 	Camera();

@@ -6,7 +6,7 @@
 #include "../../../Squirrel-Engine/include/ModelDrawCall.h"
 
 SR_COMPONENT()
-class RenderComponent : public Squirrel::ActorComponent
+class RenderComponent : public ActorComponent
 {
 public:
 	RenderComponent();

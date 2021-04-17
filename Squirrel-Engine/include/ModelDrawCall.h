@@ -1,5 +1,4 @@
 #pragma once
-#include "VertexArray.h"
 #include "Shader.h"
 #include "Texture.h"
 #include "UniformDesc.h"
@@ -12,11 +11,11 @@
 class ModelDrawCall :  public DrawCall
 {
 public:
-	ModelDrawCall(Model* model, Shader* shader, Squirrel::TRANSFORM_DESC* uniformDesc);
+	ModelDrawCall(Model* model, Shader* shader, TRANSFORM_DESC* uniformDesc);
 	void draw() override;
 	
 public:
 	Model* model;
 	Shader* shader;
-	Squirrel::TRANSFORM_DESC* uniformDesc;
+	TRANSFORM_DESC* uniformDesc;
 };

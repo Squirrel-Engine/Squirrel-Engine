@@ -1,6 +1,6 @@
 ﻿#include "LightDrawCall.h"
 
-LightDrawCall::LightDrawCall(Squirrel::Light* light, Shader* shader, Squirrel::TRANSFORM_DESC* transformUniform, Squirrel::LIGHT_DESC* lightUniform)
+LightDrawCall::LightDrawCall(LightObject* light, Shader* shader, TRANSFORM_DESC* transformUniform, LIGHT_DESC* lightUniform)
 {
 	this->light = light;
 	this->shader = shader;

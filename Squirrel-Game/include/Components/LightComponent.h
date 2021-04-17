@@ -1,18 +1,18 @@
 #pragma once
 #include "Macros.h"
 #include <iostream>
-#include "../../Squirrel-Engine/include/Light.h"
+#include "../../Squirrel-Engine/include/LightObject.h"
 #include "../../../Squirrel-Engine/include/ActorComponent.h"
 #include "../../Squirrel-Engine/include/InterfaceFactory.h"
 #include "../../Squirrel-Engine/include/LightDrawCall.h"
 #include "include/Components/TransformComponent.h"
 
 SR_COMPONENT()
-class LightComponent : public Squirrel::ActorComponent
+class LightComponent : public ActorComponent
 {
 private:
 	int shaderID;
-	Squirrel::Light light;
+	LightObject light;
 public:
 	SR_VAR_START()
 	glm::vec3 color;

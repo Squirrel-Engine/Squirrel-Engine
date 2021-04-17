@@ -4,7 +4,7 @@ LevelStore::LevelStore()
 {
 }
 
-void LevelStore::spawnNewActor(EActorType type, Squirrel::Actor* actor)
+void LevelStore::spawnNewActor(EActorType type, Actor* actor)
 {
 	switch (type)
 	{
@@ -22,7 +22,7 @@ void LevelStore::spawnNewActor(EActorType type, Squirrel::Actor* actor)
 	}
 }
 
-Squirrel::Actor* LevelStore::getActor(EActorType type, int row)
+Actor* LevelStore::getActor(EActorType type, int row)
 {
 	switch (type)
 	{
@@ -35,7 +35,7 @@ Squirrel::Actor* LevelStore::getActor(EActorType type, int row)
 	}
 }
 
-void LevelStore::setupStore(std::string _name, std::vector<Squirrel::Actor*> initialActorVector)
+void LevelStore::setupStore(std::string _name, std::vector<Actor*> initialActorVector)
 {
 	name = name;
 	actors = initialActorVector;

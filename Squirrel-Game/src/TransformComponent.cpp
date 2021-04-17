@@ -20,12 +20,12 @@ void TransformComponent::Update()
 	transformMat = glm::rotate(transformMat, glm::radians(rotationZ), glm::vec3(0, 0, 1));	//rotation z 
 	transformMat = glm::scale(transformMat, glm::vec3(scaleX, scaleY, scaleZ));
 
-	dynamic_cast<Squirrel::TRANSFORM_DESC*>(uniform)->model = transformMat;
+	dynamic_cast<TRANSFORM_DESC*>(uniform)->model = transformMat;
 }
 
 void TransformComponent::setup()
 {
-	uniform = new Squirrel::TRANSFORM_DESC();
+	uniform = new TRANSFORM_DESC();
 }
 
 glm::vec3& TransformComponent::getTransform()

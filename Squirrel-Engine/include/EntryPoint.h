@@ -9,11 +9,11 @@
 
 int main(int argc, char** argv)
 {
-    Squirrel::RuntimeManager runtimeManager = Squirrel::RuntimeManager::getInstance();
+    RuntimeManager runtimeManager = RuntimeManager::getInstance();
 	
 	
 	//RD_Interface 
-	auto app = Squirrel::CreateApplication();
+	auto app = CreateApplication();
 	
 	runtimeManager.engineStartup();
 	app->Run();

@@ -6,7 +6,7 @@
 #include "TransformComponent.h"
 
 SR_COMPONENT()
-class CameraComponent : public Squirrel::ActorComponent {
+class CameraComponent : public ActorComponent {
 public:
 	CameraComponent();
 	void BeginPlay() override;

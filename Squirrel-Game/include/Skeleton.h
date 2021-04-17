@@ -4,7 +4,7 @@
 #include "Components/RenderComponent.h"
 #include "Components/TransformComponent.h"
 SR_ACTOR()
-class Skeleton : public Squirrel::Actor
+class Skeleton : public Actor
 {
 public:
 	Skeleton();

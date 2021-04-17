@@ -1,15 +1,11 @@
 ﻿// Squirrel-Engine.cpp : Defines the entry point for the application.
 //
-
 #include "../Squirrel-Engine/include/Squirrel.h"
-#include "../../Squirrel-Engine/include/Mesh.h"
-#include "Components/RenderComponent.h"
-#include "Components/CameraComponent.h"
 #include "include/Skeleton.h"
 #include "include/Camera.h"
 #include "include/Light.h"
 
-class Sandbox : public Squirrel::Application
+class Sandbox : public Application
 {
 public:
 	Sandbox()
@@ -25,7 +21,7 @@ public:
 	virtual void Run() override;
 };
 
-Squirrel::Application* Squirrel::CreateApplication()
+Application* CreateApplication()
 {
 	return new Sandbox();
 }

@@ -1,5 +1,4 @@
 #pragma once
-#include "VertexArray.h"
 #include "Shader.h"
 #include "Texture.h"
 #include "UniformDesc.h"

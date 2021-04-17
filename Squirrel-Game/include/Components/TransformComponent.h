@@ -9,7 +9,7 @@
 #include <glm/gtx/quaternion.hpp>
 
 SR_COMPONENT()
-class 	TransformComponent : public Squirrel::ActorComponent
+class 	TransformComponent : public ActorComponent
 {
 private:
 	glm::vec3 transform;

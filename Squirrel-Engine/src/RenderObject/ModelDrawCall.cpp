@@ -1,6 +1,6 @@
 ﻿#include "ModelDrawCall.h"
 
-ModelDrawCall::ModelDrawCall(Model* model, Shader* shader, Squirrel::TRANSFORM_DESC* uniformDesc)
+ModelDrawCall::ModelDrawCall(Model* model, Shader* shader, TRANSFORM_DESC* uniformDesc)
 {
 	this->model = model;
 	this->shader = shader;
