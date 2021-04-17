@@ -3,7 +3,6 @@
 #include "RenderConfig.h"
 #include "SchedulerConfig.h"
 
-namespace Squirrel {
 
 	class Configuration
 	{
@@ -17,3 +16,4 @@ namespace Squirrel {
 		AudioConfig audioConfig;
 	};
 }
+

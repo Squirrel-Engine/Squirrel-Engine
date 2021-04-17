@@ -11,6 +11,4 @@ namespace SRMath
 		float y;
 		float z;
 	};
-
-
 }

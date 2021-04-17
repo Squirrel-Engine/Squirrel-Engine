@@ -51,13 +51,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <assimp/IOStream.hpp>
 #include <assimp/IOSystem.hpp>
 
-namespace Assimp {
-    class ZipArchiveIOSystem : public IOSystem {
+namespace Assimp
+{
+    class ZipArchiveIOSystem : public IOSystem
+    {
     public:
         //! Open a Zip using the proffered IOSystem
-        ZipArchiveIOSystem(IOSystem* pIOHandler, const char *pFilename, const char* pMode = "r");
+        ZipArchiveIOSystem(IOSystem* pIOHandler, const char* pFilename, const char* pMode = "r");
         ZipArchiveIOSystem(IOSystem* pIOHandler, const std::string& rFilename, const char* pMode = "r");
-        virtual ~ZipArchiveIOSystem();
+        ~ZipArchiveIOSystem() override;
         bool Exists(const char* pFilename) const override;
         char getOsSeparator() const override;
         IOStream* Open(const char* pFilename, const char* pMode = "rb") override;
@@ -75,12 +77,12 @@ namespace Assimp {
         //! Intended for use within Assimp library boundaries
         void getFileListExtension(std::vector<std::string>& rFileList, const std::string& extension) const;
 
-        static bool isZipArchive(IOSystem* pIOHandler, const char *pFilename);
+        static bool isZipArchive(IOSystem* pIOHandler, const char* pFilename);
         static bool isZipArchive(IOSystem* pIOHandler, const std::string& rFilename);
 
     private:
         class Implement;
-        Implement *pImpl = nullptr;
+        Implement* pImpl = nullptr;
     };
 } // Namespace Assimp
 

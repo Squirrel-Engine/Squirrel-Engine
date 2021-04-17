@@ -1,5 +1,3 @@
-
-
 // ===============================================================================
 // May be included multiple times - sets structure packing to 1 
 // for all supported compilers. #include <poppack1.h> reverts the changes.
@@ -37,7 +35,7 @@
 
 #if defined(_MSC_VER)
 // C4103: Packing was changed after the inclusion of the header, probably missing #pragma pop
-#	pragma warning (disable : 4103) 
+#	pragma warning (disable : 4103)
 #endif
 
 #define AI_PUSHPACK_IS_DEFINED

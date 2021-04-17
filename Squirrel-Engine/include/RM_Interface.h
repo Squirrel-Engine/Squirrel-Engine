@@ -1,56 +1,46 @@
+#pragma once
 #include <map>
 #include <iostream>
 #include <string>
-#include <thread>
-#include <mutex>
 #include <vector>
 
 
 #include "Audio.h"
 #include "Model.h"
 #include "Texture.h"
-#include "Timer.h" 
-namespace Squirrel
+#include "Timer.h"
+
+class RM_Interface
 {
-	class RM_Interface
+public:
+	RM_Interface()
 	{
-	public:
-		RM_Interface(){}
-		~RM_Interface() {}
-		//void loadAssetMap(FILE* fp);
-		void loadAssetMap();
+	}
 
-		void loadMeshAsset();
-		void loadTextureAsset();
-		void loadAudioAsset();
-		void loadMaterialAsset();
-		void loadShaderAsset();
-		void loadAssetMT();
+	~RM_Interface()
+	{
+	}
+	void loadAssetMap();
 
-		Model* getMesh(int index);
-		Texture* getTexture(int index);
-		Shader* getShader(int index);
-		Material* getMaterial(int index);
-		Audio* getAudio(int index);
-		//Model
+	void loadMeshAsset();
+	void loadTextureAsset();
+	void loadMaterialAsset();
+	void loadShaderAsset();
+	void loadAssetMT();
 
-		//Tex
-		std::unordered_map<int, const std::string> meshAssetMap;
-		std::unordered_map<int, std::string> textureAssetMap;
-		std::unordered_map<int, std::string> shaderAssetMap;
-		std::unordered_map<int, std::string> audioAssetMap;
-		//Thread
-		std::mutex meshesMutex;
-		std::vector<std::thread> vecOfThreads;
+	Model* getMesh(int index);
+	Texture* getTexture(int index);
+	Shader* getShader(int index);
+	Material* getMaterial(int index);
 
-		std::unordered_map<int, Model*> meshBuffer;
-		std::unordered_map<int, Texture*> textureBuffer;
-		std::unordered_map<int, Material*> materialBuffer;
-		std::unordered_map<int, Shader*> shaderBuffer;
-		std::unordered_map<int, Audio*> audioBuffer;
-		
-		int assignAsset();
-	private:
-		int materialCount;
-	};
-}
+	//Maps
+	std::unordered_map<int, const std::string> meshAssetMap;
+	std::unordered_map<int, std::string> textureAssetMap;
+	std::unordered_map<int, std::string> shaderAssetMap;
+	//Buffers
+	std::unordered_map<int, Model*> meshBuffer;
+	std::unordered_map<int, Texture*> textureBuffer;
+	std::unordered_map<int, Shader*> shaderBuffer;
+	std::unordered_map<int, Material*> materialBuffer;
+};
+

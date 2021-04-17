@@ -58,7 +58,7 @@ class DeadlyImportError
 {
 public:
     /** Constructor with arguments */
-    explicit DeadlyImportError( const std::string& errorText)
+    explicit DeadlyImportError(const std::string& errorText)
         : runtime_error(errorText)
     {
     }
@@ -66,7 +66,7 @@ public:
 private:
 };
 
-typedef DeadlyImportError DeadlyExportError;
+using DeadlyExportError = DeadlyImportError;
 
 #ifdef _MSC_VER
 #   pragma warning(default : 4275)
@@ -74,31 +74,40 @@ typedef DeadlyImportError DeadlyExportError;
 
 // ---------------------------------------------------------------------------
 template <typename T>
-struct ExceptionSwallower   {
-    T operator ()() const {
+struct ExceptionSwallower
+{
+    T operator ()() const
+    {
         return T();
     }
 };
 
 // ---------------------------------------------------------------------------
 template <typename T>
-struct ExceptionSwallower<T*>   {
-    T* operator ()() const {
-        return NULL;
+struct ExceptionSwallower<T*>
+{
+    T* operator ()() const
+    {
+        return nullptr;
     }
 };
 
 // ---------------------------------------------------------------------------
 template <>
-struct ExceptionSwallower<aiReturn> {
-    aiReturn operator ()() const {
-        try {
+struct ExceptionSwallower<aiReturn>
+{
+    aiReturn operator ()() const
+    {
+        try
+        {
             throw;
         }
-        catch (std::bad_alloc&) {
+        catch (std::bad_alloc&)
+        {
             return aiReturn_OUTOFMEMORY;
         }
-        catch (...) {
+        catch (...)
+        {
             return aiReturn_FAILURE;
         }
     }
@@ -106,9 +115,10 @@ struct ExceptionSwallower<aiReturn> {
 
 // ---------------------------------------------------------------------------
 template <>
-struct ExceptionSwallower<void> {
-    void operator ()() const {
-        return;
+struct ExceptionSwallower<void>
+{
+    void operator ()() const
+    {
     }
 };
 

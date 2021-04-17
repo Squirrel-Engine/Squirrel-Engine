@@ -1,49 +1,55 @@
 #include "Model.h"
 #include "FurStore.h"
+#include "InterfaceFactory.h"
 
 unsigned int TextureFromFile(const char* path, const string& directory, bool gamma);
 
-Model::Model(string const& path, bool gamma /*= false*/) : gammaCorrection(gamma)
+Model::Model(const string& path, bool gamma /*= false*/) : gammaCorrection(gamma)
 {
 	loadModel(path);
 }
 
-Model::~Model() {
+Model::~Model()
+{
 	for (Mesh& obj : meshes)
 		delete &obj;
 	meshes.clear();
 }
 
-void Model::Draw(Shader& shader)
+void Model::Draw(Shader& shader, TRANSFORM_DESC& uniformDesc)
 {
 	shader.use();
-
 	// Uniforms
 	//Later there will be a iterator for all
-	shader.setVec3("lightPos", vec3(0.0f));	//take it from light sources
-	shader.setVec3("viewPos", camera->getPosition());	
-	shader.setMat4("viewProjection", camera->getViewProjection());
-	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::translate(model, uniformDesc.model);
-	// This rotation should not work on every frame.
-	model = glm::rotate(model, (float)glfwGetTime(), uniformDesc.rotation);
-	shader.setMat4("model",model);			//take it from transform component
+	shader.setVec3("viewPos", cameraDesc->viewPos);
+	shader.setMat4("viewProjection", cameraDesc->viewProjection);
+	shader.setMat4("model", uniformDesc.model);
+	for (Actor* light : InterfaceFactory::getInstance().getGMInterface().levelStore->lights)
+	{
+		auto desc = dynamic_cast<LIGHT_DESC*>(light->componentList.at("lightComponent")->uniform);
+		shader.setVec3("light.color", desc->lightColor);
+		shader.setVec3("light.position", desc->lightPos);
+		shader.setFloat("light.constant", desc->constant);
+		shader.setFloat("light.linear", desc->linear);
+		shader.setFloat("light.quadratic", desc->quadratic);
+	}
 
 	for (unsigned int i = 0; i < meshes.size(); i++)
 		meshes[i].Draw(shader);
 }
 
-void Model::loadModel(string const& path)
+void Model::loadModel(const string& path)
 {
 	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
-	
+	const aiScene* scene = importer.ReadFile(
+		path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+
 	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
 	{
 		cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << endl;
 		return;
 	}
-	
+
 	directory = path.substr(0, path.find_last_of('/'));
 
 	processNode(*scene->mRootNode, *scene);
@@ -68,12 +74,12 @@ Mesh* Model::processMesh(aiMesh& mesh, const aiScene& scene)
 	vector<s_Vertex> vertices;
 	vector<unsigned int> indices;
 	//vector<s_Texture> textures;
-	
+
 	for (unsigned int i = 0; i < mesh.mNumVertices; i++)
 	{
 		s_Vertex vertex;
 		// positions
-		glm::vec3 vector; 
+		vec3 vector;
 		vector.x = mesh.mVertices[i].x;
 		vector.y = mesh.mVertices[i].y;
 		vector.z = mesh.mVertices[i].z;
@@ -89,7 +95,7 @@ Mesh* Model::processMesh(aiMesh& mesh, const aiScene& scene)
 		// texture coordinates
 		if (mesh.mTextureCoords[0])
 		{
-			glm::vec2 vec;
+			vec2 vec;
 			vec.x = mesh.mTextureCoords[0][i].x;
 			vec.y = mesh.mTextureCoords[0][i].y;
 			vertex.TexCoords = vec;
@@ -105,7 +111,7 @@ Mesh* Model::processMesh(aiMesh& mesh, const aiScene& scene)
 			vertex.Bitangent = vector;
 		}
 		else
-			vertex.TexCoords = glm::vec2(0.0f, 0.0f);
+			vertex.TexCoords = vec2(0.0f, 0.0f);
 
 		vertices.push_back(vertex);
 	}
@@ -153,28 +159,31 @@ vector<s_Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType typ
 			if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0)
 			{
 				textures.push_back(textures_loaded[j]);
-				skip = true; // a texture with the same filepath has already been loaded, continue to next one. (optimization)
+				skip = true;
+				// a texture with the same filepath has already been loaded, continue to next one. (optimization)
 				break;
 			}
 		}
 		if (!skip)
-		{   // if texture hasn't been loaded already, load it
+		{
+			// if texture hasn't been loaded already, load it
 			s_Texture texture;
 			texture.id = TextureFromFile(str.C_Str(), this->directory);
 			texture.type = typeName;
 			texture.path = str.C_Str();
 			textures.push_back(texture);
-			textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
+			textures_loaded.push_back(texture);
+			// store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
 		}
 	}
-	
+
 	return textures;
 }
 
 
 static unsigned int TextureFromFile(const char* path, const string& directory, bool gamma)
 {
-	string filename = string(path);
+	auto filename = string(path);
 	filename = directory + '/' + filename;
 
 	unsigned int textureID;

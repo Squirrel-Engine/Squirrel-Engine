@@ -1,22 +1,20 @@
 #include "Renderer.h"
-
 #include <queue>
 
 void furRender()
 {
-	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	DrawCall* drawcall;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-	for (int i = 0; i < firstCommandBuffer->size(); i++) {
-		DrawCall* drawcall = firstCommandBuffer->front();
-		if(drawcall != nullptr)
+	for (int i = 0; i < firstCommandBuffer->size(); i++)
+	{
+		if (firstCommandBuffer->front() != nullptr)
 		{
-			drawcall->model->Draw(*drawcall->shader);
+			drawcall = firstCommandBuffer->front();
+			drawcall->draw();
 			firstCommandBuffer->pop();
-			delete drawcall;
 		}
-		
 	}
+
 	glfwSwapBuffers(furWindow);
 	glfwPollEvents();
 }

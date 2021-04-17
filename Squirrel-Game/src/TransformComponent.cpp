@@ -1,10 +1,8 @@
 #include "Components/TransformComponent.h"
 
-
-
 TransformComponent::TransformComponent()
 {
-	transformMat = glm::mat3(1.0f);
+	transformMat = mat4(1.0f);
 }
 
 void TransformComponent::BeginPlay()
@@ -13,36 +11,55 @@ void TransformComponent::BeginPlay()
 
 void TransformComponent::Update()
 {
-	transformMat = glm::translate(transformMat, glm::vec3(transformX, transformY, transformZ));
-	//transformMat = glm::rotate();
-	//transformMat = glm::scale();
+	transform = vec3(positionX, positionY, positionZ);
+	transformMat = mat4(1.0f);
+	transformMat = translate(transformMat, transform);
+	transformMat = glm::rotate(transformMat, radians(rotationX), vec3(1, 0, 0)); //rotation x 
+	transformMat = glm::rotate(transformMat, radians(rotationY), vec3(0, 1, 0)); //rotation y
+	transformMat = glm::rotate(transformMat, radians(rotationZ), vec3(0, 0, 1)); //rotation z 
+	transformMat = scale(transformMat, vec3(scaleX, scaleY, scaleZ));
 
+	dynamic_cast<TRANSFORM_DESC*>(uniform)->model = transformMat;
 }
 
 void TransformComponent::setup()
 {
+	uniform = new TRANSFORM_DESC();
 }
 
-glm::vec3 TransformComponent::getTransform()
+vec3& TransformComponent::getTransform()
 {
-	return glm::vec3(transformX, transformY, transformZ);
+	return transform;
 }
 
-glm::vec3 TransformComponent::getRotation()
+vec3 TransformComponent::getRotation()
 {
-	return glm::vec3(rotationX, rotationY, rotationZ);
+	return vec3(rotationX, rotationY, rotationZ);
 }
 
-void TransformComponent::setTransform(glm::vec3 vector)
+
+vec3 TransformComponent::getScale()
 {
-	transformX = vector.x;
-	transformY = vector.y;
-	transformZ = vector.z;
+	return vec3(scaleX, scaleY, scaleZ);
 }
 
-void TransformComponent::setRotation(glm::vec3 vector)
+void TransformComponent::setTransform(float x, float y, float z)
 {
-	rotationX = vector.x;
-	rotationY = vector.y;
-	rotationZ = vector.z;
+	positionX = x;
+	positionY = y;
+	positionZ = z;
+}
+
+void TransformComponent::setRotation(float x, float y, float z)
+{
+	rotationX = x;
+	rotationY = y;
+	rotationZ = z;
+}
+
+void TransformComponent::setScale(float x, float y, float z)
+{
+	scaleX = x;
+	scaleY = y;
+	scaleZ = z;
 }

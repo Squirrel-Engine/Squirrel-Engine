@@ -11,17 +11,17 @@
 #include <bit>
 int main(int argc, char** argv)
 {
-    Squirrel::RuntimeManager runtimeManager = Squirrel::RuntimeManager::getInstance();
-	
+	RuntimeManager runtimeManager = RuntimeManager::getInstance();
 
-	auto app = Squirrel::CreateApplication();
+
+	//RD_Interface 
+	auto app = CreateApplication();
 
 	runtimeManager.engineStartup();
 	app->Run();
 
-	Squirrel::InterfaceFactory::getInstance().getMTInterface().startScheduler();
+	InterfaceFactory::getInstance().getMTInterface().startScheduler();
 	runtimeManager.engineShutdown();
 
 	delete app;
 }
-

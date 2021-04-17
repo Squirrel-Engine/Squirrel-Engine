@@ -4,8 +4,10 @@
 #include "Components/RenderComponent.h"
 #include "Components/TransformComponent.h"
 #include "Components/AudioComponent.h"
+
 SR_ACTOR()
-class Skeleton : public Squirrel::Actor
+
+class Skeleton : public Actor
 {
 public:
 	Skeleton();
@@ -23,6 +25,5 @@ public:
 	AudioComponent* audioComponent;
 	SR_COMP_END()
 };
-
 
 SR_ACTOR()

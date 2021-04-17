@@ -4,28 +4,31 @@
 #include <iostream>
 #include <string.h>
 
-
-namespace Squirrel
+class RD_Interface
 {
-	class RD_Interface
+public:
+	RD_Interface()
 	{
-	public:
-		RD_Interface() {}
-		~RD_Interface() {}
-		void startRenderEngine();
-		void pauseRenderEngine();
-		void stopRenderEngine();
+	}
 
-		void render();
-		void addActorToRenderQueue(); // Deprecated
-		void submitDrawCall(DrawCall& drawCall);
+	~RD_Interface()
+	{
+	}
 
-		//TODO: Refactoring Point
-		void updateRenderEngineOptions(std::string parameterName, int parameter);
-		void updateRenderEngineOptions(std::string parameterName, float parameter);
-		void updateRenderEngineOptions(std::string parameterName, std::string parameter);
+	void startRenderEngine();
+	void pauseRenderEngine();
+	void stopRenderEngine();
 
-	private:
-		Fur::Fur fur;
-	};
-}
+	void render();
+	void addActorToRenderQueue(); // Deprecated
+	void submitDrawCall(DrawCall& drawCall);
+
+	//TODO: Refactoring Point
+	void updateRenderEngineOptions(std::string parameterName, int parameter);
+	void updateRenderEngineOptions(std::string parameterName, float parameter);
+	void updateRenderEngineOptions(std::string parameterName, std::string parameter);
+
+	int frameCounter = 0;
+private:
+	Fur::Fur fur;
+};

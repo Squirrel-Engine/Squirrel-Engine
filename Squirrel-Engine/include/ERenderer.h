@@ -1,5 +1,6 @@
 #pragma once
 
-namespace Squirrel {
-	enum class ERenderer { Fur };
-}
+enum class ERenderer
+{
+	Fur
+};

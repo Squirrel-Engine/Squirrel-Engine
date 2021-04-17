@@ -1,156 +1,146 @@
 #include "RD_Interface.h"
 
-namespace Squirrel
+void RD_Interface::startRenderEngine()
 {
-	void RD_Interface::startRenderEngine()
+	try
 	{
-		try
+		switch (Configuration::getInstance().renderConfig.renderer)
 		{
-			switch (Configuration::getInstance().renderConfig.renderer)
-			{
-			case ERenderer::Fur:
-				fur.startRenderEngine();
-				
-			}
-		}
-		catch (std::exception& e)
-		{
-			std::cout << e.what() << '\n';
+		case ERenderer::Fur:
+			fur.startRenderEngine();
 		}
 	}
-
-	void RD_Interface::pauseRenderEngine()
+	catch (std::exception& e)
 	{
-		try
-		{
-			switch (Configuration::getInstance().renderConfig.renderer)
-			{
-			case ERenderer::Fur:
-				fur.pauseRenderEngine();
+		std::cout << e.what() << '\n';
+	}
+}
 
-			}
-		}
-		catch (std::exception& e)
+void RD_Interface::pauseRenderEngine()
+{
+	try
+	{
+		switch (Configuration::getInstance().renderConfig.renderer)
 		{
-			std::cout << e.what() << '\n';
+		case ERenderer::Fur:
+			fur.pauseRenderEngine();
 		}
 	}
-
-	void RD_Interface::stopRenderEngine()
+	catch (std::exception& e)
 	{
-		try
-		{
-			switch (Configuration::getInstance().renderConfig.renderer)
-			{
-			case ERenderer::Fur:
-				fur.stopRenderEngine();
+		std::cout << e.what() << '\n';
+	}
+}
 
-			}
-		}
-		catch (std::exception& e)
+void RD_Interface::stopRenderEngine()
+{
+	try
+	{
+		switch (Configuration::getInstance().renderConfig.renderer)
 		{
-			std::cout << e.what() << '\n';
+		case ERenderer::Fur:
+			fur.stopRenderEngine();
 		}
 	}
-
-	void RD_Interface::render()
+	catch (std::exception& e)
 	{
-		try
+		std::cout << e.what() << '\n';
+	}
+}
+
+void RD_Interface::render()
+{
+	try
+	{
+		switch (Configuration::getInstance().renderConfig.renderer)
 		{
-			switch (Configuration::getInstance().renderConfig.renderer)
-			{
-			case ERenderer::Fur:
-				fur.render();
-				break;
-			}
-		}
-		catch (std::exception& e)
-		{
-			std::cout << e.what() << '\n';
+		case ERenderer::Fur:
+			fur.render();
+			break;
 		}
 	}
-
-	void RD_Interface::addActorToRenderQueue()
+	catch (std::exception& e)
 	{
-		try
-		{
-			switch (Configuration::getInstance().renderConfig.renderer)
-			{
-			case ERenderer::Fur:
-				fur.addActorToRenderQueue();
+		std::cout << e.what() << '\n';
+	}
+}
 
-			}
-		}
-		catch (std::exception& e)
+void RD_Interface::addActorToRenderQueue()
+{
+	try
+	{
+		switch (Configuration::getInstance().renderConfig.renderer)
 		{
-			std::cout << e.what() << '\n';
+		case ERenderer::Fur:
+			fur.addActorToRenderQueue();
 		}
 	}
-
-	void RD_Interface::submitDrawCall(DrawCall& drawCall)
+	catch (std::exception& e)
 	{
-		try
-		{
-			switch (Configuration::getInstance().renderConfig.renderer)
-			{
-			case ERenderer::Fur:
-				fur.submitDrawCall(drawCall);
+		std::cout << e.what() << '\n';
+	}
+}
 
-			}
-		}
-		catch (std::exception& e)
+void RD_Interface::submitDrawCall(DrawCall& drawCall)
+{
+	try
+	{
+		switch (Configuration::getInstance().renderConfig.renderer)
 		{
-			std::cout << e.what() << '\n';
+		case ERenderer::Fur:
+			fur.submitDrawCall(drawCall);
 		}
 	}
-
-	void RD_Interface::updateRenderEngineOptions(std::string parameterName, int parameter)
+	catch (std::exception& e)
 	{
-		try
+		std::cout << e.what() << '\n';
+	}
+}
+
+void RD_Interface::updateRenderEngineOptions(std::string parameterName, int parameter)
+{
+	try
+	{
+		switch (Configuration::getInstance().renderConfig.renderer)
 		{
-			switch (Configuration::getInstance().renderConfig.renderer)
-			{
-			case ERenderer::Fur:
-				fur.updateRenderEngineOptions(parameterName, parameter);
-			}
-		}
-		catch (std::exception& e)
-		{
-			std::cout << e.what() << '\n';
+		case ERenderer::Fur:
+			fur.updateRenderEngineOptions(parameterName, parameter);
 		}
 	}
-
-	void RD_Interface::updateRenderEngineOptions(std::string parameterName, float parameter)
+	catch (std::exception& e)
 	{
-		try
-		{
-			switch (Configuration::getInstance().renderConfig.renderer)
-			{
-			case ERenderer::Fur:
-				fur.updateRenderEngineOptions(parameterName, parameter);
+		std::cout << e.what() << '\n';
+	}
+}
 
-			}
-		}
-		catch (std::exception& e)
+void RD_Interface::updateRenderEngineOptions(std::string parameterName, float parameter)
+{
+	try
+	{
+		switch (Configuration::getInstance().renderConfig.renderer)
 		{
-			std::cout << e.what() << '\n';
+		case ERenderer::Fur:
+			fur.updateRenderEngineOptions(parameterName, parameter);
 		}
 	}
-
-	void RD_Interface::updateRenderEngineOptions(std::string parameterName, std::string parameter)
+	catch (std::exception& e)
 	{
-		try
-		{
-			switch (Configuration::getInstance().renderConfig.renderer)
-			{
-			case ERenderer::Fur:
-				fur.updateRenderEngineOptions(parameterName, parameter);
+		std::cout << e.what() << '\n';
+	}
+}
 
-			}
-		}
-		catch (std::exception& e)
+void RD_Interface::updateRenderEngineOptions(std::string parameterName, std::string parameter)
+{
+	try
+	{
+		switch (Configuration::getInstance().renderConfig.renderer)
 		{
-			std::cout << e.what() << '\n';
+		case ERenderer::Fur:
+			fur.updateRenderEngineOptions(parameterName, parameter);
 		}
+	}
+	catch (std::exception& e)
+	{
+		std::cout << e.what() << '\n';
 	}
 }

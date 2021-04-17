@@ -67,7 +67,6 @@ extern "C" {
 // -----------------------------------------------------------------------------------
 enum aiPostProcessSteps
 {
-
     // -------------------------------------------------------------------------
     /** <hr>Calculates the tangents and bitangents for the imported meshes.
      *
@@ -446,7 +445,7 @@ enum aiPostProcessSteps
      *  together with #aiProcess_OptimizeGraph, if possible. The flag is fully
      *  compatible with both #aiProcess_SplitLargeMeshes and #aiProcess_SortByPType.
     */
-    aiProcess_OptimizeMeshes  = 0x200000,
+    aiProcess_OptimizeMeshes = 0x200000,
 
 
     // -------------------------------------------------------------------------
@@ -475,7 +474,7 @@ enum aiPostProcessSteps
      *  #aiProcess_OptimizeMeshes in combination with #aiProcess_OptimizeGraph
      *  usually fixes them all and makes them renderable.
     */
-    aiProcess_OptimizeGraph  = 0x400000,
+    aiProcess_OptimizeGraph = 0x400000,
 
     // -------------------------------------------------------------------------
     /** <hr>This step flips all UV coordinates along the y-axis and adjusts
@@ -510,13 +509,13 @@ enum aiPostProcessSteps
      *  x1
      * @endcode
     */
-    aiProcess_FlipWindingOrder  = 0x1000000,
+    aiProcess_FlipWindingOrder = 0x1000000,
 
     // -------------------------------------------------------------------------
     /** <hr>This step splits meshes with many bones into sub-meshes so that each
      * sub-mesh has fewer or as many bones as a given limit.
     */
-    aiProcess_SplitByBoneCount  = 0x2000000,
+    aiProcess_SplitByBoneCount = 0x2000000,
 
     // -------------------------------------------------------------------------
     /** <hr>This step removes bones losslessly or according to some threshold.
@@ -531,7 +530,7 @@ enum aiPostProcessSteps
      *  Use <tt>#AI_CONFIG_PP_DB_ALL_OR_NONE</tt> if you want bones removed if and
      *  only if all bones within the scene qualify for removal.
     */
-    aiProcess_Debone  = 0x4000000,
+    aiProcess_Debone = 0x4000000,
 
     // -------------------------------------------------------------------------
     /** <hr>This step will perform a global scale of the model.
@@ -554,8 +553,8 @@ enum aiPostProcessSteps
      *  it will check if a file with the same name exists at the root folder
      *  of the imported model. And if so, it uses that.
      */
-    aiProcess_EmbedTextures  = 0x10000000,
-        
+    aiProcess_EmbedTextures = 0x10000000,
+
     // aiProcess_GenEntityMeshes = 0x100000,
     // aiProcess_OptimizeAnimations = 0x200000
     // aiProcess_FixTexturePaths = 0x200000
@@ -623,22 +622,22 @@ enum aiPostProcessSteps
     aiProcess_SortByPType           |  \
     0 )
 
- // ---------------------------------------------------------------------------------------
- /** @def aiProcessPreset_TargetRealtime_Quality
-  *  @brief Default postprocess configuration optimizing the data for real-time rendering.
-  *
-  *  Unlike #aiProcessPreset_TargetRealtime_Fast, this configuration
-  *  performs some extra optimizations to improve rendering speed and
-  *  to minimize memory usage. It could be a good choice for a level editor
-  *  environment where import speed is not so important.
-  *
-  *  If you're using DirectX, don't forget to combine this value with
-  *  the #aiProcess_ConvertToLeftHanded step. If you don't support UV transformations
-  *  in your application apply the #aiProcess_TransformUVCoords step, too.
-  *  @note Please take the time to read the docs for the steps enabled by this preset.
-  *  Some of them offer further configurable properties, while some of them might not be
-  *  of use for you so it might be better to not specify them.
-  */
+// ---------------------------------------------------------------------------------------
+/** @def aiProcessPreset_TargetRealtime_Quality
+ *  @brief Default postprocess configuration optimizing the data for real-time rendering.
+ *
+ *  Unlike #aiProcessPreset_TargetRealtime_Fast, this configuration
+ *  performs some extra optimizations to improve rendering speed and
+ *  to minimize memory usage. It could be a good choice for a level editor
+ *  environment where import speed is not so important.
+ *
+ *  If you're using DirectX, don't forget to combine this value with
+ *  the #aiProcess_ConvertToLeftHanded step. If you don't support UV transformations
+ *  in your application apply the #aiProcess_TransformUVCoords step, too.
+ *  @note Please take the time to read the docs for the steps enabled by this preset.
+ *  Some of them offer further configurable properties, while some of them might not be
+ *  of use for you so it might be better to not specify them.
+ */
 #define aiProcessPreset_TargetRealtime_Quality ( \
     aiProcess_CalcTangentSpace              |  \
     aiProcess_GenSmoothNormals              |  \
@@ -654,21 +653,21 @@ enum aiPostProcessSteps
     aiProcess_FindInvalidData               |  \
     0 )
 
- // ---------------------------------------------------------------------------------------
- /** @def aiProcessPreset_TargetRealtime_MaxQuality
-  *  @brief Default postprocess configuration optimizing the data for real-time rendering.
-  *
-  *  This preset enables almost every optimization step to achieve perfectly
-  *  optimized data. It's your choice for level editor environments where import speed
-  *  is not important.
-  *
-  *  If you're using DirectX, don't forget to combine this value with
-  *  the #aiProcess_ConvertToLeftHanded step. If you don't support UV transformations
-  *  in your application, apply the #aiProcess_TransformUVCoords step, too.
-  *  @note Please take the time to read the docs for the steps enabled by this preset.
-  *  Some of them offer further configurable properties, while some of them might not be
-  *  of use for you so it might be better to not specify them.
-  */
+// ---------------------------------------------------------------------------------------
+/** @def aiProcessPreset_TargetRealtime_MaxQuality
+ *  @brief Default postprocess configuration optimizing the data for real-time rendering.
+ *
+ *  This preset enables almost every optimization step to achieve perfectly
+ *  optimized data. It's your choice for level editor environments where import speed
+ *  is not important.
+ *
+ *  If you're using DirectX, don't forget to combine this value with
+ *  the #aiProcess_ConvertToLeftHanded step. If you don't support UV transformations
+ *  in your application, apply the #aiProcess_TransformUVCoords step, too.
+ *  @note Please take the time to read the docs for the steps enabled by this preset.
+ *  Some of them offer further configurable properties, while some of them might not be
+ *  of use for you so it might be better to not specify them.
+ */
 #define aiProcessPreset_TargetRealtime_MaxQuality ( \
     aiProcessPreset_TargetRealtime_Quality   |  \
     aiProcess_FindInstances                  |  \

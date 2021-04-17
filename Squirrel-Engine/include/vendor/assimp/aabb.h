@@ -47,29 +47,33 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <assimp/vector3.h>
 
-struct aiAABB {
+struct aiAABB
+{
     C_STRUCT aiVector3D mMin;
     C_STRUCT aiVector3D mMax;
 
 #ifdef __cplusplus
 
     aiAABB()
-    : mMin()
-    , mMax() {
+        : mMin()
+          , mMax()
+    {
         // empty
     }
 
-    aiAABB(const aiVector3D &min, const aiVector3D &max )
-    : mMin(min)
-    , mMax(max) {
+    aiAABB(const aiVector3D& min, const aiVector3D& max)
+        : mMin(min)
+          , mMax(max)
+    {
         // empty
     }
 
-    ~aiAABB() {
+    ~aiAABB()
+    {
         // empty
     }
 
-#endif 
+#endif
 };
 
 

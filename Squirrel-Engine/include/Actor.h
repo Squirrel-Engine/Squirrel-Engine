@@ -2,22 +2,21 @@
 #include <unordered_map>
 #include <vector>
 #include "ActorComponent.h"
+#include "UniformDesc.h"
 
-namespace Squirrel
+class ActorComponent;
+
+class Actor
 {
-	class ActorComponent;
-	class Actor
+public:
+	virtual void BeginPlay() = 0;
+	virtual void Update() = 0;
+
+	Actor()
 	{
-	public:
-		virtual void BeginPlay() = 0;
-		virtual void Update() = 0;
-
-		Actor(){};
-
-		std::unordered_map<std::string ,ActorComponent*> componentList;
-
-		void insertComponent(std::string name, ActorComponent* component);
 	};
 
-
-}
+	std::unordered_map<std::string, ActorComponent*> componentList;
+public:
+	void insertComponent(std::string name, ActorComponent* component);
+};

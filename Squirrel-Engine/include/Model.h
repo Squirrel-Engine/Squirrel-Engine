@@ -1,5 +1,5 @@
 #pragma once
-#include <glad/glad.h> 
+#include <glad/glad.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -24,19 +24,22 @@ static unsigned int TextureFromFile(const char* path, const string& directory, b
 class Model
 {
 public:
-	vector<s_Texture> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
+	vector<s_Texture> textures_loaded;
+	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
 	vector<Mesh> meshes;
 	string directory;
 	bool gammaCorrection;
 
-	Model(){}
-	Model(string const& path, bool gamma = false);
+	Model()
+	{
+	}
+
+	Model(const string& path, bool gamma = false);
 	~Model();
-	Squirrel::UNIFORM_DESC uniformDesc;
-	void Draw(Shader& shader);
+	void Draw(Shader& shader, TRANSFORM_DESC& uniformDesc);
 
 private:
-	void loadModel(string const& path);
+	void loadModel(const string& path);
 	void processNode(aiNode& node, const aiScene& scene);
 	Mesh* processMesh(aiMesh& mesh, const aiScene& scene);
 

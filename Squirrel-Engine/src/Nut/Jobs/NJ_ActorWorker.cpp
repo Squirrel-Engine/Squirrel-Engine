@@ -1,23 +1,37 @@
 #include "NJ_ActorWorker.h"
 
-Squirrel::NJ_ActorWorker::NJ_ActorWorker(Actor* _actor) : actor(_actor)
-{
 
-}
-
-void Squirrel::NJ_ActorWorker::mount()
+NJ_ActorWorker::NJ_ActorWorker(Actor* _actor) : actor(_actor)
 {
 }
 
-void Squirrel::NJ_ActorWorker::unmount()
+void NJ_ActorWorker::mount()
 {
 }
 
-void Squirrel::NJ_ActorWorker::run()
+void NJ_ActorWorker::unmount()
 {
-	actor->Update();
-	for (auto& component : actor->componentList)
+}
+
+void NJ_ActorWorker::run()
+{
+	if (getInterface<RD_Interface>().frameCounter == 1)
 	{
-		component.second->Update();
+		actor->BeginPlay();
+		actor->Update();
+		for (auto& component : actor->componentList)
+		{
+			component.second->setup();
+			component.second->BeginPlay();
+			component.second->Update();
+		}
+	}
+	else
+	{
+		actor->Update();
+		for (auto& component : actor->componentList)
+		{
+			component.second->Update();
+		}
 	}
 }

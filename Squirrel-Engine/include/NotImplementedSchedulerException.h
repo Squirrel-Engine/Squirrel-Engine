@@ -4,14 +4,11 @@
 
 #include "Configuration.h"
 
-namespace Squirrel
-{
-    class NotImplementedSchedulerException : public std::exception
-    {
-        virtual const char* what() const throw()
-        {
-            return "This Scheduler is Not Yet Implemented";
-        }
-    } NotImplementedSchedulerException;
 
-}
+class NotImplementedSchedulerException : public std::exception
+{
+	const char* what() const throw() override
+	{
+		return "This Scheduler is Not Yet Implemented";
+	}
+} NotImplementedSchedulerException;

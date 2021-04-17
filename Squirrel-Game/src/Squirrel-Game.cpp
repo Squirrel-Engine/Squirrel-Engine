@@ -1,61 +1,48 @@
 ﻿// Squirrel-Engine.cpp : Defines the entry point for the application.
 //
-#include "Skeleton.h"
+
 #include "../Squirrel-Engine/include/Squirrel.h"
-#include "../../Squirrel-Engine/include/Mesh.h"
-#include "Components/RenderComponent.h"
-#include "Components/AudioComponent.h"
-class Sandbox : public Squirrel::Application
+#include "include/Skeleton.h"
+#include "include/Camera.h"
+#include "include/Light.h"
+#include "Squirrel-Game.h"
+
+
+class Sandbox : public Application
 {
 public:
 	Sandbox()
 	{
-
 	}
 
-	~Sandbox()
+	~Sandbox() override
 	{
-
 	}
 
-	virtual void Run() override;
+	void Run() override;
 };
 
-Squirrel::Application* Squirrel::CreateApplication()
+Application* CreateApplication()
 {
 	return new Sandbox();
 }
 
 void Sandbox::Run()
 {
-	Skeleton* skeleton = new Skeleton();
-	skeleton->health = 0;
-	skeleton->attackPower = 0;
-	
-	TransformComponent* transformComponent = new TransformComponent();
-	
-	transformComponent->setup();
-	
-	transformComponent->setParent(skeleton);
-	skeleton->transformComponent = transformComponent;
-	skeleton->transformComponent->setTransform(glm::vec3(0, -0.5f, -50.0f));
-	skeleton->transformComponent->setRotation(glm::vec3(0.0f, -5.0f, 0.0f));
-	skeleton->insertComponent("transformComponent", transformComponent);
 
-
-	
-	RenderComponent* renderComponent = new RenderComponent();
-	
-	renderComponent->C_ModelID = 0;
-	renderComponent->C_MaterialID_0 = 1;
-	renderComponent->C_MaterialID_1 = 1;
-	renderComponent->C_ShaderID = 0;
-	renderComponent->setup();
-	
-	renderComponent->setParent(skeleton);
-	skeleton->renderComponent = renderComponent;
-	skeleton->insertComponent("renderComponent", renderComponent);
-	
+	auto testSchema = new TestControlSchema();
+	getInterface<IP_Interface>().setControlSchema(testSchema);
+	auto mainCamera = new Camera();
+	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::CAMERA, mainCamera);
+	auto skeleton = new Skeleton();
+	skeleton->health = 100;
+	skeleton->attackPower = 50;
+	skeleton->transformComponent->setTransform(0, 0, -60);
+	skeleton->transformComponent->setRotation(20, 20, 20);
+	skeleton->renderComponent->C_ModelID = 0;
+	skeleton->renderComponent->C_MaterialID_0 = 0;
+	skeleton->renderComponent->C_MaterialID_1 = 1;
+	skeleton->renderComponent->C_ShaderID = 0;
 
 	AudioComponent* audioComponent = new AudioComponent();
 
@@ -65,14 +52,13 @@ void Sandbox::Run()
 	skeleton->audioComponent = audioComponent;
 	skeleton->insertComponent("audioComponent", audioComponent);
 	audioComponent->play();
-	//TODO: Bütün sesleri tek bir buffer içine topla ve bufferı çal 
 
+	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);
 
-	Squirrel::InterfaceFactory::getInstance().getGMInterface().levelStore->spawnNewActor(skeleton);
-
-
-	//Squirrel::InterfaceFactory::getInstance().getAUInterface().playAudio(Squirrel::InterfaceFactory::getInstance().getRMInterface().getAudio(2)->audioObject);
-
-	
-
+	//
+	auto light = new Light();
+	light->transformComponent->setTransform(0, 20, -20);
+	light->lightComponent->setColor(1, 0, 0);
+	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::LIGHT, light);
 }
+

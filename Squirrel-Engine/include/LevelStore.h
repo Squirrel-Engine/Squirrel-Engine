@@ -1,25 +1,28 @@
 #pragma once
 #include <string>
-
 #include "Actor.h"
-#include "IStore.h"
 
-namespace Squirrel
+enum class EActorType
 {
-	class LevelStore
-	{
-		
-	public:
-		LevelStore();
+	ACTOR,
+	CAMERA,
+	LIGHT
+};
 
-		std::vector<Actor*> actors;
-		//camera
-		//lights
-		std::string name;
+class LevelStore
+{
+public:
+	LevelStore();
 
+	std::vector<Actor*> actors;
+	std::vector<Actor*> lights;
+	Actor* mainCamera;
 
-		void spawnNewActor(Actor* actor);
-		Actor* getActor(int row);
-		void setupStore(std::string _name, std::vector<Actor*> initialActorVector);
-	};
-}
+	std::string name;
+
+	void spawnNewActor(EActorType type, Actor* actor);
+
+	Actor* getActor(EActorType type, int row);
+
+	void setupStore(std::string _name, std::vector<Actor*> initialActorVector);
+};
