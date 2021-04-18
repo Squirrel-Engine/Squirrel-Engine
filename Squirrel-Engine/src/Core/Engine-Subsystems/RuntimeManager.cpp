@@ -16,7 +16,7 @@ RuntimeManager& RuntimeManager::getInstance()
 void RuntimeManager::engineStartup()
 {
 	std::cout << "Engine is Loading" << std::endl;
-   IDirectSound8* m_pDS = NULL;
+ 
     InterfaceFactory::getInstance().getAUInterface().startAudioEngine();
 	//Interface Initialization
 	getInterface<RD_Interface>().startRenderEngine();

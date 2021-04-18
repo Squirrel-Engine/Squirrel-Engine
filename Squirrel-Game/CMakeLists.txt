@@ -19,9 +19,6 @@ FILE(GLOB_RECURSE SOURCES "${SRC_DIR}/*.cpp" "${INC_DIR}/*.cpp")
 FILE(GLOB_RECURSE INCLUDES "${INC_DIR}/*.h" )
 # Add source to this project's executable.
 add_executable (Squirrel-Game ${SOURCES} ${INCLUDES})
-if(MSVC)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
-endif(MSVC)
 # TODO: Add tests and install targets if needed.
 
 target_include_directories(${PROJECT_NAME} PRIVATE "${SRC_DIR}")

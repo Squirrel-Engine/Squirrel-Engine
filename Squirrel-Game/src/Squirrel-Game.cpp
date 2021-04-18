@@ -44,14 +44,7 @@ void Sandbox::Run()
 	skeleton->renderComponent->C_MaterialID_1 = 1;
 	skeleton->renderComponent->C_ShaderID = 0;
 
-	AudioComponent* audioComponent = new AudioComponent();
 
-	audioComponent->C_AudioSourceID = 0;
-	audioComponent->setup();
-	audioComponent->setParent(skeleton);
-	skeleton->audioComponent = audioComponent;
-	skeleton->insertComponent("audioComponent", audioComponent);
-	audioComponent->play();
 
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);
 

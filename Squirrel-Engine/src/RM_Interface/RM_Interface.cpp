@@ -46,15 +46,15 @@ void RM_Interface::loadMeshAsset()
 }
 
 
-	void RM_Interface::loadAudioAsset()
+void RM_Interface::loadAudioAsset()
+{
+	for (int i = 0; i < audioAssetMap.size(); i++)
 	{
-		for (int i = 0; i < audioAssetMap.size(); i++)
-		{
-			Audio* audioObj = new Audio(audioAssetMap[i]);
-			audioBuffer.insert({ i, audioObj });
-		}
-
+		Audio* audioObj = new Audio(audioAssetMap[i]);
+		audioBuffer.insert({ i, audioObj });
 	}
+
+}
 
 
 void RM_Interface::loadTextureAsset()
@@ -95,6 +95,7 @@ void RM_Interface::loadAssetMT()
 	loadTextureAsset();
 	loadMaterialAsset();
 	loadShaderAsset();
+	loadAudioAsset();
 }
 
 Model* RM_Interface::getMesh(int index)

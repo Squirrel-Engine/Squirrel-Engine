@@ -6,31 +6,13 @@
 
 AudioComponent::AudioComponent()
 {
-	
-}
-
-void AudioComponent::BeginPlay()
-{
-
-}
-
-void AudioComponent::Update()
-{
-
-}
-
-void AudioComponent::setup()
-{
-	audioSourceID = C_AudioSourceID;
-	audioVolume = C_AudioVolume;
-
 
 	//SetConsoleTitle(TEXT("Simplest Audio Play DirectSound"));//Console Title
 	//Init DirectSound
 	if (FAILED(DirectSoundCreate8(NULL, &m_pDS, NULL)))
-		std::cout << "Error" << std::endl;;
-	if (FAILED(m_pDS->SetCooperativeLevel(FindWindow(NULL, TEXT("Simplest Audio Play DirectSound")), DSSCL_NORMAL)))
-		std::cout << "Error" << std::endl;;
+		std::cout << "Errord" << std::endl;;
+	if (FAILED(m_pDS->SetCooperativeLevel(FindWindow(NULL, TEXT("Fur Renderer")), DSSCL_NORMAL)))
+		std::cout << "Errors" << std::endl;;
 
 
 
@@ -57,14 +39,14 @@ void AudioComponent::setup()
 	//Creates a sound buffer object to manage audio samples. 
 	HRESULT hr1;
 	if (FAILED(m_pDS->CreateSoundBuffer(&dsbd, &m_pDSBuffer, NULL))) {
-		std::cout << "Error" << std::endl;;
+		std::cout << "Error SoundBuffer" << std::endl;;
 	}
 	if (FAILED(m_pDSBuffer->QueryInterface(IID_IDirectSoundBuffer8, (LPVOID*)&m_pDSBuffer8))) {
-		std::cout << "Error" << std::endl;;
+		std::cout << "Error Buffer8" << std::endl;;
 	}
 	//Get IDirectSoundNotify8
 	if (FAILED(m_pDSBuffer8->QueryInterface(IID_IDirectSoundNotify, (LPVOID*)&m_pDSNotify))) {
-		std::cout << "Error" << std::endl;;
+		std::cout << "Error Notify" << std::endl;;
 	}
 	for (int i = 0; i < MAX_AUDIO_BUF; i++) {
 		m_pDSPosNotify[i].dwOffset = i * BUFFERNOTIFYSIZE;
@@ -73,6 +55,24 @@ void AudioComponent::setup()
 	}
 	m_pDSNotify->SetNotificationPositions(MAX_AUDIO_BUF, m_pDSPosNotify);
 	m_pDSNotify->Release();
+}
+
+void AudioComponent::BeginPlay()
+{
+
+}
+
+void AudioComponent::Update()
+{
+
+}
+
+void AudioComponent::setup()
+{
+	audioSourceID = C_AudioSourceID;
+	audioVolume = C_AudioVolume;
+
+
 
 	//Start Playing
 	BOOL isPlaying = TRUE;
@@ -90,11 +90,11 @@ void AudioComponent::thFunc()
 	while (isPlaying) {
 		if ((res >= WAIT_OBJECT_0) && (res <= WAIT_OBJECT_0 + 3)) {
 			m_pDSBuffer8->Lock(offset, BUFFERNOTIFYSIZE, &buf, &buf_len, NULL, NULL, 0);
-			if (fread(buf, 1, buf_len, getInterface<RM_Interface>().getAudio(audioSourceID)->audioObject) != buf_len) {
+			if (fread(buf, 1, buf_len, getInterface<RM_Interface>().getAudio(0)->audioObject) != buf_len) {
 				//File End
 				//Loop:
-				fseek(getInterface<RM_Interface>().getAudio(audioSourceID)->audioObject, 0, SEEK_SET);
-				fread(buf, 1, buf_len, getInterface<RM_Interface>().getAudio(audioSourceID)->audioObject);
+				fseek(getInterface<RM_Interface>().getAudio(0)->audioObject, 0, SEEK_SET);
+				fread(buf, 1, buf_len, getInterface<RM_Interface>().getAudio(0)->audioObject);
 				//Close:
 				isPlaying=0;
 			}
@@ -121,4 +121,5 @@ void AudioComponent::play()
 {
 	std::thread the(&AudioComponent::thFunc, this);
 	the.detach();
+
 }
