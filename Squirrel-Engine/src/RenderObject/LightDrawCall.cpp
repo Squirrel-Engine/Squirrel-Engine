@@ -1,12 +1,9 @@
 ﻿#include "LightDrawCall.h"
 
-LightDrawCall::LightDrawCall(LightObject* light, Shader* shader, TRANSFORM_DESC* transformUniform,
-                             LIGHT_DESC* lightUniform)
+LightDrawCall::LightDrawCall(LightObject* light, Shader* shader, TRANSFORM_DESC* transformUniform, LIGHT_DESC* lightUniform)
+	:light(light), shader(shader), transformUniform(transformUniform), lightUniform(lightUniform)
 {
-	this->light = light;
-	this->shader = shader;
-	this->transformUniform = transformUniform;
-	this->lightUniform = lightUniform;
+
 }
 
 void LightDrawCall::draw()

@@ -1,9 +1,5 @@
 #include "Components/AudioComponent.h"
 
-
-
-
-
 AudioComponent::AudioComponent()
 {
 
@@ -13,8 +9,6 @@ AudioComponent::AudioComponent()
 		std::cout << "Errord" << std::endl;;
 	if (FAILED(m_pDS->SetCooperativeLevel(FindWindow(NULL, TEXT("Fur Renderer")), DSSCL_NORMAL)))
 		std::cout << "Errors" << std::endl;;
-
-
 
 	memset(&dsbd, 0, sizeof(dsbd));
 	dsbd.dwSize = sizeof(dsbd);
@@ -72,8 +66,6 @@ void AudioComponent::setup()
 	audioSourceID = C_AudioSourceID;
 	audioVolume = C_AudioVolume;
 
-
-
 	//Start Playing
 	BOOL isPlaying = TRUE;
 	LPVOID buf = NULL;
@@ -121,5 +113,4 @@ void AudioComponent::play()
 {
 	std::thread the(&AudioComponent::thFunc, this);
 	the.detach();
-
 }

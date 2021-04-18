@@ -2,7 +2,6 @@
 #include <unordered_map>
 #include <vector>
 #include "ActorComponent.h"
-#include "UniformDesc.h"
 
 class ActorComponent;
 
@@ -18,5 +17,8 @@ public:
 
 	std::unordered_map<std::string, ActorComponent*> componentList;
 public:
-	void insertComponent(std::string name, ActorComponent* component);
+	inline void Actor::insertComponent(std::string name, ActorComponent* component)
+	{
+		componentList.insert(std::make_pair(name, component));
+	}
 };

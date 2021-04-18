@@ -1,9 +1,8 @@
 #pragma once
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
-#include "../../../Squirrel-Engine/include/ActorComponent.h"
 #include "../../../Squirrel-Engine/include/Configuration.h"
-#include "TransformComponent.h"
+#include "Components/TransformComponent.h"
 
 SR_COMPONENT()
 
@@ -25,12 +24,7 @@ public:
 	const mat4& getViewMatrix() const { return m_ViewMatrix; }
 	mat4 getViewProjection() const { return m_Projection * m_ViewMatrix; }
 
-	void setViewportSize(float width, float height)
-	{
-		m_ViewportWidth = width;
-		m_ViewportHeight = height;
-		updateProjection();
-	}
+	void setViewportSize(float width, float height);
 
 	float getPitch() const { return m_Pitch; }
 	float getYaw() const { return m_Yaw; }

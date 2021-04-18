@@ -2,10 +2,9 @@
 #include "Macros.h"
 #include <iostream>
 #include "../../Squirrel-Engine/include/LightObject.h"
-#include "../../../Squirrel-Engine/include/ActorComponent.h"
 #include "../../Squirrel-Engine/include/InterfaceFactory.h"
 #include "../../Squirrel-Engine/include/LightDrawCall.h"
-#include "include/Components/TransformComponent.h"
+#include "Components/TransformComponent.h"
 
 SR_COMPONENT()
 

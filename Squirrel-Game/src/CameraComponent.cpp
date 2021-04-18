@@ -37,6 +37,13 @@ void CameraComponent::updateView()
 	m_ViewMatrix = inverse(m_ViewMatrix);
 }
 
+void CameraComponent::setViewportSize(float width, float height)
+{
+	m_ViewportWidth = width;
+	m_ViewportHeight = height;
+	updateProjection();
+}
+
 vec3 CameraComponent::getUpDirection() const
 {
 	return glm::rotate(getOrientation(), vec3(0.0f, 1.0f, 0.0f));
