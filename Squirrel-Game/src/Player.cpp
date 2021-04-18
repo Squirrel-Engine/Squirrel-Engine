@@ -1,7 +1,7 @@
-﻿#include "Skeleton.h"
+#include "Player.h"
 
 
-Skeleton::Skeleton()
+Player::Player()
 {
 	auto transformComponent = new TransformComponent();
 	transformComponent->setParent(this);
@@ -13,18 +13,14 @@ Skeleton::Skeleton()
 	this->renderComponent = renderComponent;
 	insertComponent("renderComponent", renderComponent);
 
-	auto aiComponent = new AIComponent();
-	aiComponent->setParent(this);
-	this->aiComponent = aiComponent;
-	insertComponent("aiComponent", aiComponent);
 }
 
-void Skeleton::BeginPlay()
+void Player::BeginPlay()
 {
 	//audioComponent->play();
 }
 
-void Skeleton::Update()
+void Player::Update()
 {
 	transformComponent->rotationY += 0.05;
 }

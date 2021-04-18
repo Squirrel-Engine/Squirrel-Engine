@@ -5,6 +5,8 @@
 #include "include/Light.h"
 #include "Squirrel-Game.h"
 
+#include "Player.h"
+
 class Sandbox : public Application
 {
 public:
@@ -28,10 +30,11 @@ void Sandbox::Run()
 {
 	auto testSchema = new TestControlSchema();
 	getInterface<IP_Interface>().setControlSchema(testSchema);
-	//
+
 	auto mainCamera = new Camera();
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::CAMERA, mainCamera);
-	//
+
+	
 	auto skeleton = new Skeleton();
 	skeleton->health = 100;
 	skeleton->attackPower = 50;
@@ -40,7 +43,6 @@ void Sandbox::Run()
 	skeleton->renderComponent->C_ModelID = 2;
 	skeleton->renderComponent->C_MaterialID_0 = 2;
 
-	skeleton->audioComponent->C_AudioSourceID = 0;
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);
 	//
 	auto light = new Light();
