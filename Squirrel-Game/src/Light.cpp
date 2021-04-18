@@ -5,13 +5,11 @@ Light::Light()
 	auto transformComponent = new TransformComponent();
 	transformComponent->setParent(this);
 	this->transformComponent = transformComponent;
-	this->transformComponent->setup();
 	insertComponent("transformComponent", transformComponent);
 
 	auto lightComponent = new LightComponent();
 	lightComponent->setParent(this);
 	this->lightComponent = lightComponent;
-	this->lightComponent->setup();
 	insertComponent("lightComponent", lightComponent);
 }
 
@@ -21,4 +19,7 @@ void Light::BeginPlay()
 
 void Light::Update()
 {
+	float timeValue = glfwGetTime();
+	float greenValue = sin(timeValue) / 2.0f + 0.5f;
+	lightComponent->color.g = greenValue;
 }

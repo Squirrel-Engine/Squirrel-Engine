@@ -1,6 +1,4 @@
 #include "ControlSchema/TestControlSchema.h"
-#include <typeinfo>
-
 
 void TestControlSchema::Key_SPACE_RELEASE()
 {
@@ -9,7 +7,6 @@ void TestControlSchema::Key_SPACE_RELEASE()
 
 void TestControlSchema::Key_Space_HOLD()
 {
-	//typeid(int).name()
 	std::cout << "HOLD" << std::endl;
 }
 

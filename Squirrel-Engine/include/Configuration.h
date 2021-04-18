@@ -2,8 +2,7 @@
 #include "AudioConfig.h"
 #include "RenderConfig.h"
 #include "SchedulerConfig.h"
-
-
+	
 class Configuration
 {
 private:
@@ -15,5 +14,3 @@ public:
 	SchedulerConfig schedulerConfig;
 	AudioConfig audioConfig;
 };
-
-

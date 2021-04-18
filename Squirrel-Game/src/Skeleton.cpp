@@ -6,29 +6,25 @@ Skeleton::Skeleton()
 	auto transformComponent = new TransformComponent();
 	transformComponent->setParent(this);
 	this->transformComponent = transformComponent;
-	this->transformComponent->setup();
 	insertComponent("transformComponent", transformComponent);
 
+	auto renderComponent = new RenderComponent();
+	renderComponent->setParent(this);
+	this->renderComponent = renderComponent;
+	insertComponent("renderComponent", renderComponent);
 
-	auto skeleton_renderComponent = new RenderComponent();
-	skeleton_renderComponent->setParent(this);
-	renderComponent = skeleton_renderComponent;
-	insertComponent("renderComponent", skeleton_renderComponent);
-
-	AudioComponent* audioComponent = new AudioComponent();
-
-	audioComponent->C_AudioSourceID = 0;
+	auto audioComponent = new AudioComponent();
 	audioComponent->setParent(this);
-	audioComponent = audioComponent;
+	this->audioComponent = audioComponent;
 	insertComponent("audioComponent", audioComponent);
-	audioComponent->play();
 }
 
 void Skeleton::BeginPlay()
 {
+	//audioComponent->play();
 }
 
 void Skeleton::Update()
 {
-	transformComponent->rotationY += 5;
+	transformComponent->rotationY += 0.05;
 }

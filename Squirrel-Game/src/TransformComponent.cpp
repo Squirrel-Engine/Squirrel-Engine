@@ -11,13 +11,15 @@ void TransformComponent::BeginPlay()
 
 void TransformComponent::Update()
 {
-	transform = vec3(positionX, positionY, positionZ);
+	transform.position = vec3(positionX, positionY, positionZ);
+	transform.rotation = vec3(rotationX, rotationY, rotationZ);
+	transform.scale    = vec3(scaleX, scaleY, scaleZ);
 	transformMat = mat4(1.0f);
-	transformMat = translate(transformMat, transform);
-	transformMat = glm::rotate(transformMat, radians(rotationX), vec3(1, 0, 0)); //rotation x 
-	transformMat = glm::rotate(transformMat, radians(rotationY), vec3(0, 1, 0)); //rotation y
-	transformMat = glm::rotate(transformMat, radians(rotationZ), vec3(0, 0, 1)); //rotation z 
-	transformMat = scale(transformMat, vec3(scaleX, scaleY, scaleZ));
+	transformMat = glm::translate(transformMat, transform.position);
+	transformMat = glm::rotate(transformMat, radians(transform.rotation.x), vec3(1, 0, 0)); //rotation x 
+	transformMat = glm::rotate(transformMat, radians(transform.rotation.y), vec3(0, 1, 0)); //rotation y
+	transformMat = glm::rotate(transformMat, radians(transform.rotation.z), vec3(0, 0, 1)); //rotation z 
+	transformMat = glm::scale(transformMat, transform.scale);
 
 	dynamic_cast<TRANSFORM_DESC*>(uniform)->model = transformMat;
 }
@@ -29,18 +31,17 @@ void TransformComponent::setup()
 
 vec3& TransformComponent::getTransform()
 {
-	return transform;
+	return transform.position;
 }
 
-vec3 TransformComponent::getRotation()
+vec3& TransformComponent::getRotation()
 {
-	return vec3(rotationX, rotationY, rotationZ);
+	return transform.rotation;
 }
 
-
-vec3 TransformComponent::getScale()
+vec3& TransformComponent::getScale()
 {
-	return vec3(scaleX, scaleY, scaleZ);
+	return transform.scale;
 }
 
 void TransformComponent::setTransform(float x, float y, float z)

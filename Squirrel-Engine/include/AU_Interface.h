@@ -1,6 +1,5 @@
-
+#pragma once
 #include "Ear.h"
-
 
 class AU_Interface
 {
@@ -11,8 +10,6 @@ public:
 
 private:
 	// Options
-
-	
 	// Audio Engine
 	Ear* ear;
 };

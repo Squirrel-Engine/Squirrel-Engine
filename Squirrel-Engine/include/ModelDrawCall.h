@@ -1,10 +1,6 @@
 #pragma once
 #include "Shader.h"
-#include "Texture.h"
 #include "UniformDesc.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include "Model.h"
 #include "DrawCall.h"
 
@@ -14,7 +10,7 @@ public:
 	ModelDrawCall(Model* model, Shader* shader, TRANSFORM_DESC* uniformDesc);
 	void draw() override;
 
-public:
+private:
 	Model* model;
 	Shader* shader;
 	TRANSFORM_DESC* uniformDesc;

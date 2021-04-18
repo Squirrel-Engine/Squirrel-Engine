@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Actor.h"
+#include "UniformDesc.h"
 #include "FurStore.h"
 
 class Actor;
@@ -12,7 +13,7 @@ private:
 public:
 	ActorComponent()
 	{
-	}
+	};
 
 	virtual void BeginPlay() = 0;
 	virtual void Update() = 0;
