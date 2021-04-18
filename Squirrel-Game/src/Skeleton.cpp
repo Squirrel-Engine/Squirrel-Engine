@@ -21,7 +21,7 @@ Skeleton::Skeleton()
 
 void Skeleton::BeginPlay()
 {
-	audioComponent->play();
+	//audioComponent->play();
 }
 
 void Skeleton::Update()

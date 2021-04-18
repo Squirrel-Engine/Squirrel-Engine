@@ -13,7 +13,7 @@ private:
 public:
 	ActorComponent()
 	{
-	}
+	};
 
 	virtual void BeginPlay() = 0;
 	virtual void Update() = 0;
