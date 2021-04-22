@@ -15,6 +15,6 @@ int main(int argc, char** argv)
 
 	getInterface<MT_Interface>().startScheduler();
 	runtimeManager.engineShutdown();
-
+	
 	delete app;
 }

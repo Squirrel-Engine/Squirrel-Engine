@@ -3,5 +3,6 @@
 
 class SequenceNode : public AINode
 {
-	
+public:
+	int counter = -1;
 };

@@ -23,7 +23,7 @@ void WalkToDoorAction::onAction()
 	{
 		actionStatus = EActionStatus::SUCCEED;
 	}
-	if (test > 500)
+		if (test > 500)
 	{
 		actionStatus = EActionStatus::FAILED;
 

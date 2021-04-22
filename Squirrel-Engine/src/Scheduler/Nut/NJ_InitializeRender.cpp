@@ -14,5 +14,5 @@ void NJ_InitializeRender::unmount()
 
 void NJ_InitializeRender::run()
 {
-	InterfaceFactory::getInstance().getRDInterface().render();
+	getInterface<RD_Interface>().render();
 }

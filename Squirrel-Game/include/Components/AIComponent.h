@@ -3,7 +3,9 @@
 #include "../../Squirrel-Engine/include/ActorComponent.h"
 #include "SkeletonAI/WalkToDoorAction.h"
 #include "../../Squirrel-Engine/include/ActionNode.h"
-class ActionNode;
+#include "../../Squirrel-Engine/include/BehaviorTree.h"
+
+
 SR_COMPONENT()
 
 class AIComponent : public ActorComponent
@@ -17,7 +19,7 @@ public:
 	SR_VAR_START()
 
 	SR_VAR_END()
-
+	BehaviorTree* behaviorTree;
 	ActionNode* actionNode;
 };
 
