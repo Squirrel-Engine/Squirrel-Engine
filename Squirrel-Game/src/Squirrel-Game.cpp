@@ -1,5 +1,6 @@
 ﻿// Squirrel-Engine.cpp : Defines the entry point for the application.
 #include "../Squirrel-Engine/include/Squirrel.h"
+#include "../Squirrel-Engine/include/SelectionNode.h"
 #include "include/Skeleton.h"
 #include "include/Camera.h"
 #include "include/Light.h"
@@ -47,18 +48,21 @@ void Sandbox::Run()
 
 	//----------------------
 	BehaviorTree* myTree = new BehaviorTree();
-	SampleSequence sampleSequence;
-	SampleDecorator sampleDecorator;
-	WalkToDoorAction walkToDoorAction;
-	AINode* aiNode;
-	aiNode = &sampleSequence;
-	myTree->insertNode(&sampleSequence, "sampleSequence", EAINode::SEQUENCE);
-	myTree->insertNode(&sampleDecorator, "sampleDecorator", EAINode::DECORATOR);
-	myTree->insertNode(&walkToDoorAction, "walkToDoor", EAINode::ACTION);
-	
-	myTree->linkNode("sampleSequence", "sampleDecorator");
-	myTree->linkNode("sampleDecorator", "walkToDoor");
+	SampleDecorator* sampleDecorator = new SampleDecorator();
+	WalkToDoorAction* walkToDoorAction = new WalkToDoorAction();
+	WalkToDoorAction2* walkToDoorAction2 = new WalkToDoorAction2();
 
+
+	myTree->insertNode(new SelectionNode(), "sampleSelection", EAINode::SELECTION);
+	//myTree->insertNode(new SequenceNode(), "sampleSequence", EAINode::SEQUENCE);
+	myTree->insertNode(sampleDecorator, "sampleDecorator", EAINode::DECORATOR);
+	myTree->insertNode(walkToDoorAction, "walkToDoor", EAINode::ACTION);
+	myTree->insertNode(walkToDoorAction2, "walkToDoor2", EAINode::ACTION);
+	
+	myTree->linkNode("sampleSelection", "sampleDecorator");
+	myTree->linkNode("sampleDecorator", "walkToDoor");
+	myTree->linkNode("sampleSelection", "walkToDoor2");
+	skeleton->aiComponent->behaviorTree = myTree;
 	//----------------------
 	
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);

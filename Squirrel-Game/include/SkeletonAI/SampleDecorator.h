@@ -9,7 +9,4 @@ public:
 	bool decoratorCase() override;
 };
 
-inline bool SampleDecorator::decoratorCase()
-{
-	return true;
-}
+

@@ -2,19 +2,26 @@
 
 BehaviorTree::BehaviorTree()
 {
-	rootNode = new RootNode();
+	rootNode = new AINode();
 }
 
 void BehaviorTree::insertNode(AINode* node, std::string nodeName, EAINode nodeType)
 {
-	if(rootNode->next == nullptr)
+	rootNode->nodes.push_back(nullptr);
+
+	if(rootNode->nodes.at(0) == nullptr)
 	{
-		rootNode->next = node;
+		for (int i = 0; i < 10; i++) {
+			node->nodes.push_back(nullptr);
+		}
+		rootNodeName = nodeName;
+		rootNode->nodes.at(0) = node;
 		node->nodeType = nodeType;
-		nodeList.insert(std::make_pair(nodeName, node));
+		nodeList.insert(std::pair<std::string, AINode*>(nodeName, node));
 	}
 	else
 	{
+		node->nodes.push_back(nullptr);
 		node->nodeType = nodeType;
 		nodeList.insert(std::make_pair(nodeName, node));
 	}
@@ -22,42 +29,70 @@ void BehaviorTree::insertNode(AINode* node, std::string nodeName, EAINode nodeTy
 
 void BehaviorTree::linkNode(std::string nodeOne, std::string nodeTwo)
 {
-	AINode* NodeOne = nodeList[nodeOne];
-	AINode* NodeTwo = nodeList[nodeTwo];
-	for (auto& node : NodeOne->nodes)
-	{
-		if(node == nullptr)
-		{
-			node = NodeTwo;
-			NodeTwo->parent = node;
+	int x = 0;
+
+	while (1) {
+
+		if (nodeList[nodeOne]->nodes.at(x) == nullptr) {
+			if (nodeOne == rootNodeName) {
+				nodeList[nodeOne]->nodes.at(x) = nodeList[nodeTwo];
+				nodeList[nodeTwo]->parent = nodeList[nodeOne];
+				rootNode->nodes.at(x) = nodeList[nodeOne];
+				break;
+			}
+			else {
+				nodeList[nodeOne]->nodes.at(x) = nodeList[nodeTwo];
+				nodeList[nodeTwo]->parent = nodeList[nodeOne];
+			}
+			break;
 		}
-	}
+		else {
+			x++;
+			continue;
+		}	
+	}	
 }
 
 ActionNode* BehaviorTree::executeTree()
 {
 	AINode* iter;
-	iter = rootNode->next;
-	while(true)
-	{
-		for (AINode*& node : iter->nodes)
+	int i = 0;
+	iter = nodeList[rootNodeName];
+
+	while(1) {
+
+		switch (iter->nodeType)
 		{
-			if(node->nodeType == EAINode::DECORATOR)
-			{
-				if(static_cast<DecoratorNode*>(node)->decoratorCase() == true)
-				{
-					iter = node->nodes[0];
-				}
+		case EAINode::SEQUENCE:
+			break;
+		case EAINode::SELECTION:
+			this->counter++;
+			if (iter->nodes.at(this->counter) != nullptr) {
+				iter = iter->nodes.at(this->counter);
 			}
-			if (node->nodeType == EAINode::SEQUENCE)
-			{
-				static_cast<SequenceNode*>(node)->counter++;
-				iter = node->nodes[0];
+			else {
+				this->counter--;
+				iter = iter->nodes.at(this->counter);
 			}
-			if (node->nodeType == EAINode::ACTION)
+		break;
+		case EAINode::DECORATOR:
+			if (static_cast<DecoratorNode*>(iter)->decoratorCase() == true)
 			{
- 
+				iter = iter->nodes.at(0);
+				this->counter = -1;
 			}
+			else
+			{
+				iter = iter->parent;
+			}
+		break;
+		case EAINode::ACTION:
+			this->counter = -1;
+			return static_cast<ActionNode*>(iter);
+
+		break;
+		default:
+			break;
 		}
 	}
 }

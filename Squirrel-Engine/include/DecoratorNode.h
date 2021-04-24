@@ -4,6 +4,5 @@
 class DecoratorNode : public AINode
 {
 public:
-	DecoratorNode();
-	virtual bool decoratorCase(){};
+	virtual bool decoratorCase() = 0;
 };

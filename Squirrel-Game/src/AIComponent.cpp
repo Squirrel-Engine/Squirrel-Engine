@@ -5,7 +5,7 @@
 
 AIComponent::AIComponent()
 {
-	actionNode = new WalkToDoorAction();
+	behaviorTree = new BehaviorTree();
 }
 
 void AIComponent::BeginPlay()

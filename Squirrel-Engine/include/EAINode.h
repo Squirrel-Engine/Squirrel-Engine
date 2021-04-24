@@ -4,5 +4,6 @@ enum class EAINode
 {
 	SEQUENCE,
 	DECORATOR,
-	ACTION
+	ACTION,
+	SELECTION
 };

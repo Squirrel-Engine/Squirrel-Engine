@@ -6,6 +6,7 @@
 class ActionNode : public AINode
 {
 public:
+	ActionNode() {};
 	virtual void onInitialize() = 0;
 	virtual void onAction() = 0;
 	virtual void onTerminate() = 0;
