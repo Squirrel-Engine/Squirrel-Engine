@@ -7,6 +7,10 @@ BehaviorTree::BehaviorTree()
 
 void BehaviorTree::insertNode(AINode* node, std::string nodeName, EAINode nodeType)
 {
+	if (nodeType == EAINode::SEQUENCE) {
+		sequenceList.push_back(static_cast<SequenceNode*>(node));
+	}
+
 	rootNode->nodes.push_back(nullptr);
 
 	if(rootNode->nodes.at(0) == nullptr)
@@ -53,6 +57,13 @@ void BehaviorTree::linkNode(std::string nodeOne, std::string nodeTwo)
 	}	
 }
 
+void BehaviorTree::resetSequenceList()
+{
+	for (int i = 0; sequenceList.size(); i++) {
+		sequenceList[i]->counter = -1;
+	}
+}
+
 ActionNode* BehaviorTree::executeTree()
 {
 	AINode* iter;
@@ -64,15 +75,21 @@ ActionNode* BehaviorTree::executeTree()
 		switch (iter->nodeType)
 		{
 		case EAINode::SEQUENCE:
+			static_cast<SequenceNode*>(iter)->counter++;
+
+			if (iter->nodes.at(static_cast<SequenceNode*>(iter)->counter) != nullptr) {
+				iter = iter->nodes.at(static_cast<SequenceNode*>(iter)->counter);
+			}
+
 			break;
 		case EAINode::SELECTION:
 			this->counter++;
+
 			if (iter->nodes.at(this->counter) != nullptr) {
 				iter = iter->nodes.at(this->counter);
 			}
 			else {
-				this->counter--;
-				iter = iter->nodes.at(this->counter);
+				break;
 			}
 		break;
 		case EAINode::DECORATOR:

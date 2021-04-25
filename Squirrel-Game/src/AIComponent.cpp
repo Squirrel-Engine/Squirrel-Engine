@@ -34,6 +34,7 @@ void AIComponent::Update()
 	if(actionNode->actionStatus == EActionStatus::FAILED)
 	{
 		actionNode->onTerminate();
+		behaviorTree->resetSequenceList();
 	}
 	else if (actionNode->actionStatus == EActionStatus::SUCCEED)
 	{
