@@ -35,9 +35,11 @@ void Sandbox::Run()
 	auto skeleton = new Skeleton();
 	skeleton->health = 100;
 	skeleton->attackPower = 50;
-	skeleton->transformComponent->setTransform(0, -2, -5);
+	skeleton->transformComponent->setTransform(0, 0, -80);
+	skeleton->transformComponent->setScale(0.5,0.5,0.5);
+	skeleton->transformComponent->setRotation(90,0,90);
 	skeleton->renderComponent->C_ShaderID = 0;
-	skeleton->renderComponent->C_ModelID = 2;
+	skeleton->renderComponent->C_ModelID = 3;
 	skeleton->renderComponent->C_MaterialID_0 = 2;
 
 	skeleton->audioComponent->C_AudioSourceID = 0;

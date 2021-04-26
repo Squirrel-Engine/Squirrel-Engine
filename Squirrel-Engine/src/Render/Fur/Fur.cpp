@@ -1,23 +1,24 @@
 #include "Fur.h"
-
+void error_callback(int error, const char* msg);
 
 Fur::Fur()
 {
+
 }
 
 void Fur::startRenderEngine()
 {
+	glfwSetErrorCallback(error_callback);
 	//access all rendering options
 	RenderConfig config = Configuration::getInstance().renderConfig;
-
+	
 	//start
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	furWindow = glfwCreateWindow(config.screenWidth, config.screenHeight, config.windowName.c_str(), nullptr,
-	                             nullptr);
+	furWindow = glfwCreateWindow(config.screenWidth, config.screenHeight, config.windowName.c_str(), nullptr, nullptr);
 	if (furWindow == nullptr)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
@@ -38,7 +39,7 @@ void Fur::startRenderEngine()
 	//
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
 }
 
 void Fur::pauseRenderEngine()
@@ -86,4 +87,10 @@ void Fur::updateRenderEngineOptions(std::string parameterName, float parameter)
 
 void Fur::updateRenderEngineOptions(std::string parameterName, std::string parameter)
 {
+}
+
+void error_callback(int error, const char* msg){
+	std::string s;
+	s = " [" + std::to_string(error) + "] " + msg + '\n';
+	std::cerr << s << std::endl;
 }

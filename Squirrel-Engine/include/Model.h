@@ -1,47 +1,28 @@
 #pragma once
-#include <glad/glad.h>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <stb_image.h>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+#include <iostream>
 
 #include "Mesh.h"
-
-#include <fstream>
-#include <sstream>
-#include <iostream>
-#include <map>
-
+#include "TextureLoader.h"
 #include "UniformDesc.h"
 
 using namespace std;
 
-static unsigned int TextureFromFile(const char* path, const string& directory, bool gamma = false);
-
 class Model
 {
 public:
-	vector<s_Texture> textures_loaded;
-	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
+	Model(const string& path);
+
+	void Draw(Shader& shader, TRANSFORM_DESC& uniformDesc);
+	inline std::vector<Mesh>& getMeshes() { return meshes; }
+private:
 	vector<Mesh> meshes;
 	string directory;
-	bool gammaCorrection;
 
-	Model()
-	{
-	}
-
-	Model(const string& path, bool gamma = false);
-	~Model();
-	void Draw(Shader& shader, TRANSFORM_DESC& uniformDesc);
-
-private:
 	void loadModel(const string& path);
 	void processNode(aiNode& node, const aiScene& scene);
-	Mesh* processMesh(aiMesh& mesh, const aiScene& scene);
-
-	vector<s_Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, string typeName);
+	Mesh processMesh(aiMesh& mesh, const aiScene& scene);
+	Texture* loadMaterialTexture(aiMaterial* mat, aiTextureType type, bool isSRGB);
 };

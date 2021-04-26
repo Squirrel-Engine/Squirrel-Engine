@@ -15,6 +15,7 @@ void RM_Interface::loadAssetMap()
 	meshAssetMap.insert({0, "../../Squirrel-Engine/res/models/Model.obj" });
 	meshAssetMap.insert({1, "../../Squirrel-Engine/res/models/Venus.obj" });
 	meshAssetMap.insert({2, "../../Squirrel-Engine/res/models/Statue.fbx" });
+	meshAssetMap.insert({3, "../../Squirrel-Engine/res/models/Cerberus_Gun/Cerberus_LP.fbx" });
 	
 	//Texture
 	textureAssetMap.insert({0, "../../Squirrel-Engine/res/textures/wall.jpg"});
@@ -50,20 +51,10 @@ void RM_Interface::loadAudioAsset()
 {
 	for (int i = 0; i < audioAssetMap.size(); i++)
 	{
-		Audio* audioObj = new Audio(audioAssetMap[i]);
+		auto audioObj = new Audio(audioAssetMap[i]);
 		audioBuffer.insert({ i, audioObj });
 	}
 
-}
-
-
-void RM_Interface::loadTextureAsset()
-{
-	for (int i = 0; i < textureAssetMap.size(); i++)
-	{
-		auto texture = new Texture(textureAssetMap[i]);
-		textureBuffer.insert({i, texture});
-	}
 }
 
 void RM_Interface::loadShaderAsset()
@@ -71,13 +62,23 @@ void RM_Interface::loadShaderAsset()
 	for (int i = 0; i < shaderAssetMap.size(); i++)
 	{
 		auto shader = new Shader(shaderAssetMap[i]);
-		shaderBuffer.insert({i, shader});
+		shaderBuffer.insert({ i, shader });
 	}
 }
 
+void RM_Interface::loadTextureAsset()
+{
+	/*for (int i = 0; i < textureAssetMap.size(); i++)
+	{
+		auto texture = new Texture(textureAssetMap[i]);
+		textureBuffer.insert({i, texture});
+	}*/
+}
+
+
 void RM_Interface::loadMaterialAsset()
 {
-	for (int i = 0; i < MATERIAL_COUNT; i++)
+	/*for (int i = 0; i < MATERIAL_COUNT; i++)
 	{
 		auto material = new Material();
 		material->setTexture("texture_diffuse", textureAssetMap.at(MaterialDataBase[i][0]));
@@ -85,7 +86,7 @@ void RM_Interface::loadMaterialAsset()
 		material->setTexture("texture_specular", textureAssetMap.at(MaterialDataBase[i][2]));
 
 		materialBuffer.insert({ i, material });
-	}
+	}*/
 }
 
 void RM_Interface::loadAssetMT()

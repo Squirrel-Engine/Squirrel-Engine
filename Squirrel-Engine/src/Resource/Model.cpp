@@ -2,18 +2,9 @@
 #include "FurStore.h"
 #include "InterfaceFactory.h"
 
-unsigned int TextureFromFile(const char* path, const string& directory, bool gamma);
-
-Model::Model(const string& path, bool gamma /*= false*/) : gammaCorrection(gamma)
+Model::Model(const string& path)
 {
 	loadModel(path);
-}
-
-Model::~Model()
-{
-	for (Mesh& obj : meshes)
-		delete &obj;
-	meshes.clear();
 }
 
 void Model::Draw(Shader& shader, TRANSFORM_DESC& uniformDesc)
@@ -34,8 +25,10 @@ void Model::Draw(Shader& shader, TRANSFORM_DESC& uniformDesc)
 		shader.setFloat("light.quadratic", desc->quadratic);
 	}
 
-	for (unsigned int i = 0; i < meshes.size(); i++)
-		meshes[i].Draw(shader);
+	for (unsigned int i = 0; i < meshes.size(); i++) {
+		meshes[i].m_Material.BindMaterialInformation(&shader);
+		meshes[i].Draw();
+	}
 }
 
 void Model::loadModel(const string& path)
@@ -60,7 +53,7 @@ void Model::processNode(aiNode& node, const aiScene& scene)
 	for (unsigned int i = 0; i < node.mNumMeshes; i++)
 	{
 		aiMesh* mesh = scene.mMeshes[node.mMeshes[i]];
-		meshes.push_back(*processMesh(*mesh, scene));
+		meshes.push_back(processMesh(*mesh, scene));
 	}
 
 	for (unsigned int i = 0; i < node.mNumChildren; i++)
@@ -69,154 +62,85 @@ void Model::processNode(aiNode& node, const aiScene& scene)
 	}
 }
 
-Mesh* Model::processMesh(aiMesh& mesh, const aiScene& scene)
+Mesh Model::processMesh(aiMesh& mesh, const aiScene& scene)
 {
-	vector<s_Vertex> vertices;
-	vector<unsigned int> indices;
-	//vector<s_Texture> textures;
+	std::vector<glm::vec3> positions;
+	std::vector<glm::vec2> uvs;
+	std::vector<glm::vec3> normals;
+	std::vector<glm::vec3> tangents;
+	std::vector<glm::vec3> bitangents;
+	std::vector<unsigned int> indices;
 
-	for (unsigned int i = 0; i < mesh.mNumVertices; i++)
-	{
-		s_Vertex vertex;
-		// positions
-		vec3 vector;
-		vector.x = mesh.mVertices[i].x;
-		vector.y = mesh.mVertices[i].y;
-		vector.z = mesh.mVertices[i].z;
-		vertex.Position = vector;
-		// normals
-		if (mesh.HasNormals())
-		{
-			vector.x = mesh.mNormals[i].x;
-			vector.y = mesh.mNormals[i].y;
-			vector.z = mesh.mNormals[i].z;
-			vertex.Normal = vector;
-		}
-		// texture coordinates
-		if (mesh.mTextureCoords[0])
-		{
-			vec2 vec;
-			vec.x = mesh.mTextureCoords[0][i].x;
-			vec.y = mesh.mTextureCoords[0][i].y;
-			vertex.TexCoords = vec;
-			// tangent
-			vector.x = mesh.mTangents[i].x;
-			vector.y = mesh.mTangents[i].y;
-			vector.z = mesh.mTangents[i].z;
-			vertex.Tangent = vector;
-			// bitangent
-			vector.x = mesh.mBitangents[i].x;
-			vector.y = mesh.mBitangents[i].y;
-			vector.z = mesh.mBitangents[i].z;
-			vertex.Bitangent = vector;
-		}
-		else
-			vertex.TexCoords = vec2(0.0f, 0.0f);
+	positions.reserve(mesh.mNumVertices);
+	uvs.reserve(mesh.mNumVertices);
+	normals.reserve(mesh.mNumVertices);
+	tangents.reserve(mesh.mNumVertices);
+	bitangents.reserve(mesh.mNumVertices);
+	indices.reserve(mesh.mNumFaces * 3);
 
-		vertices.push_back(vertex);
+	// Process vertices
+	for (unsigned int i = 0; i < mesh.mNumVertices; ++i) {
+		glm::vec2 uvCoord;
+		// Texture Coordinates (check if there is texture coordinates)
+		if (mesh.mTextureCoords[0]) {
+			// A vertex can contain up to 8 different texture coordinates. We are just going to use one set of TexCoords per vertex so grab the first one
+			uvCoord.x = mesh.mTextureCoords[0][i].x;
+			uvCoord.y = mesh.mTextureCoords[0][i].y;
+		}
+		else {
+			uvCoord.x = 0.0f;
+			uvCoord.y = 0.0f;
+		}
+
+		positions.push_back(glm::vec3(mesh.mVertices[i].x, mesh.mVertices[i].y, mesh.mVertices[i].z));
+		uvs.push_back(glm::vec2(uvCoord.x, uvCoord.y));
+		normals.push_back(glm::vec3(mesh.mNormals[i].x, mesh.mNormals[i].y, mesh.mNormals[i].z));
+		tangents.push_back(glm::vec3(mesh.mTangents[i].x, mesh.mTangents[i].y, mesh.mTangents[i].z));
+		bitangents.push_back(glm::vec3(mesh.mBitangents[i].x, mesh.mBitangents[i].y, mesh.mBitangents[i].z));
 	}
-	// indices
-	for (unsigned int i = 0; i < mesh.mNumFaces; i++)
-	{
+
+	// Process Indices
+	// Loop through every face (triangle thanks to aiProcess_Triangulate) and stores its indices in our meshes indices. This will ensure they are in the right order.
+	for (unsigned int i = 0; i < mesh.mNumFaces; ++i) {
 		aiFace face = mesh.mFaces[i];
-		// retrieve all indices of the face and store them in the indices vector
-		for (unsigned int j = 0; j < face.mNumIndices; j++)
+		for (unsigned int j = 0; j < face.mNumIndices; ++j) {
 			indices.push_back(face.mIndices[j]);
+		}
 	}
-	// process materials
-	/*
+
+	Mesh newMesh(positions, uvs, normals, tangents, bitangents, indices);
+	newMesh.LoadData();
+
+	// Process Materials (textures in this case)
 	if (mesh.mMaterialIndex >= 0) {
 		aiMaterial* material = scene.mMaterials[mesh.mMaterialIndex];
 
-		// 1. diffuse maps
-		vector<s_Texture> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
-		textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
-		// 2. specular maps
-		vector<s_Texture> specularMaps = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
-		textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
-		// 3. normal maps
-		std::vector<s_Texture> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
-		textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
-		// 4. height maps
-		std::vector<s_Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
-		textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
+		newMesh.m_Material.setAlbedoMap(loadMaterialTexture(material, aiTextureType_DIFFUSE, true));
+		newMesh.m_Material.setNormalMap(loadMaterialTexture(material, aiTextureType_NORMALS, false));
+		newMesh.m_Material.setAmbientOcclusionMap(loadMaterialTexture(material, aiTextureType_AMBIENT, false));
+		newMesh.m_Material.setDisplacementMap(loadMaterialTexture(material, aiTextureType_DISPLACEMENT, true));
 	}
-	*/
-	return new Mesh(vertices, indices);
+
+	return newMesh;
 }
 
-vector<s_Texture> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType type, const string typeName)
-{
-	vector<s_Texture> textures;
-	for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
-	{
+Texture* Model::loadMaterialTexture(aiMaterial* mat, aiTextureType type, bool isSRGB) {
+	// Log material constraints are being violated (1 texture per type for the standard shader)
+	if (mat->GetTextureCount(type) > 1)
+		cout << "Mesh's default material contains more than 1 texture for the same type, which currently isn't supported by the standard shader" << endl;
+
+	// Load the texture of a certain type, assuming there is one
+	if (mat->GetTextureCount(type) > 0) {
 		aiString str;
-		mat->GetTexture(type, i, &str);
-		// check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
-		bool skip = false;
-		for (unsigned int j = 0; j < textures_loaded.size(); j++)
-		{
-			if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0)
-			{
-				textures.push_back(textures_loaded[j]);
-				skip = true;
-				// a texture with the same filepath has already been loaded, continue to next one. (optimization)
-				break;
-			}
-		}
-		if (!skip)
-		{
-			// if texture hasn't been loaded already, load it
-			s_Texture texture;
-			texture.id = TextureFromFile(str.C_Str(), this->directory);
-			texture.type = typeName;
-			texture.path = str.C_Str();
-			textures.push_back(texture);
-			textures_loaded.push_back(texture);
-			// store it as texture loaded for entire model, to ensure we won't unnecesery load duplicate textures.
-		}
+		mat->GetTexture(type, 0, &str); // Grab only the first texture (standard shader only supports one texture of each type, it doesn't know how you want to do special blending)
+
+		// Assumption made: material stuff is located in the same directory as the model object
+		std::string fileToSearch = (directory + "/" + std::string(str.C_Str())).c_str();
+
+		TextureSettings textureSettings;
+		textureSettings.IsSRGB = isSRGB;
+		return TextureLoader::load2DTexture(fileToSearch, &textureSettings);
 	}
 
-	return textures;
-}
-
-
-static unsigned int TextureFromFile(const char* path, const string& directory, bool gamma)
-{
-	auto filename = string(path);
-	filename = directory + '/' + filename;
-
-	unsigned int textureID;
-	glGenTextures(1, &textureID);
-
-	int width, height, nrComponents;
-	unsigned char* data = stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);
-	if (data)
-	{
-		GLenum format;
-		if (nrComponents == 1)
-			format = GL_RED;
-		else if (nrComponents == 3)
-			format = GL_RGB;
-		else if (nrComponents == 4)
-			format = GL_RGBA;
-
-		glBindTexture(GL_TEXTURE_2D, textureID);
-		glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-		stbi_image_free(data);
-	}
-	else
-	{
-		std::cout << "Texture failed to load at path: " << path << std::endl;
-		stbi_image_free(data);
-	}
-
-	return textureID;
+	return nullptr;
 }

@@ -22,7 +22,7 @@ void RenderComponent::setup()
 {
 	modelID = C_ModelID;
 	shaderID = C_ShaderID;
-
+	/*
 	int size = getInterface<RM_Interface>().getMesh(modelID)->meshes.size();
 	std::cout << "Size: " << size << std::endl;
 	switch (size)
@@ -78,4 +78,5 @@ void RenderComponent::setup()
 	default:
 		break;
 	}
+	*/
 }

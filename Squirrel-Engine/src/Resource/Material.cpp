@@ -1,40 +1,18 @@
 #include "Material.h"
-#include <iostream>
 
-Material::Material()
+Material::Material(Texture* albedoMap, Texture* normalMap, Texture* metallicMap, Texture* roughnessMap, Texture* ambientOcclusionMap, Texture* displacementMap)
+	: m_AlbedoMap(albedoMap), m_NormalMap(normalMap), m_MetallicMap(metallicMap), m_RoughnessMap(roughnessMap), m_AmbientOcclusionMap(ambientOcclusionMap), m_DisplacementMap(displacementMap),
+	m_ParallaxStrength(0.07f), m_ParallaxMinSteps(PARALLAX_MIN_STEPS), m_ParallelMaxSteps(PARALLAX_MAX_STEPS)
 {
 }
 
-void Material::setup()
-{
-	s_Texture texture;
-	auto tex = new Texture("../../Squirrel-Engine/res/textures/default/color.png");
-	// This gonna change, after we load all default textures at once at the 
-	texture.id = tex->getID(); // beginning then we'll assign same texture id to avoid multiple load
-	texture.type = "texture_diffuse";
-	texture.path = "color.png";
-	textures.push_back(texture);
-}
+void Material::BindMaterialInformation(Shader* shader) const {
+	int currentTextureUnit = 0;
 
-void Material::setInt(int value)
-{
-}
-
-void Material::setFloat(float value)
-{
-}
-
-void Material::setColor(vec4 color)
-{
-	//this->color = color;
-}
-
-void Material::setTexture(string typeName, const std::string& path)
-{
-	s_Texture texture;
-	auto tex = new Texture(path);
-	texture.id = tex->getID();
-	texture.type = typeName;
-	//texture.path = tex->getPath();
-	textures.push_back(texture);
+	shader->setInt("material.texture_diffuse", currentTextureUnit);
+	if (m_AlbedoMap) {
+		m_AlbedoMap->bind(currentTextureUnit++);
+	}else {
+		TextureLoader::getDefaultAlbedo()->bind(currentTextureUnit++);
+	}
 }
