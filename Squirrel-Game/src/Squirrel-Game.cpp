@@ -49,9 +49,11 @@ void Sandbox::Run()
 
 	//----------------------
 	Blackboard* blackBoard = new Blackboard();
-	blackBoard->setVariable("test", 2.24f);
+	blackBoard->setVariable("test", &skeleton->health);
 
-	std::cout << "TESTTT: " << blackBoard->getVariable<float>("test") << std::endl;
+	skeleton->health = 1000;
+
+	std::cout << *blackBoard->getIntVariable("test");
 
 	
 
