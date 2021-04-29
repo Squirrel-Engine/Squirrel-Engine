@@ -1,6 +1,7 @@
 ﻿// Squirrel-Engine.cpp : Defines the entry point for the application.
 #include "../Squirrel-Engine/include/Squirrel.h"
 #include "../Squirrel-Engine/include/SelectionNode.h"
+#include "../Squirrel-Engine/include/Blackboard.h"
 #include "include/Skeleton.h"
 #include "include/Camera.h"
 #include "include/Light.h"
@@ -47,6 +48,13 @@ void Sandbox::Run()
 	skeleton->renderComponent->C_MaterialID_0 = 2;
 
 	//----------------------
+	Blackboard* blackBoard = new Blackboard();
+	blackBoard->setVariable("test", 2.24f);
+
+	std::cout << "TESTTT: " << blackBoard->getVariable<float>("test") << std::endl;
+
+	
+
 	BehaviorTree* myTree = new BehaviorTree();
 	SampleDecorator* sampleDecorator = new SampleDecorator();
 	WalkToDoorAction* walkToDoorAction = new WalkToDoorAction();
@@ -63,6 +71,7 @@ void Sandbox::Run()
 	myTree->linkNode("sampleDecorator", "walkToDoor");
 	myTree->linkNode("sampleSelection", "walkToDoor2");
 	skeleton->aiComponent->behaviorTree = myTree;
+	skeleton->aiComponent->blackBoard = blackBoard;
 	//----------------------
 	
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);

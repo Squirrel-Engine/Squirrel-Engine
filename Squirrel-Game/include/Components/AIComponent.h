@@ -21,6 +21,7 @@ public:
 
 	SR_VAR_END()
 	BehaviorTree* behaviorTree;
+	Blackboard* blackBoard;
 	ActionNode* actionNode;
 };
 

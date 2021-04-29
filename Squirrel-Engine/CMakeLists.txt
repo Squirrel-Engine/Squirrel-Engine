@@ -50,6 +50,8 @@ set_property(TARGET assimp PROPERTY IMPORTED_LOCATION_RELEASE "${ASSIMP_LIBRARY}
 set_property(TARGET assimp PROPERTY IMPORTED_IMPLIB_DEBUG "${ASSIMP_LIBRARY}/assimp-vc142-mtd.lib")
 set_property(TARGET assimp PROPERTY IMPORTED_LOCATION_DEBUG "${ASSIMP_LIBRARY}/assimp-vc142-mtd.dll")
 
+
+
 target_link_libraries(${PROJECT_NAME} assimp)
 add_custom_target(assimp_dll
   # todo: check if debug and release folder exist
