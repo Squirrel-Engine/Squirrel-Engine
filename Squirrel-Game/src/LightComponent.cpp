@@ -3,7 +3,7 @@
 LightComponent::LightComponent()
 {
 	shaderID = 1;
-	color = vec3(1.0f);
+	color = vec3(300.0f);
 	intensity = 50.0f;
 	attenuationRadius = 30.0f;
 }
