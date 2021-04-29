@@ -68,6 +68,7 @@ void RM_Interface::loadShaderAsset()
 
 void RM_Interface::loadTextureAsset()
 {
+	TextureLoader::initializeDefaultTextures();
 	/*for (int i = 0; i < textureAssetMap.size(); i++)
 	{
 		auto texture = new Texture(textureAssetMap[i]);

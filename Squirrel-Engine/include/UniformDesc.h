@@ -48,10 +48,9 @@ public:
 	{
 	};
 
-	vec3 lightColor;
-	vec3 lightPos;
+	vec3 position;
 
-	float constant;
-	float linear;
-	float quadratic;
+	float intensity;
+	vec3 lightColour;
+	float attenuationRadius;
 };

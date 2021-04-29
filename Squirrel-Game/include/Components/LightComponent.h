@@ -16,6 +16,8 @@ private:
 public:
 	SR_VAR_START()
 	vec3 color;
+	float intensity;
+	float attenuationRadius;
 	SR_VAR_END()
 
 public:

@@ -15,15 +15,15 @@ void Model::Draw(Shader& shader, TRANSFORM_DESC& uniformDesc)
 	shader.setVec3("viewPos", cameraDesc->viewPos);
 	shader.setMat4("viewProjection", cameraDesc->viewProjection);
 	shader.setMat4("model", uniformDesc.model);
-	for (Actor* light : InterfaceFactory::getInstance().getGMInterface().levelStore->lights)
+
+	/*for (Actor* light : InterfaceFactory::getInstance().getGMInterface().levelStore->lights)
 	{
 		auto desc = dynamic_cast<LIGHT_DESC*>(light->componentList.at("lightComponent")->uniform);
-		shader.setVec3("light.color", desc->lightColor);
-		shader.setVec3("light.position", desc->lightPos);
-		shader.setFloat("light.constant", desc->constant);
-		shader.setFloat("light.linear", desc->linear);
-		shader.setFloat("light.quadratic", desc->quadratic);
-	}
+		shader.setVec3("pointLight.position", desc->position);
+		shader.setFloat("pointLight.intensity", desc->intensity);
+		shader.setVec3("pointLight.lightColour", desc->lightColour);
+		shader.setFloat("pointLight.attenuationRadius", desc->attenuationRadius);
+	}*/
 
 	for (unsigned int i = 0; i < meshes.size(); i++) {
 		meshes[i].m_Material.BindMaterialInformation(&shader);

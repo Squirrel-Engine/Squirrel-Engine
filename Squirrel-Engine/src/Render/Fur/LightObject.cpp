@@ -70,7 +70,7 @@ void LightObject::Draw(Shader& shader, TRANSFORM_DESC& transformUniform, LIGHT_D
 	shader.use();
 	shader.setMat4("viewProjection", cameraDesc->viewProjection);
 	shader.setMat4("model", transformUniform.model);
-	shader.setVec3("lightColor", lightUniform.lightColor);
+	shader.setVec3("lightColor", lightUniform.lightColour);
 	glBindVertexArray(lightCubeVAO);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 }
