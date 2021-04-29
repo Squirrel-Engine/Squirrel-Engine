@@ -26,5 +26,5 @@ void Skeleton::BeginPlay()
 
 void Skeleton::Update()
 {
-	transformComponent->rotationX += 0.05;
+	transformComponent->rotationY += 0.05;
 }

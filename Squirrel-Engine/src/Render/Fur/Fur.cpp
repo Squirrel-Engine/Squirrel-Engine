@@ -18,6 +18,7 @@ void Fur::startRenderEngine()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_SAMPLES, 4);
+
 	furWindow = glfwCreateWindow(config.screenWidth, config.screenHeight, config.windowName.c_str(), nullptr, nullptr);
 	if (furWindow == nullptr)
 	{

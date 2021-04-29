@@ -3,9 +3,9 @@
 LightComponent::LightComponent()
 {
 	shaderID = 1;
-	color = vec3(300.0f);
-	intensity = 50.0f;
-	attenuationRadius = 30.0f;
+	color = vec3(255.0f);
+	intensity = 5.0f;
+	attenuationRadius = 20.0f;
 }
 
 void LightComponent::BeginPlay()

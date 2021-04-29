@@ -2,34 +2,46 @@
 #version 430 core
 //VertexShader
 //////////////
-layout(location = 0) in vec3 aPos;
-layout(location = 1) in vec3 aNormal;
-layout(location = 2) in vec2 aTexCoords;
+layout(location = 0) in vec3 position;
+layout(location = 1) in vec3 normal;
+layout(location = 2) in vec2 texCoords;
+layout(location = 3) in vec3 tangent;
+layout(location = 4) in vec3 bitangent;
 
+out mat3 TBN;
 out vec2 TexCoords;
-out vec3 WorldPos;
-out vec3 Normal;
+out vec3 FragPos;
+out vec3 FragPosTangentSpace;
+out vec3 ViewPosTangentSpace;;
 
 uniform mat4 viewProjection;
 uniform mat4 model;
-
+uniform vec3 viewPos;
 void main()
 {
-    TexCoords = aTexCoords;
-    WorldPos = vec3(model * vec4(aPos, 1.0));
-    Normal = mat3(model) * aNormal;
+    // Use the normal matrix to maintain the orthogonal property of a vector when it is scaled non-uniformly
+    mat3 normalMatrix = transpose(inverse(mat3(model)));
+    vec3 T = normalize(normalMatrix * tangent);
+    vec3 B = normalize(normalMatrix * bitangent);
+    vec3 N = normalize(normalMatrix * normal);
+    TBN = mat3(T, B, N);
 
-    gl_Position = viewProjection * vec4(WorldPos, 1.0);
+    TexCoords = texCoords;
+    FragPos = vec3(model * vec4(position, 1.0f));
+ 
+    gl_Position = viewProjection * vec4(FragPos, 1.0);
 }
 
 #shader fragment
 #version 430 core
 //FragmentShader
 ////////////////
-out vec4 FragColor;
+out vec4 color;
+in mat3 TBN;
 in vec2 TexCoords;
-in vec3 WorldPos;
-in vec3 Normal;
+in vec3 FragPos;
+in vec3 FragPosTangentSpace;
+in vec3 ViewPosTangentSpace;
 
 #define MAX_DIR_LIGHTS 5
 #define MAX_POINT_LIGHTS 5
@@ -55,50 +67,16 @@ struct PointLight {
 uniform Material material;
 uniform PointLight pointLight;
 
-float DistributionGGX(vec3 N, vec3 H, float roughness)
-{
-    float a = roughness * roughness;
-    float a2 = a * a;
-    float NdotH = max(dot(N, H), 0.0);
-    float NdotH2 = NdotH * NdotH;
-
-    float nom = a2;
-    float denom = (NdotH2 * (a2 - 1.0) + 1.0);
-    denom = PI * denom * denom;
-
-    return nom / max(denom, 0.0000001); // prevent divide by zero for roughness=0.0 and NdotH=1.0
-}
-// ----------------------------------------------------------------------------
-float GeometrySchlickGGX(float NdotV, float roughness)
-{
-    float r = (roughness + 1.0);
-    float k = (r * r) / 8.0;
-
-    float nom = NdotV;
-    float denom = NdotV * (1.0 - k) + k;
-
-    return nom / denom;
-}
-// ----------------------------------------------------------------------------
-float GeometrySmith(vec3 N, vec3 V, vec3 L, float roughness)
-{
-    float NdotV = max(dot(N, V), 0.0);
-    float NdotL = max(dot(N, L), 0.0);
-    float ggx2 = GeometrySchlickGGX(NdotV, roughness);
-    float ggx1 = GeometrySchlickGGX(NdotL, roughness);
-
-    return ggx1 * ggx2;
-}
-// ----------------------------------------------------------------------------
-vec3 fresnelSchlick(float cosTheta, vec3 F0)
-{
-    return F0 + (1.0 - F0) * pow(max(1.0 - cosTheta, 0.0), 5.0);
-}
-// ----------------------------------------------------------------------------
+vec3 CalculatePointLightRadiance(vec3 albedo, vec3 normal, float metallic, float roughness, vec3 fragToView, vec3 baseReflectivity);
+// Cook-Torrance BRDF functions adopted by Epic for UE4
+float NormalDistributionGGX(vec3 normal, vec3 halfway, float roughness);
+float GeometrySmith(vec3 normal, vec3 viewDir, vec3 lightDir, float roughness);
+float GeometrySchlickGGX(float cosTheta, float roughness);
+vec3 FresnelSchlick(float cosTheta, vec3 baseReflectivity);
 
 void main()
 {
-    // material properties
+   // material properties
     vec3 albedo = texture(material.albedo, TexCoords).rgb;
     float albedoAlpha = texture(material.albedo, TexCoords).w;
     vec3 normal = texture(material.normal, TexCoords).rgb;
@@ -106,62 +84,93 @@ void main()
     float roughness = texture(material.roughness, TexCoords).r;
     float ao = texture(material.ao, TexCoords).r;
 
-    vec3 N = normalize(Normal);
-    vec3 V = normalize(viewPos - WorldPos);
+    normal = normalize(TBN * normalize(normal * 2.0 - 1.0));
 
-    // calculate reflectance at normal incidence; if dia-electric (like plastic) use F0 
-    // of 0.04 and if it's a metal, use the albedo color as F0 (metallic workflow)    
-    vec3 F0 = vec3(0.04);
-    F0 = mix(F0, albedo, metallic);
+    vec3 fragToView = normalize(viewPos - FragPos);
+    vec3 reflectionVec = reflect(-fragToView, normal);
 
-    // reflectance equation
-    vec3 Lo = vec3(0.0);
-    for (int i = 0; i < 1; ++i)
-    {
-        // calculate per-light radiance
-        vec3 L = normalize(pointLight.position - WorldPos);
-        vec3 H = normalize(V + L);
-        float distance = length(pointLight.position - WorldPos);
-        float attenuation = 1.0 / (distance * distance);
-        vec3 radiance = pointLight.lightColour * attenuation;
+    // Dielectrics have an average base specular reflectivity around 0.04, and metals absorb all of their diffuse (refraction) lighting so their albedo is used instead for their specular lighting (reflection)
+    vec3 baseReflectivity = vec3(0.04);
+    baseReflectivity = mix(baseReflectivity, albedo, metallic);
 
-        // Cook-Torrance BRDF
-        float NDF = DistributionGGX(N, H, roughness);
-        float G = GeometrySmith(N, V, L, roughness);
-        vec3 F = fresnelSchlick(clamp(dot(H, V), 0.0, 1.0), F0);
+    // Calculate per light radiance for all of the direct lighting
+    vec3 directLightIrradiance = vec3(0.0);
+    directLightIrradiance += CalculatePointLightRadiance(albedo, normal, metallic, roughness, fragToView, baseReflectivity);
+  
+    // Calcualte ambient IBL for both diffuse and specular
+    vec3 ambient = vec3(0.05) * albedo * ao;
+  
+    color = vec4(ambient + directLightIrradiance, albedoAlpha);
+}
 
-        vec3 nominator = NDF * G * F;
-        float denominator = 4 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0);
-        vec3 specular = nominator / max(denominator, 0.001); // prevent divide by zero for NdotV=0.0 or NdotL=0.0
+vec3 CalculatePointLightRadiance(vec3 albedo, vec3 normal, float metallic, float roughness, vec3 fragToView, vec3 baseReflectivity) {
+    vec3 pointLightIrradiance = vec3(0.0);
 
-        // kS is equal to Fresnel
-        vec3 kS = F;
-        // for energy conservation, the diffuse and specular light can't
-        // be above 1.0 (unless the surface emits light); to preserve this
-        // relationship the diffuse component (kD) should equal 1.0 - kS.
-        vec3 kD = vec3(1.0) - kS;
-        // multiply kD by the inverse metalness such that only non-metals 
-        // have diffuse lighting, or a linear blend if partly metal (pure metals
-        // have no diffuse light).
-        kD *= 1.0 - metallic;
+    for (int i = 0; i < 1; ++i) {
+        vec3 fragToLight = normalize(pointLight.position - FragPos);
+        vec3 halfway = normalize(fragToView + fragToLight);
+        float fragToLightDistance = length(pointLight.position - FragPos);
 
-        // scale light by NdotL
-        float NdotL = max(dot(N, L), 0.0);
+        // Attenuation calculation (based on Epic's UE4 falloff model)
+        float d = fragToLightDistance / pointLight.attenuationRadius;
+        float d2 = d * d;
+        float d4 = d2 * d2;
+        float falloffNumerator = clamp(1.0 - d4, 0.0, 1.0);
+        float attenuation = (falloffNumerator * falloffNumerator) / ((fragToLightDistance * fragToLightDistance) + 1.0);
+        vec3 radiance = pointLight.intensity * pointLight.lightColour * attenuation;
 
-        // add to outgoing radiance Lo
-        Lo += (kD * albedo / PI + specular) * radiance * NdotL;  // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
+        // Cook-Torrance Specular BRDF calculations
+        float normalDistribution = NormalDistributionGGX(normal, halfway, roughness);
+        vec3 fresnel = FresnelSchlick(max(dot(halfway, fragToView), 0.0), baseReflectivity);
+        float geometry = GeometrySmith(normal, fragToView, fragToLight, roughness);
+
+        // Calculate reflected and refracted light respectively, and since metals absorb all refracted light, we nullify the diffuse lighting based on the metallic parameter
+        vec3 specularRatio = fresnel;
+        vec3 diffuseRatio = vec3(1.0) - specularRatio;
+        diffuseRatio *= 1.0 - metallic;
+
+        // Finally calculate the specular part of the Cook-Torrance BRDF (max 0.1 stops any visual artifacts)
+        vec3 numerator = specularRatio * normalDistribution * geometry;
+        float denominator = 4 * max(dot(fragToView, normal), 0.1) * max(dot(fragToLight, normal), 0.0) + 0.001; // Prevents any division by zero
+        vec3 specular = numerator / denominator;
+
+        // Also calculate the diffuse, a lambertian calculation will be added onto the final radiance calculation
+        vec3 diffuse = diffuseRatio * albedo / PI;
+
+        // Add the light's radiance to the irradiance sum
+        pointLightIrradiance += (diffuse + specular) * radiance * max(dot(normal, fragToLight), 0.0);
     }
 
-    // ambient lighting (note that the next IBL tutorial will replace 
-    // this ambient lighting with environment lighting).
-    vec3 ambient = vec3(0.03) * albedo * ao;
+    return pointLightIrradiance;
+}
+// ----------------------------------------------------------------------------
+float NormalDistributionGGX(vec3 normal, vec3 halfway, float roughness) {
+    float a = roughness * roughness;
+    float a2 = a * a;
+    float normDotHalf = dot(normal, halfway);
+    float normDotHalf2 = normDotHalf * normDotHalf;
 
-    vec3 color = ambient + Lo;
+    float numerator = a2;
+    float denominator = normDotHalf2 * (a2 - 1.0) + 1.0;
+    denominator = PI * denominator * denominator;
 
-    // HDR tonemapping
-    color = color / (color + vec3(1.0));
-    // gamma correct
-    color = pow(color, vec3(1.0 / 2.2));
+    return numerator / denominator;
+}
 
-    FragColor = vec4(color, 1.0);
+float GeometrySmith(vec3 normal, vec3 viewDir, vec3 lightDir, float roughness) {
+    return GeometrySchlickGGX(max(dot(normal, viewDir), 0.0), roughness) * GeometrySchlickGGX(max(dot(normal, lightDir), 0.0), roughness);
+}
+
+float GeometrySchlickGGX(float cosTheta, float roughness) {
+    float r = (roughness + 1.0);
+    float k = (roughness * roughness) / 8.0;
+
+    float numerator = cosTheta;
+    float denominator = cosTheta * (1.0 - k) + k;
+
+    return numerator / max(denominator, 0.001);
+}
+
+vec3 FresnelSchlick(float cosTheta, vec3 baseReflectivity) {
+    return max(baseReflectivity + (1.0 - baseReflectivity) * pow(2, (-5.55473 * cosTheta - 6.98316) * cosTheta), 0.0);
 }
