@@ -31,7 +31,12 @@ void RM_Interface::loadAssetMap()
 
 	//Shader
 	shaderAssetMap.insert({0, "../../Squirrel-Engine/res/shaders/Model.shader"});
-	shaderAssetMap.insert({1, "../../Squirrel-Engine/res/shaders/LightSource.shader"});
+	shaderAssetMap.insert({1, "../../Squirrel-Engine/res/shaders/SKShader.shader" });
+	shaderAssetMap.insert({2, "../../Squirrel-Engine/res/shaders/LightSource.shader"});
+
+	//SkeletalMesh
+	skeletalModelAssetMap.insert({ 0, "../../Squirrel-Engine/res/model/Cowboy/model.dae" });
+
 
 
 	// TEXTURE LOADING FUNCTION !!!!!!!!!!!!
@@ -55,6 +60,15 @@ void RM_Interface::loadAudioAsset()
 		audioBuffer.insert({ i, audioObj });
 	}
 
+}
+
+void RM_Interface::loadSkeletalModel()
+{
+	for (int i = 0; i < skeletalModelAssetMap.size(); i++)
+	{
+		auto skeletalModel = new SkeletalModel(skeletalModelAssetMap[i]);
+		skeletalModelBuffer.insert({ i, skeletalModel });
+	}
 }
 
 void RM_Interface::loadShaderAsset()
@@ -97,6 +111,7 @@ void RM_Interface::loadAssetMT()
 	loadMaterialAsset();
 	loadShaderAsset();
 	loadAudioAsset();
+	loadSkeletalModel();
 }
 
 Model* RM_Interface::getMesh(int index)
@@ -113,6 +128,11 @@ Texture* RM_Interface::getTexture(int index)
 Audio* RM_Interface::getAudio(int index)
 {
   return audioBuffer[index];
+}
+
+SkeletalModel* RM_Interface::getSkeletalModel(int index)
+{
+	return skeletalModelBuffer[index];
 }
 
 Shader* RM_Interface::getShader(int index)

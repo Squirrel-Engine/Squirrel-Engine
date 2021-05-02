@@ -2,7 +2,7 @@
 
 LightComponent::LightComponent()
 {
-	shaderID = 1;
+	shaderID = 2;
 	color = vec3(1.0f);
 }
 
