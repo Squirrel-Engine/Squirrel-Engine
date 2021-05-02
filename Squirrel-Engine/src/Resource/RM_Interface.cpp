@@ -35,7 +35,7 @@ void RM_Interface::loadAssetMap()
 	shaderAssetMap.insert({2, "../../Squirrel-Engine/res/shaders/LightSource.shader"});
 
 	//SkeletalMesh
-	skeletalModelAssetMap.insert({ 0, "../../Squirrel-Engine/res/model/Cowboy/model.dae" });
+	skeletalModelAssetMap.insert({ 0, "../../Squirrel-Engine/res/models/Cowboy/model.dae" });
 
 
 

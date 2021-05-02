@@ -2,11 +2,12 @@
 
 
 
-SkeletalMesh::SkeletalMesh(vector<Vertex> vertic, vector<GLuint> ind, vector<Texture> textur, vector<VertexBoneData> bone_id_weights)
+SkeletalMesh::SkeletalMesh(vector<Vertex> vertic, vector<GLuint> ind, vector<SkeletalTexture> texture, Material material, vector<VertexBoneData> bone_id_weights)
 {
 	vertices = vertic;
 	indices = ind;
-	textures = textur;
+	textures = texture;
+	m_Material = material;
 	bones_id_weights_for_each_vertex = bone_id_weights;
 
 	// Now that we have all the required data, set the vertex buffers and its attribute pointers.

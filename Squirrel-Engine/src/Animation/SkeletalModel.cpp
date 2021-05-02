@@ -34,7 +34,7 @@ void SkeletalModel::initShaders(GLuint shader_program)
 void SkeletalModel::draw(GLuint shaders_program)
 {
 	vector<aiMatrix4x4> transforms;
-	boneTransform((double)glfwGetTime() / 1000.0f, transforms);
+	boneTransform((double)glfwGetTime(), transforms);
 
 	for (uint i = 0; i < transforms.size(); i++) // move all matrices for actual model position to shader
 	{
@@ -133,7 +133,7 @@ SkeletalMesh SkeletalModel::processMesh(aiMesh* mesh, const aiScene* scene)
 
 	vector<Vertex> vertices;
 	vector<GLuint> indices;
-	vector<Texture> textures;
+	vector<SkeletalTexture> textures;
 	vector<VertexBoneData> bones_id_weights_for_each_vertex;
 
 	//size � resize - ����� �� ������ � �������� ������ ��������� �������
@@ -200,34 +200,14 @@ SkeletalMesh SkeletalModel::processMesh(aiMesh* mesh, const aiScene* scene)
 	}
 
 	//material
-	if (mesh->mMaterialIndex >= 0)
-	{
-		//all pointers created in assimp will be deleted automaticaly when we call import.FreeScene();
+	Material m_Material;
+	if (mesh->mMaterialIndex >= 0) {
 		aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
-		vector<Texture> diffuse_maps = LoadMaterialTexture(material, aiTextureType_DIFFUSE, "texture_diffuse");
-		bool exist = false;
-		for (int i = 0; (i < textures.size()) && (diffuse_maps.size() != 0); i++)
-		{
-			if (textures[i].path == diffuse_maps[0].path) // ������ ���� �������� 1 �������� ������� � 1 ������� � ����� ����
-			{
-				exist = true;
-			}
-		}
-		if (!exist && diffuse_maps.size() != 0) textures.push_back(diffuse_maps[0]); //������ �������� �� 1 �������� !!!
-		//textures.insert(textures.end(), diffuse_maps.begin(), diffuse_maps.end());
 
-		vector<Texture> specular_maps = LoadMaterialTexture(material, aiTextureType_SPECULAR, "texture_specular");
-		exist = false;
-		for (int i = 0; (i < textures.size()) && (specular_maps.size() != 0); i++)
-		{
-			if (textures[i].path == specular_maps[0].path) // ������ ���� �������� 1 �������� ������� � 1 ������� � ����� ����
-			{
-				exist = true;
-			}
-		}
-		if (!exist && specular_maps.size() != 0) textures.push_back(specular_maps[0]); //������ �������� �� 1 �������� !!!
-		//textures.insert(textures.end(), specular_maps.begin(), specular_maps.end());
-
+		m_Material.setAlbedoMap(loadSkeletalMaterialTexture(material, aiTextureType_DIFFUSE, true));
+		m_Material.setNormalMap(loadSkeletalMaterialTexture(material, aiTextureType_NORMALS, false));
+		m_Material.setAmbientOcclusionMap(loadSkeletalMaterialTexture(material, aiTextureType_AMBIENT, false));
+		m_Material.setDisplacementMap(loadSkeletalMaterialTexture(material, aiTextureType_DISPLACEMENT, true));
 	}
 
 	// load bones
@@ -266,29 +246,28 @@ SkeletalMesh SkeletalModel::processMesh(aiMesh* mesh, const aiScene* scene)
 		}
 	}
 
-	return SkeletalMesh(vertices, indices, textures, bones_id_weights_for_each_vertex);
+	return SkeletalMesh(vertices, indices, textures, m_Material, bones_id_weights_for_each_vertex);
 }
 
-vector<Texture> SkeletalModel::LoadMaterialTexture(aiMaterial* mat, aiTextureType type, string type_name)
-{
-	vector<Texture> textures;
-	for (uint i = 0; i < mat->GetTextureCount(type); i++)
-	{
-		aiString ai_str;
-		mat->GetTexture(type, i, &ai_str);
+Texture* SkeletalModel::loadSkeletalMaterialTexture(aiMaterial* mat, aiTextureType type, bool isSRGB) {
+	// Log material constraints are being violated (1 texture per type for the standard shader)
+	if (mat->GetTextureCount(type) > 1)
+		cout << "Mesh's default material contains more than 1 texture for the same type, which currently isn't supported by the standard shader" << endl;
 
-		string filename = string(ai_str.C_Str());
-		filename = directory + '/' + filename;
+	// Load the texture of a certain type, assuming there is one
+	if (mat->GetTextureCount(type) > 0) {
+		aiString str;
+		mat->GetTexture(type, 0, &str); // Grab only the first texture (standard shader only supports one texture of each type, it doesn't know how you want to do special blending)
 
-		//cout << filename << endl;
+		// Assumption made: material stuff is located in the same directory as the model object
+		std::string fileToSearch = (directory + "/" + std::string(str.C_Str())).c_str();
 
-		Texture texture;
-		texture.id = Triangle::loadImageToTexture(filename.c_str()); // return prepaired openGL texture
-		texture.type = type_name;
-		texture.path = ai_str;
-		textures.push_back(texture);
+		TextureSettings textureSettings;
+		textureSettings.IsSRGB = isSRGB;
+		return TextureLoader::load2DTexture(fileToSearch, &textureSettings);
 	}
-	return textures;
+
+	return nullptr;
 }
 
 uint SkeletalModel::findPosition(float p_animation_time, const aiNodeAnim* p_node_anim)
@@ -427,7 +406,6 @@ const aiNodeAnim* SkeletalModel::findNodeAnim(const aiAnimation* p_animation, co
 // start from RootNode
 void SkeletalModel::readNodeHierarchy(float p_animation_time, const aiNode* p_node, const aiMatrix4x4 parent_transform)
 {
-
 	string node_name(p_node->mName.data);
 
 	//������� node, �� ������� ������������ �������, ������������� �������� ���� ������(aiNodeAnim).
@@ -438,7 +416,6 @@ void SkeletalModel::readNodeHierarchy(float p_animation_time, const aiNode* p_no
 
 	if (node_anim)
 	{
-
 		//scaling
 		//aiVector3D scaling_vector = node_anim->mScalingKeys[2].mValue;
 		aiVector3D scaling_vector = calcInterpolatedScaling(p_animation_time, node_anim);

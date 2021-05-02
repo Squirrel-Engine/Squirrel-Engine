@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include "Material.h"
 
 using namespace std;
 typedef unsigned int uint;
@@ -19,7 +20,7 @@ struct Vertex
 	glm::vec2 text_coords;
 };
 
-struct Texture
+struct SkeletalTexture
 {
 	GLuint id;
 	string type;
@@ -50,7 +51,7 @@ struct VertexBoneData
 class SkeletalMesh
 {
 public:
-	SkeletalMesh(vector<Vertex> vertic, vector<GLuint> ind, vector<Texture> textur, vector<VertexBoneData> bone_id_weights);
+	SkeletalMesh(vector<Vertex> vertic, vector<GLuint> ind, vector<SkeletalTexture> texture, Material material, vector<VertexBoneData> bone_id_weights);
 	SkeletalMesh() {};
 	~SkeletalMesh();
 
@@ -61,7 +62,7 @@ private:
 	//Mesh data
 	vector<Vertex> vertices;
 	vector<GLuint> indices;
-	vector<Texture> textures;
+	vector<SkeletalTexture> textures;
 	vector<VertexBoneData> bones_id_weights_for_each_vertex;
 
 	//buffers
@@ -72,4 +73,6 @@ private:
 
 	//inititalize buffers
 	void SetupMesh();
+protected:
+	Material m_Material;
 };

@@ -13,7 +13,7 @@
 #include "assimp\Importer.hpp"
 #include "assimp\scene.h"
 #include "assimp\postprocess.h"
-
+#include "Model.h"
 
 
 using namespace std;
@@ -50,8 +50,6 @@ private:
 
 	void processNode(aiNode* node, const aiScene* scene);
 	SkeletalMesh processMesh(aiMesh* mesh, const aiScene* scene);
-	vector<Texture> LoadMaterialTexture(aiMaterial* mat, aiTextureType type, string type_name);
-
 
 	unsigned int findPosition(float p_animation_time, const aiNodeAnim* p_node_anim);
 	unsigned int findRotation(float p_animation_time, const aiNodeAnim* p_node_anim);
@@ -67,6 +65,6 @@ private:
 
 	// rotate Head
 	glm::quat rotate_head_xz = glm::quat(cos(glm::radians(0.0f)), sin(glm::radians(0.0f)) * glm::vec3(1.0f, 0.0f, 0.0f)); // this quad do nothingggggg!!!!!
-
+	Texture* loadSkeletalMaterialTexture(aiMaterial* mat, aiTextureType type, bool isSRGB);
 };
 

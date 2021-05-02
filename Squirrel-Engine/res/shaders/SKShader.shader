@@ -101,7 +101,7 @@ void main()
 	vec3 view_dir = normalize(view_pos - frag_pos);
 
 	vec4 calc_color = vec4(CalcPointLight(point_light, normal, view_dir, frag_pos), 1.0);
-	calc_color.a *= material.transparency;
+	calc_color.a *= 1;
 
 	gl_FragColor = calc_color;
 
