@@ -13,8 +13,6 @@
 #include "assimp\Importer.hpp"
 #include "assimp\scene.h"
 #include "assimp\postprocess.h"
-#include "Model.h"
-
 
 using namespace std;
 
@@ -28,7 +26,7 @@ public:
 
 	void initShaders(GLuint shader_program);
 	void loadModel(const string& path);
-	void draw(GLuint shaders_program);
+	void Draw(Shader* shader);
 	void showNodeName(aiNode* node);
 
 	glm::mat4 aiToGlm(aiMatrix4x4 ai_matr);

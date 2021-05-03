@@ -31,7 +31,7 @@ void SkeletalModel::initShaders(GLuint shader_program)
 	//rotate_head_xz *= glm::quat(cos(glm::radians(-45.0f / 2)), sin(glm::radians(-45.0f / 2)) * glm::vec3(1.0f, 0.0f, 0.0f));
 }
 
-void SkeletalModel::draw(GLuint shaders_program)
+void SkeletalModel::Draw(Shader* shader)
 {
 	vector<aiMatrix4x4> transforms;
 	boneTransform((double)glfwGetTime(), transforms);
@@ -40,10 +40,11 @@ void SkeletalModel::draw(GLuint shaders_program)
 	{
 		glUniformMatrix4fv(m_bone_location[i], 1, GL_TRUE, (const GLfloat*)&transforms[i]);
 	}
-
+	initShaders(shader->ID);
 	for (int i = 0; i < meshes.size(); i++)
 	{
-		meshes[i].Draw(shaders_program);
+		meshes[i].m_Material.BindMaterialInformation(shader);
+		meshes[i].Draw();
 	}
 }
 
@@ -133,22 +134,11 @@ SkeletalMesh SkeletalModel::processMesh(aiMesh* mesh, const aiScene* scene)
 
 	vector<Vertex> vertices;
 	vector<GLuint> indices;
-	vector<SkeletalTexture> textures;
 	vector<VertexBoneData> bones_id_weights_for_each_vertex;
 
-	//size � resize - ����� �� ������ � �������� ������ ��������� �������
-	//capacity � reserve - �� ������ � �����.
-	//size - ������ ���������� ��������� � �������
-	//resize - ������� ���������� ��������� � �������
-	//capacity - ������ ��� ������� ��������� �������� �����
-	//reserve - ���������� �����
+	vertices.reserve(mesh->mNumVertices); 
+	indices.reserve(mesh->mNumVertices); 
 
-	vertices.reserve(mesh->mNumVertices); // ������ ������� ����� ��� ������������� !!! ��������� �������
-	indices.reserve(mesh->mNumVertices); // ������ ���� ����� ����� vector.push_back(i);
-
-	// .resize(n) == ����� ������ ������� � �������������� !!!! ��� ����������� ��������� ���� ������ ���� ������ 
-	// ������ � �� processMesh(....) ����� ����� ��������� ��() �� ��������� �������
-	// ������� ��� �������� ���� ���������������� ����� ( ��� ����� �� ������� �������� vector.push_back(i); ����� �������������� �������� )
 	bones_id_weights_for_each_vertex.resize(mesh->mNumVertices);
 
 	//vertices
@@ -193,9 +183,9 @@ SkeletalMesh SkeletalModel::processMesh(aiMesh* mesh, const aiScene* scene)
 	//indices
 	for (uint i = 0; i < mesh->mNumFaces; i++)
 	{
-		aiFace face = mesh->mFaces[i]; // ������� ������ � ����� ��������� ������� �� ���������� �����
-		indices.push_back(face.mIndices[0]); // ������� ������� � ���� ����� � �������� ������� ����� ������� 
-		indices.push_back(face.mIndices[1]); // �� ����� ����� (� ����� ����� ������� � �� ������� �������� � ������)
+		aiFace face = mesh->mFaces[i]; 
+		indices.push_back(face.mIndices[0]);
+		indices.push_back(face.mIndices[1]); 
 		indices.push_back(face.mIndices[2]);
 	}
 
@@ -218,7 +208,7 @@ SkeletalMesh SkeletalModel::processMesh(aiMesh* mesh, const aiScene* scene)
 
 		cout << mesh->mBones[i]->mName.data << endl;
 
-		if (m_bone_mapping.find(bone_name) == m_bone_mapping.end()) // ��������� ��� �� � ������� ��������
+		if (m_bone_mapping.find(bone_name) == m_bone_mapping.end()) 
 		{
 			// Allocate an index for a new bone
 			bone_index = m_num_bones;
@@ -227,7 +217,6 @@ SkeletalMesh SkeletalModel::processMesh(aiMesh* mesh, const aiScene* scene)
 			m_bone_matrices.push_back(bi);
 			m_bone_matrices[bone_index].offset_matrix = mesh->mBones[i]->mOffsetMatrix;
 			m_bone_mapping[bone_name] = bone_index;
-
 			//cout << "bone_name: " << bone_name << "			 bone_index: " << bone_index << endl;
 		}
 		else
@@ -237,16 +226,13 @@ SkeletalMesh SkeletalModel::processMesh(aiMesh* mesh, const aiScene* scene)
 
 		for (uint j = 0; j < mesh->mBones[i]->mNumWeights; j++)
 		{
-			uint vertex_id = mesh->mBones[i]->mWeights[j].mVertexId; // �� ������� �� ������ ����� �������� �����
+			uint vertex_id = mesh->mBones[i]->mWeights[j].mVertexId; 
 			float weight = mesh->mBones[i]->mWeights[j].mWeight;
-			bones_id_weights_for_each_vertex[vertex_id].addBoneData(bone_index, weight); // � ������ ������� ����� ����� � �� ���
-
-			// ������ ������� vertex_id �� ������ ����� � �������� bone_index  ����� ��� weight
-			//cout << " vertex_id: " << vertex_id << "	bone_index: " << bone_index << "		weight: " << weight << endl;
+			bones_id_weights_for_each_vertex[vertex_id].addBoneData(bone_index, weight); 
 		}
 	}
 
-	return SkeletalMesh(vertices, indices, textures, m_Material, bones_id_weights_for_each_vertex);
+	return SkeletalMesh(vertices, indices, m_Material, bones_id_weights_for_each_vertex);
 }
 
 Texture* SkeletalModel::loadSkeletalMaterialTexture(aiMaterial* mat, aiTextureType type, bool isSRGB) {
@@ -272,12 +258,11 @@ Texture* SkeletalModel::loadSkeletalMaterialTexture(aiMaterial* mat, aiTextureTy
 
 uint SkeletalModel::findPosition(float p_animation_time, const aiNodeAnim* p_node_anim)
 {
-	// ����� ���� ������� ����� ����� ����� ������� ���������� ����� ������ ��������
-	for (uint i = 0; i < p_node_anim->mNumPositionKeys - 1; i++) // �������� ����� ��������
+	for (uint i = 0; i < p_node_anim->mNumPositionKeys - 1; i++) 
 	{
-		if (p_animation_time < (float)p_node_anim->mPositionKeys[i + 1].mTime) // �������� �� �������� ��������� !!!
+		if (p_animation_time < (float)p_node_anim->mPositionKeys[i + 1].mTime) 
 		{
-			return i; // �� ������� ������ �������� !!!!!!!!!!!!!!!!!! ����������������������������
+			return i; 
 		}
 	}
 
@@ -287,12 +272,11 @@ uint SkeletalModel::findPosition(float p_animation_time, const aiNodeAnim* p_nod
 
 uint SkeletalModel::findRotation(float p_animation_time, const aiNodeAnim* p_node_anim)
 {
-	// ����� ���� ������� ����� ����� ����� ������� ���������� ����� ������ ��������
-	for (uint i = 0; i < p_node_anim->mNumRotationKeys - 1; i++) // �������� ����� ��������
+	for (uint i = 0; i < p_node_anim->mNumRotationKeys - 1; i++) 
 	{
-		if (p_animation_time < (float)p_node_anim->mRotationKeys[i + 1].mTime) // �������� �� �������� ��������� !!!
+		if (p_animation_time < (float)p_node_anim->mRotationKeys[i + 1].mTime) 
 		{
-			return i; // �� ������� ������ �������� !!!!!!!!!!!!!!!!!! ����������������������������
+			return i; 
 		}
 	}
 
@@ -302,12 +286,11 @@ uint SkeletalModel::findRotation(float p_animation_time, const aiNodeAnim* p_nod
 
 uint SkeletalModel::findScaling(float p_animation_time, const aiNodeAnim* p_node_anim)
 {
-	// ����� ���� ������� ����� ����� ����� ������� ���������� ����� ������ ��������
-	for (uint i = 0; i < p_node_anim->mNumScalingKeys - 1; i++) // �������� ����� ��������
+	for (uint i = 0; i < p_node_anim->mNumScalingKeys - 1; i++) 
 	{
-		if (p_animation_time < (float)p_node_anim->mScalingKeys[i + 1].mTime) // �������� �� �������� ��������� !!!
+		if (p_animation_time < (float)p_node_anim->mScalingKeys[i + 1].mTime) 
 		{
-			return i; // �� ������� ������ �������� !!!!!!!!!!!!!!!!!! ����������������������������
+			return i; 
 		}
 	}
 
@@ -317,17 +300,17 @@ uint SkeletalModel::findScaling(float p_animation_time, const aiNodeAnim* p_node
 
 aiVector3D SkeletalModel::calcInterpolatedPosition(float p_animation_time, const aiNodeAnim* p_node_anim)
 {
-	if (p_node_anim->mNumPositionKeys == 1) // Keys ��� ������� �����
+	if (p_node_anim->mNumPositionKeys == 1) 
 	{
 		return p_node_anim->mPositionKeys[0].mValue;
 	}
 
-	uint position_index = findPosition(p_animation_time, p_node_anim); // ������ ������ �������� ����� ������� ������
-	uint next_position_index = position_index + 1; // ������ ��������� �������� �����
+	uint position_index = findPosition(p_animation_time, p_node_anim); 
+	uint next_position_index = position_index + 1; 
 	assert(next_position_index < p_node_anim->mNumPositionKeys);
-	// ���� ����� �������
+
 	float delta_time = (float)(p_node_anim->mPositionKeys[next_position_index].mTime - p_node_anim->mPositionKeys[position_index].mTime);
-	// ������ = (���� ������� ������ �� ������ �������� ��������� �����) / �� ���� ����� �������
+	
 	float factor = (p_animation_time - (float)p_node_anim->mPositionKeys[position_index].mTime) / delta_time;
 	assert(factor >= 0.0f && factor <= 1.0f);
 	aiVector3D start = p_node_anim->mPositionKeys[position_index].mValue;
@@ -339,17 +322,17 @@ aiVector3D SkeletalModel::calcInterpolatedPosition(float p_animation_time, const
 
 aiQuaternion SkeletalModel::calcInterpolatedRotation(float p_animation_time, const aiNodeAnim* p_node_anim)
 {
-	if (p_node_anim->mNumRotationKeys == 1) // Keys ��� ������� �����
+	if (p_node_anim->mNumRotationKeys == 1) 
 	{
 		return p_node_anim->mRotationKeys[0].mValue;
 	}
 
-	uint rotation_index = findRotation(p_animation_time, p_node_anim); // ������ ������ �������� ����� ������� ������
-	uint next_rotation_index = rotation_index + 1; // ������ ��������� �������� �����
+	uint rotation_index = findRotation(p_animation_time, p_node_anim);
+	uint next_rotation_index = rotation_index + 1; 
 	assert(next_rotation_index < p_node_anim->mNumRotationKeys);
-	// ���� ����� �������
+	
 	float delta_time = (float)(p_node_anim->mRotationKeys[next_rotation_index].mTime - p_node_anim->mRotationKeys[rotation_index].mTime);
-	// ������ = (���� ������� ������ �� ������ �������� ��������� �����) / �� ���� ����� �������
+	
 	float factor = (p_animation_time - (float)p_node_anim->mRotationKeys[rotation_index].mTime) / delta_time;
 
 	//cout << "p_node_anim->mRotationKeys[rotation_index].mTime: " << p_node_anim->mRotationKeys[rotation_index].mTime << endl;
@@ -368,17 +351,17 @@ aiQuaternion SkeletalModel::calcInterpolatedRotation(float p_animation_time, con
 
 aiVector3D SkeletalModel::calcInterpolatedScaling(float p_animation_time, const aiNodeAnim* p_node_anim)
 {
-	if (p_node_anim->mNumScalingKeys == 1) // Keys ��� ������� �����
+	if (p_node_anim->mNumScalingKeys == 1)
 	{
 		return p_node_anim->mScalingKeys[0].mValue;
 	}
 
-	uint scaling_index = findScaling(p_animation_time, p_node_anim); // ������ ������ �������� ����� ������� ������
-	uint next_scaling_index = scaling_index + 1; // ������ ��������� �������� �����
+	uint scaling_index = findScaling(p_animation_time, p_node_anim);
+	uint next_scaling_index = scaling_index + 1; 
 	assert(next_scaling_index < p_node_anim->mNumScalingKeys);
-	// ���� ����� �������
+
 	float delta_time = (float)(p_node_anim->mScalingKeys[next_scaling_index].mTime - p_node_anim->mScalingKeys[scaling_index].mTime);
-	// ������ = (���� ������� ������ �� ������ �������� ��������� �����) / �� ���� ����� �������
+	
 	float  factor = (p_animation_time - (float)p_node_anim->mScalingKeys[scaling_index].mTime) / delta_time;
 	assert(factor >= 0.0f && factor <= 1.0f);
 	aiVector3D start = p_node_anim->mScalingKeys[scaling_index].mValue;
@@ -394,10 +377,10 @@ const aiNodeAnim* SkeletalModel::findNodeAnim(const aiAnimation* p_animation, co
 	// numChannels == numBones
 	for (uint i = 0; i < p_animation->mNumChannels; i++)
 	{
-		const aiNodeAnim* node_anim = p_animation->mChannels[i]; // ��������� ������� ������ node
+		const aiNodeAnim* node_anim = p_animation->mChannels[i]; 
 		if (string(node_anim->mNodeName.data) == p_node_name)
 		{
-			return node_anim;// ���� ����� �������� �� ������� ����� (� ������� ����������� node) ������������ ���� node_anim
+			return node_anim;
 		}
 	}
 
@@ -408,11 +391,10 @@ void SkeletalModel::readNodeHierarchy(float p_animation_time, const aiNode* p_no
 {
 	string node_name(p_node->mName.data);
 
-	//������� node, �� ������� ������������ �������, ������������� �������� ���� ������(aiNodeAnim).
 	const aiAnimation* animation = scene->mAnimations[0];
 	aiMatrix4x4 node_transform = p_node->mTransformation;
 
-	const aiNodeAnim* node_anim = findNodeAnim(animation, node_name); // ����� ������� �� ����� ����
+	const aiNodeAnim* node_anim = findNodeAnim(animation, node_name); 
 
 	if (node_anim)
 	{
@@ -448,7 +430,6 @@ void SkeletalModel::readNodeHierarchy(float p_animation_time, const aiNode* p_no
 
 	aiMatrix4x4 global_transform = parent_transform * node_transform;
 
-	// ���� � node �� �������� ����������� bone, �� �� node ������ ��������� � ������ bone !!!
 	if (m_bone_mapping.find(node_name) != m_bone_mapping.end()) // true if node_name exist in bone_mapping
 	{
 		uint bone_index = m_bone_mapping[node_name];
@@ -467,8 +448,7 @@ void SkeletalModel::boneTransform(double time_in_sec, vector<aiMatrix4x4>& trans
 	aiMatrix4x4 identity_matrix; // = mat4(1.0f);
 
 	double time_in_ticks = time_in_sec * ticks_per_second;
-	float animation_time = fmod(time_in_ticks, scene->mAnimations[0]->mDuration); //������� �� ����� (������� �� ������)
-	// animation_time - ���� ������� ������ � ���� ������ �� ������ �������� (�� ������� �������� ����� � �������� )
+	float animation_time = fmod(time_in_ticks, scene->mAnimations[0]->mDuration); 
 
 	readNodeHierarchy(animation_time, scene->mRootNode, identity_matrix);
 

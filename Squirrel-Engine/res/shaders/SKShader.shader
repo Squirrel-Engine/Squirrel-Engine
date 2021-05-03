@@ -46,12 +46,8 @@ in vec3 normal;
 
 struct Material
 {
-	sampler2D texture_diffuse1;
-
-	sampler2D texture_specular1;
-
-	float shininess;
-	float transparency;
+	sampler2D texture_diffuse;
+	sampler2D texture_specular;
 };
 
 struct PointLight
@@ -79,14 +75,14 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 view_dir, vec3 frag_pos)
 	float diff = max(dot(normal, light_dir), 0.0);
 	//Specular 
 	vec3 reflect_dir = reflect(-light_dir, normal);
-	float spec = pow(max(dot(view_dir, reflect_dir), 0.0), material.shininess);
+	float spec = pow(max(dot(view_dir, reflect_dir), 0.0), 32.0f);
 	//Attenuation
 	float distance = length(light.position - frag_pos);
 	float attenuation = 1.0f / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
 
-	vec3 ambient = light.ambient * vec3(texture(material.texture_diffuse1, text_coords));
-	vec3 diffuse = light.diffuse * diff * vec3(texture(material.texture_diffuse1, text_coords));
-	vec3 specular = light.specular * spec * vec3(texture(material.texture_specular1, text_coords));
+	vec3 ambient = light.ambient * vec3(texture(material.texture_diffuse, text_coords));
+	vec3 diffuse = light.diffuse * diff * vec3(texture(material.texture_diffuse, text_coords));
+	vec3 specular = light.specular * spec * vec3(texture(material.texture_specular, text_coords));
 
 
 	ambient *= attenuation;

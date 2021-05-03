@@ -20,13 +20,6 @@ struct Vertex
 	glm::vec2 text_coords;
 };
 
-struct SkeletalTexture
-{
-	GLuint id;
-	string type;
-	aiString path;
-};
-
 struct BoneMatrix
 {
 	aiMatrix4x4 offset_matrix;
@@ -47,22 +40,23 @@ struct VertexBoneData
 
 	void addBoneData(uint bone_id, float weight);
 };
+class SkeletalModel;
 
 class SkeletalMesh
 {
+	friend SkeletalModel;
 public:
-	SkeletalMesh(vector<Vertex> vertic, vector<GLuint> ind, vector<SkeletalTexture> texture, Material material, vector<VertexBoneData> bone_id_weights);
+	SkeletalMesh(vector<Vertex> vertic, vector<GLuint> ind, Material material, vector<VertexBoneData> bone_id_weights);
 	SkeletalMesh() {};
 	~SkeletalMesh();
 
 	// Render mesh
-	void Draw(GLuint shaders_program);
+	void Draw();
 
 private:
 	//Mesh data
 	vector<Vertex> vertices;
 	vector<GLuint> indices;
-	vector<SkeletalTexture> textures;
 	vector<VertexBoneData> bones_id_weights_for_each_vertex;
 
 	//buffers

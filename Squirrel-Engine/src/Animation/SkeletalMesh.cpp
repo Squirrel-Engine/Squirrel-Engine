@@ -2,11 +2,10 @@
 
 
 
-SkeletalMesh::SkeletalMesh(vector<Vertex> vertic, vector<GLuint> ind, vector<SkeletalTexture> texture, Material material, vector<VertexBoneData> bone_id_weights)
+SkeletalMesh::SkeletalMesh(vector<Vertex> vertic, vector<GLuint> ind, Material material, vector<VertexBoneData> bone_id_weights)
 {
 	vertices = vertic;
 	indices = ind;
-	textures = texture;
 	m_Material = material;
 	bones_id_weights_for_each_vertex = bone_id_weights;
 
@@ -38,46 +37,11 @@ void VertexBoneData::addBoneData(uint bone_id, float weight)
 }
 
 
-void SkeletalMesh::Draw(GLuint shaders_program)
+void SkeletalMesh::Draw()
 {
-	int diffuse_nr = 1;
-	int specular_nr = 1;
-
-	for (int i = 0; i < textures.size(); i++)
-	{
-		glActiveTexture(GL_TEXTURE0 + i);
-
-		string number;
-		string name = textures[i].type;
-		if (name == "texture_diffuse")
-		{
-			number = to_string(diffuse_nr++);
-		}
-		else if (name == "texture_specular")
-		{
-			number = to_string(specular_nr++);
-		}
-
-		glBindTexture(GL_TEXTURE_2D, textures[i].id);
-		glUniform1i(glGetUniformLocation(shaders_program, ("material." + name + number).c_str()), i);
-
-		//cout << "added in shader : " << ("material." + name + number).c_str() << endl;
-	}
-
-	//glUniform1f(glGetUniformLocation(shaders_program, "material.shininess"), 32.0f);
-
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	//glLineWidth(2);
-	//Draw
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
-
-	for (int i = 0; i < textures.size(); i++)
-	{
-		glActiveTexture(GL_TEXTURE0 + i);
-		glBindTexture(GL_TEXTURE_2D, 0);
-	}
 }
 
 void SkeletalMesh::SetupMesh()

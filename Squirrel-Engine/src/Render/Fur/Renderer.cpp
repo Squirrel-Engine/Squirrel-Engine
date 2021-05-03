@@ -18,7 +18,7 @@ void furRender()
 			firstCommandBuffer->pop();
 		}
 	}
-	/*
+	
 	GLuint* shader = &getInterface<RM_Interface>().getShader(1)->ID;
 	glUseProgram(*shader);
 
@@ -48,7 +48,7 @@ void furRender()
 	glUniformMatrix4fv(glGetUniformLocation(*shader, "M_matrix"), 1, GL_FALSE, glm::value_ptr(matr_model_1));
 	glm::mat4 matr_normals_cube = glm::mat4(glm::transpose(glm::inverse(matr_model_1)));
 	glUniformMatrix4fv(glGetUniformLocation(*shader, "normals_matrix"), 1, GL_FALSE, glm::value_ptr(matr_normals_cube));
-	getInterface<RM_Interface>().getSkeletalModel(0)->draw(getInterface<RM_Interface>().getShader(1)->ID);
-	*/
+	getInterface<RM_Interface>().getSkeletalModel(0)->Draw(getInterface<RM_Interface>().getShader(1));
+	
 	glfwSwapBuffers(furWindow);
 }
