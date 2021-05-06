@@ -51,10 +51,16 @@ void Sandbox::Run()
 	Blackboard* blackBoard = new Blackboard();
 	blackBoard->setVariable("test", &skeleton->health);
 
+	std::cout << blackBoard->isBlackboardUpdated() << std::endl;
+
+	std::cout << *blackBoard->getIntVariable("test") << std::endl;
+	
+	
 	skeleton->health = 1000;
 
-	std::cout << *blackBoard->getIntVariable("test");
+	std::cout << blackBoard->isBlackboardUpdated() << std::endl;
 
+	std::cout << blackBoard->isBlackboardUpdated() << std::endl;
 	
 
 	BehaviorTree* myTree = new BehaviorTree();

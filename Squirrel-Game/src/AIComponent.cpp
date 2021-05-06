@@ -15,6 +15,7 @@ void AIComponent::BeginPlay()
 
 void AIComponent::Update()
 {
+
 	actionNode = behaviorTree->executeTree();
 	
 	// Initialization 
