@@ -41,7 +41,7 @@ void Sandbox::Run()
 	
 	auto skeleton = new Skeleton();
 	skeleton->health = 100;
-	skeleton->attackPower = 50;
+	skeleton->attackPower = 50.5f;
 	skeleton->transformComponent->setTransform(0, -2, -5);
 	skeleton->renderComponent->C_ShaderID = 0;
 	skeleton->renderComponent->C_ModelID = 2;
@@ -51,12 +51,15 @@ void Sandbox::Run()
 	Blackboard* blackBoard = new Blackboard();
 	blackBoard->setVariable("test", &skeleton->health);
 
+	blackBoard->setVariable("test1", &skeleton->attackPower);
+
 	std::cout << blackBoard->isBlackboardUpdated() << std::endl;
 
 	std::cout << *blackBoard->getIntVariable("test") << std::endl;
 	
 	
 	skeleton->health = 1000;
+	skeleton->attackPower = 70.5f;
 
 	std::cout << blackBoard->isBlackboardUpdated() << std::endl;
 

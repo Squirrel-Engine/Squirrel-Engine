@@ -15,7 +15,7 @@ public:
 	void BeginPlay() override;
 	void Update() override;
 	int health;
-	int attackPower;
+	float attackPower;
 	SR_VAR_START()
 
 	SR_VAR_END()
