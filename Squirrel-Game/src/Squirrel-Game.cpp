@@ -39,7 +39,6 @@ void Sandbox::Run()
 	skeleton->transformComponent->setScale(0.05, 0.05, 0.05);
 	skeleton->renderComponent->C_ShaderID = 0;
 	skeleton->renderComponent->C_ModelID = 3;
-	skeleton->renderComponent->C_MaterialID_0 = 2;
 
 	skeleton->audioComponent->C_AudioSourceID = 0;
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);

@@ -7,13 +7,14 @@ RenderComponent::RenderComponent()
 
 void RenderComponent::BeginPlay()
 {
+
 }
 
 void RenderComponent::Update()
 {
 	auto drawCall = new ModelDrawCall(getInterface<RM_Interface>().getMesh(modelID),
 	                                  getInterface<RM_Interface>().getShader(shaderID),
-	                                  dynamic_cast<TRANSFORM_DESC*>(getComponent<TransformComponent*>("transformComponent")->uniform));
+	                                  dynamic_cast<TRANSFORM_DESC*>(getComponent<TransformComponent>()->uniform));
 
 	getInterface<RD_Interface>().submitDrawCall(*drawCall);
 }

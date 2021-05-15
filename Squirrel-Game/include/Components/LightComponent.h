@@ -10,12 +10,12 @@ SR_COMPONENT()
 class LightComponent : public ActorComponent
 {
 private:
-	LightObject* light;
+	LightObject* m_Light;
+	LightType m_Type;
 public:
 	SR_VAR_START()
-
+	
 	SR_VAR_END()
-
 public:
 	LightComponent(LightType type);
 	void BeginPlay() override;

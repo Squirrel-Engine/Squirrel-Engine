@@ -22,7 +22,7 @@ public:
 	Uniforms* uniform;
 public:
 	template <typename T>
-	T getComponent(std::string name) { return dynamic_cast<T>(parent->componentList.at(name)); }
+	T* getComponent() { return dynamic_cast<T*>(parent->componentList.at(typeid(T*).name())); }
 
 	Actor* getParent() { return parent; }
 	void setParent(Actor* _parent) { this->parent = _parent; }

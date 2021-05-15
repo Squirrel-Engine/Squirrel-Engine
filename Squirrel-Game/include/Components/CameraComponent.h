@@ -14,7 +14,6 @@ public:
 	void Update() override;
 	void setup() override;
 
-	const vec3& getPosition() const { return *m_Position; }
 	vec3 getUpDirection() const;
 	vec3 getRightDirection() const;
 	vec3 getForwardDirection() const;
@@ -39,7 +38,6 @@ private:
 	float m_FOV = 60.0f, m_AspectRatio, m_NearClip = 0.1f, m_FarClip = 1000.0f;
 
 	mat4 m_ViewMatrix;
-	vec3* m_Position;
 	vec3 m_FocalPoint = {0.0f, 0.0f, 0.0f};
 
 	float m_Pitch = 0.0f, m_Yaw = 0.0f;
