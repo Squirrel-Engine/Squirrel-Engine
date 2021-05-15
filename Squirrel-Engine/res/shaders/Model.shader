@@ -65,7 +65,7 @@ struct PointLight {
     float attenuationRadius;
 };
 uniform Material material;
-uniform PointLight pointLight;
+uniform PointLight pointLights[1];
 
 vec3 CalculatePointLightRadiance(vec3 albedo, vec3 normal, float metallic, float roughness, vec3 fragToView, vec3 baseReflectivity);
 // Cook-Torrance BRDF functions adopted by Epic for UE4
@@ -107,17 +107,17 @@ vec3 CalculatePointLightRadiance(vec3 albedo, vec3 normal, float metallic, float
     vec3 pointLightIrradiance = vec3(0.0);
 
     for (int i = 0; i < 1; ++i) {
-        vec3 fragToLight = normalize(pointLight.position - FragPos);
+        vec3 fragToLight = normalize(pointLights[i].position - FragPos);
         vec3 halfway = normalize(fragToView + fragToLight);
-        float fragToLightDistance = length(pointLight.position - FragPos);
+        float fragToLightDistance = length(pointLights[i].position - FragPos);
 
         // Attenuation calculation (based on Epic's UE4 falloff model)
-        float d = fragToLightDistance / pointLight.attenuationRadius;
+        float d = fragToLightDistance / pointLights[i].attenuationRadius;
         float d2 = d * d;
         float d4 = d2 * d2;
         float falloffNumerator = clamp(1.0 - d4, 0.0, 1.0);
         float attenuation = (falloffNumerator * falloffNumerator) / ((fragToLightDistance * fragToLightDistance) + 1.0);
-        vec3 radiance = pointLight.intensity * pointLight.lightColour * attenuation;
+        vec3 radiance = pointLights[i].intensity * pointLights[i].lightColour * attenuation;
 
         // Cook-Torrance Specular BRDF calculations
         float normalDistribution = NormalDistributionGGX(normal, halfway, roughness);

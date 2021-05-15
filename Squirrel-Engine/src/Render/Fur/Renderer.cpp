@@ -1,5 +1,4 @@
 #include "Renderer.h"
-#include <queue>
 
 void furRender()
 {

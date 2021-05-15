@@ -1,39 +1,29 @@
 #include "Components/LightComponent.h"
 
-LightComponent::LightComponent()
+LightComponent::LightComponent(LightType type)
 {
-	shaderID = 1;
-	color = vec3(255.0f);
-	intensity = 5.0f;
-	attenuationRadius = 20.0f;
+	switch (type)
+	{
+	case LightType::PointLight:
+		light = new PointLight(10.0f, glm::vec3(100.0f, 100.0f, 100.0f), 30.0f, glm::vec3(0.0f, 0.0f, 10.0f));
+		getInterface<GM_Interface>().lightManager->addPointLight((PointLight*)light);
+		break;
+	default:
+		break;
+	}
 }
 
 void LightComponent::BeginPlay()
 {
+
 }
 
 void LightComponent::Update()
 {
-	dynamic_cast<LIGHT_DESC*>(uniform)->position = getComponent<TransformComponent*>("transformComponent")->getTransform();
-	dynamic_cast<LIGHT_DESC*>(uniform)->lightColour = color;
-	dynamic_cast<LIGHT_DESC*>(uniform)->intensity = intensity;
-	dynamic_cast<LIGHT_DESC*>(uniform)->attenuationRadius = attenuationRadius;
 
-	auto drawCall = new LightDrawCall(&light,
-	                                  getInterface<RM_Interface>().getShader(shaderID),
-	                                  dynamic_cast<TRANSFORM_DESC*>(getComponent<TransformComponent*>("transformComponent")->uniform),
-	                                  dynamic_cast<LIGHT_DESC*>(uniform));
-
-	InterfaceFactory::getInstance().getRDInterface().submitDrawCall(*drawCall);
 }
 
 void LightComponent::setup()
 {
-	uniform = new LIGHT_DESC();
-}
 
-void LightComponent::setColor(float r, float g, float b)
-{
-	vec3 color(r, g, b);
-	this->color = color;
 }

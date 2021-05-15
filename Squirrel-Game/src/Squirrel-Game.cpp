@@ -44,7 +44,7 @@ void Sandbox::Run()
 	skeleton->audioComponent->C_AudioSourceID = 0;
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);
 	//
-	auto light = new Light();
-	light->transformComponent->setTransform(0, 0, +10);
+	auto light = new Light(LightType::PointLight);
+	light->transformComponent->setTransform(0, 0, 10);
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::LIGHT, light);
 }

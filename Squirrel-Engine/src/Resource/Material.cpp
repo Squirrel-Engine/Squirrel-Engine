@@ -6,7 +6,7 @@ Material::Material(Texture* albedoMap, Texture* normalMap, Texture* metallicMap,
 {
 }
 
-void Material::BindMaterialInformation(Shader* shader) const {
+void Material::setupUniforms(Shader* shader) const {
 	int currentTextureUnit = 0;
 
 	shader->setInt("material.albedo", currentTextureUnit);

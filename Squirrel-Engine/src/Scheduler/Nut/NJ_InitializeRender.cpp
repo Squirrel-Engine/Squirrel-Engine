@@ -14,5 +14,6 @@ void NJ_InitializeRender::unmount()
 
 void NJ_InitializeRender::run()
 {
-	InterfaceFactory::getInstance().getRDInterface().render();
+	getInterface<GM_Interface>().lightManager->bindLightingUniforms(getInterface<RM_Interface>().getShader(0));
+	getInterface<RD_Interface>().render();
 }
