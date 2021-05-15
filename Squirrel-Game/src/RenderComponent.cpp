@@ -14,7 +14,7 @@ void RenderComponent::Update()
 {
 	auto drawCall = new ModelDrawCall(getInterface<RM_Interface>().getMesh(modelID),
 	                                  getInterface<RM_Interface>().getShader(shaderID),
-	                                  dynamic_cast<TRANSFORM_DESC*>(getComponent<TransformComponent>()->uniform));
+	                                  dynamic_cast<TRANSFORM_DESC*>(getComponentInParent<TransformComponent>()->getUniforms()));
 
 	getInterface<RD_Interface>().submitDrawCall(*drawCall);
 }

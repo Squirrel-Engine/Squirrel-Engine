@@ -24,4 +24,6 @@ public:
 	{
 		componentList.insert(std::make_pair(typeid(component).name(), component));
 	}
+	template <typename T>
+	T* getComponent() { return dynamic_cast<T*>(componentList.at(typeid(T*).name())); }
 };

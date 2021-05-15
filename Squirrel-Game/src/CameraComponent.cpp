@@ -14,7 +14,7 @@ void CameraComponent::BeginPlay()
 
 void CameraComponent::Update()
 {
-	vec3 position = getComponent<TransformComponent>()->getTransform();
+	vec3 position = getComponentInParent<TransformComponent>()->getTransform();
 	updateView();
 	cameraDesc->viewPos = position;
 	cameraDesc->viewProjection = getViewProjection();
@@ -22,7 +22,7 @@ void CameraComponent::Update()
 
 void CameraComponent::setup()
 {
-	
+
 }
 
 void CameraComponent::updateProjection()
@@ -33,7 +33,7 @@ void CameraComponent::updateProjection()
 
 void CameraComponent::updateView()
 {
-	vec3 position = getComponent<TransformComponent>()->getTransform();
+	vec3 position = getComponentInParent<TransformComponent>()->getTransform();
 	quat orientation = getOrientation();
 	m_ViewMatrix = translate(mat4(1.0f), position) * toMat4(orientation);
 	m_ViewMatrix = inverse(m_ViewMatrix);

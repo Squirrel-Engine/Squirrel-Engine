@@ -10,6 +10,7 @@ class ActorComponent
 {
 private:
 	Actor* parent;
+	Uniforms* uniforms;
 public:
 	ActorComponent()
 	{
@@ -19,11 +20,13 @@ public:
 	virtual void Update() = 0;
 	virtual void setup() = 0;
 
-	Uniforms* uniform;
 public:
 	template <typename T>
-	T* getComponent() { return dynamic_cast<T*>(parent->componentList.at(typeid(T*).name())); }
+	T* getComponentInParent() { return dynamic_cast<T*>(parent->componentList.at(typeid(T*).name())); }
+	template <typename T>
+	void setUniforms(T) { uniforms = new T; }
 
-	Actor* getParent() { return parent; }
-	void setParent(Actor* _parent) { this->parent = _parent; }
+	inline Uniforms* getUniforms() { return uniforms; };
+	inline Actor* getParent() { return parent; }
+	inline void setParent(Actor* _parent) { this->parent = _parent; }
 };

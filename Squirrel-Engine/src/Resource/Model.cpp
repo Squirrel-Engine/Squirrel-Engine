@@ -11,7 +11,6 @@ void Model::Draw(Shader& shader, TRANSFORM_DESC& uniformDesc)
 {
 	shader.use();
 	// Uniforms
-	//Later there will be a iterator for all
 	shader.setVec3("viewPos", cameraDesc->viewPos);
 	shader.setMat4("viewProjection", cameraDesc->viewProjection);
 	shader.setMat4("model", uniformDesc.model);
