@@ -8,4 +8,6 @@ public:
 	GM_Interface();
 	LevelStore* levelStore;
 	DynamicLightManager* lightManager;
+public:
+	void configureComponents();
 };

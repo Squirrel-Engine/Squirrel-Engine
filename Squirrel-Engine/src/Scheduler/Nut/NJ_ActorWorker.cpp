@@ -21,7 +21,7 @@ void NJ_ActorWorker::run()
 		actor->Update();
 		for (auto& component : actor->componentList)
 		{
-			component.second->setup();
+			//component.second->setup();
 			component.second->BeginPlay();
 			component.second->Update();
 		}

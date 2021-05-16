@@ -11,6 +11,5 @@ public:
 
 	void addPointLight(PointLight* pointLight);
 private:
-	Shader* shader;
-	std::vector<PointLight> m_PointLights;
+	std::vector<PointLight*> m_PointLights;
 };

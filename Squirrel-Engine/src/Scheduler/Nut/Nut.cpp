@@ -16,7 +16,7 @@ void Nut::threadProcess()
 	while (true)
 	{
 		job = schedular();
-		if (job == nullptr)
+		if (job == NULL)
 		{
 		}
 		else
