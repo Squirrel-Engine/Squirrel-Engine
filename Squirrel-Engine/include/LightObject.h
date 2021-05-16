@@ -2,7 +2,7 @@
 #include "Shader.h"
 #include "UniformDesc.h"
 
-enum class LightType {
+enum class ELightType {
 	PointLight
 };
 

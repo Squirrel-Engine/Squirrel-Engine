@@ -21,12 +21,12 @@ void TransformComponent::Update()
 	transformMat = glm::rotate(transformMat, radians(transform.rotation.z), vec3(0, 0, 1)); //rotation z 
 	transformMat = glm::scale(transformMat, transform.scale);
 
-	dynamic_cast<TRANSFORM_DESC*>(getUniforms())->model = transformMat;
+	dynamic_cast<TRANSFORM_DESC*>(uniforms)->model = transformMat;
 }
 
 void TransformComponent::setup()
 {
-	setUniforms(TRANSFORM_DESC());
+	uniforms = new TRANSFORM_DESC;
 }
 
 vec3& TransformComponent::getTransform()

@@ -1,6 +1,6 @@
 #include "Light.h"
 
-Light::Light(LightType type)
+Light::Light(ELightType type)
 {
 	auto transformComponent = new TransformComponent();
 	transformComponent->setParent(this);

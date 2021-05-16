@@ -11,13 +11,13 @@ class LightComponent : public ActorComponent
 {
 private:
 	LightObject* m_Light;
-	LightType m_Type;
+	ELightType m_Type;
 public:
 	SR_VAR_START()
 	
 	SR_VAR_END()
 public:
-	LightComponent(LightType type);
+	LightComponent(ELightType type);
 	void BeginPlay() override;
 	void Update() override;
 	void setup() override;
