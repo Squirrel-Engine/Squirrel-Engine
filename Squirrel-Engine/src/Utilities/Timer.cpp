@@ -1,19 +1,16 @@
 #include "Timer.h"
 
-Timer::Timer()
+float Timer::m_Time = 0;
+float Timer::m_lastFrame = 0;
+
+void  Timer::update()
 {
-	last = std::chrono::steady_clock::now();
+	float time = getTime();
+	m_Time = time - m_lastFrame;
+	m_lastFrame = time;
 }
 
-float Timer::getTimeStamp()
-{
-	const auto old = last;
-	last = std::chrono::steady_clock::now();
-	const std::chrono::duration<float> frameTime = last - old;
-	return frameTime.count();
+float Timer::getFps() {
+	return 1/m_Time;
 }
 
-float Timer::setTimeStamp()
-{
-	return std::chrono::duration<float>(std::chrono::steady_clock::now() - last).count();
-}

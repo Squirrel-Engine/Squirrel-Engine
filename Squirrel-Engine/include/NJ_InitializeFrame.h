@@ -1,5 +1,6 @@
 #pragma once
 #include "NJob.h"
+#include "Timer.h"
 
 class NJ_InitializeFrame final : public NJob
 {

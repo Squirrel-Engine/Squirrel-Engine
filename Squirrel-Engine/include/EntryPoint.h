@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "RuntimeManager.h"
 #include "InterfaceFactory.h"
+#include "Timer.h"
 
 int main(int argc, char** argv)
 {

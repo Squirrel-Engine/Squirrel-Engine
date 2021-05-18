@@ -14,7 +14,7 @@ Nut::Nut()
 
 void Nut::startScheduler()
 {
-	/*{
+	{
 		int threadCount = 4;
 		std::vector<std::thread> threadPool;
 
@@ -39,12 +39,11 @@ void Nut::startScheduler()
 				}
 			}
 		}
-	}*/
+	}
 
 	while (true)
 	{
 		submitJob(*new NJ_InitializeFrame(), EQueueOrder::HIGH_ORDER);
-
 		// Frame Loop
 		while (!jobQueueHighOrder.empty())
 		{
