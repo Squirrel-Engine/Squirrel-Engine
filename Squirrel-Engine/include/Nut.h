@@ -13,9 +13,16 @@ public:
 	void startScheduler();
 	void stopScheduler();
 	void pauseScheduler();
-	void schedular();
 	void submitJob(NJob& job, EQueueOrder order);
+private:
+	void schedular();
+	void threadPoolProcess();
+	NJob* threadPoolSchedular();
+	void processLowOrder();
+	void processHighOrder();
+
 private:
 	std::queue<NJob*> jobQueueLowOrder;
 	std::queue<NJob*> jobQueueHighOrder;
+	bool multithreded;
 };
