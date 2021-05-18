@@ -11,22 +11,12 @@ void Model::Draw(Shader& shader, TRANSFORM_DESC& uniformDesc)
 {
 	shader.use();
 	// Uniforms
-	//Later there will be a iterator for all
 	shader.setVec3("viewPos", cameraDesc->viewPos);
 	shader.setMat4("viewProjection", cameraDesc->viewProjection);
 	shader.setMat4("model", uniformDesc.model);
-	for (Actor* light : InterfaceFactory::getInstance().getGMInterface().levelStore->lights)
-	{
-		auto desc = dynamic_cast<LIGHT_DESC*>(light->componentList.at("lightComponent")->uniform);
-		shader.setVec3("light.color", desc->lightColor);
-		shader.setVec3("light.position", desc->lightPos);
-		shader.setFloat("light.constant", desc->constant);
-		shader.setFloat("light.linear", desc->linear);
-		shader.setFloat("light.quadratic", desc->quadratic);
-	}
 
 	for (unsigned int i = 0; i < meshes.size(); i++) {
-		meshes[i].m_Material.BindMaterialInformation(&shader);
+		meshes[i].m_Material.setupUniforms(&shader);
 		meshes[i].Draw();
 	}
 }

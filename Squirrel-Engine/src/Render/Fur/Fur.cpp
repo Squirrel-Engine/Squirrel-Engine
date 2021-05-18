@@ -1,4 +1,8 @@
 #include "Fur.h"
+#include <mutex>
+
+std::mutex renderMutex;
+
 void error_callback(int error, const char* msg);
 
 Fur::Fur()
@@ -17,6 +21,7 @@ void Fur::startRenderEngine()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_SAMPLES, 4);
 
 	furWindow = glfwCreateWindow(config.screenWidth, config.screenHeight, config.windowName.c_str(), nullptr, nullptr);
 	if (furWindow == nullptr)
@@ -39,6 +44,7 @@ void Fur::startRenderEngine()
 	//
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
+	glEnable(GL_MULTISAMPLE);
 	glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
 }
 
@@ -69,6 +75,12 @@ void Fur::addActorToRenderQueue()
 
 void Fur::submitDrawCall(DrawCall& drawCall)
 {
+	if (Configuration::getInstance().schedulerConfig.mtMode) {
+		renderMutex.lock();
+		firstCommandBuffer->push(&drawCall);
+		renderMutex.unlock();
+		return;
+	}
 	firstCommandBuffer->push(&drawCall);
 }
 

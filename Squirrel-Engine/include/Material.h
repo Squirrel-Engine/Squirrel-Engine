@@ -9,11 +9,9 @@
 using namespace std;
 class Material {
 public:
-	Material(Texture* albedoMap = nullptr, Texture* normalMap = nullptr, Texture* metallicMap = nullptr, Texture* roughnessMap = nullptr,
-		Texture* ambientOcclusionMap = nullptr, Texture* displacementMap = nullptr);
+	Material(Texture* albedoMap = nullptr, Texture* normalMap = nullptr, Texture* metallicMap = nullptr, Texture* roughnessMap = nullptr, Texture* ambientOcclusionMap = nullptr, Texture* displacementMap = nullptr);
 
-	// Assumes the shader is already bound
-	void BindMaterialInformation(Shader* shader) const;
+	void setupUniforms(Shader* shader) const;
 
 	inline void setAlbedoMap(Texture* texture) { m_AlbedoMap = texture; }
 	inline void setNormalMap(Texture* texture) { m_NormalMap = texture; }

@@ -1,12 +1,17 @@
 #pragma once
 #include <chrono>
+#include <GLFW/glfw3.h>
 
 class Timer
 {
 public:
-	Timer();
-	float setTimeStamp();
-	float getTimeStamp();
+	Timer() {}
+	static void update();
+	static float getSeconds()  { return m_Time; };
+	static float getMiliSeconds() { return m_Time * 1000.0f; };
+	static float getTime() { return (float)glfwGetTime(); };
+	static float getFps();
 private:
-	std::chrono::steady_clock::time_point last;
+	static float m_Time;
+	static float m_lastFrame;
 };

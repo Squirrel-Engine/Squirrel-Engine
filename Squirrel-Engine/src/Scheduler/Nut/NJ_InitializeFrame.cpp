@@ -22,7 +22,11 @@ void NJ_InitializeFrame::unmount()
 
 void NJ_InitializeFrame::run()
 {
-	getInterface<RD_Interface>().frameCounter++;
+	//Set the timer
+	Timer::update();
+	std::cout << Timer::getFps() << std::endl;
+
+	//Push all high order jobs to initialize a frame
 	getInterface<MT_Interface>().submitJob(*new NJ_Input(), EQueueOrder::HIGH_ORDER);
 	getInterface<MT_Interface>().submitJob(*new NJ_InitializeSimulation(), EQueueOrder::HIGH_ORDER);
 	getInterface<MT_Interface>().submitJob(*new NJ_InitializeRender(), EQueueOrder::HIGH_ORDER);
