@@ -1,8 +1,10 @@
 #pragma once
-#include <queue>
 #include "EQueueOrder.h"
 #include "NJob.h"
 #include <mutex>
+#include <thread>
+#include <iostream>
+#include <queue>
 
 class Nut
 {
@@ -11,8 +13,7 @@ public:
 	void startScheduler();
 	void stopScheduler();
 	void pauseScheduler();
-	NJob* schedular();
-	void threadProcess();
+	void schedular();
 	void submitJob(NJob& job, EQueueOrder order);
 private:
 	std::queue<NJob*> jobQueueLowOrder;

@@ -4,76 +4,58 @@
 #include "NJ_InitializeFrame.h"
 #include "Configuration.h"
 
-std::mutex m;
+std::mutex mtx;
 
 Nut::Nut()
 {
-}
-
-void Nut::threadProcess()
-{
-	NJob* job;
-	while (true)
-	{
-		job = schedular();
-		if (job == NULL)
-		{
-		}
-		else
-		{
-			job->run();
-		}
-	}
 }
 
 void Nut::startScheduler()
 {
 	if (Configuration::getInstance().schedulerConfig.mtMode == true)
 	{
-		int threadCount = 8;
-		std::vector<std::thread> threadPool;
-
-		for (int i = 0; i < threadCount; i++)
+		while (true)
 		{
-			threadPool.push_back(std::thread(&Nut::threadProcess, this));
-		}
+			int threadCount = 8;
+			std::vector<std::thread> threadPool;
+			jobQueueHighOrder.push(new NJ_InitializeFrame());
 
-		for (int i = 0; i < threadCount; i++)
-		{
-			threadPool.at(i).detach();
+			// Frame Loop
+			while (!jobQueueHighOrder.empty())
+			{
+				jobQueueHighOrder.front()->run();
+				free(jobQueueHighOrder.front());
+				jobQueueHighOrder.pop();
+				while (!jobQueueLowOrder.empty())
+				{
+					for (int i = 0; i < threadCount; i++)
+					{
+						threadPool.push_back(std::thread([this] { schedular(); }));
+					}
+					std::for_each(threadPool.begin(), threadPool.end(), [](std::thread& t)
+					{
+							t.join();
+					});
+				}
+			}
 		}
-
+	}else{
 		while (true)
 		{
 			jobQueueHighOrder.push(new NJ_InitializeFrame());
 
-			while (jobQueueHighOrder.size() != 0)
+			// Frame Loop
+			while (!jobQueueHighOrder.empty())
 			{
-				if (jobQueueLowOrder.size() == 0)
+				jobQueueHighOrder.front()->run();
+				free(jobQueueHighOrder.front());
+				jobQueueHighOrder.pop();
+				while (!jobQueueLowOrder.empty())
 				{
-					jobQueueHighOrder.front()->run();
-					free(jobQueueHighOrder.front());
-					jobQueueHighOrder.pop();
+					jobQueueLowOrder.front()->run();
+					free(jobQueueLowOrder.front());
+					jobQueueLowOrder.pop();
 				}
-			}
-		}
-	}
-	//Game Loop
-	while (true)
-	{
-		jobQueueHighOrder.push(new NJ_InitializeFrame());
-
-		// Frame Loop
-		while (jobQueueHighOrder.size() != 0)
-		{
-			jobQueueHighOrder.front()->run();
-			free(jobQueueHighOrder.front());
-			jobQueueHighOrder.pop();
-			while (jobQueueLowOrder.size() != 0)
-			{
-				jobQueueLowOrder.front()->run();
-				free(jobQueueLowOrder.front());
-				jobQueueLowOrder.pop();
 			}
 		}
 	}
@@ -87,23 +69,18 @@ void Nut::pauseScheduler()
 {
 }
 
-NJob* Nut::schedular()
+void Nut::schedular()
 {
-	m.lock();
-	NJob* job;
-	if (jobQueueLowOrder.empty() == true)
+	mtx.lock();
+	if (!jobQueueLowOrder.empty())
 	{
-		job = nullptr;
-	}
-	else
-	{
+		NJob* job;
 		job = jobQueueLowOrder.front();
+		job->run();
 		jobQueueLowOrder.pop();
 	}
-	m.unlock();
-	return job;
+	mtx.unlock();
 }
-
 
 void Nut::submitJob(NJob& job, EQueueOrder order)
 {

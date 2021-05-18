@@ -6,7 +6,7 @@ void furRender()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	for (int i = 0; i < firstCommandBuffer->size(); i++)
 	{
-		if (firstCommandBuffer->front() != NULL)
+		if (!firstCommandBuffer->empty())
 		{
 			drawcall = firstCommandBuffer->front();
 			drawcall->draw();
