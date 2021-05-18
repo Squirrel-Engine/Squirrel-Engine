@@ -15,7 +15,6 @@ public:
 	void pauseScheduler();
 	void submitJob(NJob& job, EQueueOrder order);
 private:
-	void schedular();
 	void threadPoolProcess();
 	NJob* threadPoolSchedular();
 	void processLowOrder();

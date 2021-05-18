@@ -27,4 +27,8 @@ void Skeleton::BeginPlay()
 void Skeleton::Update()
 {
 	transformComponent->rotationY += 2;
+	/*for (int i =0; i<1000000; i++)
+	{
+
+	}*/
 }

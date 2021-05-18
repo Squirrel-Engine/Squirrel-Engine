@@ -4,8 +4,8 @@
 #include "NJ_InitializeFrame.h"
 #include "Configuration.h"
 
-std::mutex mtx; std::mutex mtx2;
-std::condition_variable cv;
+std::mutex mtx;
+
 
 Nut::Nut()
 {
@@ -14,8 +14,8 @@ Nut::Nut()
 
 void Nut::startScheduler()
 {
-	{
-		int threadCount = 4;
+	if(multithreded){
+		int threadCount = 4;					//std::thread::hardware_concurrency();
 		std::vector<std::thread> threadPool;
 
 		for (int i = 0; i < threadCount; i++)
@@ -40,20 +40,22 @@ void Nut::startScheduler()
 			}
 		}
 	}
-
-	while (true)
-	{
-		submitJob(*new NJ_InitializeFrame(), EQueueOrder::HIGH_ORDER);
-		// Frame Loop
-		while (!jobQueueHighOrder.empty())
+	else {
+		while (true)
 		{
-			processHighOrder();
-			while (!jobQueueLowOrder.empty())
+			submitJob(*new NJ_InitializeFrame(), EQueueOrder::HIGH_ORDER);
+			// Frame Loop
+			while (!jobQueueHighOrder.empty())
 			{
-				processLowOrder();
+				processHighOrder();
+				while (!jobQueueLowOrder.empty())
+				{
+					processLowOrder();
+				}
 			}
 		}
 	}
+	
 }
 
 void Nut::stopScheduler()
@@ -62,19 +64,6 @@ void Nut::stopScheduler()
 
 void Nut::pauseScheduler()
 {
-}
-
-void Nut::schedular()
-{
-	mtx.lock();
-	if (!jobQueueLowOrder.empty())
-	{
-		NJob* job;
-		job = jobQueueLowOrder.front();
-		job->run();
-		jobQueueLowOrder.pop();
-	}
-	mtx.unlock();
 }
 
 void Nut::threadPoolProcess()
@@ -129,20 +118,7 @@ void Nut::processHighOrder() {
 }
 
 void Nut::processLowOrder() {
-	if (!multithreded) {
-		jobQueueLowOrder.front()->run();
-		free(jobQueueLowOrder.front());
-		jobQueueLowOrder.pop();
-		return;
-	}
-	int numThreads = thread::hardware_concurrency();
-	std::vector<std::thread> threadPool;
-	for (int i = 0; i < numThreads; i++)
-	{
-		threadPool.push_back(std::thread([this] { schedular(); }));
-	}
-	std::for_each(threadPool.begin(), threadPool.end(), [](std::thread& t)
-	{
-		t.join();
-	});
+	jobQueueLowOrder.front()->run();
+	free(jobQueueLowOrder.front());
+	jobQueueLowOrder.pop();
 }

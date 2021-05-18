@@ -24,7 +24,7 @@ void NJ_InitializeFrame::run()
 {
 	//Set the timer
 	Timer::update();
-	std::cout << Timer::getMiliSeconds() << std::endl;
+	std::cout << Timer::getFps() << std::endl;
 
 	//Push all high order jobs to initialize a frame
 	getInterface<MT_Interface>().submitJob(*new NJ_Input(), EQueueOrder::HIGH_ORDER);

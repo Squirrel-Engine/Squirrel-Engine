@@ -1,4 +1,8 @@
 #include "Fur.h"
+#include <mutex>
+
+std::mutex renderMutex;
+
 void error_callback(int error, const char* msg);
 
 Fur::Fur()
@@ -71,6 +75,12 @@ void Fur::addActorToRenderQueue()
 
 void Fur::submitDrawCall(DrawCall& drawCall)
 {
+	if (Configuration::getInstance().schedulerConfig.mtMode) {
+		renderMutex.lock();
+		firstCommandBuffer->push(&drawCall);
+		renderMutex.unlock();
+		return;
+	}
 	firstCommandBuffer->push(&drawCall);
 }
 
