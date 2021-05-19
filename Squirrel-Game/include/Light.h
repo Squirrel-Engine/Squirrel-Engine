@@ -19,8 +19,8 @@ public:
 	SR_VAR_END()
 
 	SR_COMP_START()
-	TransformComponent* transformComponent;
-	LightComponent* lightComponent;
+	TransformComponent transformComponent;
+	LightComponent lightComponent;
 	SR_COMP_END()
 };
 

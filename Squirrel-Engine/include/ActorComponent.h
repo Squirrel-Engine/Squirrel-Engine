@@ -23,7 +23,7 @@ public:
 public:
 	template <typename T>
 	T* getComponentInParent() { return dynamic_cast<T*>(parent->componentList.at(typeid(T*).name())); }
-	template <typename T>
+
 
 	inline Actor* getParent() { return parent; }
 	inline void setParent(Actor* _parent) { this->parent = _parent; }

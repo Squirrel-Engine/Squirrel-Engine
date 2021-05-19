@@ -2,15 +2,8 @@
 
 Light::Light(ELightType type)
 {
-	auto transformComponent = new TransformComponent();
-	transformComponent->setParent(this);
-	this->transformComponent = transformComponent;
-	insertComponent(transformComponent);
-
-	auto lightComponent = new LightComponent(type);
-	lightComponent->setParent(this);
-	this->lightComponent = lightComponent;
-	insertComponent(lightComponent);
+	bindComponent(&transformComponent);
+	bindComponent(&lightComponent);
 }
 
 void Light::BeginPlay()

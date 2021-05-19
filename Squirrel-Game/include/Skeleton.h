@@ -13,16 +13,16 @@ public:
 	Skeleton();
 	void BeginPlay() override;
 	void Update() override;
+
+	SR_VAR_START()
 	int health;
 	int attackPower;
-	SR_VAR_START()
-
 	SR_VAR_END()
 
 	SR_COMP_START()
-	RenderComponent* renderComponent;
-	TransformComponent* transformComponent;
-	AudioComponent* audioComponent;
+	TransformComponent transformComponent;
+	RenderComponent renderComponent;
+	AudioComponent audioComponent;
 	SR_COMP_END()
 };
 

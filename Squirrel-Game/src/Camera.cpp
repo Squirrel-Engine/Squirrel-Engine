@@ -2,15 +2,8 @@
 
 Camera::Camera()
 {
-	auto transformComponent = new TransformComponent();
-	transformComponent->setParent(this);
-	this->transformComponent = transformComponent;
-	insertComponent(transformComponent);
-
-	auto cameraComponent = new CameraComponent();
-	cameraComponent->setParent(this);
-	this->cameraComponent = cameraComponent;
-	insertComponent(cameraComponent);
+	bindComponent(&transformComponent);
+	bindComponent(&cameraComponent);
 }
 
 void Camera::BeginPlay()

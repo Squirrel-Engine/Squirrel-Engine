@@ -1,7 +1,7 @@
 #include "Components/LightComponent.h"
 
-LightComponent::LightComponent(ELightType type)
-	:m_Type(type)
+LightComponent::LightComponent()
+	: m_Type(ELightType::PointLight)
 {
 
 }
@@ -28,4 +28,9 @@ void LightComponent::setup()
 	default:
 		break;
 	}
+}
+
+void LightComponent::setLightType(ELightType type)
+{
+	m_Type = type;
 }

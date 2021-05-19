@@ -19,11 +19,32 @@ public:
 
 	std::unordered_map<const char*, ActorComponent*> componentList;
 public:
+
 	template <class T>
-	inline void insertComponent(T component)
-	{
-		componentList.insert(std::make_pair(typeid(component).name(), component));
-	}
+	void bindComponent(T* component);
+
 	template <typename T>
-	T* getComponent() { return dynamic_cast<T*>(componentList.at(typeid(T*).name())); }
+	T* getComponent();
+
+	template <typename T>
+	void insertComponent(T component);
 };
+
+template <class T>
+void Actor::bindComponent(T* component)
+{
+	component->setParent(this);
+	insertComponent(component);
+}
+
+template <typename T>
+T* Actor::getComponent() 
+{
+	return dynamic_cast<T*>(componentList.at(typeid(T*).name()));
+}
+
+template <typename T>
+void Actor::insertComponent(T component) 
+{
+	componentList.insert(std::make_pair(typeid(component).name(), component));
+}
