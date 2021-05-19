@@ -4,7 +4,7 @@
 
 AU_Interface::AU_Interface()
 {
-	ear = new Ear();
+	
 }
 
 void AU_Interface::startAudioEngine()
@@ -14,7 +14,7 @@ void AU_Interface::startAudioEngine()
 		switch (Configuration::getInstance().audioConfig.audioEngine)
 		{
 		case EAudioEngine::EAR:
-			ear->startAudioEngine();
+			ear.startAudioEngine();
 			break;
 		default:
 			std::cout << "No Audio Engine Has Been Configured" << std::endl;
@@ -34,7 +34,7 @@ void AU_Interface::playAudio()
 		switch (Configuration::getInstance().audioConfig.audioEngine)
 		{
 		case EAudioEngine::EAR:
-			ear->playAudio();
+			ear.playAudio();
 			break;
 		default:
 			std::cout << "No Audio Engine Has Been Configured" << std::endl;

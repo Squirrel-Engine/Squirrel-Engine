@@ -1,6 +1,6 @@
 #include "Light.h"
 
-Light::Light(ELightType type)
+Light::Light()
 {
 	bindComponent(&transformComponent);
 	bindComponent(&lightComponent);

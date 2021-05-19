@@ -10,7 +10,7 @@ SR_ACTOR()
 class Light : public Actor
 {
 public:
-	Light(ELightType type);
+	Light();
 	void BeginPlay() override;
 	void Update() override;
 

@@ -1,5 +1,7 @@
 #include "DynamicLightManager.h"
 
+std::vector<PointLight*> DynamicLightManager::m_PointLights;
+
 DynamicLightManager::DynamicLightManager()
 {
 	

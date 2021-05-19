@@ -23,7 +23,7 @@ void LightComponent::setup()
 	{
 	case ELightType::PointLight:
 		m_Light = new PointLight(lightPosition);
-		getInterface<GM_Interface>().lightManager->addPointLight((PointLight*)m_Light);
+		DynamicLightManager::addPointLight((PointLight*)m_Light);
 		break;
 	default:
 		break;

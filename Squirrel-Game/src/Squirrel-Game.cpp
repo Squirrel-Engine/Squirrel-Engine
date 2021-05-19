@@ -29,23 +29,19 @@ void Sandbox::Run()
 	auto testSchema = new TestControlSchema();
 	getInterface<IP_Interface>().setControlSchema(testSchema);
 	//
-	auto mainCamera = new Camera();
-	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::CAMERA, mainCamera);
+	auto mainCamera = LevelStore::createActor<Camera>(EActorType::CAMERA);
 	//
 	for (int i = 0; i < 1; i++) {
-		auto skeleton = new Skeleton();
+		auto skeleton = LevelStore::createActor<Skeleton>(EActorType::ACTOR);
 		skeleton->health = 100;
 		skeleton->attackPower = 50;
 		skeleton->transformComponent.setTransform(0, 3, -5);
 		skeleton->transformComponent.setScale(0.05, 0.05, 0.05);
 		skeleton->renderComponent.C_ShaderID = 0;
 		skeleton->renderComponent.C_ModelID = 3;
-
 		skeleton->audioComponent.C_AudioSourceID = 0;
-		getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);
 	}
 	//
-	auto light = new Light(ELightType::PointLight);
+	auto light = LevelStore::createActor<Light>(EActorType::LIGHT);
 	light->transformComponent.setTransform(0, 0, 10);
-	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::LIGHT, light);
 }

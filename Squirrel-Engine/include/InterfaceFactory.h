@@ -32,7 +32,7 @@ public:
 	GM_Interface& getGMInterface();
 	RM_Interface& getRMInterface();
 	IP_Interface& getIPInterface();
-  AU_Interface& getAUInterface();
+	AU_Interface& getAUInterface();
 	static InterfaceFactory& getInstance();
 };
 

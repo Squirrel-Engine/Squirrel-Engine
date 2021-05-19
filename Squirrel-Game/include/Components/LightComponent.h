@@ -1,6 +1,7 @@
 #pragma once
 #include "Macros.h"
 #include <iostream>
+#include "../../Squirrel-Engine/include/DynamicLightManager.h"
 #include "../../Squirrel-Engine/include/LightObject.h"
 #include "../../Squirrel-Engine/include/InterfaceFactory.h"
 #include "Components/TransformComponent.h"

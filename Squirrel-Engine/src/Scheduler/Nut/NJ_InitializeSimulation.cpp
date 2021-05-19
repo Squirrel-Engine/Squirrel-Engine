@@ -16,15 +16,15 @@ void NJ_InitializeSimulation::unmount()
 void NJ_InitializeSimulation::run()
 {
 	//Actors
-	for (auto& actor : getInterface<GM_Interface>().levelStore->actors)
+	for (auto& actor : LevelStore::getAllActors(EActorType::ACTOR))
 	{
 		getInterface<MT_Interface>().submitJob(*new NJ_ActorWorker(actor), EQueueOrder::LOW_ORDER);
 	}
 	//Lights
-	for (auto& light : getInterface<GM_Interface>().levelStore->lights)
+	for (auto& light : LevelStore::getAllActors(EActorType::LIGHT))
 	{
 		getInterface<MT_Interface>().submitJob(*new NJ_ActorWorker(light), EQueueOrder::LOW_ORDER);
 	}
 	//Camera
-	getInterface<MT_Interface>().submitJob(*new NJ_ActorWorker(getInterface<GM_Interface>().levelStore->mainCamera), EQueueOrder::LOW_ORDER);
+	getInterface<MT_Interface>().submitJob(*new NJ_ActorWorker(LevelStore::getActor(EActorType::CAMERA, LevelStore::m_MainCamera)), EQueueOrder::LOW_ORDER);
 }
