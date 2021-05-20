@@ -12,9 +12,6 @@ void Camera::BeginPlay()
 
 void Camera::Update()
 {
-	//move(vec3(0.002, 0.002, 0));
-}
-
-void Camera::move(const vec3& direction){
-	transformComponent.translate(direction);
+	//transformComponent.translate(0, 0, 0.01);
+	transformComponent.rotate(0, 0.001, 0);
 }
