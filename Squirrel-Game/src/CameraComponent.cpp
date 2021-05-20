@@ -1,23 +1,38 @@
 #include "Components/CameraComponent.h"
 
+const float CameraComponent::DEFAULT_ROTATION_SPEED = 0.3f;
+const float CameraComponent::DEFAULT_FOVX = 90.0f;
+const float CameraComponent::DEFAULT_ZNEAR = 0.1f;
+const float CameraComponent::DEFAULT_ZFAR = 1000.0f;
+
+const vec3 CameraComponent::WORLD_XAXIS(1.0f, 0.0f, 0.0f);
+const vec3 CameraComponent::WORLD_YAXIS(0.0f, 1.0f, 0.0f);
+const vec3 CameraComponent::WORLD_ZAXIS(0.0f, 0.0f, 1.0f);
+
 CameraComponent::CameraComponent()
 {
 	m_ViewportHeight = Configuration::getInstance().renderConfig.screenHeight;
 	m_ViewportWidth = Configuration::getInstance().renderConfig.screenWidth;
+	m_AspectRatio = m_ViewportWidth / m_ViewportHeight;
+	m_FOV = DEFAULT_FOVX;
+	m_NearClip = DEFAULT_ZNEAR;
+	m_FarClip = DEFAULT_ZFAR;
 
-	updateProjection();
+	perspective();
+	view();
 }
 
 void CameraComponent::BeginPlay()
 {
+
 }
 
 void CameraComponent::Update()
 {
-	vec3 position = getComponentInParent<TransformComponent>()->getTransform();
-	updateView();
-	cameraDesc->viewPos = position;
-	cameraDesc->viewProjection = getViewProjection();
+	m_Position = getComponentInParent<TransformComponent>()->getPosition();
+	view();
+	cameraDesc->viewPos = m_Position;
+	cameraDesc->viewProjection = m_Projection * m_ViewMatrix;;
 }
 
 void CameraComponent::setup()
@@ -25,43 +40,37 @@ void CameraComponent::setup()
 
 }
 
-void CameraComponent::updateProjection()
+void CameraComponent::updatePerspective(float fovx, float aspect, float znear, float zfar)
 {
-	m_AspectRatio = m_ViewportWidth / m_ViewportHeight;
-	m_Projection = perspective(radians(m_FOV), m_AspectRatio, m_NearClip, m_FarClip);
+	m_FOV = fovx;
+	m_AspectRatio = aspect;
+	m_NearClip = znear;
+	m_FarClip = zfar;
+	m_Projection = glm::perspective(radians(m_FOV), m_AspectRatio, m_NearClip, m_FarClip);
 }
 
-void CameraComponent::updateView()
+void CameraComponent::perspective()
 {
-	vec3 position = getComponentInParent<TransformComponent>()->getTransform();
-	quat orientation = getOrientation();
-	m_ViewMatrix = translate(mat4(1.0f), position) * toMat4(orientation);
-	m_ViewMatrix = inverse(m_ViewMatrix);
+	m_Projection = glm::perspective(radians(m_FOV), m_AspectRatio, m_NearClip, m_FarClip);
+}
+
+void CameraComponent::updateView(const vec3& eye, const vec3& target, const vec3& up)
+{
+	m_Position = eye;
+	m_Target = target;
+	m_Up = up;
+	m_ViewMatrix = glm::lookAt(m_Position, m_Position + m_Target, m_Up);
+}
+
+void CameraComponent::view()
+{
+	m_ViewMatrix = glm::lookAt(m_Position, m_Position + m_Target, m_Up);
 }
 
 void CameraComponent::setViewportSize(float width, float height)
 {
 	m_ViewportWidth = width;
 	m_ViewportHeight = height;
-	updateProjection();
-}
-
-vec3 CameraComponent::getUpDirection() const
-{
-	return glm::rotate(getOrientation(), vec3(0.0f, 1.0f, 0.0f));
-}
-
-vec3 CameraComponent::getRightDirection() const
-{
-	return glm::rotate(getOrientation(), vec3(1.0f, 0.0f, 0.0f));
-}
-
-vec3 CameraComponent::getForwardDirection() const
-{
-	return glm::rotate(getOrientation(), vec3(0.0f, 0.0f, -1.0f));
-}
-
-quat CameraComponent::getOrientation() const
-{
-	return quat(vec3(-m_Pitch, -m_Yaw, 0.0f));
+	m_AspectRatio = m_ViewportWidth / m_ViewportHeight;
+	updatePerspective(m_FOV, m_AspectRatio, m_NearClip, m_FarClip);
 }

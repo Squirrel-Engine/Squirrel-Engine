@@ -15,7 +15,8 @@ void Skeleton::BeginPlay()
 
 void Skeleton::Update()
 {
-	transformComponent.rotationY += 2;
+	transformComponent.rotate(0, 0.2, 0);
+
 	/*for (int i =0; i<1000000; i++)
 	{
 

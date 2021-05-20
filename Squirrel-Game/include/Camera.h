@@ -12,6 +12,7 @@ public:
 	Camera();
 	void BeginPlay() override;
 	void Update() override;
+	void move(const vec3& direction);
 	SR_VAR_START()
 
 	SR_VAR_END()

@@ -21,17 +21,7 @@ private:
 public:
 	mat4 transformMat;
 	SR_VAR_START()
-	float positionX = 0;
-	float positionY = 0;
-	float positionZ = 0;
-
-	float rotationX = 0;
-	float rotationY = 0;
-	float rotationZ = 0;
-
-	float scaleX = 1;
-	float scaleY = 1;
-	float scaleZ = 1;
+	
 	SR_VAR_END()
 
 public:
@@ -40,9 +30,14 @@ public:
 	void Update() override;
 	void setup() override;
 
-	vec3 getTransform();
-	vec3 getRotation();
-	vec3 getScale();
+	void translate(const vec3& direction);
+	void translate(float x, float y, float z);
+	void rotate(const vec3& eulers);
+	void rotate(float x, float y, float z);
+
+	vec3& getPosition();
+	vec3& getRotation();
+	vec3& getScale();
 	void setTransform(float x, float y, float z);
 	void setRotation(float x, float y, float z);
 	void setScale(float x, float y, float z);

@@ -18,7 +18,7 @@ void LightComponent::Update()
 
 void LightComponent::setup()
 {
-	vec3 lightPosition = getComponentInParent<TransformComponent>()->getTransform();
+	vec3 lightPosition = getComponentInParent<TransformComponent>()->getPosition();
 	switch (m_Type)
 	{
 	case ELightType::PointLight:
