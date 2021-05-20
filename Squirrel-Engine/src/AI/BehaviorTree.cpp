@@ -8,7 +8,7 @@ BehaviorTree::BehaviorTree()
 void BehaviorTree::insertNode(AINode* node, std::string nodeName, EAINode nodeType)
 {
 	if (nodeType == EAINode::SEQUENCE) {
-		sequenceList.push_back(static_cast<SequenceNode*>(node));
+		sequenceList.push_back(node);
 	}
 
 	rootNode->nodes.push_back(nullptr);
@@ -25,6 +25,9 @@ void BehaviorTree::insertNode(AINode* node, std::string nodeName, EAINode nodeTy
 	}
 	else
 	{
+		for (int i = 0; i < 10; i++) {
+			node->nodes.push_back(nullptr);
+		}
 		node->nodes.push_back(nullptr);
 		node->nodeType = nodeType;
 		nodeList.insert(std::make_pair(nodeName, node));
@@ -59,7 +62,7 @@ void BehaviorTree::linkNode(std::string nodeOne, std::string nodeTwo)
 
 void BehaviorTree::resetSequenceList()
 {
-	for (int i = 0; sequenceList.size(); i++) {
+	for (int i = 0; i < sequenceList.size(); i++) {
 		sequenceList[i]->counter = -1;
 	}
 }
@@ -75,10 +78,38 @@ ActionNode* BehaviorTree::executeTree()
 		switch (iter->nodeType)
 		{
 		case EAINode::SEQUENCE:
-			static_cast<SequenceNode*>(iter)->counter++;
+			iter->counter++;
 
-			if (iter->nodes.at(static_cast<SequenceNode*>(iter)->counter) != nullptr) {
-				iter = iter->nodes.at(static_cast<SequenceNode*>(iter)->counter);
+			if (iter->nodes.at(iter->counter) != nullptr) {
+				if (iter->nodes.at(iter->counter)->nodeType == EAINode::SEQUENCE) {
+					
+					iter = iter->nodes.at(iter->counter);
+					iter->parent->counter--;
+					
+				}
+				else {
+					iter = iter->nodes.at(iter->counter);
+					iter->parent->counter++;
+
+					if (iter->parent->nodes.at(iter->parent->counter) == nullptr) {
+
+						iter->parent->counter--;
+						
+
+						for (const auto& item : sequenceList)
+						{
+							item->counter++;
+						}
+			
+						if (iter->parent->parent == nullptr) {
+							resetSequenceList();
+						}
+						else if (iter->parent->parent->nodes.at(iter->parent->parent->counter + 1) == nullptr) {
+							resetSequenceList();
+						}
+					}
+				}
+
 			}
 
 			break;

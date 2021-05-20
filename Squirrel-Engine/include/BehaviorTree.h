@@ -29,7 +29,7 @@ public:
 
 	int counter = -1;
 	
-	std::vector<SequenceNode*> sequenceList;
+	std::vector<AINode*> sequenceList;
 
 	std::map<std::string, AINode*> nodeList;
 

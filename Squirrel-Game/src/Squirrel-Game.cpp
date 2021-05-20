@@ -65,22 +65,24 @@ void Sandbox::Run()
 
 	std::cout << blackBoard->isBlackboardUpdated() << std::endl;
 	
-
+	skeleton->aiComponent->blackBoard = blackBoard;
 	BehaviorTree* myTree = new BehaviorTree();
+	
 	SampleDecorator* sampleDecorator = new SampleDecorator();
 	WalkToDoorAction* walkToDoorAction = new WalkToDoorAction();
 	WalkToDoorAction2* walkToDoorAction2 = new WalkToDoorAction2();
 
 
-	myTree->insertNode(new SelectionNode(), "sampleSelection", EAINode::SELECTION);
-	//myTree->insertNode(new SequenceNode(), "sampleSequence", EAINode::SEQUENCE);
-	myTree->insertNode(sampleDecorator, "sampleDecorator", EAINode::DECORATOR);
+	//myTree->insertNode(new SelectionNode(), "sampleSelection", EAINode::SELECTION);
+	myTree->insertNode(new SequenceNode(), "sampleSequence0", EAINode::SEQUENCE);
+	myTree->insertNode(new SequenceNode(), "sampleSequence1", EAINode::SEQUENCE);
+	//myTree->insertNode(sampleDecorator, "sampleDecorator", EAINode::DECORATOR);
 	myTree->insertNode(walkToDoorAction, "walkToDoor", EAINode::ACTION);
 	myTree->insertNode(walkToDoorAction2, "walkToDoor2", EAINode::ACTION);
 	
-	myTree->linkNode("sampleSelection", "sampleDecorator");
-	myTree->linkNode("sampleDecorator", "walkToDoor");
-	myTree->linkNode("sampleSelection", "walkToDoor2");
+	myTree->linkNode("sampleSequence0", "sampleSequence1");
+	myTree->linkNode("sampleSequence0", "walkToDoor");
+	myTree->linkNode("sampleSequence1", "walkToDoor2");
 	skeleton->aiComponent->behaviorTree = myTree;
 	skeleton->aiComponent->blackBoard = blackBoard;
 	//----------------------

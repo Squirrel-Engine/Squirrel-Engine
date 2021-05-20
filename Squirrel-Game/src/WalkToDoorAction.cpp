@@ -23,6 +23,7 @@ void WalkToDoorAction::onAction()
 	if (test == 500)
 	{
 		actionStatus = EActionStatus::SUCCEED;
+		test++;
 	}
 		if (test > 500)
 	{
