@@ -13,10 +13,16 @@ Skeleton::Skeleton()
 	this->renderComponent = renderComponent;
 	insertComponent(renderComponent);
 
+	auto aiComponent = new AIComponent();
+	aiComponent->setParent(this);
+	this->aiComponent = aiComponent;
+	insertComponent("aiComponent", aiComponent);
+
 	auto audioComponent = new AudioComponent();
 	audioComponent->setParent(this);
 	this->audioComponent = audioComponent;
 	insertComponent(audioComponent);
+
 }
 
 void Skeleton::BeginPlay()
