@@ -2,15 +2,20 @@
 #include "Shader.h"
 #include "UniformDesc.h"
 
+enum class ELightType {
+	PointLight
+};
+
 class LightObject
 {
 private:
-	unsigned int VBO;
-public:
-	LightObject();
-	~LightObject();
 
-	void Draw(Shader& shader, TRANSFORM_DESC& transformUniform, LIGHT_DESC& lightUniform);
 public:
-	unsigned int lightCubeVAO;
+	LightObject(float lightIntensity, glm::vec3& lightColour);
+	LightObject() {};
+	~LightObject();
+	virtual void setupUniforms(Shader* shader, int currentLightIndex) = 0;
+protected:
+	float m_Intensity = 5.0f;
+	glm::vec3 m_LightColour = glm::vec3(255.0f);
 };

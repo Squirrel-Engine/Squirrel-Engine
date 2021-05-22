@@ -27,8 +27,6 @@ public:
 	void updateRenderEngineOptions(std::string parameterName, int parameter);
 	void updateRenderEngineOptions(std::string parameterName, float parameter);
 	void updateRenderEngineOptions(std::string parameterName, std::string parameter);
-
-	long long frameCounter = 0;
 private:
 	Fur fur;
 };

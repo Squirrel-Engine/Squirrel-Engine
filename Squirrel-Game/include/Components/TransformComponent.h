@@ -40,9 +40,9 @@ public:
 	void Update() override;
 	void setup() override;
 
-	vec3& getTransform();
-	vec3& getRotation();
-	vec3& getScale();
+	vec3 getTransform();
+	vec3 getRotation();
+	vec3 getScale();
 	void setTransform(float x, float y, float z);
 	void setRotation(float x, float y, float z);
 	void setScale(float x, float y, float z);

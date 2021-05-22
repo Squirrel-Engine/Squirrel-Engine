@@ -1,25 +1,24 @@
 #include "Light.h"
 
-Light::Light()
+Light::Light(ELightType type)
 {
 	auto transformComponent = new TransformComponent();
 	transformComponent->setParent(this);
 	this->transformComponent = transformComponent;
-	insertComponent("transformComponent", transformComponent);
+	insertComponent(transformComponent);
 
-	auto lightComponent = new LightComponent();
+	auto lightComponent = new LightComponent(type);
 	lightComponent->setParent(this);
 	this->lightComponent = lightComponent;
-	insertComponent("lightComponent", lightComponent);
+	insertComponent(lightComponent);
 }
 
 void Light::BeginPlay()
 {
+
 }
 
 void Light::Update()
 {
-	float timeValue = glfwGetTime();
-	float greenValue = sin(timeValue) / 2.0f + 0.5f;
-	lightComponent->color.g = greenValue;
+
 }

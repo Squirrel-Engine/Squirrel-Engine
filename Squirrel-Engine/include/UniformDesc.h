@@ -36,22 +36,3 @@ public:
 	vec3 viewPos;
 	mat4 viewProjection;
 };
-
-class LIGHT_DESC : public Uniforms
-{
-public:
-	LIGHT_DESC()
-	{
-	};
-
-	void setup() override
-	{
-	};
-
-	vec3 lightColor;
-	vec3 lightPos;
-
-	float constant;
-	float linear;
-	float quadratic;
-};

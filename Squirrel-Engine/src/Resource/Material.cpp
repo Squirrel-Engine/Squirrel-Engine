@@ -1,40 +1,51 @@
 #include "Material.h"
-#include <iostream>
 
-Material::Material()
+Material::Material(Texture* albedoMap, Texture* normalMap, Texture* metallicMap, Texture* roughnessMap, Texture* ambientOcclusionMap, Texture* displacementMap)
+	: m_AlbedoMap(albedoMap), m_NormalMap(normalMap), m_MetallicMap(metallicMap), m_RoughnessMap(roughnessMap), m_AmbientOcclusionMap(ambientOcclusionMap), m_DisplacementMap(displacementMap),
+	m_ParallaxStrength(0.07f), m_ParallaxMinSteps(PARALLAX_MIN_STEPS), m_ParallelMaxSteps(PARALLAX_MAX_STEPS)
 {
 }
 
-void Material::setup()
-{
-	s_Texture texture;
-	auto tex = new Texture("../../Squirrel-Engine/res/textures/default/color.png");
-	// This gonna change, after we load all default textures at once at the 
-	texture.id = tex->getID(); // beginning then we'll assign same texture id to avoid multiple load
-	texture.type = "texture_diffuse";
-	texture.path = "color.png";
-	textures.push_back(texture);
-}
+void Material::setupUniforms(Shader* shader) const {
+	int currentTextureUnit = 0;
 
-void Material::setInt(int value)
-{
-}
+	shader->setInt("material.albedo", currentTextureUnit);
+	if (m_AlbedoMap) {
+		m_AlbedoMap->bind(currentTextureUnit++);
+	}
+	else {
+		TextureLoader::getDefaultAlbedo()->bind(currentTextureUnit++);
+	}
+	
+	shader->setInt("material.normal", currentTextureUnit);
+	if (m_NormalMap) {
+		m_NormalMap->bind(currentTextureUnit++);
+	}
+	else {
+		TextureLoader::getDefaultNormal()->bind(currentTextureUnit++);
+	}
 
-void Material::setFloat(float value)
-{
-}
+	shader->setInt("material.metallic", currentTextureUnit);
+	if (m_MetallicMap) {
+		m_MetallicMap->bind(currentTextureUnit++);
+	}
+	else {
+		TextureLoader::getDefaultMetallic()->bind(currentTextureUnit++);
+	}
 
-void Material::setColor(vec4 color)
-{
-	//this->color = color;
-}
+	shader->setInt("material.roughness", currentTextureUnit);
+	if (m_RoughnessMap) {
+		m_RoughnessMap->bind(currentTextureUnit++);
+	}
+	else {
+		TextureLoader::getDefaultRoughness()->bind(currentTextureUnit++);
+	}
 
-void Material::setTexture(string typeName, const std::string& path)
-{
-	s_Texture texture;
-	auto tex = new Texture(path);
-	texture.id = tex->getID();
-	texture.type = typeName;
-	//texture.path = tex->getPath();
-	textures.push_back(texture);
+	shader->setInt("material.ao", currentTextureUnit);
+	if (m_AmbientOcclusionMap) {
+		m_AmbientOcclusionMap->bind(currentTextureUnit++);
+	}
+	else {
+		TextureLoader::getDefaultAO()->bind(currentTextureUnit++);
+	}
 }

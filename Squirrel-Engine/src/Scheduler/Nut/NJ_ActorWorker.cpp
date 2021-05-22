@@ -15,23 +15,9 @@ void NJ_ActorWorker::unmount()
 
 void NJ_ActorWorker::run()
 {
-	if (getInterface<RD_Interface>().frameCounter == 1)
+	actor->Update();
+	for (auto& component : actor->componentList)
 	{
-		actor->BeginPlay();
-		actor->Update();
-		for (auto& component : actor->componentList)
-		{
-			component.second->setup();
-			component.second->BeginPlay();
-			component.second->Update();
-		}
-	}
-	else
-	{
-		actor->Update();
-		for (auto& component : actor->componentList)
-		{
-			component.second->Update();
-		}
+		component.second->Update();
 	}
 }

@@ -26,6 +26,5 @@ void NJ_InitializeSimulation::run()
 		getInterface<MT_Interface>().submitJob(*new NJ_ActorWorker(light), EQueueOrder::LOW_ORDER);
 	}
 	//Camera
-	getInterface<MT_Interface>().submitJob(*new NJ_ActorWorker(getInterface<GM_Interface>().levelStore->mainCamera),
-	                                       EQueueOrder::LOW_ORDER);
+	getInterface<MT_Interface>().submitJob(*new NJ_ActorWorker(getInterface<GM_Interface>().levelStore->mainCamera), EQueueOrder::LOW_ORDER);
 }

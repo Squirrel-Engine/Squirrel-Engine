@@ -38,63 +38,23 @@ void Sandbox::Run()
 	auto mainCamera = new Camera();
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::CAMERA, mainCamera);
 
-	
-	auto skeleton = new Skeleton();
-	skeleton->health = 100;
-	skeleton->attackPower = 50.5f;
-	skeleton->transformComponent->setTransform(0, -2, -5);
-	skeleton->renderComponent->C_ShaderID = 0;
-	skeleton->renderComponent->C_ModelID = 2;
-	skeleton->renderComponent->C_MaterialID_0 = 2;
 
-	//----------------------
-	Blackboard* blackBoard = new Blackboard();
-	blackBoard->setVariable("test", &skeleton->health);
+	for (int i = 0; i < 25; i++) {
+		auto skeleton = new Skeleton();
+		skeleton->health = 100;
+		skeleton->attackPower = 50;
+		skeleton->transformComponent->setTransform(0, 3, -5);
+		skeleton->transformComponent->setScale(0.05, 0.05, 0.05);
+		skeleton->renderComponent->C_ShaderID = 0;
+		skeleton->renderComponent->C_ModelID = 3;
 
-	blackBoard->setVariable("test1", &skeleton->attackPower);
+		skeleton->audioComponent->C_AudioSourceID = 0;
+		getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);
+	}
 
-	std::cout << blackBoard->isBlackboardUpdated() << std::endl;
-
-	std::cout << *blackBoard->getIntVariable("test") << std::endl;
-	
-	
-	skeleton->health = 1000;
-	skeleton->attackPower = 70.5f;
-
-	std::cout << blackBoard->isBlackboardUpdated() << std::endl;
-
-	std::cout << blackBoard->isBlackboardUpdated() << std::endl;
-	
-	skeleton->aiComponent->blackBoard = blackBoard;
-	BehaviorTree* myTree = new BehaviorTree();
-	
-	SampleDecorator* sampleDecorator = new SampleDecorator();
-	WalkToDoorAction* walkToDoorAction = new WalkToDoorAction();
-	WalkToDoorAction2* walkToDoorAction2 = new WalkToDoorAction2();
-	WalkToDoorAction3* walkToDoorAction3 = new WalkToDoorAction3();
-
-
-	//myTree->insertNode(new SelectionNode(), "sampleSelection", EAINode::SELECTION);
-	myTree->insertNode(new SequenceNode(), "sampleSequence0", EAINode::SEQUENCE);
-	myTree->insertNode(new SequenceNode(), "sampleSequence1", EAINode::SEQUENCE);
-	//myTree->insertNode(sampleDecorator, "sampleDecorator", EAINode::DECORATOR);
-	myTree->insertNode(walkToDoorAction, "walkToDoor", EAINode::ACTION);
-	myTree->insertNode(walkToDoorAction2, "walkToDoor2", EAINode::ACTION);
-	myTree->insertNode(walkToDoorAction3, "walkToDoor3", EAINode::ACTION);
-	
-	myTree->linkNode("sampleSequence0", "sampleSequence1");
-	myTree->linkNode("sampleSequence0", "walkToDoor");
-	myTree->linkNode("sampleSequence1", "walkToDoor2");
-	myTree->linkNode("sampleSequence1", "walkToDoor3");
-
-	skeleton->aiComponent->behaviorTree = myTree;
-	skeleton->aiComponent->blackBoard = blackBoard;
-	//----------------------
-	
-	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);
 	//
-	auto light = new Light();
-	light->transformComponent->setTransform(0, 5, +10);
+	auto light = new Light(ELightType::PointLight);
+	light->transformComponent->setTransform(0, 0, 10);
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::LIGHT, light);
 
 

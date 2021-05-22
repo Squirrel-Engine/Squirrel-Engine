@@ -7,13 +7,14 @@ RenderComponent::RenderComponent()
 
 void RenderComponent::BeginPlay()
 {
+
 }
 
 void RenderComponent::Update()
 {
 	auto drawCall = new ModelDrawCall(getInterface<RM_Interface>().getMesh(modelID),
 	                                  getInterface<RM_Interface>().getShader(shaderID),
-	                                  dynamic_cast<TRANSFORM_DESC*>(getComponent<TransformComponent*>("transformComponent")->uniform));
+	                                  dynamic_cast<TRANSFORM_DESC*>(getComponentInParent<TransformComponent>()->uniforms));
 
 	getInterface<RD_Interface>().submitDrawCall(*drawCall);
 }
@@ -22,7 +23,7 @@ void RenderComponent::setup()
 {
 	modelID = C_ModelID;
 	shaderID = C_ShaderID;
-
+	/*
 	int size = getInterface<RM_Interface>().getMesh(modelID)->meshes.size();
 	std::cout << "Size: " << size << std::endl;
 	switch (size)
@@ -78,4 +79,5 @@ void RenderComponent::setup()
 	default:
 		break;
 	}
+	*/
 }

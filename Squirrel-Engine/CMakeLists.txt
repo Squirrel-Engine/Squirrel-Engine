@@ -5,6 +5,7 @@ project(Squirrel-Engine)
 
 cmake_minimum_required (VERSION 3.8)
 find_package(OpenGL REQUIRED)
+
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
@@ -61,9 +62,5 @@ add_custom_target(assimp_dll
   COMMAND ${CMAKE_COMMAND} -E copy ${ASSIMP_LIBRARY}/assimp-vc142-mtd.dll      ${CMAKE_BINARY_DIR}/Squirrel-Game/Release
 )
 add_dependencies(${PROJECT_NAME} assimp_dll)
-
-
-
-
 
 # TODO: Add tests and install targets if needed.
