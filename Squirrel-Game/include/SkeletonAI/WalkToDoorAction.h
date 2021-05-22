@@ -20,4 +20,16 @@ public:
 	void onAction() override;
 	void onTerminate() override;
 	int test = 0;
+	int counter = 3;
+};
+
+class WalkToDoorAction3 : public ActionNode
+{
+public:
+	WalkToDoorAction3();
+	void onInitialize() override;
+	void onAction() override;
+	void onTerminate() override;
+	int test = 0;
+	int counter = 3;
 };

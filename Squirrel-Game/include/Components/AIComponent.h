@@ -23,6 +23,7 @@ public:
 	BehaviorTree* behaviorTree;
 	Blackboard* blackBoard;
 	ActionNode* actionNode;
+
 };
 
 SR_COMPONENT()

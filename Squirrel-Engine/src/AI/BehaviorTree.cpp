@@ -108,6 +108,9 @@ ActionNode* BehaviorTree::executeTree()
 							resetSequenceList();
 						}
 					}
+					else {
+						iter->parent->counter--;
+					}
 				}
 
 			}

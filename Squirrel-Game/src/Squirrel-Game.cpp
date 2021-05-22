@@ -71,6 +71,7 @@ void Sandbox::Run()
 	SampleDecorator* sampleDecorator = new SampleDecorator();
 	WalkToDoorAction* walkToDoorAction = new WalkToDoorAction();
 	WalkToDoorAction2* walkToDoorAction2 = new WalkToDoorAction2();
+	WalkToDoorAction3* walkToDoorAction3 = new WalkToDoorAction3();
 
 
 	//myTree->insertNode(new SelectionNode(), "sampleSelection", EAINode::SELECTION);
@@ -79,10 +80,13 @@ void Sandbox::Run()
 	//myTree->insertNode(sampleDecorator, "sampleDecorator", EAINode::DECORATOR);
 	myTree->insertNode(walkToDoorAction, "walkToDoor", EAINode::ACTION);
 	myTree->insertNode(walkToDoorAction2, "walkToDoor2", EAINode::ACTION);
+	myTree->insertNode(walkToDoorAction3, "walkToDoor3", EAINode::ACTION);
 	
 	myTree->linkNode("sampleSequence0", "sampleSequence1");
 	myTree->linkNode("sampleSequence0", "walkToDoor");
 	myTree->linkNode("sampleSequence1", "walkToDoor2");
+	myTree->linkNode("sampleSequence1", "walkToDoor3");
+
 	skeleton->aiComponent->behaviorTree = myTree;
 	skeleton->aiComponent->blackBoard = blackBoard;
 	//----------------------

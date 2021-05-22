@@ -1,41 +1,40 @@
 
 #include "SkeletonAI/WalkToDoorAction.h"
-
+#include <Windows.h>
+#include "../../Squirrel-Game/include/SkeletonAI/SkeletonBT.h"
 
 
 WalkToDoorAction::WalkToDoorAction()
 {
-	//blackBoard = _blackBoard;
 }
-
-
-
 
 void WalkToDoorAction::onInitialize()
 {
-	std::cout << "I will start walk" << std::endl;
+	std::cout << "The third action is going to start." << std::endl;
 }
 
 void WalkToDoorAction::onAction()
 {
-	std::cout << "Walking " << test << std::endl;
-	test++;
-	if (test == 500)
-	{
-		actionStatus = EActionStatus::SUCCEED;
-		test++;
-	}
-		if (test > 500)
-	{
-		actionStatus = EActionStatus::FAILED;
+	test = *blackBoard->getIntVariable("test");
 
+	std::cout << "The value of test: " << test << std::endl;
+
+	if (test == 1000) {
+		test = 2000;
+		std::cout << "The value of test: " << test << std::endl;
+		actionStatus = EActionStatus::FAILED;
 	}
+
 }
 
 void WalkToDoorAction::onTerminate()
 {
-	std::cout << "Action Terminated" << std::endl;
+	std::cout << "3rd Action Terminated" << std::endl;	
 }
+
+
+//----------------------------------------//
+
 
 WalkToDoorAction2::WalkToDoorAction2()
 {
@@ -43,25 +42,60 @@ WalkToDoorAction2::WalkToDoorAction2()
 
 void WalkToDoorAction2::onInitialize()
 {
-	std::cout << "I will start walk2" << std::endl;
+	std::cout << "The first action is going to start." << std::endl;
 }
 
 void WalkToDoorAction2::onAction()
 {
-	std::cout << "Walking2 " << test << std::endl;
-	test++;
-	if (test == 500)
-	{
-		actionStatus = EActionStatus::SUCCEED;
-	}
-	if (test > 500)
-	{
-		actionStatus = EActionStatus::FAILED;
+	Sleep(1000);
 
+	if (counter >= 1)
+	{
+		std::cout << "Timer: " << counter << std::endl;
+		counter--;
+		actionStatus = EActionStatus::RUNNING;
+	}
+	else {
+		std::cout << "First action succeed" << std::endl;
+		actionStatus = EActionStatus::SUCCEED;
 	}
 }
 
 void WalkToDoorAction2::onTerminate()
 {
-	std::cout << "Action Terminated (Is it?)" << std::endl;
 }
+
+
+//----------------------------------------//
+
+
+WalkToDoorAction3::WalkToDoorAction3()
+{
+
+}
+
+void WalkToDoorAction3::onInitialize()
+{
+	std::cout << "The second action is going to start." << std::endl;
+}
+
+void WalkToDoorAction3::onAction()
+{
+	Sleep(1000);
+
+	if (counter >= 1)
+	{
+		std::cout << "Timer: " << counter << std::endl;
+		counter--;
+		actionStatus = EActionStatus::RUNNING;
+	}
+	else {
+		std::cout << "Second action succeed" << std::endl;
+		actionStatus = EActionStatus::SUCCEED;
+	}
+}
+
+void WalkToDoorAction3::onTerminate()
+{
+}
+

@@ -31,21 +31,5 @@ public:
 	inline bool* getBoolVariable(std::string variableName) {
 		return bbBoolMap[variableName];
 	}
-
-	template <typename T>
-	T getVariable(std::string variableName)
-	{
-		std::cout << "TESTTT: " << typeid(T).name() << std::endl;
-
-		if (strcmp(typeid(T).name(), "float") == 0) {
-			getFloatVariable(variableName);
-		}
-		else if (strcmp(typeid(T).name(), "int") == 0) {
-			return *getIntVariable(variableName);
-		}
-		else if (strcmp(typeid(T).name(), "bool") == 0) {
-			getBoolVariable(variableName);
-		}
-	}
 };
 

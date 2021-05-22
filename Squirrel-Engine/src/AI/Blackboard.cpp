@@ -10,6 +10,11 @@ void Blackboard::setVariable(std::string variableName, bool* variable)
 	bbBoolMap.insert(std::pair<std::string, bool*>(variableName, variable));
 }
 
+void Blackboard::setVariable(std::string variableName, int* variable)
+{
+	bbIntMap.insert(std::pair<std::string, int*>(variableName, variable));
+}
+
 bool Blackboard::isBlackboardUpdated()
 {
 	int temp = 0;
@@ -92,9 +97,4 @@ bool Blackboard::isBlackboardUpdated()
 	else {
 		return false;
 	}
-}
-
-void Blackboard::setVariable(std::string variableName, int* variable)
-{
-	bbIntMap.insert(std::pair<std::string, int*>(variableName, variable));
 }

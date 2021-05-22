@@ -11,6 +11,7 @@ AIComponent::AIComponent()
 void AIComponent::BeginPlay()
 {
 	actionNode = behaviorTree->executeTree();
+	actionNode->setBlackBoard(blackBoard);
 }
 
 void AIComponent::Update()
@@ -22,6 +23,8 @@ void AIComponent::Update()
 		if (blackBoard->isBlackboardUpdated()) {
 			actionNode = behaviorTree->executeTree();
 		}
+
+		actionNode->setBlackBoard(blackBoard);
 
 		// Initialization 
 		if (actionNode->isFreshStart == true)
