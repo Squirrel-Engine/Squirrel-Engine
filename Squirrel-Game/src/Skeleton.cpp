@@ -6,6 +6,7 @@ Skeleton::Skeleton()
 	bindComponent(&transformComponent);
 	bindComponent(&renderComponent);
 	bindComponent(&audioComponent);
+
 }
 
 void Skeleton::BeginPlay()
