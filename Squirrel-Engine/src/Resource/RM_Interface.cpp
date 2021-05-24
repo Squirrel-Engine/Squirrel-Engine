@@ -1,4 +1,6 @@
 #include "RM_Interface.h"
+
+
 #define MATERIAL_COUNT 6
 
 
@@ -90,14 +92,32 @@ void RM_Interface::loadMaterialAsset()
 	}*/
 }
 
+
+
+
+
 void RM_Interface::loadAssetMT()
 {
 	loadAssetMap();
+	
+	/*std::thread meshThread(&RM_Interface::loadMeshAsset, this);
+	std::thread textureThread(&RM_Interface::loadTextureAsset, this);
+	std::thread shaderThread(&RM_Interface::loadShaderAsset, this);
+	std::thread audioThread(&RM_Interface::loadAudioAsset, this);
+	
+
+	meshThread.join();
+	textureThread.join();
+	shaderThread.join(); 
+	audioThread.join();*/
+
 	loadMeshAsset();
 	loadTextureAsset();
 	loadMaterialAsset();
 	loadShaderAsset();
 	loadAudioAsset();
+
+	
 }
 
 Model* RM_Interface::getMesh(int index)

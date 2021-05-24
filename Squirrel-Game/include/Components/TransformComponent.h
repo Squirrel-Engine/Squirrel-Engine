@@ -18,8 +18,9 @@ struct Transform {
 };
 private:
 	Transform transform;
-public:
 	mat4 transformMat;
+public:
+
 	SR_VAR_START()
 	
 	SR_VAR_END()

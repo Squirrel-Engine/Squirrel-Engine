@@ -30,7 +30,7 @@ void CameraComponent::Update()
 {
 	updateView();
 	cameraDesc->viewPos = m_Position;
-	cameraDesc->viewProjection = m_Projection * m_ViewMatrix;;
+	cameraDesc->viewProjection = m_Projection * m_ViewMatrix;
 }
 
 void CameraComponent::setup()
