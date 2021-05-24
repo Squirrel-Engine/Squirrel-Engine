@@ -1,12 +1,12 @@
 ﻿#include "ModelDrawCall.h"
 
 ModelDrawCall::ModelDrawCall(Model* model, Shader* shader, TRANSFORM_DESC* uniformDesc)
-	:model(model), shader(shader), uniformDesc(uniformDesc)
+	:m_Model(model), m_Shader(shader), m_UniformDesc(uniformDesc)
 {
 
 }
 
 void ModelDrawCall::draw()
 {
-	model->Draw(*this->shader, *this->uniformDesc);
+	m_Model->Draw(*this->m_Shader, *this->m_UniformDesc);
 }

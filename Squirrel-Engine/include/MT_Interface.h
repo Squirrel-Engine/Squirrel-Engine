@@ -16,5 +16,5 @@ private:
 	// Options
 	bool renderDebug;
 	// Schedulers
-	Nut* nut;
+	Nut nut;
 };

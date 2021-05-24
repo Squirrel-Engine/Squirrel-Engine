@@ -35,22 +35,29 @@ void Sandbox::Run()
 	auto testSchema = new TestControlSchema();
 	getInterface<IP_Interface>().setControlSchema(testSchema);
 
+	//
+	auto mainCamera = LevelStore::createActor<Camera>(EActorType::CAMERA);
+	//
+	for (int i = 0; i < 1; i++) {
+		auto skeleton = LevelStore::createActor<Skeleton>(EActorType::ACTOR);
+
+
 	auto mainCamera = new Camera();
 	getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::CAMERA, mainCamera);
 
 
-	for (int i = 0; i < 25; i++) {
-		auto skeleton = new Skeleton();
-		skeleton->health = 100;
-		skeleton->attackPower = 50;
-		skeleton->transformComponent->setTransform(0, 3, -5);
-		skeleton->transformComponent->setScale(0.05, 0.05, 0.05);
-		skeleton->renderComponent->C_ShaderID = 0;
-		skeleton->renderComponent->C_ModelID = 3;
+	auto skeleton1 = LevelStore::createActor<Skeleton>(EActorType::ACTOR);
+	skeleton1->health = 100;
+	skeleton1->attackPower = 50;
+	skeleton1->transformComponent.setTransform(0, -3, +5);
+	skeleton1->transformComponent.setRotation(0, 180, 0);
+	skeleton1->renderComponent.C_ShaderID = 0;
+	skeleton1->renderComponent.C_ModelID = 2;
+	skeleton1->audioComponent.C_AudioSourceID = 0;
+	//
+	auto light = LevelStore::createActor<Light>(EActorType::LIGHT);
+	light->transformComponent.setTransform(0, 0, 10);
 
-		skeleton->audioComponent->C_AudioSourceID = 0;
-		getInterface<GM_Interface>().levelStore->spawnNewActor(EActorType::ACTOR, skeleton);
-	}
 
 	//
 	auto light = new Light(ELightType::PointLight);
@@ -61,4 +68,5 @@ void Sandbox::Run()
 
 
 	
+
 }

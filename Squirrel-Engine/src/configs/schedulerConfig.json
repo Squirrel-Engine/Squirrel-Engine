@@ -1,5 +1,5 @@
 {
   "Scheduler": "Nut",
-  "MT_Mode" : "On", 
+  "MT_Mode" : "Off", 
   "Render_Debug": "On"
 }

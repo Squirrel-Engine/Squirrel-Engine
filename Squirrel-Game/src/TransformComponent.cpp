@@ -3,6 +3,9 @@
 TransformComponent::TransformComponent()
 {
 	transformMat = mat4(1.0f);
+	transform.position = vec3(0, 0, 0);
+	transform.rotation = vec3(0, 0, 0);
+	transform.scale = vec3(1, 1, 1);
 }
 
 void TransformComponent::BeginPlay()
@@ -11,10 +14,6 @@ void TransformComponent::BeginPlay()
 
 void TransformComponent::Update()
 {
-	transform.position = vec3(positionX, positionY, positionZ);
-	transform.rotation = vec3(rotationX, rotationY, rotationZ);
-	transform.scale = vec3(scaleX, scaleY, scaleZ);
-
 	transformMat = mat4(1.0f);
 	transformMat = glm::translate(transformMat, transform.position);
 	transformMat = glm::rotate(transformMat, radians(transform.rotation.x), vec3(1, 0, 0)); //rotation x 
@@ -28,46 +27,58 @@ void TransformComponent::Update()
 void TransformComponent::setup()
 {
 	uniforms = new TRANSFORM_DESC();
-	transform.position = vec3(positionX, positionY, positionZ);
-	transform.rotation = vec3(rotationX, rotationY, rotationZ);
-	transform.scale = vec3(scaleX, scaleY, scaleZ);
 }
 
-vec3 TransformComponent::getTransform()
+void TransformComponent::translate(const vec3& direction)
+{
+	transform.position += direction;
+}
+
+void TransformComponent::translate(float x, float y, float z)
+{
+	transform.position.x += x;
+	transform.position.y += y;
+	transform.position.z += z;
+}
+
+void TransformComponent::rotate(const vec3& eulers)
+{
+	transform.rotation += eulers;
+}
+
+void TransformComponent::rotate(float x, float y, float z)
+{
+	transform.rotation.x += x;
+	transform.rotation.y += y;
+	transform.rotation.z += z;
+}
+
+vec3& TransformComponent::getPosition()
 {
 	return transform.position;
 }
 
-vec3 TransformComponent::getRotation()
+vec3& TransformComponent::getRotation()
 {
 	return transform.rotation;
 }
 
-vec3 TransformComponent::getScale()
+vec3& TransformComponent::getScale()
 {
 	return transform.scale;
 }
 
 void TransformComponent::setTransform(float x, float y, float z)
 {
-	positionX = x;
-	positionY = y;
-	positionZ = z;
-	transform.position = vec3(positionX, positionY, positionZ);
+	transform.position = vec3(x, y, z);
 }
 
 void TransformComponent::setRotation(float x, float y, float z)
 {
-	rotationX = x;
-	rotationY = y;
-	rotationZ = z;
-	transform.rotation = vec3(rotationX, rotationY, rotationZ);
+	transform.rotation = vec3(x, y, z);
 }
 
 void TransformComponent::setScale(float x, float y, float z)
 {
-	scaleX = x;
-	scaleY = y;
-	scaleZ = z;
-	transform.scale = vec3(scaleX, scaleY, scaleZ);
+	transform.scale = vec3(x, y, z);
 }

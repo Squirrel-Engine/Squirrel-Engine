@@ -2,25 +2,24 @@
 
 GM_Interface::GM_Interface()
 {
-	levelStore = new LevelStore();
-	lightManager = new DynamicLightManager;
+
 }
 
 void GM_Interface::configureComponents()
 {
-	for (auto& actor : levelStore->actors) {
+	for (auto& actor : LevelStore::getAllActors(EActorType::ACTOR)) {
 		for (auto& component : actor->componentList)
 		{
 			component.second->setup();
 		}
 	}
-	for (auto& lights : levelStore->lights) {
+	for (auto& lights : LevelStore::getAllActors(EActorType::LIGHT)) {
 		for (auto& component : lights->componentList)
 		{
 			component.second->setup();
 		}
 	}
-	for (auto& component : levelStore->mainCamera->componentList)
+	for (auto& component : LevelStore::getActor(EActorType::CAMERA, LevelStore::m_MainCamera)->componentList)
 	{
 		component.second->setup();
 	}

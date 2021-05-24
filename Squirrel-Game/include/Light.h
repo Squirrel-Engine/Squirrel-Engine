@@ -10,7 +10,7 @@ SR_ACTOR()
 class Light : public Actor
 {
 public:
-	Light(ELightType type);
+	Light();
 	void BeginPlay() override;
 	void Update() override;
 
@@ -19,8 +19,8 @@ public:
 	SR_VAR_END()
 
 	SR_COMP_START()
-	TransformComponent* transformComponent;
-	LightComponent* lightComponent;
+	TransformComponent transformComponent;
+	LightComponent lightComponent;
 	SR_COMP_END()
 };
 

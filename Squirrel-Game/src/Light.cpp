@@ -1,16 +1,9 @@
 #include "Light.h"
 
-Light::Light(ELightType type)
+Light::Light()
 {
-	auto transformComponent = new TransformComponent();
-	transformComponent->setParent(this);
-	this->transformComponent = transformComponent;
-	insertComponent(transformComponent);
-
-	auto lightComponent = new LightComponent(type);
-	lightComponent->setParent(this);
-	this->lightComponent = lightComponent;
-	insertComponent(lightComponent);
+	bindComponent(&transformComponent);
+	bindComponent(&lightComponent);
 }
 
 void Light::BeginPlay()

@@ -1,7 +1,7 @@
 #pragma once
 #include "NJob.h"
+#include "DynamicLightManager.h"
 #include "InterfaceFactory.h"
-#include "NJ_InitializeFrame.h"
 
 class NJ_InitializeRender final : public NJob
 {

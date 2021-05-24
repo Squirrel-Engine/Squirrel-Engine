@@ -14,35 +14,36 @@ public:
 	void Update() override;
 	void setup() override;
 
-	vec3 getUpDirection() const;
-	vec3 getRightDirection() const;
-	vec3 getForwardDirection() const;
-	quat getOrientation() const;
-
-	const mat4& GetProjection() const { return m_Projection; }
+	const mat4& getProjection() const { return m_Projection; }
 	const mat4& getViewMatrix() const { return m_ViewMatrix; }
 	mat4 getViewProjection() const { return m_Projection * m_ViewMatrix; }
 
+	void updateLookAt(const vec3& eye, const vec3& target, const vec3& up);
+	void updatePerspective(float fovx, float aspect, float znear, float zfar);
 	void setViewportSize(float width, float height);
-
-	float getPitch() const { return m_Pitch; }
-	float getYaw() const { return m_Yaw; }
-
 private:
-	void updateProjection();
 	void updateView();
-
-protected:
-	mat4 m_Projection = mat4(1.0f);
+	quat getOrientation();
 private:
-	float m_FOV = 60.0f, m_AspectRatio, m_NearClip = 0.1f, m_FarClip = 1000.0f;
+	static const float DEFAULT_FOVX;
+	static const float DEFAULT_ZNEAR;
+	static const float DEFAULT_ZFAR;
 
-	mat4 m_ViewMatrix;
-	vec3 m_FocalPoint = {0.0f, 0.0f, 0.0f};
+	static const vec3 WORLD_XAXIS;
+	static const vec3 WORLD_YAXIS;
+	static const vec3 WORLD_ZAXIS;
 
-	float m_Pitch = 0.0f, m_Yaw = 0.0f;
-
+	//Projection Matrix Variables
+	float m_FOV, m_AspectRatio, m_NearClip, m_FarClip;
 	float m_ViewportWidth, m_ViewportHeight;
+	mat4 m_Projection;
+
+	//View Matrix Variables
+	vec3 m_Position = vec3(0, 0, 0);
+	vec3 m_Rotation = vec3(0, 0, 0);
+	vec3 m_Target = vec3(0, 0, -1);
+	vec3 m_Up = vec3(0, 1, 0);
+	mat4 m_ViewMatrix;
 };
 
 SR_COMPONENT()

@@ -1,5 +1,10 @@
 #include "LevelStore.h"
 
+std::vector<Actor*> LevelStore::m_Actors;
+std::vector<Actor*> LevelStore::m_Lights;
+std::vector<Actor*> LevelStore::m_Cameras;
+int LevelStore::m_MainCamera = 0;
+
 LevelStore::LevelStore()
 {
 }
@@ -9,34 +14,41 @@ void LevelStore::spawnNewActor(EActorType type, Actor* actor)
 	switch (type)
 	{
 	case EActorType::ACTOR:
-		actors.push_back(actor);
+		m_Actors.push_back(actor);
 		break;
 	case EActorType::CAMERA:
-		mainCamera = actor;
+		m_Cameras.push_back(actor);
 		break;
 	case EActorType::LIGHT:
-		lights.push_back(actor);
+		m_Lights.push_back(actor);
 		break;
 	default:
 		break;
 	}
 }
 
-Actor* LevelStore::getActor(EActorType type, int row)
+Actor* LevelStore::getActor(EActorType type, int index)
 {
 	switch (type)
 	{
 	case EActorType::ACTOR:
-		return actors[row];
+		return m_Actors[index];
 	case EActorType::CAMERA:
-		return mainCamera;
+		return m_Cameras[index];
 	case EActorType::LIGHT:
-		return lights[row];
+		return m_Lights[index];
 	}
 }
 
-void LevelStore::setupStore(std::string _name, std::vector<Actor*> initialActorVector)
+std::vector<Actor*> LevelStore::getAllActors(EActorType type)
 {
-	name = name;
-	actors = initialActorVector;
+	switch (type)
+	{
+	case EActorType::ACTOR:
+		return m_Actors;
+	case EActorType::LIGHT:
+		return m_Lights;
+	case EActorType::CAMERA:
+		return m_Cameras;
+	}
 }

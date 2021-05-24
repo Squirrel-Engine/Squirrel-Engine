@@ -11,6 +11,6 @@ public:
 private:
 	// Options
 	// Audio Engine
-	Ear* ear;
+	Ear ear;
 };
 

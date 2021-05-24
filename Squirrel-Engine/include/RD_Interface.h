@@ -20,7 +20,6 @@ public:
 	void stopRenderEngine();
 
 	void render();
-	void addActorToRenderQueue(); // Deprecated
 	void submitDrawCall(DrawCall& drawCall);
 
 	//TODO: Refactoring Point

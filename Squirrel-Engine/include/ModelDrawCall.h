@@ -11,7 +11,7 @@ public:
 	void draw() override;
 
 private:
-	Model* model;
-	Shader* shader;
-	TRANSFORM_DESC* uniformDesc;
+	Model* m_Model;
+	Shader* m_Shader;
+	TRANSFORM_DESC* m_UniformDesc;
 };

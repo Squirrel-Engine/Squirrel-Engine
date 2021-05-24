@@ -14,8 +14,6 @@ void furRender()
 			firstCommandBuffer->pop();
 		}
 	}
-	std::queue<DrawCall*>* wipeQueue = new std::queue<DrawCall*>;
-	std::swap(firstCommandBuffer, wipeQueue);
 
 	glfwSwapBuffers(furWindow);
 	glfwPollEvents();

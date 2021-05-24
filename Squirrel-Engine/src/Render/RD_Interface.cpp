@@ -65,21 +65,6 @@ void RD_Interface::render()
 	}
 }
 
-void RD_Interface::addActorToRenderQueue()
-{
-	try
-	{
-		switch (Configuration::getInstance().renderConfig.renderer)
-		{
-		case ERenderer::Fur:
-			fur.addActorToRenderQueue();
-		}
-	}
-	catch (std::exception& e)
-	{
-		std::cout << e.what() << '\n';
-	}
-}
 
 void RD_Interface::submitDrawCall(DrawCall& drawCall)
 {

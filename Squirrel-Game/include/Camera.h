@@ -17,8 +17,8 @@ public:
 	SR_VAR_END()
 
 	SR_COMP_START()
-	TransformComponent* transformComponent;
-	CameraComponent* cameraComponent;
+	TransformComponent transformComponent;
+	CameraComponent cameraComponent;
 	SR_COMP_END()
 };
 

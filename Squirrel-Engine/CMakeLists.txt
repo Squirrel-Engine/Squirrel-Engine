@@ -12,10 +12,10 @@ set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 set(RES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/res")
 
 #Add the given directories to those the compiler uses to search for include files.
-include_directories( ${INC_DIR} )
+include_directories( "${INC_DIR}" )
 
 FILE(GLOB_RECURSE SOURCES  "${SRC_DIR}/*.cpp" "${INC_DIR}/*.cpp" "${RES_DIR}/shaders/*.shader")
-FILE(GLOB_RECURSE INCLUDES "${INC_DIR}/*.h"  )
+FILE(GLOB_RECURSE INCLUDES "${INC_DIR}/*.h")
 
 add_library(Squirrel-Engine STATIC ${SOURCES} ${INCLUDES})
 

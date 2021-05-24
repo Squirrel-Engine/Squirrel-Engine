@@ -7,9 +7,9 @@ class DynamicLightManager
 public:
 	DynamicLightManager();
 
-	void bindLightingUniforms(Shader* shader);
+	static void bindLightingUniforms(Shader* shader);
 
-	void addPointLight(PointLight* pointLight);
+	static void addPointLight(PointLight* pointLight);
 private:
-	std::vector<PointLight*> m_PointLights;
+	static std::vector<PointLight*> m_PointLights;
 };

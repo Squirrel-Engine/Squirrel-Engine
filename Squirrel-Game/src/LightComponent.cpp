@@ -1,7 +1,7 @@
 #include "Components/LightComponent.h"
 
-LightComponent::LightComponent(ELightType type)
-	:m_Type(type)
+LightComponent::LightComponent()
+	: m_Type(ELightType::PointLight)
 {
 
 }
@@ -18,14 +18,19 @@ void LightComponent::Update()
 
 void LightComponent::setup()
 {
-	vec3 lightPosition = getComponentInParent<TransformComponent>()->getTransform();
+	vec3 lightPosition = getComponentInParent<TransformComponent>()->getPosition();
 	switch (m_Type)
 	{
 	case ELightType::PointLight:
 		m_Light = new PointLight(lightPosition);
-		getInterface<GM_Interface>().lightManager->addPointLight((PointLight*)m_Light);
+		DynamicLightManager::addPointLight((PointLight*)m_Light);
 		break;
 	default:
 		break;
 	}
+}
+
+void LightComponent::setLightType(ELightType type)
+{
+	m_Type = type;
 }
