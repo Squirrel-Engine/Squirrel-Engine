@@ -11,7 +11,7 @@ public:
 	~PointLight();
 	virtual void setupUniforms(Shader* shader, int currentLightIndex) override;
 	
-private:
+public:
 	glm::vec3 m_Position;
 	float m_AttenuationRadius;
 };

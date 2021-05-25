@@ -7,7 +7,7 @@ public:
 	DirectionalLight();
 
 	virtual void setupUniforms(Shader *shader, int currentLightIndex) override;
-private:
+public:
 	glm::vec3 m_Direction;
 };
 

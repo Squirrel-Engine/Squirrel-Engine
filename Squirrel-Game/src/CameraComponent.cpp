@@ -1,12 +1,9 @@
 #include "Components/CameraComponent.h"
+#include "iostream"
 
 const float CameraComponent::DEFAULT_FOVX = 90.0f;
 const float CameraComponent::DEFAULT_ZNEAR = 0.1f;
 const float CameraComponent::DEFAULT_ZFAR = 1000.0f;
-
-const vec3 CameraComponent::WORLD_XAXIS(1.0f, 0.0f, 0.0f);
-const vec3 CameraComponent::WORLD_YAXIS(0.0f, 1.0f, 0.0f);
-const vec3 CameraComponent::WORLD_ZAXIS(0.0f, 0.0f, 1.0f);
 
 CameraComponent::CameraComponent()
 {
@@ -18,7 +15,7 @@ CameraComponent::CameraComponent()
 	m_FarClip = DEFAULT_ZFAR;
 
 	updatePerspective(m_FOV, m_AspectRatio, m_NearClip, m_FarClip);
-	updateLookAt(m_Position, m_Target, m_Up);
+	updateLookAt(m_Position, m_Front, m_Up);
 }
 
 void CameraComponent::BeginPlay()
@@ -50,17 +47,25 @@ void CameraComponent::updatePerspective(float fovx, float aspect, float znear, f
 void CameraComponent::updateLookAt(const vec3 &eye, const vec3 &target, const vec3 &up)
 {
 	m_Position = eye;
-	m_Target = target;
+	m_Front = target;
 	m_Up = up;
-	m_ViewMatrix = glm::lookAt(m_Position, m_Position + m_Target, m_Up);
+	m_ViewMatrix = glm::lookAt(m_Position, m_Front, m_Up);
 }
 
 void CameraComponent::updateView()
 {	
 	m_Position = getComponentInParent<TransformComponent>()->getPosition();
 	glm::quat orientation = getOrientation();
-	m_ViewMatrix = glm::translate(glm::mat4(1.0f), m_Position) * glm::toMat4(orientation);;
+	m_ViewMatrix = glm::translate(glm::mat4(1.0f), m_Position) * glm::toMat4(orientation);
 	m_ViewMatrix = glm::inverse(m_ViewMatrix);
+
+	m_Up.x = m_ViewMatrix[1][0];
+	m_Up.y = m_ViewMatrix[1][1];
+	m_Up.z = m_ViewMatrix[1][2];
+		
+	m_Front.x = -m_ViewMatrix[2][0];
+	m_Front.y = -m_ViewMatrix[2][1];
+	m_Front.z = -m_ViewMatrix[2][2];
 }
 
 glm::quat CameraComponent::getOrientation()

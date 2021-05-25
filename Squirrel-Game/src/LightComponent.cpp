@@ -13,7 +13,15 @@ void LightComponent::BeginPlay()
 
 void LightComponent::Update()
 {
-
+	vec3 lightPosition = getComponentInParent<TransformComponent>()->getPosition();
+	switch (m_Type)
+	{
+	case ELightType::PointLight:
+		dynamic_cast<PointLight*>(m_Light)->m_Position = lightPosition;
+		break;
+	default:
+		break;
+	}
 }
 
 void LightComponent::setup()

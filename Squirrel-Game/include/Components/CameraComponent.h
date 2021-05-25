@@ -14,6 +14,8 @@ public:
 	void Update() override;
 	void setup() override;
 
+	const vec3& getViewDirection() const { return m_Front; }
+	const vec3& getUpDirection() const { return m_Up; }
 	const mat4& getProjection() const { return m_Projection; }
 	const mat4& getViewMatrix() const { return m_ViewMatrix; }
 	mat4 getViewProjection() const { return m_Projection * m_ViewMatrix; }
@@ -29,10 +31,6 @@ private:
 	static const float DEFAULT_ZNEAR;
 	static const float DEFAULT_ZFAR;
 
-	static const vec3 WORLD_XAXIS;
-	static const vec3 WORLD_YAXIS;
-	static const vec3 WORLD_ZAXIS;
-
 	//Projection Matrix Variables
 	float m_FOV, m_AspectRatio, m_NearClip, m_FarClip;
 	float m_ViewportWidth, m_ViewportHeight;
@@ -41,7 +39,7 @@ private:
 	//View Matrix Variables
 	vec3 m_Position = vec3(0, 0, 0);
 	vec3 m_Rotation = vec3(0, 0, 0);
-	vec3 m_Target = vec3(0, 0, -1);
+	vec3 m_Front = vec3(0, 0, -1);
 	vec3 m_Up = vec3(0, 1, 0);
 	mat4 m_ViewMatrix;
 };
