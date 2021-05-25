@@ -1,8 +1,8 @@
 #pragma once
 #include"IConfig.h"
 #include"JSONParser.h"
-#include "vendor/json.hpp"
 #include "ERenderer.h"
+#include "json.hpp"
 
 class RenderConfig : IConfig
 {

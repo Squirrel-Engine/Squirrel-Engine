@@ -6,8 +6,8 @@
 #include <iostream>
 
 #include "Macros.h"
-#include "../../Squirrel-Engine/include/Actor.h"
-#include "../../Squirrel-Engine/include/InterfaceFactory.h"
+#include "Actor.h"
+#include "InterfaceFactory.h"
 
 #define MAX_AUDIO_BUF 4 
 #define BUFFERNOTIFYSIZE 192000

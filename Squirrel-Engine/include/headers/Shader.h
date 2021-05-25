@@ -40,6 +40,7 @@ public:
 	void setVec3(const std::string& name, float x, float y, float z) const;
 	void setVec4(const std::string& name, const vec4& value) const;
 	void setVec4(const std::string& name, float x, float y, float z, float w) const;
+	void setIVec4(const std::string& name, const ivec4& value) const;
 	void setMat2(const std::string& name, const mat2& mat) const;
 	void setMat3(const std::string& name, const mat3& mat) const;
 	void setMat4(const std::string& name, const mat4& mat) const;

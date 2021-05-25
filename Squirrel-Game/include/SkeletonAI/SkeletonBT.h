@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Squirrel-Engine/include/BehaviorTree.h"
+#include "BehaviorTree.h"
 
 class SkeletonBT : public BehaviorTree
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Squirrel-Engine/include/Actor.h"
+#include "Actor.h"
 #include "Components/RenderComponent.h"
 #include "Macros.h"
 #include "glm/glm.hpp"

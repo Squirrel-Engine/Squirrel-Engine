@@ -1,7 +1,7 @@
 #pragma once
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
-#include "../../../Squirrel-Engine/include/Configuration.h"
+#include "Configuration.h"
 #include "Components/TransformComponent.h"
 
 SR_COMPONENT()

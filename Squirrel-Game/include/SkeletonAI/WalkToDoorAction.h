@@ -1,6 +1,8 @@
 #pragma once
-#include "../../Squirrel-Engine/include/ActionNode.h"
-#include "../../Squirrel-Engine/include/Blackboard.h"
+#include <Windows.h>
+#include "SkeletonAI/SkeletonBT.h"
+#include "ActionNode.h"
+#include "Blackboard.h"
 #include <iostream>
 class WalkToDoorAction : public ActionNode
 {

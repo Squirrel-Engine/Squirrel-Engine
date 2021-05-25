@@ -8,16 +8,18 @@ find_package(OpenGL REQUIRED)
 
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(HEADERS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include/headers")
+set(VENDOR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include/vendor")
 set(LIB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib")
 set(RES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/res")
 
 #Add the given directories to those the compiler uses to search for include files.
-include_directories( "${INC_DIR}" )
+include_directories( ${HEADERS_DIR} ${VENDOR_DIR})
 
-FILE(GLOB_RECURSE SOURCES  "${SRC_DIR}/*.cpp" "${INC_DIR}/*.cpp" "${RES_DIR}/shaders/*.shader")
-FILE(GLOB_RECURSE INCLUDES "${INC_DIR}/*.h")
+FILE(GLOB_RECURSE SOURCES  "${SRC_DIR}/*.cpp"  "${RES_DIR}/shaders/*.shader")
+FILE(GLOB_RECURSE INCLUDES "${INC_DIR}/headers/*.h")
 
-add_library(Squirrel-Engine STATIC ${SOURCES} ${INCLUDES})
+add_library(Squirrel-Engine STATIC ${SOURCES} ${INCLUDES} )
 
 # GLFW
 set(GLFW_DIR "${LIB_DIR}/glfw")
@@ -50,7 +52,6 @@ set_property(TARGET assimp PROPERTY IMPORTED_IMPLIB_RELEASE "${ASSIMP_LIBRARY}/a
 set_property(TARGET assimp PROPERTY IMPORTED_LOCATION_RELEASE "${ASSIMP_LIBRARY}/assimp-vc142-mtd.dll")
 set_property(TARGET assimp PROPERTY IMPORTED_IMPLIB_DEBUG "${ASSIMP_LIBRARY}/assimp-vc142-mtd.lib")
 set_property(TARGET assimp PROPERTY IMPORTED_LOCATION_DEBUG "${ASSIMP_LIBRARY}/assimp-vc142-mtd.dll")
-
 
 
 target_link_libraries(${PROJECT_NAME} assimp)

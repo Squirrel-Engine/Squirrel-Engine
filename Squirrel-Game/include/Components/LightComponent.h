@@ -1,9 +1,9 @@
 #pragma once
 #include "Macros.h"
 #include <iostream>
-#include "../../Squirrel-Engine/include/DynamicLightManager.h"
-#include "../../Squirrel-Engine/include/LightObject.h"
-#include "../../Squirrel-Engine/include/InterfaceFactory.h"
+#include "DynamicLightManager.h"
+#include "LightObject.h"
+#include "InterfaceFactory.h"
 #include "Components/TransformComponent.h"
 
 SR_COMPONENT()
@@ -12,9 +12,8 @@ class LightComponent : public ActorComponent
 {
 private:
 	LightObject* m_Light;
-public:
 	ELightType m_Type;
-
+public:
 	SR_VAR_START()
 	
 	SR_VAR_END()

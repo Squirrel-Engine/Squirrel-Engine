@@ -1,4 +1,5 @@
 #include "JSONParser.h"
+
 using json = nlohmann::json;
 
 JSONParser::JSONParser(std::string path)

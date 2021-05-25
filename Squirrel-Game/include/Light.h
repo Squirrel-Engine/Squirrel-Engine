@@ -1,6 +1,6 @@
 #pragma once
 #include "Macros.h"
-#include "../../Squirrel-Engine/include/Actor.h"
+#include "Actor.h"
 #include "Components/TransformComponent.h"
 #include "Components/LightComponent.h"
 #include "Components/RenderComponent.h"

@@ -1,9 +1,10 @@
 #pragma once
-#include "Macros.h"
 #include <vector>
+#include "Macros.h"
+#include "ModelDrawCall.h"
+#include "InterfaceFactory.h"
 #include "Components/TransformComponent.h"
-#include "../../../Squirrel-Engine/include/ModelDrawCall.h"
-#include "../../Squirrel-Engine/include/InterfaceFactory.h"
+
 SR_COMPONENT()
 
 class RenderComponent : public ActorComponent

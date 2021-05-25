@@ -1,9 +1,9 @@
 #pragma once
 #include "Macros.h"
-#include "../../Squirrel-Engine/include/ActorComponent.h"
+#include "ActorComponent.h"
 #include "SkeletonAI/WalkToDoorAction.h"
-#include "../../Squirrel-Engine/include/ActionNode.h"
-#include "../../Squirrel-Engine/include/BehaviorTree.h"
+#include "ActionNode.h"
+#include "BehaviorTree.h"
 
 
 SR_COMPONENT()

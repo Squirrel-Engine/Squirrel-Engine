@@ -57,6 +57,14 @@ struct Material {
     sampler2D ao;
     sampler2D displacement;
 };
+
+struct DirLight {
+    vec3 direction;
+
+    float intensity;
+    vec3 lightColour;
+};
+
 struct PointLight {
     vec3 position;
 
@@ -64,9 +72,14 @@ struct PointLight {
     vec3 lightColour;
     float attenuationRadius;
 };
-uniform Material material;
-uniform PointLight pointLights[1];
 
+uniform Material material;
+uniform ivec4 numLights;
+uniform PointLight pointLights[MAX_POINT_LIGHTS];
+uniform DirLight dirLights[MAX_DIR_LIGHTS];
+
+//Light calculations
+vec3 CalculateDirectionalLightRadiance(vec3 albedo, vec3 normal, float metallic, float roughness, vec3 fragToView, vec3 baseReflectivity);
 vec3 CalculatePointLightRadiance(vec3 albedo, vec3 normal, float metallic, float roughness, vec3 fragToView, vec3 baseReflectivity);
 // Cook-Torrance BRDF functions adopted by Epic for UE4
 float NormalDistributionGGX(vec3 normal, vec3 halfway, float roughness);
@@ -95,6 +108,7 @@ void main()
 
     // Calculate per light radiance for all of the direct lighting
     vec3 directLightIrradiance = vec3(0.0);
+    directLightIrradiance += CalculateDirectionalLightRadiance(albedo, normal, metallic, roughness, fragToView, baseReflectivity);
     directLightIrradiance += CalculatePointLightRadiance(albedo, normal, metallic, roughness, fragToView, baseReflectivity);
   
     // Calcualte ambient IBL for both diffuse and specular
@@ -103,10 +117,43 @@ void main()
     color = vec4(ambient + directLightIrradiance, albedoAlpha);
 }
 
+vec3 CalculateDirectionalLightRadiance(vec3 albedo, vec3 normal, float metallic, float roughness, vec3 fragToView, vec3 baseReflectivity) {
+    vec3 directLightIrradiance = vec3(0.0);
+
+    for (int i = 0; i < numLights.x; ++i) {
+        vec3 lightDir = normalize(-dirLights[i].direction);
+        vec3 halfway = normalize(lightDir + fragToView);
+        vec3 radiance = dirLights[i].intensity * dirLights[i].lightColour;
+
+        // Cook-Torrance Specular BRDF calculations
+        float normalDistribution = NormalDistributionGGX(normal, halfway, roughness);
+        vec3 fresnel = FresnelSchlick(max(dot(halfway, fragToView), 0.0), baseReflectivity);
+        float geometry = GeometrySmith(normal, fragToView, lightDir, roughness);
+
+        // Calculate reflected and refracted light respectively, and since metals absorb all refracted light, we nullify the diffuse lighting based on the metallic parameter
+        vec3 specularRatio = fresnel;
+        vec3 diffuseRatio = vec3(1.0) - specularRatio;
+        diffuseRatio *= 1.0 - metallic;
+
+        // Finally calculate the specular part of the Cook-Torrance BRDF (max 0.1 stops any visual artifacts)
+        vec3 numerator = specularRatio * normalDistribution * geometry;
+        float denominator = 4 * max(dot(fragToView, normal), 0.1) * max(dot(lightDir, normal), 0.0) + 0.001;  // Prevents any division by zero
+        vec3 specular = numerator / denominator;
+
+        // Also calculate the diffuse, a lambertian calculation will be added onto the final radiance calculation
+        vec3 diffuse = diffuseRatio * albedo / PI;
+
+        // Add the light's radiance to the irradiance sum
+        directLightIrradiance += (diffuse + specular) * radiance * max(dot(normal, lightDir), 0.0);
+    }
+
+    return directLightIrradiance;
+}
+
 vec3 CalculatePointLightRadiance(vec3 albedo, vec3 normal, float metallic, float roughness, vec3 fragToView, vec3 baseReflectivity) {
     vec3 pointLightIrradiance = vec3(0.0);
 
-    for (int i = 0; i < 1; ++i) {
+    for (int i = 0; i < numLights.y; ++i) {
         vec3 fragToLight = normalize(pointLights[i].position - FragPos);
         vec3 halfway = normalize(fragToView + fragToLight);
         float fragToLightDistance = length(pointLights[i].position - FragPos);

@@ -123,6 +123,11 @@ void Shader::setVec4(const std::string& name, float x, float y, float z, float w
 	glUniform4f(getUniformLocation(name), x, y, z, w);
 }
 
+void Shader::setIVec4(const std::string& name, const ivec4& value) const
+{
+	glUniform4iv(getUniformLocation(name), 1, &value[0]);
+}
+
 // ------------------------------------------------------------------------
 void Shader::setMat2(const std::string& name, const mat2& mat) const
 {

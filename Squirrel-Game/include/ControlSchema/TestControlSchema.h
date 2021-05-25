@@ -1,6 +1,6 @@
 #pragma once
-#include "../../Squirrel-Engine/include/ControlSchema.h"
-#include "../../Squirrel-Engine/include/InterfaceFactory.h"
+#include "ControlSchema.h"
+#include "InterfaceFactory.h"
 #include <iostream>
 
 class TestControlSchema : public ControlSchematic

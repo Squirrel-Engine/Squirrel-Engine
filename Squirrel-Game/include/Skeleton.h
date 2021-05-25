@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include "Macros.h"
-#include "../../Squirrel-Engine/include/Actor.h"
+#include "Actor.h"
 #include "Components/RenderComponent.h"
 #include "Components/TransformComponent.h"
 #include "Components/AudioComponent.h"

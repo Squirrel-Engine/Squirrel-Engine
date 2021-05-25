@@ -1,8 +1,4 @@
-
 #include "SkeletonAI/WalkToDoorAction.h"
-#include <Windows.h>
-#include "../../Squirrel-Game/include/SkeletonAI/SkeletonBT.h"
-
 
 WalkToDoorAction::WalkToDoorAction()
 {

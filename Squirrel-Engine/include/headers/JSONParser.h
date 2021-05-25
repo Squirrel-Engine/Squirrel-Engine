@@ -1,8 +1,8 @@
 #pragma once
+#include "json.hpp"
 #include <iostream>
 #include <fstream>
 #include <map>
-#include "vendor/json.hpp"
 
 class JSONParser
 {

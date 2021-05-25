@@ -1,6 +1,4 @@
 #pragma once
-#include "Shader.h"
-#include "UniformDesc.h"
 #include "LightObject.h"
 
 class PointLight : public LightObject
@@ -15,5 +13,5 @@ public:
 	
 private:
 	glm::vec3 m_Position;
-	float m_AttenuationRadius = 30.f;
+	float m_AttenuationRadius;
 };

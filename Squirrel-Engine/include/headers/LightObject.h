@@ -3,6 +3,7 @@
 #include "UniformDesc.h"
 
 enum class ELightType {
+	DirectionalLight,
 	PointLight
 };
 

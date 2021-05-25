@@ -1,7 +1,7 @@
 #pragma once
 #include "Macros.h"
 #include <glm/glm.hpp>
-#include "../../Squirrel-Engine/include/Actor.h"
+#include "Actor.h"
 #include "Components/TransformComponent.h"
 #include "Components/CameraComponent.h"
 SR_ACTOR()

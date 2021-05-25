@@ -1,9 +1,8 @@
 ﻿// Squirrel-Engine.cpp : Defines the entry point for the application.
-#include "../Squirrel-Engine/include/Squirrel.h"
-
-#include "include/Skeleton.h"
-#include "include/Camera.h"
-#include "include/Light.h"
+#include "Squirrel.h"
+#include "Skeleton.h"
+#include "Camera.h"
+#include "Light.h"
 #include "Squirrel-Game.h"
 
 class Sandbox : public Application
@@ -52,10 +51,7 @@ void Sandbox::Run()
 	skeleton1->audioComponent.C_AudioSourceID = 0;
 	//
 	auto light = LevelStore::createActor<Light>(EActorType::LIGHT, "firstLight");
-
-	light->transformComponent.setTransform(0, 0, 10);
-
-
+	light->lightComponent.setLightType(ELightType::DirectionalLight);
 	
-
+	//light->transformComponent.setTransform(0, 0, 10);
 }

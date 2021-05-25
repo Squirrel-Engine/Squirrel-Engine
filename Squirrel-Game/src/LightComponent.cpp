@@ -21,6 +21,10 @@ void LightComponent::setup()
 	vec3 lightPosition = getComponentInParent<TransformComponent>()->getPosition();
 	switch (m_Type)
 	{
+	case ELightType::DirectionalLight:
+		m_Light = new DirectionalLight();
+		DynamicLightManager::addDirectionalLight((DirectionalLight*)m_Light);
+		break;
 	case ELightType::PointLight:
 		m_Light = new PointLight(lightPosition);
 		DynamicLightManager::addPointLight((PointLight*)m_Light);
