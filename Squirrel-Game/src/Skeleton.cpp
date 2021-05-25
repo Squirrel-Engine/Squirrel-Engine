@@ -6,12 +6,13 @@ Skeleton::Skeleton()
 	bindComponent(&transformComponent);
 	bindComponent(&renderComponent);
 	bindComponent(&audioComponent);
+	audioComponent.play();
 
 }
 
 void Skeleton::BeginPlay()
 {
-	//audioComponent->play();
+
 }
 
 void Skeleton::Update()

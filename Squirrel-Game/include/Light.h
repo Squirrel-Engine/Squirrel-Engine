@@ -3,7 +3,6 @@
 #include "../../Squirrel-Engine/include/Actor.h"
 #include "Components/TransformComponent.h"
 #include "Components/LightComponent.h"
-#include "Components/RenderComponent.h"
 
 SR_ACTOR()
 
