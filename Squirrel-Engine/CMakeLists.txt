@@ -17,9 +17,10 @@ set(RES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/res")
 include_directories( ${HEADERS_DIR} ${VENDOR_DIR})
 
 FILE(GLOB_RECURSE SOURCES  "${SRC_DIR}/*.cpp"  "${RES_DIR}/shaders/*.shader")
-FILE(GLOB_RECURSE INCLUDES "${INC_DIR}/headers/*.h")
+FILE(GLOB_RECURSE INCLUDES "${HEADERS_DIR}/*.h")
 
 add_library(Squirrel-Engine STATIC ${SOURCES} ${INCLUDES} )
+target_precompile_headers(Squirrel-Engine PUBLIC "${HEADERS_DIR}/pch.h")
 
 # GLFW
 set(GLFW_DIR "${LIB_DIR}/glfw")
@@ -30,7 +31,7 @@ set(GLFW_INSTALL OFF CACHE INTERNAL "Generate installation target")
 add_subdirectory("${GLFW_DIR}")
 #target_include_directories(${PROJECT_NAME} PUBLIC "${GLFW_DIR}/include")	
 target_link_libraries(${PROJECT_NAME} "glfw" "${GLFW_LIBRARIES}")
-target_compile_definitions(${PROJECT_NAME} PRIVATE "GLFW_INCLUDE_NONE")
+target_compile_definitions(${PROJECT_NAME} PUBLIC "GLFW_INCLUDE_NONE")
 
 #GLAD
 set(GLAD_DIR "${LIB_DIR}/glad")

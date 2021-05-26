@@ -1,4 +1,5 @@
 #include "FurStore.h"
+#include "pch.h"
 
 GLFWwindow* furWindow;
 std::queue<DrawCall*>* firstCommandBuffer = new std::queue<DrawCall*>;

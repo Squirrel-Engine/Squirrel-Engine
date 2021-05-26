@@ -1,10 +1,8 @@
 #pragma once
 #include "Shader.h"
 #include "Material.h"
-
-#include <string>
-#include <vector>
 using namespace std;
+
 class Model;
 
 class Mesh

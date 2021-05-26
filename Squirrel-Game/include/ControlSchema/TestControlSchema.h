@@ -1,7 +1,6 @@
 #pragma once
 #include "ControlSchema.h"
 #include "InterfaceFactory.h"
-#include <iostream>
 
 class TestControlSchema : public ControlSchematic
 {

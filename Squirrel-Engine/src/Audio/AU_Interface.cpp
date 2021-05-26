@@ -1,5 +1,4 @@
 #include "AU_Interface.h"
-
 #include "Configuration.h"
 
 AU_Interface::AU_Interface()

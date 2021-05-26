@@ -1,5 +1,4 @@
 #include "Components/CameraComponent.h"
-#include "iostream"
 
 const float CameraComponent::DEFAULT_FOVX = 90.0f;
 const float CameraComponent::DEFAULT_ZNEAR = 0.1f;

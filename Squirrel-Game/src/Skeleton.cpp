@@ -1,6 +1,5 @@
 ﻿#include "Skeleton.h"
 
-
 Skeleton::Skeleton()
 {
 	bindComponent(&transformComponent);

@@ -1,4 +1,5 @@
 #include "Texture.h"
+#include "pch.h"
 
 Texture::Texture(const Texture& texture) : m_TextureId(0), m_TextureTarget(texture.getTextureTarget()), m_Width(texture.getWidth()), m_Height(texture.getHeight()), m_TextureSettings(texture.getTextureSettings()) {
 	glGenTextures(1, &m_TextureId);

@@ -1,8 +1,4 @@
 #pragma once
-#include <unordered_map>
-#include <typeinfo>
-#include <iostream>
-#include <vector>
 #include "ActorComponent.h"
 
 class ActorComponent;

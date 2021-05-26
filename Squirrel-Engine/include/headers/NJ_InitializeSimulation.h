@@ -1,6 +1,5 @@
 #pragma once
 #include "NJob.h"
-
 #include "InterfaceFactory.h"
 
 class NJ_InitializeSimulation final : public NJob

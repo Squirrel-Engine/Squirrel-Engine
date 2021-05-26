@@ -1,9 +1,4 @@
 #pragma once
-#include <glad/glad.h>
-#include "stb_image.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <iostream>
 #define MSAA_SAMPLE_AMOUNT 4
 #define ANISOTROPIC_FILTERING_LEVEL 8.0f
 

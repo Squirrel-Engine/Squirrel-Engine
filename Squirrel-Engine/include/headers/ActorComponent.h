@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "Actor.h"
 #include "UniformDesc.h"
 #include "FurStore.h"

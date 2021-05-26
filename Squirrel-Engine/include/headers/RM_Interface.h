@@ -1,9 +1,4 @@
 #pragma once
-#include <map>
-#include <iostream>
-#include <string>
-#include <vector>
-#include <thread>
 #include "Audio.h"
 #include "Model.h"
 

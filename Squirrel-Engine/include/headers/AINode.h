@@ -1,6 +1,7 @@
 #pragma once
-#include <vector>
 #include "EAINode.h"
+#include "pch.h"
+
 class AINode
 {
 public:

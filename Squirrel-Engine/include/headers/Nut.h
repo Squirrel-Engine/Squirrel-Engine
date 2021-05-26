@@ -1,10 +1,6 @@
 #pragma once
 #include "EQueueOrder.h"
 #include "NJob.h"
-#include <mutex>
-#include <thread>
-#include <iostream>
-#include <queue>
 
 class Nut
 {

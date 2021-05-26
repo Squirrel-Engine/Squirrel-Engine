@@ -1,6 +1,4 @@
 #pragma once
-#define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtx/quaternion.hpp>
 #include "Configuration.h"
 #include "Components/TransformComponent.h"
 

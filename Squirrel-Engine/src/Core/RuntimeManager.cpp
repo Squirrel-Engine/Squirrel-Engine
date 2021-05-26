@@ -1,7 +1,5 @@
 #include "RuntimeManager.h"
 #include "InterfaceFactory.h"
-#include <dsound.h>
-
 
 RuntimeManager::RuntimeManager()
 {

@@ -1,8 +1,5 @@
 #include "Ear.h"
 
-
-
-
 void Ear::startAudioEngine()
 {
 

@@ -1,6 +1,5 @@
 #pragma once
 #include "Macros.h"
-#include <iostream>
 #include "DynamicLightManager.h"
 #include "LightObject.h"
 #include "InterfaceFactory.h"

@@ -1,9 +1,5 @@
 ﻿// Squirrel-Engine.cpp : Defines the entry point for the application.
 #include "Squirrel-Game.h"
-#include "Squirrel.h"
-#include "Skeleton.h"
-#include "Camera.h"
-#include "Light.h"
 
 class Sandbox : public Application
 {

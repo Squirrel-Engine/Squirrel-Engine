@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include "Macros.h"
 #include "ModelDrawCall.h"
 #include "InterfaceFactory.h"

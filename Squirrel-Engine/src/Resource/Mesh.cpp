@@ -1,4 +1,5 @@
 #include "Mesh.h"
+#include "pch.h"
 
 Mesh::Mesh() : m_VAO(0), m_VBO(0), m_IBO(0) {}
 

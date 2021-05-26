@@ -1,6 +1,5 @@
 #pragma once
 #include "ControlSchema.h"
-#include <GLFW/glfw3.h>
 #include "FurStore.h"
 #include "InputStore.h"
 

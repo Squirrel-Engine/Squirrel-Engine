@@ -1,4 +1,5 @@
 #include "Shader.h"
+#include "pch.h"
 
 Shader::Shader(const std::string& filepath)
 {

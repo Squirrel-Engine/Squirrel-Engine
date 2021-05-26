@@ -1,11 +1,10 @@
 #include "Nut.h"
-#include <iostream>
 #include "InterfaceFactory.h"
 #include "NJ_InitializeFrame.h"
 #include "Configuration.h"
+#include "pch.h"
 
 std::mutex mtx;
-
 
 Nut::Nut()
 {

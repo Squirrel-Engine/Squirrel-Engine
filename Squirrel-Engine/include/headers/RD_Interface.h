@@ -1,8 +1,6 @@
 #pragma once
 #include "Fur.h"
 #include "Configuration.h"
-#include <iostream>
-#include <string.h>
 
 class RD_Interface
 {

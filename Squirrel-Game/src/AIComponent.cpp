@@ -1,8 +1,5 @@
 #include "Components/AIComponent.h"
 
-
-
-
 AIComponent::AIComponent()
 {
 	behaviorTree = new BehaviorTree();

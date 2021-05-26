@@ -1,9 +1,8 @@
 #pragma once
-#include <Windows.h>
 #include "SkeletonAI/SkeletonBT.h"
 #include "ActionNode.h"
 #include "Blackboard.h"
-#include <iostream>
+
 class WalkToDoorAction : public ActionNode
 {
 public:

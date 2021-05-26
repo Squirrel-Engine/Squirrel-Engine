@@ -1,6 +1,5 @@
 #include "IP_Interface.h"
 
-
 IP_Interface::IP_Interface()
 {
 }

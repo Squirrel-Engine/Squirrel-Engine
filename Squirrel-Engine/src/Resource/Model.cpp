@@ -1,6 +1,7 @@
 #include "Model.h"
 #include "FurStore.h"
 #include "InterfaceFactory.h"
+#include "pch.h"
 
 Model::Model(const string& path)
 {

@@ -1,11 +1,11 @@
 ﻿#pragma once
-
 #include "Macros.h"
 #include "Actor.h"
 #include "Components/RenderComponent.h"
 #include "Components/TransformComponent.h"
 #include "Components/AudioComponent.h"
 #include "Components/AIComponent.h"
+
 SR_ACTOR()
 
 class Skeleton : public Actor

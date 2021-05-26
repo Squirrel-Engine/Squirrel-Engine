@@ -1,4 +1,5 @@
 #include "TextureLoader.h"
+#include "pch.h"
 
 // Static declarations
 std::unordered_map<std::string, Texture*> TextureLoader::m_TextureCache;

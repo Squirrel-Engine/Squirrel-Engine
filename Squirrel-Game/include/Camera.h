@@ -1,6 +1,5 @@
 #pragma once
 #include "Macros.h"
-#include <glm/glm.hpp>
 #include "Actor.h"
 #include "Components/TransformComponent.h"
 #include "Components/CameraComponent.h"

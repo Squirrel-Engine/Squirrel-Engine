@@ -2,10 +2,6 @@
 #include "Actor.h"
 #include "Components/RenderComponent.h"
 #include "Macros.h"
-#include "glm/glm.hpp"
-#include <glm/ext/matrix_transform.hpp>
-#include <glm/gtc/quaternion.hpp>
-#include <glm/gtx/quaternion.hpp>
 
 SR_COMPONENT()
 

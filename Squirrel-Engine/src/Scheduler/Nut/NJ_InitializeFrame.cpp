@@ -1,12 +1,9 @@
 #pragma once
-#include "NJ_InitializeFrame.h"
-
 #include "InterfaceFactory.h"
-#include "NJ_InitializeDrawCall.h"
-#include "NJ_InitializeRender.h"
+#include "NJ_InitializeFrame.h"
 #include "NJ_InitializeSimulation.h"
+#include "NJ_InitializeRender.h"
 #include "NJ_Input.h"
-
 
 NJ_InitializeFrame::NJ_InitializeFrame()
 {

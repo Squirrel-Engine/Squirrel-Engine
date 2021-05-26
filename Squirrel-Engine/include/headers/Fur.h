@@ -1,9 +1,6 @@
 #pragma once
-#include <iostream>
-#include <string.h>
 #include "Renderer.h"
 #include "Configuration.h"
-
 
 class Fur
 {
