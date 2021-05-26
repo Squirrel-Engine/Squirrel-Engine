@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 #include "Application.h"
 #include "RuntimeManager.h"
 #include "InterfaceFactory.h"

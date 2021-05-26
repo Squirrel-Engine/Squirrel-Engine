@@ -1,5 +1,4 @@
 #include "Timer.h"
-#include "pch.h"
 
 float Timer::m_Time = 0;
 float Timer::m_lastFrame = 0;

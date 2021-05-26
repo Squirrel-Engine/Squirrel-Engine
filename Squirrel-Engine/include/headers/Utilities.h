@@ -1,3 +1,7 @@
 #pragma once
-#include <iostream>
-void* convertStdStringToConst(std::string);
+
+class Utilities {
+public:
+	static char* convertStdStringToConst(std::string str);
+};
+

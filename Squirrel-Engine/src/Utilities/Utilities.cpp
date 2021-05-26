@@ -1,11 +1,9 @@
 #include "Utilities.h"
 
-namespace Squirrel
+char* Utilities::convertStdStringToConst(std::string str)
 {
-	char* convertStdStringToConst(std::string str)
-	{
-		auto cstr = new char[str.length() + 1];
-		strcpy(cstr, str.c_str());
-		return cstr;
-	}
+	auto cstr = new char[str.length() + 1];
+	strcpy(cstr, str.c_str());
+	return cstr;
 }
+

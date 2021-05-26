@@ -2,7 +2,6 @@
 #include "InterfaceFactory.h"
 #include "NJ_InitializeFrame.h"
 #include "Configuration.h"
-#include "pch.h"
 
 std::mutex mtx;
 

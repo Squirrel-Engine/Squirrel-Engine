@@ -1,5 +1,4 @@
 #include "Components/TransformComponent.h"
-#include "pch.h"
 
 TransformComponent::TransformComponent()
 {

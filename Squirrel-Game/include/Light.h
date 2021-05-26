@@ -1,5 +1,4 @@
 #pragma once
-#include "Macros.h"
 #include "Actor.h"
 #include "Components/TransformComponent.h"
 #include "Components/LightComponent.h"

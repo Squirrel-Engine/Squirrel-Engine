@@ -1,5 +1,4 @@
 #include "BehaviorTree.h"
-#include "pch.h"
 
 BehaviorTree::BehaviorTree()
 {

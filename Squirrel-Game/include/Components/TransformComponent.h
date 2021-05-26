@@ -1,7 +1,6 @@
 #pragma once
 #include "Actor.h"
 #include "Components/RenderComponent.h"
-#include "Macros.h"
 
 SR_COMPONENT()
 

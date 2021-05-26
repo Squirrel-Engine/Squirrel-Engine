@@ -1,11 +1,5 @@
 #pragma once
-#include <stdio.h>
-#include <stdlib.h>
-#include <windows.h>
 #include <dsound.h>
-#include <iostream>
-
-#include "Macros.h"
 #include "Actor.h"
 #include "InterfaceFactory.h"
 

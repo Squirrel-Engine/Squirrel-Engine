@@ -1,5 +1,4 @@
 #include "Audio.h"
-#include "pch.h"
 
 Audio::Audio(std::string filename)
 {

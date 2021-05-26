@@ -1,7 +1,5 @@
 #pragma once
 #include <exception>
-#include <iostream>
-
 #include "Configuration.h"
 
 

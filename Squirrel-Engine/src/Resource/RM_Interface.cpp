@@ -1,8 +1,5 @@
 #include "RM_Interface.h"
-#include "pch.h"
-
 #define MATERIAL_COUNT 6
-
 
 int MaterialDataBase[MATERIAL_COUNT][3] = {
 	//diffuse	//normal	//specular

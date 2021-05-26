@@ -1,5 +1,4 @@
 #include "Fur.h"
-#include "pch.h"
 
 std::mutex renderMutex;
 
