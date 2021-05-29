@@ -12,10 +12,9 @@ struct Transform {
 	vec3 scale;
 };
 private:
-	Transform transform;
 	mat4 transformMat;
 public:
-
+	Transform transform;
 	SR_VAR_START()
 	
 	SR_VAR_END()

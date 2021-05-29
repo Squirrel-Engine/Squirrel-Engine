@@ -22,6 +22,7 @@ void TransformComponent::Update()
 	transformMat = glm::scale(transformMat, transform.scale);
 
 	dynamic_cast<TRANSFORM_DESC*>(uniforms)->model = transformMat;
+	
 }
 
 void TransformComponent::setup()

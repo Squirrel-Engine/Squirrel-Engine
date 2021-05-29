@@ -14,7 +14,24 @@ void TestControlSchema::Key_Space_HOLD()
 
 void TestControlSchema::Mouse_Movement()
 {
+	if (firstMouse)
+	{
+		lastX = getInterface<IP_Interface>().mouseX;
+		lastY = getInterface<IP_Interface>().mouseY;
+		firstMouse = false;
+	}
 
+	float xoffset = lastX = getInterface<IP_Interface>().mouseX - lastX;
+	float yoffset = lastY - getInterface<IP_Interface>().mouseY;
+	lastX = getInterface<IP_Interface>().mouseX;
+	lastY = getInterface<IP_Interface>().mouseY;
+
+	float sensitivity = 0.001f;
+	xoffset *= sensitivity;
+	yoffset *= sensitivity;
+
+	LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<TransformComponent>()->rotate(yoffset, xoffset, 0);
+	
 }
 
 void TestControlSchema::ScrollMovement()

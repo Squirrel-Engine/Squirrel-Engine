@@ -25,6 +25,7 @@ void CameraComponent::BeginPlay()
 void CameraComponent::Update()
 {
 	updateView();
+
 	cameraDesc->viewPos = m_Position;
 	cameraDesc->viewProjection = m_Projection * m_ViewMatrix;
 }
@@ -48,11 +49,11 @@ void CameraComponent::updateLookAt(const vec3 &eye, const vec3 &target, const ve
 	m_Position = eye;
 	m_Front = target;
 	m_Up = up;
-	m_ViewMatrix = glm::lookAt(m_Position, m_Front, m_Up);
+	m_ViewMatrix = glm::lookAt(m_Position, m_Position* m_Front, m_Up);
 }
 
 void CameraComponent::updateView()
-{	
+{
 	m_Position = getComponentInParent<TransformComponent>()->getPosition();
 	glm::quat orientation = getOrientation();
 	m_ViewMatrix = glm::translate(glm::mat4(1.0f), m_Position) * glm::toMat4(orientation);
@@ -62,9 +63,13 @@ void CameraComponent::updateView()
 	m_Up.y = m_ViewMatrix[1][1];
 	m_Up.z = m_ViewMatrix[1][2];
 		
-	m_Front.x = -m_ViewMatrix[2][0];
+	m_Front.x = m_ViewMatrix[2][0];
 	m_Front.y = -m_ViewMatrix[2][1];
 	m_Front.z = -m_ViewMatrix[2][2];
+
+	printf("x: %f\n", m_Front.x);
+	printf("y: %f\n", m_Front.y);
+	printf("z: %f\n", m_Front.z);
 }
 
 glm::quat CameraComponent::getOrientation()
