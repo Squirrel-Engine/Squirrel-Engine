@@ -9,7 +9,7 @@ public:
 	{
 	};
 
-	const float cameraSpeed = 0.05f; // adjust accordingly
+	const float cameraSpeed = 0.6f; // adjust accordingly
 
 	bool firstMouse = true;
 
