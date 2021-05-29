@@ -49,7 +49,7 @@ void CameraComponent::updateLookAt(const vec3 &eye, const vec3 &target, const ve
 	m_Position = eye;
 	m_Front = target;
 	m_Up = up;
-	m_ViewMatrix = glm::lookAt(m_Position, m_Position* m_Front, m_Up);
+	m_ViewMatrix = glm::lookAt(m_Position, m_Front, m_Up);
 }
 
 void CameraComponent::updateView()

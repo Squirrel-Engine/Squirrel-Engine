@@ -21,8 +21,9 @@ void TestControlSchema::Mouse_Movement()
 		firstMouse = false;
 	}
 
-	float xoffset = lastX = getInterface<IP_Interface>().mouseX - lastX;
-	float yoffset = lastY - getInterface<IP_Interface>().mouseY;
+	float xoffset = getInterface<IP_Interface>().mouseX - lastX;
+	float yoffset = getInterface<IP_Interface>().mouseY - lastY;
+	
 	lastX = getInterface<IP_Interface>().mouseX;
 	lastY = getInterface<IP_Interface>().mouseY;
 
