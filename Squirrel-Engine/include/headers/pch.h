@@ -34,3 +34,4 @@
 #include <glm/gtc/quaternion.hpp>
 
 #include "Macros.h"
+#include "Instrumentor.h"
