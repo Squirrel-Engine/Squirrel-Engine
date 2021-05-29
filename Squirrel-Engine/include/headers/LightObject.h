@@ -4,7 +4,8 @@
 
 enum class ELightType {
 	DirectionalLight,
-	PointLight
+	PointLight,
+	SpotLight
 };
 
 class LightObject

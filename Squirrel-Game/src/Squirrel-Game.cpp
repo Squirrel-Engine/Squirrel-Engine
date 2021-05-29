@@ -47,5 +47,5 @@ void Sandbox::Run()
 	skeleton1->audioComponent.C_AudioSourceID = 0;
 	//
 	auto light = LevelStore::createActor<Light>(EActorType::LIGHT, "firstLight");
-	light->transformComponent.setTransform(0, 0, 10);
+	light->lightComponent.setLightType(ELightType::DirectionalLight);
 }
