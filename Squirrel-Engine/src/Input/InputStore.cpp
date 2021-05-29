@@ -14,6 +14,64 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 		{
 			getInterface<IP_Interface>().controlSchematic->Key_SPACE_RELEASE();
 		}
+
+	case GLFW_KEY_W:
+		if (action == GLFW_PRESS)
+		{
+			getInterface<IP_Interface>().controlSchematic->W_PRESS();
+		}
+		else if (action == GLFW_RELEASE)
+		{
+			getInterface<IP_Interface>().controlSchematic->W_RELEASE();
+		}
+
+	case GLFW_KEY_S:
+		if (action == GLFW_PRESS)
+		{
+			getInterface<IP_Interface>().controlSchematic->S_PRESS();
+		}
+		else if (action == GLFW_RELEASE)
+		{
+			getInterface<IP_Interface>().controlSchematic->S_RELEASE();
+		}
+
+	case GLFW_KEY_A:
+		if (action == GLFW_PRESS)
+		{
+			getInterface<IP_Interface>().controlSchematic->A_PRESS();
+		}
+		else if (action == GLFW_RELEASE)
+		{
+			getInterface<IP_Interface>().controlSchematic->A_RELEASE();
+		}
+
+	case GLFW_KEY_D:
+		if (action == GLFW_PRESS)
+		{
+			getInterface<IP_Interface>().controlSchematic->D_PRESS();
+		}
+		else if (action == GLFW_RELEASE)
+		{
+			getInterface<IP_Interface>().controlSchematic->D_RELEASE();
+		}
+	case GLFW_KEY_Q:
+		if (action == GLFW_PRESS)
+		{
+			getInterface<IP_Interface>().controlSchematic->Q_PRESS();
+		}
+		else if (action == GLFW_RELEASE)
+		{
+			getInterface<IP_Interface>().controlSchematic->Q_RELEASE();
+		}
+	case GLFW_KEY_E:
+		if (action == GLFW_PRESS)
+		{
+			getInterface<IP_Interface>().controlSchematic->E_PRESS();
+		}
+		else if (action == GLFW_RELEASE)
+		{
+			getInterface<IP_Interface>().controlSchematic->E_RELEASE();
+		}
 	default:
 		break;
 	}

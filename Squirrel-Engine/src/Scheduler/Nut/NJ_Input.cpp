@@ -14,6 +14,30 @@ void NJ_Input::run()
 	{
 		getInterface<IP_Interface>().controlSchematic->Key_Space_HOLD();
 	}
+	if (glfwGetKey(furWindow, GLFW_KEY_W) == GLFW_PRESS)
+	{
+		getInterface<IP_Interface>().controlSchematic->W_HOLD();
+	}
+	if (glfwGetKey(furWindow, GLFW_KEY_S) == GLFW_PRESS)
+	{
+		getInterface<IP_Interface>().controlSchematic->S_HOLD();
+	}
+	if (glfwGetKey(furWindow, GLFW_KEY_A) == GLFW_PRESS)
+	{
+		getInterface<IP_Interface>().controlSchematic->A_HOLD();
+	}
+	if (glfwGetKey(furWindow, GLFW_KEY_D) == GLFW_PRESS)
+	{
+		getInterface<IP_Interface>().controlSchematic->D_HOLD();
+	}
+	if (glfwGetKey(furWindow, GLFW_KEY_Q) == GLFW_PRESS)
+	{
+		getInterface<IP_Interface>().controlSchematic->Q_HOLD();
+	}
+	if (glfwGetKey(furWindow, GLFW_KEY_E) == GLFW_PRESS)
+	{
+		getInterface<IP_Interface>().controlSchematic->E_HOLD();
+	}
 	if (glfwGetMouseButton(furWindow, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
 		getInterface<IP_Interface>().controlSchematic->Mouse_Left_HOLD();

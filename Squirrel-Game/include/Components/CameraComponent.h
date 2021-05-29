@@ -24,7 +24,7 @@ public:
 private:
 	void updateView();
 	quat getOrientation();
-private:
+public:
 	static const float DEFAULT_FOVX;
 	static const float DEFAULT_ZNEAR;
 	static const float DEFAULT_ZFAR;
