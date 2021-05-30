@@ -4,7 +4,7 @@ Camera::Camera()
 {
 	bindComponent(&transformComponent);
 	bindComponent(&cameraComponent);
-	//bindComponent(&lightComponent);
+	bindComponent(&lightComponent);
 }
 
 void Camera::BeginPlay()

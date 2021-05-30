@@ -10,8 +10,8 @@ public:
 	};
 
 
-	const float cameraSpeed = 0.6f; // adjust accordingly
-
+	float cameraSpeed = 1.0f; // adjust accordingly
+	const float sensitivity = 0.001f;
 
 	bool firstMouse = true;
 

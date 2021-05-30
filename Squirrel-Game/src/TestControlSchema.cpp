@@ -26,7 +26,7 @@ void TestControlSchema::Mouse_Movement()
 	lastX = getInterface<IP_Interface>().mouseX;
 	lastY = getInterface<IP_Interface>().mouseY;
 
-	float sensitivity = 0.001f;
+	
 	xoffset *= sensitivity;
 	yoffset *= sensitivity;
 
@@ -36,7 +36,13 @@ void TestControlSchema::Mouse_Movement()
 
 void TestControlSchema::ScrollMovement()
 {
-
+	if (cameraSpeed >= 0) {
+		cameraSpeed += (getInterface<IP_Interface>().scrollY) / 100.f;
+	}
+	else {
+		cameraSpeed = 0.0f;
+	}
+	std::cout << cameraSpeed << std::endl;
 }
 
 void TestControlSchema::Mouse_Left_PRESS()

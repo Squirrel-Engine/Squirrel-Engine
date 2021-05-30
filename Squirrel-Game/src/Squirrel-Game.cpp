@@ -26,6 +26,7 @@ void Sandbox::Run()
 	getInterface<IP_Interface>().setControlSchema(testSchema);
 	//
 	auto mainCamera = LevelStore::createActor<Camera>(EActorType::CAMERA, "MainCamera");
+	mainCamera->lightComponent.setLightType(ELightType::SpotLight);
 	//
 	auto skeleton = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "skeleton");
 	skeleton->health = 100;
@@ -33,7 +34,7 @@ void Sandbox::Run()
 	skeleton->transformComponent.setTransform(0, 3, -5);
 	skeleton->transformComponent.setScale(0.05, 0.05, 0.05);
 	skeleton->renderComponent.C_ShaderID = 0;
-	skeleton->renderComponent.C_ModelID = 3;
+	skeleton->renderComponent.C_ModelID = 4;
 	skeleton->audioComponent.C_AudioSourceID = 0;
 	
 	auto skeletonn = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "skeletonn");
@@ -45,6 +46,6 @@ void Sandbox::Run()
 	skeletonn->renderComponent.C_ModelID = 2;
 	skeletonn->audioComponent.C_AudioSourceID = 0;
 	//
-	auto light = LevelStore::createActor<Light>(EActorType::LIGHT, "firstLight");
-	light->lightComponent.setLightType(ELightType::DirectionalLight);
+// 	auto light = LevelStore::createActor<Light>(EActorType::LIGHT, "firstLight");
+// 	light->lightComponent.setLightType(ELightType::DirectionalLight);
 }

@@ -19,7 +19,7 @@ public:
 	SR_COMP_START()
 	TransformComponent transformComponent;
 	CameraComponent cameraComponent;
-	//LightComponent lightComponent;
+	LightComponent lightComponent;
 	SR_COMP_END()
 };
 
