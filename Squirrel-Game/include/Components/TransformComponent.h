@@ -14,12 +14,14 @@ struct Transform {
 private:
 	Transform transform;
 	mat4 transformMat;
+	quat orientation;
 public:
-
+	vec3 forward = vec3(0, 0, -1);
+	vec3 up = vec3(0, 1, 0);
+	vec3 right = vec3(1, 0, 0);
 	SR_VAR_START()
 	
 	SR_VAR_END()
-
 public:
 	TransformComponent();
 	void BeginPlay() override;
@@ -37,6 +39,8 @@ public:
 	void setTransform(float x, float y, float z);
 	void setRotation(float x, float y, float z);
 	void setScale(float x, float y, float z);
+private:
+	quat getOrientation();
 };
 
 SR_COMPONENT()

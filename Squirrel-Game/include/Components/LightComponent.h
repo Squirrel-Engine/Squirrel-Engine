@@ -9,6 +9,7 @@ SR_COMPONENT()
 class LightComponent : public ActorComponent
 {
 private:
+	TransformComponent* m_Transform;
 	LightObject* m_Light;
 	ELightType m_Type;
 public:

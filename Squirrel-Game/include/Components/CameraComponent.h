@@ -12,8 +12,9 @@ public:
 	void Update() override;
 	void setup() override;
 
-	const vec3& getViewDirection() const { return m_Front; }
+	const vec3& getFrontDirection() const { return m_Front; }
 	const vec3& getUpDirection() const { return m_Up; }
+	const vec3& getRightDirection() const { return m_Right; }
 	const mat4& getProjection() const { return m_Projection; }
 	const mat4& getViewMatrix() const { return m_ViewMatrix; }
 	mat4 getViewProjection() const { return m_Projection * m_ViewMatrix; }
@@ -23,8 +24,7 @@ public:
 	void setViewportSize(float width, float height);
 private:
 	void updateView();
-	quat getOrientation();
-public:
+private:
 	static const float DEFAULT_FOVX;
 	static const float DEFAULT_ZNEAR;
 	static const float DEFAULT_ZFAR;
@@ -39,7 +39,7 @@ public:
 	vec3 m_Rotation = vec3(0, 0, 0);
 	vec3 m_Front = vec3(0, 0, -1);
 	vec3 m_Up = vec3(0, 1, 0);
+	vec3 m_Right = vec3(1, 0, 0);
 	mat4 m_ViewMatrix;
 };
-
 SR_COMPONENT()

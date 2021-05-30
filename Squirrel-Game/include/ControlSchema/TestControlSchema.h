@@ -9,8 +9,14 @@ public:
 	{
 	};
 
-	const float cameraSpeed = 0.05f; // adjust accordingly
-	
+	const float cameraSpeed = 0.005f; // adjust accordingly
+
+	bool firstMouse = true;
+
+	float lastX;
+	float lastY;
+
+
 	void Key_SPACE_RELEASE() override;
 	void Key_Space_HOLD() override;
 	void Mouse_Movement() override;
