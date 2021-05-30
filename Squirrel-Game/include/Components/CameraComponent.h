@@ -24,7 +24,6 @@ public:
 	void setViewportSize(float width, float height);
 private:
 	void updateView();
-	quat getOrientation();
 private:
 	static const float DEFAULT_FOVX;
 	static const float DEFAULT_ZNEAR;
@@ -43,5 +42,4 @@ private:
 	vec3 m_Right = vec3(1, 0, 0);
 	mat4 m_ViewMatrix;
 };
-
 SR_COMPONENT()

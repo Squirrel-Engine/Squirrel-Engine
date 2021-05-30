@@ -13,11 +13,16 @@ void LightComponent::BeginPlay()
 
 void LightComponent::Update()
 {
-	vec3 lightPosition = getComponentInParent<TransformComponent>()->getPosition();
+	vec3 lightPosition = m_Transform->getPosition();
+
 	switch (m_Type)
 	{
 	case ELightType::PointLight:
 		dynamic_cast<PointLight*>(m_Light)->m_Position = lightPosition;
+		break;
+	case ELightType::SpotLight:
+		dynamic_cast<SpotLight*>(m_Light)->m_Position = lightPosition;
+		dynamic_cast<SpotLight*>(m_Light)->m_Direction = m_Transform->forward;
 		break;
 	default:
 		break;
@@ -26,7 +31,9 @@ void LightComponent::Update()
 
 void LightComponent::setup()
 {
-	vec3 lightPosition = getComponentInParent<TransformComponent>()->getPosition();
+	m_Transform = getComponentInParent<TransformComponent>();
+	vec3 lightPosition = m_Transform->getPosition();
+
 	switch (m_Type)
 	{
 	case ELightType::DirectionalLight:
@@ -36,6 +43,10 @@ void LightComponent::setup()
 	case ELightType::PointLight:
 		m_Light = new PointLight(lightPosition);
 		DynamicLightManager::addPointLight((PointLight*)m_Light);
+		break;
+	case ELightType::SpotLight:
+		m_Light = new SpotLight(lightPosition, m_Transform->forward);
+		DynamicLightManager::addSpotLight((SpotLight*)m_Light);
 		break;
 	default:
 		break;

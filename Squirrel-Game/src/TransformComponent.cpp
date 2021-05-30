@@ -2,7 +2,6 @@
 
 TransformComponent::TransformComponent()
 {
-	transformMat = mat4(1.0f);
 	transform.position = vec3(0, 0, 0);
 	transform.rotation = vec3(0, 0, 0);
 	transform.scale = vec3(1, 1, 1);
@@ -20,6 +19,11 @@ void TransformComponent::Update()
 	transformMat = glm::rotate(transformMat, radians(transform.rotation.y), vec3(0, 1, 0)); //rotation y
 	transformMat = glm::rotate(transformMat, radians(transform.rotation.z), vec3(0, 0, 1)); //rotation z 
 	transformMat = glm::scale(transformMat, transform.scale);
+
+	orientation = getOrientation();
+	up = glm::rotate(orientation, glm::vec3(0.0f, 1.0f, 0.0f));
+	forward = glm::rotate(orientation, glm::vec3(0.0f, 0.0f, -1.0f));
+	right = glm::rotate(orientation, glm::vec3(1.0f, 0.0f, 0.0f));
 
 	dynamic_cast<TRANSFORM_DESC*>(uniforms)->model = transformMat;
 	
@@ -82,4 +86,9 @@ void TransformComponent::setRotation(float x, float y, float z)
 void TransformComponent::setScale(float x, float y, float z)
 {
 	transform.scale = vec3(x, y, z);
+}
+
+glm::quat TransformComponent::getOrientation()
+{
+	return glm::quat(glm::vec3(-transform.rotation.x, -transform.rotation.y, -transform.rotation.z));
 }

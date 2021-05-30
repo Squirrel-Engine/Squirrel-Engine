@@ -89,10 +89,10 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 	getInterface<IP_Interface>().mouseX = 2 * ((xpos - 1) / (width + 1)) - 1;
 	getInterface<IP_Interface>().mouseY = 2 * ((ypos - 1) / (height + 1)) - 1;
 
-	
+
+
 	getInterface<IP_Interface>().mouseX = xpos;
 	getInterface<IP_Interface>().mouseY = ypos;
-	
 	getInterface<IP_Interface>().controlSchematic->Mouse_Movement();
 }
 

@@ -44,7 +44,7 @@ void Fur::startRenderEngine()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
 	glEnable(GL_MULTISAMPLE);
-	glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 void Fur::pauseRenderEngine()

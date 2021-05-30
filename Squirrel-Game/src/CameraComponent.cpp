@@ -53,21 +53,18 @@ void CameraComponent::updateLookAt(const vec3& eye, const vec3& target, const ve
 }
 
 void CameraComponent::updateView()
-{
-	glm::quat orientation = getOrientation();
-	m_Up = glm::rotate(orientation, glm::vec3(0.0f, 1.0f, 0.0f));
-	m_Front = glm::rotate(orientation, glm::vec3(0.0f, 0.0f, -1.0f));
-	m_Right = glm::rotate(orientation, glm::vec3(1.0f, 0.0f, 0.0f));
+{	
+	TransformComponent* transform = getComponentInParent<TransformComponent>();
+	m_Position = transform->getPosition();
+	m_Rotation = transform->getRotation();
+	m_Front = transform->forward;
+	m_Up = transform->up;
+	m_Right = transform->right;
 
-	m_Position = getComponentInParent<TransformComponent>()->getPosition();
+	glm::quat orientation = glm::vec3(-m_Rotation.x, -m_Rotation.y, -m_Rotation.z);
 	m_ViewMatrix = glm::translate(glm::mat4(1.0f), m_Position) * glm::toMat4(orientation);
 	m_ViewMatrix = glm::inverse(m_ViewMatrix);
-}
 
-glm::quat CameraComponent::getOrientation()
-{
-	m_Rotation = getComponentInParent<TransformComponent>()->getRotation();
-	return glm::quat(glm::vec3(-m_Rotation.x, -m_Rotation.y, 0));
 }
 
 void CameraComponent::setViewportSize(float width, float height)

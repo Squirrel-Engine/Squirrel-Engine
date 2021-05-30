@@ -27,25 +27,24 @@ void Sandbox::Run()
 	//
 	auto mainCamera = LevelStore::createActor<Camera>(EActorType::CAMERA, "MainCamera");
 	//
-	for (int i = 0; i < 1; i++) {
-		auto skeleton = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "skeleton"+i);
-		skeleton->health = 100;
-		skeleton->attackPower = 50;
-		skeleton->transformComponent.setTransform(0, 3, -5);
-		skeleton->transformComponent.setScale(0.05, 0.05, 0.05);
-		skeleton->renderComponent.C_ShaderID = 0;
-		skeleton->renderComponent.C_ModelID = 3;
-		skeleton->audioComponent.C_AudioSourceID = 0;
-	}
-	auto skeleton1 = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "skeletonn");
-	skeleton1->health = 100;
-	skeleton1->attackPower = 50;
-	skeleton1->transformComponent.setTransform(0, -3, +5);
-	skeleton1->transformComponent.setRotation(0, 180, 0);
-	skeleton1->renderComponent.C_ShaderID = 0;
-	skeleton1->renderComponent.C_ModelID = 2;
-	skeleton1->audioComponent.C_AudioSourceID = 0;
+	auto skeleton = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "skeleton");
+	skeleton->health = 100;
+	skeleton->attackPower = 50;
+	skeleton->transformComponent.setTransform(0, 3, -5);
+	skeleton->transformComponent.setScale(0.05, 0.05, 0.05);
+	skeleton->renderComponent.C_ShaderID = 0;
+	skeleton->renderComponent.C_ModelID = 3;
+	skeleton->audioComponent.C_AudioSourceID = 0;
+	
+	auto skeletonn = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "skeletonn");
+	skeletonn->health = 100;
+	skeletonn->attackPower = 50;
+	skeletonn->transformComponent.setTransform(0, -3, +5);
+	skeletonn->transformComponent.setRotation(0, 180, 0);
+	skeletonn->renderComponent.C_ShaderID = 0;
+	skeletonn->renderComponent.C_ModelID = 2;
+	skeletonn->audioComponent.C_AudioSourceID = 0;
 	//
 	auto light = LevelStore::createActor<Light>(EActorType::LIGHT, "firstLight");
-	light->transformComponent.setTransform(0, 0, 10);
+	light->lightComponent.setLightType(ELightType::DirectionalLight);
 }
