@@ -72,6 +72,7 @@ void TestControlSchema::D_HOLD()
 
 void TestControlSchema::E_HOLD()
 {
+
 	LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<TransformComponent>()->getPosition() += glm::vec3(0, 1, 0) * cameraSpeed;
 }
 

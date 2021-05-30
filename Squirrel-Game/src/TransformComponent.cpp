@@ -26,6 +26,7 @@ void TransformComponent::Update()
 	right = glm::rotate(orientation, glm::vec3(1.0f, 0.0f, 0.0f));
 
 	dynamic_cast<TRANSFORM_DESC*>(uniforms)->model = transformMat;
+	
 }
 
 void TransformComponent::setup()

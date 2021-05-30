@@ -25,6 +25,7 @@ void CameraComponent::BeginPlay()
 void CameraComponent::Update()
 {
 	updateView();
+
 	cameraDesc->viewPos = m_Position;
 	cameraDesc->viewProjection = m_Projection * m_ViewMatrix;
 }
@@ -43,7 +44,7 @@ void CameraComponent::updatePerspective(float fovx, float aspect, float znear, f
 	m_Projection = glm::perspective(radians(m_FOV), m_AspectRatio, m_NearClip, m_FarClip);
 }
 
-void CameraComponent::updateLookAt(const vec3 &eye, const vec3 &target, const vec3 &up)
+void CameraComponent::updateLookAt(const vec3& eye, const vec3& target, const vec3& up)
 {
 	m_Position = eye;
 	m_Front = target;
@@ -63,6 +64,7 @@ void CameraComponent::updateView()
 	glm::quat orientation = glm::vec3(-m_Rotation.x, -m_Rotation.y, -m_Rotation.z);
 	m_ViewMatrix = glm::translate(glm::mat4(1.0f), m_Position) * glm::toMat4(orientation);
 	m_ViewMatrix = glm::inverse(m_ViewMatrix);
+
 }
 
 void CameraComponent::setViewportSize(float width, float height)

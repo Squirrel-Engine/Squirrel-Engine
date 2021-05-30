@@ -12,10 +12,11 @@ struct Transform {
 	vec3 scale;
 };
 private:
-	Transform transform;
 	mat4 transformMat;
 	quat orientation;
+  Transform transform;
 public:
+
 	vec3 forward = vec3(0, 0, -1);
 	vec3 up = vec3(0, 1, 0);
 	vec3 right = vec3(1, 0, 0);
