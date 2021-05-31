@@ -31,7 +31,6 @@ void Sandbox::Run()
 	auto skeleton = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "skeleton");
 	skeleton->health = 100;
 	skeleton->attackPower = 50;
-	skeleton->transformComponent.setTransform(0, 3, -5);
 	skeleton->transformComponent.setScale(0.05, 0.05, 0.05);
 	skeleton->renderComponent.C_ShaderID = 0;
 	skeleton->renderComponent.C_ModelID = 4;

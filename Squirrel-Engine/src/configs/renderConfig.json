@@ -1,6 +1,6 @@
 {
   "Renderer": "Fur",
-  "screenWidth": 3840,
-  "screenHeight": 2400,
+  "screenWidth": 1920,
+  "screenHeight": 1080,
   "windowName": "Fur Renderer"
 }

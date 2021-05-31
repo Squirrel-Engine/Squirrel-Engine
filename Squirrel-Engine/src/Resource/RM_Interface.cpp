@@ -15,7 +15,7 @@ void RM_Interface::loadAssetMap()
 	meshAssetMap.insert({1, "../../Squirrel-Engine/res/models/Venus.obj" });
 	meshAssetMap.insert({2, "../../Squirrel-Engine/res/models/Statue.fbx" });
 	meshAssetMap.insert({3, "../../Squirrel-Engine/res/models/Cerberus_Gun/Cerberus_LP.fbx" });
-	meshAssetMap.insert({ 4, "../../Squirrel-Engine/res/models/Demo/Demo.obj" });
+	meshAssetMap.insert({4, "../../Squirrel-Engine/res/models/Demo/Demo.obj" });
 	//Texture
 	textureAssetMap.insert({0, "../../Squirrel-Engine/res/textures/wall.jpg"});
 	textureAssetMap.insert({1, "../../Squirrel-Engine/res/textures/test_emis.jpg"});
