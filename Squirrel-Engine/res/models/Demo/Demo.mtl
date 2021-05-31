@@ -4,7 +4,7 @@ Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd uifnadedw_4K_Albedo.jpg
-bump  -bm 1 uifnadedw_4K_Normal_LOD0.jpg
+map_Bump uifnadedw_4K_Normal_LOD0.jpg
 Ni 1.00
 Ks 0.50 0.50 0.50
 newmtl blinn2SG
@@ -29,7 +29,7 @@ Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd uifnae2dw_4K_Albedo.jpg
-bump  -bm 1 uifnae2dw_4K_Normal_LOD3.jpg
+map_Bump uifnae2dw_4K_Normal_LOD3.jpg
 Ni 1.00
 Ks 0.50 0.50 0.50
 newmtl blinn5SG
@@ -38,7 +38,7 @@ Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ugywdfqdw_4K_Albedo_LOD5.jpg
-bump  -bm 1 ugywdfqdw_4K_Normal_LOD5.jpg
+map_Bump ugywdfqdw_4K_Normal_LOD5.jpg
 Ni 1.00
 Ks 0.50 0.50 0.50
 newmtl blinn6SG
@@ -47,7 +47,7 @@ Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ugylefndw_4K_Albedo_LOD5.jpg
-bump  -bm 1 ugylefndw_4K_Normal_LOD4.jpg
+map_Bump ugylefndw_4K_Normal_LOD4.jpg
 Ni 1.00
 Ks 0.50 0.50 0.50
 newmtl blinn7SG
@@ -56,7 +56,7 @@ Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ugztcjpdw_4K_Albedo_LOD5.jpg
-bump  -bm 1 ugztcjpdw_4K_Normal_LOD4.jpg
+map_Bump ugztcjpdw_4K_Normal_LOD4.jpg
 Ni 1.00
 Ks 0.50 0.50 0.50
 newmtl blinn8SG
@@ -65,7 +65,7 @@ Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ugyqfczdw_4K_Albedo.jpg
-bump  -bm 1 ugyqfczdw_4K_Normal_LOD0.jpg
+map_Bump ugyqfczdw_4K_Normal_LOD0.jpg
 Ni 1.00
 Ks 0.50 0.50 0.50
 newmtl blinn10SG
@@ -74,7 +74,7 @@ Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd ugsifedhw_4K_Albedo.jpg
-bump  -bm 1 ugsifedhw_4K_Normal_LOD7.jpg
+map_Bump 1 ugsifedhw_4K_Normal_LOD7.jpg
 Ni 1.00
 Ks 0.50 0.50 0.50
 newmtl initialShadingGroup

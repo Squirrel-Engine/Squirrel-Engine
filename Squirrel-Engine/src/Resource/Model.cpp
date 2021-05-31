@@ -37,6 +37,7 @@ void Model::loadModel(const string& path)
 	directory = path.substr(0, path.find_last_of('/'));
 
 	processNode(*scene->mRootNode, *scene);
+	importer.FreeScene();
 }
 
 void Model::processNode(aiNode& node, const aiScene& scene)
@@ -107,7 +108,7 @@ Mesh Model::processMesh(aiMesh& mesh, const aiScene& scene)
 		aiMaterial* material = scene.mMaterials[mesh.mMaterialIndex];
 
 		newMesh.m_Material.setAlbedoMap(loadMaterialTexture(material, aiTextureType_DIFFUSE, true));
-		newMesh.m_Material.setNormalMap(loadMaterialTexture(material, aiTextureType_NORMALS, false));
+		newMesh.m_Material.setNormalMap(loadMaterialTexture(material, aiTextureType_HEIGHT, false));
 		newMesh.m_Material.setAmbientOcclusionMap(loadMaterialTexture(material, aiTextureType_AMBIENT, false));
 		newMesh.m_Material.setDisplacementMap(loadMaterialTexture(material, aiTextureType_DISPLACEMENT, true));
 	}
