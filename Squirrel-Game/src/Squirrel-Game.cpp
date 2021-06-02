@@ -33,7 +33,7 @@ void Sandbox::Run()
 	skeleton->attackPower = 50;
 	skeleton->transformComponent.setScale(0.05, 0.05, 0.05);
 	skeleton->renderComponent.C_ShaderID = 0;
-	skeleton->renderComponent.C_ModelID = 4;
+	skeleton->renderComponent.C_ModelID = 3;
 	skeleton->audioComponent.C_AudioSourceID = 0;
 	
 	auto skeletonn = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "skeletonn");

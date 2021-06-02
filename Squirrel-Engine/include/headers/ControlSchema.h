@@ -9,10 +9,12 @@ public:
 
 	virtual void Key_SPACE_PRESS()
 	{
+
 	};
 
 	virtual void Key_SPACE_RELEASE()
 	{
+
 	};
 
 	virtual void Key_Space_HOLD()

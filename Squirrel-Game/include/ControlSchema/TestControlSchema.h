@@ -18,6 +18,7 @@ public:
 	float lastX;
 	float lastY;
 
+	void Key_SPACE_PRESS() override;
 	void Key_SPACE_RELEASE() override;
 	void Key_Space_HOLD() override;
 	void Mouse_Movement() override;

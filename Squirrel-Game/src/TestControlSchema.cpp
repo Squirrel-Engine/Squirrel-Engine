@@ -1,9 +1,14 @@
 #include "ControlSchema/TestControlSchema.h"
 #include "Components/CameraComponent.h"
 
+void TestControlSchema::Key_SPACE_PRESS()
+{
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+}
+
 void TestControlSchema::Key_SPACE_RELEASE()
 {
-	std::cout << "RELEASE" << std::endl;
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void TestControlSchema::Key_Space_HOLD()
