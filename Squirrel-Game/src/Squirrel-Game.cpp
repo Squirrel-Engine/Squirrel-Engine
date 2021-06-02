@@ -24,27 +24,27 @@ void Sandbox::Run()
 {
 	auto testSchema = new TestControlSchema();
 	getInterface<IP_Interface>().setControlSchema(testSchema);
-	//
-	auto mainCamera = LevelStore::createActor<Camera>(EActorType::CAMERA, "MainCamera");
-	mainCamera->lightComponent.setLightType(ELightType::SpotLight);
-	//
-	auto skeleton = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "skeleton");
-	skeleton->health = 100;
-	skeleton->attackPower = 50;
-	skeleton->transformComponent.setScale(0.05, 0.05, 0.05);
-	skeleton->renderComponent.C_ShaderID = 0;
-	skeleton->renderComponent.C_ModelID = 3;
-	skeleton->audioComponent.C_AudioSourceID = 0;
 	
-	auto skeletonn = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "skeletonn");
-	skeletonn->health = 100;
-	skeletonn->attackPower = 50;
-	skeletonn->transformComponent.setTransform(0, -3, +5);
-	skeletonn->transformComponent.setRotation(0, 180, 0);
-	skeletonn->renderComponent.C_ShaderID = 0;
-	skeletonn->renderComponent.C_ModelID = 2;
-	skeletonn->audioComponent.C_AudioSourceID = 0;
-	//
-// 	auto light = LevelStore::createActor<Light>(EActorType::LIGHT, "firstLight");
-// 	light->lightComponent.setLightType(ELightType::DirectionalLight);
+	auto Player = LevelStore::createActor<Camera>(EActorType::CAMERA, "Player");
+	Player->lightComponent.setLightType(ELightType::SpotLight);
+	
+	auto Map = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "Map");
+	Map->transformComponent.setTransform(0,-5, 0);
+	Map->transformComponent.setScale(0.05, 0.05, 0.05);
+	Map->renderComponent.C_ShaderID = 0;
+	Map->renderComponent.C_ModelID = 3;
+	Map->audioComponent.C_AudioSourceID = 0;
+	
+	auto Statue = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "Statue");
+	Statue->transformComponent.setTransform(18, -3, 17);
+	Statue->transformComponent.setScale(0.03, 0.03, 0.03);
+	Statue->renderComponent.C_ShaderID = 0;
+	Statue->renderComponent.C_ModelID = 2;
+	Statue->audioComponent.C_AudioSourceID = 0;
+	
+	auto FirstLight = LevelStore::createActor<Light>(EActorType::LIGHT, "FirstLight");
+	FirstLight->transformComponent.setTransform(0, 5, 35);
+
+	auto SecondLight = LevelStore::createActor<Light>(EActorType::LIGHT, "SecondLight");
+	SecondLight->transformComponent.setTransform(0, 5, 0);
 }

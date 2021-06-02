@@ -13,7 +13,7 @@ void TestControlSchema::Key_SPACE_RELEASE()
 
 void TestControlSchema::Key_Space_HOLD()
 {
-	std::cout << "HOLD" << std::endl;
+
 }
 
 void TestControlSchema::Mouse_Movement()
@@ -35,7 +35,7 @@ void TestControlSchema::Mouse_Movement()
 	xoffset *= sensitivity;
 	yoffset *= sensitivity;
 
-	LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<TransformComponent>()->rotate(yoffset, xoffset, 0);
+	LevelStore::getActor(EActorType::CAMERA, "Player")->getComponent<TransformComponent>()->rotate(yoffset, xoffset, 0);
 
 }
 
@@ -47,47 +47,46 @@ void TestControlSchema::ScrollMovement()
 	else {
 		cameraSpeed = 0.0f;
 	}
-	std::cout << cameraSpeed << std::endl;
 }
 
 void TestControlSchema::Mouse_Left_PRESS()
 {
-	//std::cout << "Left Button" << std::endl;
+
 }
 
 void TestControlSchema::Mouse_Left_HOLD()
 {
-	std::cout << "HOLD" << std::endl;
+
 }
 
 void TestControlSchema::W_HOLD()
 {
-	LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<TransformComponent>()->getPosition() += LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<CameraComponent>()->getFrontDirection() * cameraSpeed;
+	LevelStore::getActor(EActorType::CAMERA, "Player")->getComponent<TransformComponent>()->getPosition() += LevelStore::getActor(EActorType::CAMERA, "Player")->getComponent<CameraComponent>()->getFrontDirection() * cameraSpeed;
 }
 
 void TestControlSchema::S_HOLD()
 {
-	LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<TransformComponent>()->getPosition() -= LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<CameraComponent>()->getFrontDirection() * cameraSpeed;
+	LevelStore::getActor(EActorType::CAMERA, "Player")->getComponent<TransformComponent>()->getPosition() -= LevelStore::getActor(EActorType::CAMERA, "Player")->getComponent<CameraComponent>()->getFrontDirection() * cameraSpeed;
 }
 
 void TestControlSchema::A_HOLD()
 {
 
-	LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<TransformComponent>()->getPosition() -= LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<CameraComponent>()->getRightDirection() * cameraSpeed;
+	LevelStore::getActor(EActorType::CAMERA, "Player")->getComponent<TransformComponent>()->getPosition() -= LevelStore::getActor(EActorType::CAMERA, "Player")->getComponent<CameraComponent>()->getRightDirection() * cameraSpeed;
 }
 
 void TestControlSchema::D_HOLD()
 {
-	LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<TransformComponent>()->getPosition() += LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<CameraComponent>()->getRightDirection() * cameraSpeed;
+	LevelStore::getActor(EActorType::CAMERA, "Player")->getComponent<TransformComponent>()->getPosition() += LevelStore::getActor(EActorType::CAMERA, "Player")->getComponent<CameraComponent>()->getRightDirection() * cameraSpeed;
 }
 
 void TestControlSchema::E_HOLD()
 {
 
-	LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<TransformComponent>()->getPosition() += glm::vec3(0, 1, 0) * cameraSpeed;
+	LevelStore::getActor(EActorType::CAMERA, "Player")->getComponent<TransformComponent>()->getPosition() += glm::vec3(0, 1, 0) * cameraSpeed;
 }
 
 void TestControlSchema::Q_HOLD()
 {
-	LevelStore::getActor(EActorType::CAMERA, "MainCamera")->getComponent<TransformComponent>()->getPosition() -= glm::vec3(0, 1, 0) * cameraSpeed;
+	LevelStore::getActor(EActorType::CAMERA, "Player")->getComponent<TransformComponent>()->getPosition() -= glm::vec3(0, 1, 0) * cameraSpeed;
 }

@@ -13,5 +13,5 @@ void Camera::BeginPlay()
 
 void Camera::Update()
 {
-	//transformComponent.translate(0, 0, 0.01);
+	
 }

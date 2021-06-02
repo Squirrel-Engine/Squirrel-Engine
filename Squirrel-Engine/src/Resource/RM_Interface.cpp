@@ -13,7 +13,7 @@ void RM_Interface::loadAssetMap()
 	//Mesh
 	meshAssetMap.insert({0, "../../Squirrel-Engine/res/models/Model.obj" });
 	meshAssetMap.insert({1, "../../Squirrel-Engine/res/models/Venus.obj" });
-	meshAssetMap.insert({2, "../../Squirrel-Engine/res/models/Statue.fbx" });
+	meshAssetMap.insert({2, "../../Squirrel-Engine/res/models/Statue/Statue.obj" });
 	meshAssetMap.insert({3, "../../Squirrel-Engine/res/models/Demo/Demo.obj" });
 	//Texture
 	textureAssetMap.insert({0, "../../Squirrel-Engine/res/textures/wall.jpg"});

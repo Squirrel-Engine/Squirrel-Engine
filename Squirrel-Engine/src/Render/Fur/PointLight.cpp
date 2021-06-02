@@ -3,7 +3,7 @@
 PointLight::PointLight(float lightIntensity, glm::vec3& lightColour, float attenuationRadius, glm::vec3& pos)
 	: LightObject(lightIntensity, lightColour), m_AttenuationRadius(attenuationRadius), m_Position(pos) {}
 PointLight::PointLight(glm::vec3& pos)
-	: LightObject(), m_AttenuationRadius(30.0f), m_Position(pos) {}
+	: LightObject(), m_AttenuationRadius(80.0f), m_Position(pos) {}
 
 PointLight::~PointLight	()
 {

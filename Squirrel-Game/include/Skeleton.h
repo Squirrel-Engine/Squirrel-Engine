@@ -15,8 +15,7 @@ public:
 	void Update() override;
 
 	SR_VAR_START()
-	int health;
-	int attackPower;
+
 	SR_VAR_END()
 
 	SR_COMP_START()
