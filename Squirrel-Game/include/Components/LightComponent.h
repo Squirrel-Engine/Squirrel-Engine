@@ -10,11 +10,10 @@ class LightComponent : public ActorComponent
 {
 private:
 	TransformComponent* m_Transform;
-	LightObject* m_Light;
 	ELightType m_Type;
 public:
 	SR_VAR_START()
-	
+	LightObject* m_Light;
 	SR_VAR_END()
 public:
 	LightComponent();

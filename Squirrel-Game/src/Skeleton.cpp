@@ -15,8 +15,5 @@ void Skeleton::BeginPlay()
 
 void Skeleton::Update()
 {
-	/*for (int i =0; i<1000000; i++)
-	{
-
-	}*/
+	
 }

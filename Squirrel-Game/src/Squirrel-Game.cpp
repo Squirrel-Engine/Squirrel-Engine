@@ -27,7 +27,7 @@ void Sandbox::Run()
 	
 	auto Player = LevelStore::createActor<Camera>(EActorType::CAMERA, "Player");
 	Player->lightComponent.setLightType(ELightType::SpotLight);
-	
+
 	auto Map = LevelStore::createActor<Skeleton>(EActorType::ACTOR, "Map");
 	Map->transformComponent.setTransform(0,-5, 0);
 	Map->transformComponent.setScale(0.05, 0.05, 0.05);
@@ -41,7 +41,7 @@ void Sandbox::Run()
 	Statue->renderComponent.C_ShaderID = 0;
 	Statue->renderComponent.C_ModelID = 2;
 	Statue->audioComponent.C_AudioSourceID = 0;
-	
+
 	auto FirstLight = LevelStore::createActor<Light>(EActorType::LIGHT, "FirstLight");
 	FirstLight->transformComponent.setTransform(0, 5, 35);
 
