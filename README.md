@@ -382,7 +382,7 @@ Squirrel Engine have basic infrastructure required for the engine so far. A smal
 
 MIT License
 
-Copyright (c) 2021 Fatih Canvbekli, Caner Kurtnazar, Melisa Ronay Seven 
+Copyright (c) 2021 Fatih Canbekli, Caner Kurtnazar, Melisa Ronay Seven 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
