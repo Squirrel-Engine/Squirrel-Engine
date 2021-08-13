@@ -373,7 +373,7 @@ At the end of the day, we achieved three times performance increase in multithre
 ![](pictures/single_thread.png "sdsdsd")
 *Single-threaded  profiling results*
 ![](pictures/multi-thread.png)
-*Mutlu-threaded  profiling results*
+*Multi-threaded  profiling results*
 
 Squirrel Engine have basic infrastructure required for the engine so far. A small-scale replica of a complex system such as a game engine would be useful for learning purposes. We hope this project can be useful for people who are interested in game engine development.
 
