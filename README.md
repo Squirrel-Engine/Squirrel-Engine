@@ -1,4 +1,4 @@
-![](pictures/squirrel-engine.png)
+![](pictures/squirrel-engine-logo.jpg)
 
 
 # Educational Purpose Multithreaded Game Engine
