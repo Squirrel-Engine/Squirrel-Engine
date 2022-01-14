@@ -11,7 +11,6 @@
 - Lightweight, easy to use
 - Fully operational Entity Component System
 - Physically Based Rendering
-- PBR Material System
 - MSAA (Forward Anti-Aliasing), FXAA (Deferred Anti-Aliasing)
 - Point, Directional and Spotlight Sources
 - DirectSound supported audio engine
