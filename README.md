@@ -9,7 +9,6 @@
 ## Features
 - Multithreaded high performance, low overhead job system
 - Lightweight, easy to use
-- Fully operational Entity Component System
 - Physically Based Rendering
 - MSAA (Forward Anti-Aliasing), FXAA (Deferred Anti-Aliasing)
 - Point, Directional and Spotlight Sources
